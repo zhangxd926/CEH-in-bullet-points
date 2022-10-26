@@ -8166,7 +8166,7 @@ networked computing devices via one or more centralized servers.
 
 - [`fragroute`](https://tools.kali.org/information-gathering/fragroute) for [packet fragmentation](../03-scanning-networks/bypassing-ids-and-firewall.md#packet-fragmentation)
 - Different scanners such as `nmap` has also [options to evade IDS](https://Nmap.org/book/subvert-ids.html#avoid-ids).
-- Also many web vulnerability scanners can be used such as [Nikto](./../05-vulnerabilities/vulnerability-analysis.md#nikto)], [Whisker](#whisker) and [Nessus](./../05-vulnerabilities/vulnerability-analysis.md#nessus)
+- Also many web vulnerability scanners can be used such as [Nikto](./../05-vulnerabilities/vulnerability-analysis.md#nikto), [Whisker](#whisker) and [Nessus](./../05-vulnerabilities/vulnerability-analysis.md#nessus)
 
 ### Whisker
 
