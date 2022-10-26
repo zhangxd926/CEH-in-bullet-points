@@ -7107,7 +7107,7 @@ environment variable named `HTTP_SIKE` available in your CGI.
 - **802.11 Specifications**
 
   | Standard | Distance | Speed |
-  | -------- | ----- | ----- |
+  | -------- | ----- | ------ |
   | WiFi | Medium (20-250 m) | Started slow (2 Mbit/s) but fast now (1300 Mbit/s)  |
   | ZigBee | Smallest (1-100 m) | Slow (up to 0.25 Mbit/s) |
   | WiMax | Biggest (1.6 - 9.6 km) | Fast (up to 1 Gbit/s) |
@@ -8059,7 +8059,7 @@ networked computing devices via one or more centralized servers.
 ## Firewall vs IPS vs IDS
 
 | | [Firewall](./firewall-overview.md) | IPS | IDS |
-| --------- | ------- | ------ |
+| --------- | ------- | ------ | ------ |
 | **Abbreviation for** | - | Intrusion Prevention System | Intrusion Detection System |
 | **Firewall** | Filters incoming and outgoing network traffic based on predetermined rules | Inspects traffic, detects it, classifies and then proactively stops malicious traffic from attack. | Monitors a traffic for malicious activity or policy violations and sends alert on detection. |
 | **Working principle** | Filters traffic based on IP address and port numbers (layer 3), state of the connection (layer 4), or contents of packet (layer 7) | Inspects real time traffic and looks for traffic patterns or signatures of attack and then prevents the attacks on detection | Detects real time traffic and looks for traffic patterns or signatures of attack and them generates alerts |
